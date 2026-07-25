@@ -6,17 +6,17 @@ One sentence: **dangerous operations belong to the pantheon's **ops owner**, exe
 
 ## 1. Dangerous operations (agents never execute — no exceptions)
 
-| Category | Examples |
+| Category | Examples (Lattice stack — widened, never narrowed) |
 |---|---|
-| Orchestration | any kubectl / helm / docker subcommand in shared or prod contexts — including "read-only" get/logs; banned wholesale to keep the line bright |
-| Releases | CI/CD triggers (UI, API, CLI); image build & push; any deploy job |
-| Servers | ssh / scp / rsync; cloud instance start/stop (console or CLI) |
-| Network | reverse-proxy config & reload; DNS; certificates |
-| Data | write access to shared-environment databases; prod config of search/queue infra; object-storage administration |
-| Secrets | creating, editing, rotating, or pasting credentials; env-var injection |
-| Irreversible | bulk deletion, migration rollback, force-push, account administration |
+| Orchestration | any docker / docker compose / kubectl / helm subcommand against a deployed host or fleet node — including "read-only" `ps`/`logs`; banned wholesale to keep the line bright |
+| Releases | **pushing any git tag matching `alpha-*` or `v*`** (lattice-server `container.yml` is tag-driven — a tag push IS a release trigger); GitHub Actions re-runs/dispatch; ghcr.io image push; editing anything under `.github/workflows/` outside zeus's branch flow |
+| Servers | ssh / scp / rsync to any fleet node (every fleet ssh alias and raw node IP); cloud instance start/stop/resize; VM console access |
+| Network | Cloudflare DNS / proxy / certificates; reverse-proxy config & reload; **applying WireGuard or nftables plans to live nodes**; editing sing-box configs on nodes (`/etc/sing-box/**`) |
+| Data | writing prod `state.json` or plugin data dirs on deployed hosts; deleting or altering backups (`*.bak.*`); bulk operations on live nodes via `task:run` |
+| Secrets | the publisher ed25519 seed in the operator's local keystore (read, copy, or **any `pluginsign` invocation**); LATTICE_* env secrets; PATs, TOTP/WebAuthn state; creating, rotating, or pasting any credential |
+| Irreversible | force-push; deleting remote branches/tags; migration rollback; GitHub org/repo administration; node re-provisioning |
 
-Adapt this table to your stack at setup — but keep the principle: **ban wide, never narrow**. Permissions an agent acquires "just to look" become incidents later.
+Keep the principle when extending: **ban wide, never narrow**. Permissions an agent acquires "just to look" become incidents later.
 
 ## 2. Per-side rules
 
@@ -33,7 +33,7 @@ Adapt this table to your stack at setup — but keep the principle: **ban wide, 
 ## 3. Release skeleton (the ops owner executes by hand)
 
 1. Integration branch green; relevant TASKs merged;
-2. Release in `{{RELEASE_ORDER}}` order; rollback in reverse;
+2. Release in `sdk → server / dashboard / node-agent → docs site → plugins → plugin-index` order; rollback in reverse;
 3. Smoke-check by **real use**, not "build passed";
 4. Broadcast the result in a letter + update your status board; leftovers become tasks.
 

@@ -30,7 +30,7 @@ created: YYYY-MM-DD          # UTC date (rules/02 §0)
 
 ## DoD
 
-- [ ] merged into {{INTEGRATION_BRANCH}}
+- [ ] merged into integration
 - [ ] diff stays inside Allowed paths (mechanical check, finish-task §1)
 - [ ] <criterion> — proven by `<named test selector>`   # one line per criterion; bind proof, don't just say "tests green"
 - [ ] docs updated (list)

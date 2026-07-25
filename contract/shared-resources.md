@@ -1,24 +1,76 @@
 # Shared-resource claim ledger (claim first, code second)
 
-Everything that collides when two people add one simultaneously queues here: DB migration numbers, global enum values, ports, event names, route prefixes, error-code ranges… Adapt sections at setup.
-Rules: **claim in this table before writing code**; collisions → later merger renumbers and updates the ledger; states `open → in_progress (TASK id) → merged (commit)`.
-Dependencies: a claim that builds on earlier **unmerged** numbers is not developed on top of them in parallel — branch the dependent slice after its predecessors merge, or take an earlier slot (rules/01 §2, rules/02 §3.5).
+Everything that collides when two people add one simultaneously queues here. Rules: **claim in
+this table before writing code**; collisions → later merger renumbers and updates the ledger;
+states `open → in_progress (TASK id) → merged (commit)`.
+Dependencies: a claim that builds on earlier **unmerged** numbers is not developed on top of them
+in parallel — branch the dependent slice after its predecessors merge, or take an earlier slot
+(rules/01 §2, rules/02 §3.5).
 
-## DB migration numbers
+## SDK proto field numbers (lattice-sdk `proto/**` + `model.go`)
 
-| No. | Content | Owner | State | TASK |
+Highest known allocations at setup: `NodeView` through **28** (node-inventory), `ApprovalView`
+through **20** (operation binding 15–20). Verify against the current file before claiming.
+
+| Message · field range | Content | Owner | State | TASK |
 |---|---|---|---|---|
-| (example) v1 | initial schema | zeus.example | merged | — |
+| NodeView · …28 | inventory fields (pre-Olympus) | hephaestus | merged | — |
+| ApprovalView · 15–20 | operation-binding columns (pre-Olympus) | hephaestus | merged | — |
 | | | | | |
 
-## Global enums / constant ranges
+## Server image tag train (`alpha-X.Y.ZaN` — claiming aN reserves the CI build slot)
 
-| Name | Value/range | Owner | State | TASK |
+Tag **push** itself is a release op (zeus's hands, rules/03). Known at setup: train moved to
+`alpha-0.2.2`; `a1` deployed 2026-07-15. Verify `git tag -l 'alpha-*'` before claiming.
+
+| Tag | Content | Owner | State | TASK |
+|---|---|---|---|---|
+| alpha-0.2.2a1 | strict backing + secret storage + execute protocol (pre-Olympus, deployed) | zeus | merged | — |
+| | | | | |
+
+## RBAC scopes & host capabilities (lattice-server rbac + plugin manifests)
+
+One name, one meaning, everywhere: scope strings (`netguard:admin`, `plugin:admin`,
+`secret:read/write`, `task:run`, `substore:*`…) and capability names must not be minted twice
+or reused across semantics (the wireguard scope-name confusion is the cautionary tale).
+
+| Name | Meaning | Owner | State | TASK |
 |---|---|---|---|---|
 | | | | | |
 
-## Ports / route prefixes / event names (add sections as needed)
+## Plugin ids · service/method names · manifest versions
+
+Plugin ids are global (`latticenet.<name>`); service+method tuples are wire contract; manifest
+`version` bumps lock-step with artifact rebuilds (digest changes ⇒ zeus re-signs).
 
 | Resource | Value | Owner | State | TASK |
+|---|---|---|---|---|
+| | | | | |
+
+## Ports (dev servers, plugin sidecars, node inbounds)
+
+Known at setup: dashboard dev 5273 (Vite); fleet inbound port ranges are allocated in the
+operator's **private** notes, never in this public ledger — claim a reference here, keep values
+there; Sub-Store sidecar default 127.0.0.1:3000 (TASK-0002 claims the final value).
+
+| Port / range | Purpose | Owner | State | TASK |
+|---|---|---|---|---|
+| | | | | |
+
+## API route prefixes & dashboard routes / plugin view ids
+
+Server `/api/<prefix>/**` namespaces and dashboard route paths (`/map`, `/plugins/<id>`…).
+
+| Resource | Value | Owner | State | TASK |
+|---|---|---|---|---|
+| | | | | |
+
+## Server state.json collections (encrypted-envelope wiring is mandatory)
+
+New top-level State collections must wire `encryptedState`+`decryptState`+`stateHasEnvelope`
+(or explicitly record why plaintext is safe) — the silent-plaintext failure mode is documented
+in memory. Claim the collection name here first.
+
+| Collection | Content | Owner | State | TASK |
 |---|---|---|---|---|
 | | | | | |

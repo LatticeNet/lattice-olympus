@@ -6,7 +6,7 @@
 
 ```bash
 # normal: already merged to integration
-git fetch origin && git merge origin/{{INTEGRATION_BRANCH}}
+git fetch origin && git merge origin/integration
 
 # urgent: their unmerged branch (merge, never cherry-pick)
 git fetch origin feat/<them>-taskXXXX-<slug> && git merge origin/feat/<them>-taskXXXX-<slug>
@@ -27,9 +27,9 @@ git fetch origin feat/<them>-taskXXXX-<slug> && git merge origin/feat/<them>-tas
 ## 3. Polluted integration branch (`git pull --ff-only` fails)
 
 ```bash
-git log --oneline origin/{{INTEGRATION_BRANCH}}..{{INTEGRATION_BRANCH}}   # what's extra?
+git log --oneline origin/integration..integration   # what's extra?
 ```
-- My own stray commits: `git branch backup/rescue-<date>` → `git reset --hard origin/{{INTEGRATION_BRANCH}}` → merge the rescue branch into my task branch;
+- My own stray commits: `git branch backup/rescue-<date>` → `git reset --hard origin/integration` → merge the rescue branch into my task branch;
 - Unknown/someone else's: stop; letter + report to the human; **never force-push, never reset the remote**.
 
 ## 4. Conflicts that require a letter

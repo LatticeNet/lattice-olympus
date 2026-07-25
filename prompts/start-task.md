@@ -12,7 +12,7 @@ Starting **TASK-____**:
 4. **Claims** (if applicable): shared resources → register in `contract/shared-resources.md`; new interfaces → shape must exist in `contract/api-contract.md` first (Steward drafts / others request by letter).
 5. **Branch** (each repo touched):
    ```bash
-   git fetch origin && git checkout -b feat/<handle>-task____-<slug> origin/{{INTEGRATION_BRANCH}}
+   git fetch origin && git checkout -b feat/<handle>-task____-<slug> origin/integration
    ```
 6. **Register** (one Olympus commit+push): task → `in_progress` + branch; status board; letters for anything I'll need from others — **sent now, not when stuck**. `[<handle>] task: TASK-____ started`.
 7. **Plan the build**: verifiable small steps (one commit each) + test strategy; confirm with the human, then build.

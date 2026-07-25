@@ -3,3 +3,13 @@
 *.log
 node_modules/
 __pycache__/
+
+# local agent state (never commit)
+.omc/
+.omx/
+
+# signing material — never commit (mirrors the other LatticeNet repos)
+*.key
+*.pem
+*.bin
+seed*

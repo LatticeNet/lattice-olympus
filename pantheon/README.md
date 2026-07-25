@@ -6,10 +6,13 @@ One profile per collaborator — **human or agent**. This is the sole authority 
 
 | Handle | Epithet | Roles | Domain (one line) | Branch prefix | Danger ops | Privileges |
 |---|---|---|---|---|---|---|
-| `zeus.example` | Zeus | integrator+ops | integration gate, releases, infra | `feat/zeus-*` | **yes — sole holder** | contract authority, release |
-| `athena.example` | Athena | developer | (example) frontend & workbench | `feat/athena-*` | no | — |
+| `zeus` | Zeus, bearer of lightning | integrator+ops+steward+arbiter | core decisions, verification, orchestration, releases, signing (~10% dev, 100% gating) — human operator + Claude Code | `feat/zeus-*` | **yes — sole holder (human hands only)** | contract authority, release, manifest signing |
+| `hephaestus` | Hephaestus, master of the forge | developer+reviewer | Go backend: server / sdk / node-agent / plugin backends / sing-box fork (~60% dev) — Codex CLI | `feat/hephaestus-*` | no | — |
+| `athena` | Athena, weaver of strategy | developer+reviewer | frontend & docs: dashboard / plugin UIs / docs site, bilingual passes (~30% dev) — Kimi CLI | `feat/athena-*` | no | — |
 
-> ⚠️ The two rows above are **examples** — replace with real members and delete the `.example` profiles during setup.
+> Workload split by design: hephaestus ~60%, athena ~30%, zeus ~10% hands-on + all gating.
+> Members rarely work simultaneously — the async letter/status protocol is the coordination
+> backbone, not real-time chat.
 
 ## Role vocabulary (one person may hold several)
 
