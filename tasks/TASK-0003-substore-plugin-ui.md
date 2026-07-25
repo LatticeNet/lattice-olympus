@@ -6,7 +6,9 @@ status: ready
 plan_ref: plan/design-substore-embed.md §5
 repos: [lattice-plugin-sub-store]
 branches: []
+last_touched_by: athena
 depends_on: [TASK-0002]      # method contract must exist before the UI binds to it
+blocked_by_ruling: —
 needs_ack: yes               # manifest ui/nav fields + bridge usage touch shared contract
 created: 2026-07-25
 ---

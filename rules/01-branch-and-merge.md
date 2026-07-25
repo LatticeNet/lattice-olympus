@@ -49,7 +49,7 @@ git checkout -b feat/<handle>-task<NNNN>-<slug> origin/integration
    - files listed as someone's **exclusive** in their profile → that owner
    - shared files (profiles' shared lists) → the affected owner(s)
    - resources in `contract/shared-resources.md` → per the ledger
-   - auth / permission / security semantics → Integrator
+   - auth / permission / security semantics, and any scope named by your profile's `gated_by` → that gatekeeper (applies **inside** your exclusive paths too)
    - code you wrote inside someone else's authority area → that owner's review
 
 ## 5. The merge (task owner executes; multi-repo in sdk → server / dashboard / node-agent → docs site → plugins → plugin-index order)

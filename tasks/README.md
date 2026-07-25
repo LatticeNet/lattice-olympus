@@ -21,9 +21,14 @@ Split any task that (a) waits on someone else's unmerged shared-resource claim, 
 
 | TASK | Title | Owner | State | Source |
 |---|---|---|---|---|
-| 0001 | Review sweep of the outstanding draft-PR backlog | zeus | ready | plan/dev-history-2026.md |
+| 0001 | Critical-path review — the 8 plugin-host PRs everything waits on | zeus | ready | plan/dev-history-2026.md |
 | 0002 | Embed the Sub-Store conversion engine in the plugin artifact | hephaestus | ready | plan/design-substore-embed.md §4 |
 | 0003 | Sub-Store plugin UI over the bridge | athena | ready | plan/design-substore-embed.md §5 |
 | 0004 | One published bridge package (kill the four copies) | athena | draft | design §3 F2 |
 | 0005 | Plugin Go SDK (stdio loop + host client + types) | hephaestus | draft | design §3 F5 |
 | 0006 | CI gate: released server must accept every signed manifest | hephaestus | draft | design §3 F1/F4 |
+| 0007 | Review sweep of the remaining backlog (blocks nobody) | zeus | ready | plan/dev-history-2026.md |
+
+**Routing note**: TASK-0001 is deliberately small because it gates the highest-share seat.
+Never widen a task that sits on someone else's critical path — split it
+(`pantheon/README.md §The gatekeeper's obligation`).

@@ -6,7 +6,9 @@ status: draft
 plan_ref: plan/design-substore-embed.md §3 F5
 repos: [lattice-sdk, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
 branches: []
+last_touched_by: hephaestus
 depends_on: []
+blocked_by_ruling: —
 needs_ack: yes    # host-call framing is security-adjacent → zeus
 created: 2026-07-25
 ---

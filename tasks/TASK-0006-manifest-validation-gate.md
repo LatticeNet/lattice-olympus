@@ -6,7 +6,9 @@ status: draft
 plan_ref: plan/design-substore-embed.md §3 F1
 repos: [lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard, lattice-plugin-index, lattice-server]
 branches: []
+last_touched_by: hephaestus
 depends_on: [TASK-0001]
+blocked_by_ruling: —
 needs_ack: yes
 created: 2026-07-25
 ---

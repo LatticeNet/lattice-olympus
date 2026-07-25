@@ -6,7 +6,9 @@ status: ready
 plan_ref: plan/design-substore-embed.md §4 (Option C) + §6 step 3
 repos: [lattice-plugin-sub-store]
 branches: []
-depends_on: [TASK-0001]
+last_touched_by: hephaestus
+depends_on: [TASK-0001 items 1–4 — Phase 2 only; Phase 1 depends on nothing]
+blocked_by_ruling: <the §4 ruling letter — Phase 2 only; fill in when it lands>
 needs_ack: yes    # capabilities, manifest methods, and the §4 ruling all need zeus
 created: 2026-07-25
 ---
@@ -17,9 +19,17 @@ created: 2026-07-25
 conversion capability inside its own signed artifact — no separately installed Sub-Store, no
 resident Node process, fork-per-call preserved.
 
-**Gate**: zeus's ruling on `plan/design-substore-embed.md` §4 (recommended: Option C, embedded
-JS engine). Do not start implementation before the ruling letter is on record; the spike in
-Phase 1 is explicitly allowed beforehand because its purpose is to inform that ruling.
+**Gating, precisely** (the point is that you are never idle):
+
+| | Phase 1 · engine spike | Phase 2 · implementation |
+|---|---|---|
+| Waits on | **nothing — start now** | zeus's §4 ruling letter **and** TASK-0001 items 1–4 ack'd |
+| Why | its output is what informs the ruling | the ruling picks the engine; the merges make the manifest loadable at all |
+
+Do not treat "TASK-0001" as a whole: only items 1–4 (server #7 → #8 → #10 → #11, sdk#6 →
+server#12) are on your path. Item 5 (dashboard bridge) belongs to TASK-0003, not here. If the
+ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arrive in batches
+(`pantheon/README.md §The gatekeeper's obligation`), so waiting is never the plan.
 
 ## Scope & boundaries
 

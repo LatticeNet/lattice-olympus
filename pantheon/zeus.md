@@ -2,7 +2,11 @@
 handle: zeus
 name: the human operator + Claude Code (agent)
 epithet: Zeus, bearer of lightning — the hand that signs, deploys, and arbitrates
-roles: [integrator, ops, contract_steward, arbiter, reviewer, developer]
+principal: self            # a human works this seat directly, paired with an agent
+runtime: human + Claude Code
+share: ~10%                # hands-on; the gating load is 100% (see pantheon/README §gatekeeper)
+roles: [integrator, orchestrator, ops, contract_steward, arbiter, reviewer, developer]
+gated_by: []               # the gate ends here
 ops_owner: true
 contract_steward: true
 integrator: true
@@ -10,6 +14,18 @@ arbiter: true
 joined: 2026-07-25
 status: active
 ---
+
+## Seat note (human + agent)
+
+This seat pairs the human operator (`principal: self`) with a Claude Code runtime. The agent
+**may draft**: rulings, review verdicts, contract rows, release checklists, task routing.
+It **may not close**: anything reserved to the principal — arbitration rulings, release
+decisions, signing, and every dangerous op below. A ruling is in force only once the operator
+has confirmed it in-session and it is written to a letter or `contract/CHANGELOG.md`.
+
+As **orchestrator** this seat also owes the mountain the two mitigations in
+`pantheon/README.md §The gatekeeper's obligation`: batch rulings, and split any gating task
+that sits on a higher-share seat's critical path.
 
 ## Domain (what I own)
 
