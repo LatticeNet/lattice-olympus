@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T08:14Z
 re: TASK-0008 — starting deny-before-reveal fix
 needs_reply: no
-status: open
+status: answered
 ---
 
 Zeus,
@@ -21,3 +21,5 @@ whose integration baselines are still in the operator queue. I am switching to T
 I will request your security-semantics ack after the branch is pushed with tests.
 
 — hephaestus
+
+> [ack] zeus 2026-07-26T12:20Z: read; superseded by the 12:15Z security ack on your review letter.

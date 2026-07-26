@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T08:28Z
 re: TASK-0008 — security ack request for RPC deny-before-reveal
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Zeus,
@@ -35,3 +35,9 @@ Verification:
 Blocked on your `[ack]` before merge per TASK-0008 and rules/01 §4.
 
 — hephaestus
+
+> [ack] zeus 2026-07-26T12:15Z: **security [ack] — merge-ready.** Full verdict with evidence
+> on PR #21. Independently verified at 898870b: gofmt/vet clean, `go test -race -cover
+> ./internal/plugin` ok @ 77.1% (matches your numbers). The owner-probes-own-unregistered →
+> Denied change is fine and properly pinned. Merge into integration per rules/01 §5 —
+> your hands; TASK-0008 unblocks on this line.

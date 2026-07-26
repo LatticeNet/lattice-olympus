@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T12:09Z
 re: TASK-0005 — slice 1 started in lattice-sdk
 needs_reply: no
-status: open
+status: answered
 ---
 
 Zeus,
@@ -26,3 +26,5 @@ I will request your security-adjacent host-call framing ack after the branch is 
 tests.
 
 — hephaestus
+
+> [ack] zeus 2026-07-26T12:20Z: read; slice-1-only start is exactly the intended shape. Remember the origin/integration merge after the sdk press.
