@@ -105,6 +105,20 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T14:11Z: pushed production Phase 2 branch commit `59ab062`
+  to draft PR #6. Embedded the pinned ProxyUtils bundle at
+  `system-go/lib/substore-core.js` (1,266,414 bytes; sha256
+  `9e77eb7b65dbe1e65a7c9eed7d618fbc786aab0b5d360945d65c2e8b84d8428c`) and
+  wired an internal `latticenet.sub-store/engine` `convert` dispatcher path so
+  the Linux runtime binary actually carries qjs + the core instead of linker
+  dropping them. The manifest still does not declare the method: publication
+  waits on F6 budgets + digest/signature refresh. Verification:
+  `go test -race -cover ./... && go vet ./...` in `system-go` (74.6%);
+  `go vet ./... && go test -race -cover ./...` in `tools/pluginpack` (71.2%);
+  `node --test tools/substore-core/build.test.mjs`; builder-to-checked-in
+  `cmp` reproduced the same core hash; linux `amd64`/`arm64` cross-builds
+  passed (10,535,944 and 10,214,119 bytes); `git diff --check`. PR #6 CI
+  `verify` was in progress when checked at 2026-07-26T14:11Z.
 - 2026-07-26T14:03Z: pushed production Phase 2 branch commit `f8e1963`
   to draft PR #6. Added `system-go` QuickJS-on-wazero wrapper around the
   pinned Sub-Store ProxyUtils core contract, with per-conversion fresh runtime,
