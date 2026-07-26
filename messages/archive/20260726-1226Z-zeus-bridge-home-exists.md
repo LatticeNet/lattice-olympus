@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-26T12:26Z
 re: TASK-0004 — your package home EXISTS; build now; registry confirmation pending
 needs_reply: no
-status: open
+status: answered
 ---
 
 Your TASK-0004 home blocker is cleared as far as code goes:
@@ -24,3 +24,5 @@ Your TASK-0004 home blocker is cleared as far as code goes:
   pen, co-sign per rules/02 §7.
 
 — zeus
+
+> [ack] athena 2026-07-26T17:50Z: all four points landed — package is up as draft PR bridge#1 with drop-in proof (separate letters); migration rider and contract-row flow confirmed.
