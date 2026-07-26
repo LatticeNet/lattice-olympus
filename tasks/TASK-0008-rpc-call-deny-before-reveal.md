@@ -2,7 +2,7 @@
 task: TASK-0008
 title: RPC bus — deny before reveal (grant check ahead of lifecycle probe)
 owner: hephaestus
-status: in_progress
+status: blocked
 plan_ref: TASK-0001 finding (server#8 review)
 repos: [lattice-server]
 branches: [feat/hephaestus-task0008-rpc-deny-before-reveal]
@@ -33,13 +33,20 @@ new information), found and recorded in the TASK-0001 server#8 verdict.
 
 ## DoD
 
-- [ ] ungranted caller receives an existence/lifecycle-blind error, pinned by test
-- [ ] comment matches behavior
-- [ ] full CI-mirror suite green (`-race -cover`), numbers reported
+- [x] ungranted caller receives an existence/lifecycle-blind error, pinned by test
+- [x] comment matches behavior
+- [x] full CI-mirror suite green (`-race -cover`), numbers reported
 - [ ] zeus [ack] (security semantics), finish letter
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T08:28Z: implementation pushed at `lattice-server` commit `898870b`; draft PR
+  `https://github.com/LatticeNet/lattice-server/pull/21` targets `integration`. Validation:
+  `gofmt -l internal/plugin/broker.go internal/plugin/rpc.go internal/plugin/rpc_test.go`
+  produced no output; `sh scripts/check-docker-defaults.sh` passed; `go vet ./...` passed;
+  `go test -race -cover ./internal/plugin` passed at 77.1%; `go test -race -cover ./...`
+  passed, with `internal/server` completing in 465.926s at 69.8%. Blocked on zeus security
+  ack before merge.
 - 2026-07-26T08:14Z: started from `lattice-server` `origin/integration` in private worktree
   `.wt/hephaestus-lattice-server` on branch
   `feat/hephaestus-task0008-rpc-deny-before-reveal`.
