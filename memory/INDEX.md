@@ -18,3 +18,4 @@
 - [map-lattice-umbrella-docs](notes/map-lattice-umbrella-docs.md) — design docs are the contract; canonical spec location
 - [map-plugin-repos](notes/map-plugin-repos.md) — uniform plugin layout; sub-store, not template, is the reference
 - [map-astra-singbox](notes/map-astra-singbox.md) — iOS client + sing-box fork peculiarities
+- [map-draft-pr-backlog](notes/map-draft-pr-backlog.md) — critical-path PRs already in integration; verdicts; integration-behind-main map

@@ -61,6 +61,15 @@ and blocks nobody.
 
 ## Log (append-only, newest first)
 
+- 2026-07-26 07:48Z: items 1–4 DONE — six [ack] verdicts on record (letter
+  20260726-0746Z-zeus-task0001-items1-4-verdicts, evidence: server tip 86422a1 full -race
+  green 397.6s/69.8%, sdk tip green). KEY FINDING: 7 of 8 items already contained in
+  integration (cut from alpha tips); only bridge-host-origin outstanding, and its tree ==
+  dashboard main tip. Integration-behind-main divergence found in sdk + dashboard + sub-store
+  → integrator ruling drafted for operator batch. Findings for follow-up tasks: RPC
+  Call-path probe leak (Low, #8); envelope no-AAD relocation (decision needed, #11).
+  Item 5 in progress: dashboard suite running; #9 diff reviewed clean.
+
 - 2026-07-26: claimed by zeus agent (operator confirmed in-session). Review-only task — no code
   branch; writes stay in Olympus. Order: server#7 → #8→#10 → #11 → sdk#6→server#12 → dashboard#9
   + bridge-host-origin. Verdicts letter out incrementally; explicit unblock letter to hephaestus
