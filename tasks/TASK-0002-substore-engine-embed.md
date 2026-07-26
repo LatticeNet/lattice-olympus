@@ -4,8 +4,8 @@ title: Embed the Sub-Store conversion engine in the plugin artifact (engine spik
 owner: hephaestus
 status: in_progress
 plan_ref: plan/design-substore-embed.md §4 (Option C) + §6 step 3
-repos: [lattice-plugin-sub-store]
-branches: [feat/hephaestus-task0002-substore-engine-spike]
+repos: [lattice-plugin-sub-store, lattice-server]
+branches: [feat/hephaestus-task0002-substore-engine-spike, feat/hephaestus-task0002-f6-budgets]
 last_touched_by: hephaestus
 depends_on: [TASK-0001 items 1–4 — Phase 2 only; Phase 1 depends on nothing]
 blocked_by_ruling: — (§4 RULED Option C 2026-07-26, QuickJS-on-wazero per spike; source olympus-launch/operator-ruling-2026-07-26.md §2)
@@ -48,7 +48,8 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
   reimplementing parsers in Go (Option B, rejected); any dashboard work (TASK-0003).
 - **Allowed paths**: `lattice-plugin-sub-store/system-go/**` · `.../tools/**` ·
   `.../.github/workflows/**` (build-only; not a deploy change) · `.../manifest.json` **content**
-  fields · `.../README.md`
+  fields · `.../README.md`; F6 budget capability slice may also touch
+  `lattice-server/internal/plugin/**` and directly necessary server plugin invocation plumbing.
 - **Forbidden**: touching manifest **signature** fields (zeus-exclusive); weakening
   `verify:build`, the double-pack digest gate, or conformance tests to make something pass;
   adding any capability not in the server's risk table; anything under `ui/` (athena's).
@@ -66,6 +67,13 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
   widening the global constants (`system_runner.go:29-35`) as a shortcut. Letter zeus a
   concrete budget proposal early — manifest field shape is signed-surface, so zeus review
   gates it and a re-sign pass follows.
+- Zeus F6 ack adjustments (20260726-1218Z): rollout is additive first. Absent method budget
+  resolves to old global defaults with warn-once semantics; strict must-declare enforcement is
+  deferred to TASK-0006/TASK-0010 after the re-sign wave. Signing parity must be pinned:
+  no-budget manifests keep byte-identical signing payloads, declared budgets change the payload.
+  Success with over-budget stderr must carry an explicit truncation marker and host log without
+  turning the call into a failure. Deployment order: additive server -> budget-carrying
+  re-signed manifests -> strict flip. Budgets reach production only through zeus/operator signing.
 - Artifact changes ⇒ new digest ⇒ zeus re-signs; reproduce the old digest with the CI toolchain
   first to prove environment parity ([[gotcha-plugin-digest-reproduction]] — memory).
 - Version bump moves manifest = ui = Go const together (`tools/bump.sh`).
@@ -77,6 +85,10 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
       proven by a named test that (a) a conversion exceeding the old global 1 MiB cap succeeds
       under its declared method budget, and (b) output exceeding the DECLARED budget fails
       loudly (no silent truncation)
+- [ ] F6 compatibility: absent `budget` preserves existing signed manifest payload bytes and
+      resolves to old global defaults with warn-once behavior until the strict flip
+- [ ] F6 stderr semantics: a successful call with over-budget stderr returns success plus an
+      explicit truncation marker and emits a host log; it must not fail spuriously or go silent
 - [ ] diff stays inside Allowed paths (mechanical check, finish-task §1)
 - [ ] spike letter on record with the numbers named above, and zeus's §4 ruling letter linked
 - [ ] conversion runs entirely inside the artifact — proven by a test that runs a
@@ -93,6 +105,10 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T12:25Z: zeus acked F6 budget proposal with required adjustments in
+  `messages/inbox/hephaestus/20260726-1218Z-zeus-re-f6-budget-proposal.md`; created server
+  worktree `.wt/hephaestus-lattice-server-f6` on `feat/hephaestus-task0002-f6-budgets` from
+  `lattice-server` `origin/integration` (`86422a1`) for the additive budget capability slice.
 - 2026-07-26T12:04Z: zeus applied the operator ruling batch (per its explicit instruction —
   source olympus-launch/operator-ruling-2026-07-26.md): §4 = Option C ⇒ unblocked,
   in_progress; scope widened (scripting/filtering/pipelines IN); F6 budgets now BLOCKING with

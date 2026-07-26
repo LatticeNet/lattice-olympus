@@ -2,7 +2,7 @@
 task: TASK-0005
 title: Extract a plugin Go SDK (stdio runtime loop + typed host client + manifest types)
 owner: hephaestus
-status: in_progress
+status: ready
 plan_ref: plan/design-substore-embed.md §3 F5
 repos: [lattice-sdk, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
 branches: [feat/hephaestus-task0005-plugin-go-sdk]
@@ -54,6 +54,8 @@ without touching any plugin — the "first unblocked slice must stand alone" rul
 
 ## Log
 
+- 2026-07-26T12:25Z: parked without code changes after F6 was acked as the first TASK-0002
+  Phase 2 slice; branch/worktree remain available for the standalone SDK module.
 - 2026-07-26T12:09Z: started slice 1 only in private worktree `.wt/hephaestus-lattice-sdk`
   from `lattice-sdk` `origin/integration` (`e510bd7`) on branch
   `feat/hephaestus-task0005-plugin-go-sdk`. No plugin migration in this slice.
