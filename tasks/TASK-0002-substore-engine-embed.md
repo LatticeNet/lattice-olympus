@@ -105,6 +105,29 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T17:35Z: pushed PR #6 commit
+  `f9ccb920a107e99e6a72cbedb9c8f22c372357ae` with the Zeus-acked F6
+  manifest budget surface. `manifest.json` now declares `kv:read`/`kv:write`
+  for pipeline record methods, exposes the `latticenet.sub-store/engine`
+  methods (`convert`, `transform_response`, pipeline CRUD, `run_pipeline`),
+  and gives every runtime-backed declared method a complete signed `budget`
+  entry. Added `TestManifestRuntimeMethodsCarryAckedBudgets`, which fails if a
+  runtime-backed manifest method lacks a budget, lacks a table entry, or drifts
+  from the acked values. Verification: merged `lattice-server`
+  `lattice-plugin-manifest-check` accepted the edited manifest; focused
+  conformance tests passed; `test -z "$(gofmt -l system-go tools/pluginpack)"`,
+  `git diff --check`, `GOTOOLCHAIN=go1.26.4 go vet ./...` in both Go modules,
+  `GOTOOLCHAIN=go1.26.4 go test -race -cover -count=1 ./...` in `system-go`
+  (75.7%) and `tools/pluginpack` (71.2%), `node --test
+  tools/substore-core/build.test.mjs`, `npm test`, `npm run typecheck`,
+  `npm run build`, and `npm run verify:build` all passed. Local and GitHub
+  CI-style double-pack both produced deterministic bundle digest
+  `b43c091e3e51bf820a63a77ceb00e3cc4127426cc756c9c7d555507a878ae70c`; GitHub
+  run `30212785927` passed every source/runtime/UI/build step and failed only at
+  the expected digest compare against manifest
+  `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`.
+  Manifest `signature_ed25519` and `bundle.digest_sha256` were not refreshed by
+  hephaestus; PR #6 is ready for zeus/operator one-wave digest/signature review.
 - 2026-07-26T16:51Z: merged F6 server slice PR #22 into `lattice-server`
   `integration` with merge commit `97082b263d132c6b18bcdb438eaf50bd273fb397`
   after Zeus's 16:20Z `[ack]`. Pre-merge feature branch absorbed current
