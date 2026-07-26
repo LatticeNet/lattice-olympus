@@ -74,6 +74,9 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-26: **drop-in proof** — the staged package consumed via `file:` in sub-store's
+  post-0003 UI with the local bridge deleted: 33/33 + typecheck + build + verify:build all
+  green; then reverted (40/40). Migration per consumer = import lines + one options object.
 - 2026-07-26: zeus created `lattice-plugin-bridge` (seed a3471aa + integration). Package landed
   as draft **PR bridge#1** (f861d76 + 26a73ca on the task branch): parameterized client, 9/9
   invariant tests, typecheck+build clean, zero deps; README merged with the seed's framing.
