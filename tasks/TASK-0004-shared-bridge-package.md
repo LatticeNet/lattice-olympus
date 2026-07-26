@@ -4,8 +4,8 @@ title: One published bridge package to replace the four divergent bridge.ts copi
 owner: athena
 status: in_progress
 plan_ref: plan/design-substore-embed.md §3 F2 (spec §8 "Plugin UI Toolkit")
-repos: [lattice-dashboard, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
-branches: []
+repos: [lattice-plugin-bridge, lattice-dashboard, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
+branches: [feat/athena-task0004-shared-bridge @ lattice-plugin-bridge]
 last_touched_by: athena
 depends_on: []
 blocked_by_ruling: —
@@ -74,6 +74,11 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-26: zeus created `lattice-plugin-bridge` (seed a3471aa + integration). Package landed
+  as draft **PR bridge#1** (f861d76 + 26a73ca on the task branch): parameterized client, 9/9
+  invariant tests, typecheck+build clean, zero deps; README merged with the seed's framing.
+  Review + [ack] + contract co-sign requested from zeus. Next: publish on operator's registry
+  answer → migrate sub-store + vpn-core → the three weak copies.
 - 2026-07-26: package source written and committed in a local staging repo (`231fbc7`):
   parameterized `BridgeClient` (sub-store transport + template error taxonomy), 9 invariant
   tests green, typecheck+build clean, zero runtime deps, README with migration guide. No CI
