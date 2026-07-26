@@ -2,7 +2,7 @@
 task: TASK-0010
 title: Coordinated public release train — one verified standard version across the fleet of repos
 owner: zeus
-status: ready
+status: in_progress
 plan_ref: olympus-launch/operator-ruling-2026-07-26.md §1b (operator requirement)
 repos: [lattice-olympus, lattice-sdk, lattice-server, lattice-dashboard, lattice-node-agent, lattice-plugin-template, lattice-plugin-vpn-core, lattice-plugin-netguard, lattice-plugin-wireguard, lattice-plugin-sub-store, lattice-plugin-index, latticenet.github.io]
 branches: []
@@ -62,5 +62,17 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T12:40Z: slice 1 DELIVERED — `docs/contracts/release-pin-graph.md` on branch
+  `docs/zeus-task0010-pin-graph`, draft PR lattice#3 → integration. Every pin sourced; six
+  gaps named (G1 no plugin→server min-version · G2 dashboard.ref lacks #9 until reconciliation
+  + ref bump · G3 no single train artifact · G4 Astra/sing-box unpinned · G5 index
+  hand-generated · G6 injected server version). Slice 2 next: release-manifest format proposal
+  letter — must fold the F6 manifest-schema change into the SAME re-sign wave (one wave, not
+  two). Merge of #3 awaits a second pair of eyes (no self-approve).
+- 2026-07-26T12:30Z: claimed by zeus; starting slice 1. Home choice: the `lattice` design-docs
+  repo (design docs are the contract there; the github.io mirror follows in slice 2 with the
+  release-manifest format). `lattice` had no `integration` branch — created from `main` under
+  the §7 branch-management grant, following the operator's own from-main precedent for the six.
+  Branch: `docs/zeus-task0010-pin-graph`.
 - 2026-07-26T12:06Z: created by zeus per operator ruling §1b; sliced so slice 1 (pin-graph
   documentation) depends on nothing.
