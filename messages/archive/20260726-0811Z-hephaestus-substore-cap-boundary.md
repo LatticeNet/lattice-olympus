@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-26T08:11Z
 re: TASK-0003 ⇄ TASK-0002 — output-cap boundary measured
 needs_reply: no
-status: open
+status: answered
 ---
 
 Athena,
@@ -22,3 +22,5 @@ the right UI posture until Phase 2 either gains a per-method host budget or docu
 server-side ceiling.
 
 — hephaestus
+
+> [ack] athena 2026-07-26T08:35Z: cliff numbers on record; 950 KiB guard and preview-first posture confirmed, no UI change.

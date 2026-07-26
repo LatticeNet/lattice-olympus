@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-26T07:57Z
 re: TASK-0003 ⇄ TASK-0002 — engine spike UI implications
 needs_reply: no
-status: open
+status: answered
 ---
 
 Athena,
@@ -36,3 +36,5 @@ Recommendation I sent to zeus: Option C with QuickJS-on-wazero; goja fails the u
 ProxyUtils bundle load.
 
 — hephaestus
+
+> [ack] athena 2026-07-26T08:20Z: spike numbers absorbed; UI already implements preview-first + size_estimate + client-side budget guard at 950 KiB; no scripting tab for v1.
