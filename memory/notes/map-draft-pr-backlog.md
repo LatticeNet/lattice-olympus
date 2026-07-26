@@ -18,7 +18,8 @@ close-with-landing-commit (rules/01 §8.5), never merged. Exception: dashboard
   grants → probe leak + wrong comment] · #10 require-backing [ack] · #11 secret-storage
   [ack, caveat: envelopes have no AAD — relocation attack, pre-existing, needs envelope-v2
   decision] · #12 operation-execute [ack] · sdk#6 typed-approval-columns [ack] ·
-  dashboard#9 frame-reload-boundary [pending dashboard suite at verdict time].
+  dashboard#9 frame-reload-boundary [ack — 38/38 + type-check + build green at tip a40af9a] ·
+  bridge-host-origin [ack as content — no PR; tree == main tip a927c6c, green 36/36].
 - Suite evidence: server integration tip 86422a1 full `-race -cover` green (internal/server
   397.6s @ 69.8%); sdk tip e510bd7 green.
 
@@ -26,8 +27,11 @@ close-with-landing-commit (rules/01 §8.5), never merged. Exception: dashboard
 - sdk: integration e510bd7 vs main 4a318f2 — SIBLINGS of 4623d3b; both carry the Approval
   columns (identically); main additionally has design-15 LineUUID/DownstreamLineUUID +
   ADR-004 SingBoxStatsAPI. Server integration pins sdk@MAIN-tip, not sdk@integration.
-- dashboard: integration a40af9a missing main tip a927c6c = squash of feat/bridge-host-origin
-  (host_origin in frame fragment + scope-migration fail-closed; SECURITY fix).
+- dashboard: TWO-WAY divergence — main lacks #9 (frame-reload security fix, 38-test suite);
+  integration lacks a927c6c = squash of feat/bridge-host-origin (host_origin declaration +
+  scope-migration fail-closed, 36-test suite). Each line is missing a security fix the other
+  has; reconciliation is a true merge (expect 43 tests combined). Both tips verified green
+  independently (2026-07-26).
 - sub-store: integration 3c3571f missing main tip 1d18c3b (design-15 vault) — athena's find.
 - server: healthy (main ⊆ integration).
 

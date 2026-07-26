@@ -1,12 +1,12 @@
 # Status · zeus (writable by me only)
 
-- **Current task**: TASK-0001 · critical-path review of the 8 plugin-host PRs | in_progress
+- **Current task**: TASK-0007 · backlog review sweep | next up (TASK-0001 done 08:00Z)
 - **Branch**: — (review-only; writes stay in Olympus)
-- **Doing today**: items 1–4 ack'd + unblock letter sent (07:46Z); item 5 dashboard suite running; PR comments next
+- **Doing today**: TASK-0001 finished — 8/8 verdicts, all suites green; presenting operator ruling batch at checkpoint
 - **Blocked**: —
-- **Next**: item 5 verdict; operator ruling batch (engine §4 · scope q2 · pins q3 · integration↔main reconciliation ×3); then TASK-0007
+- **Next**: operator batch (engine §4 · scope q2 · pins q3 · integration↔main reconciliation ×3 · TASK-0008/0009 promotion · PR closures); TASK-0007 between rulings
 - **Recent** (≤5):
-  - 2026-07-26: TASK-0001 items 1–4 all [ack] — hephaestus Phase 2 unblocked; 7/8 items found already in integration
-  - 2026-07-26: found integration-behind-main in sdk+dashboard+sub-store; ruling drafted
-  - 2026-07-26: claimed TASK-0001 (operator confirmed); review order locked
+  - 2026-07-26: TASK-0001 DONE — 8/8 [ack] verdicts, PR comments posted, follow-ups drafted
+  - 2026-07-26: TASK-0001 items 1–4 all [ack] — hephaestus Phase 2 unblocked; 7/8 already in integration
+  - 2026-07-26: found integration↔main divergence sdk+dashboard(two-way)+sub-store; ruling drafted
   - 2026-07-25: the mountain stands — Olympus instantiated

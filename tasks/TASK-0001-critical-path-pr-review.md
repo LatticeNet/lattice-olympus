@@ -2,7 +2,7 @@
 task: TASK-0001
 title: Critical-path review — the plugin-host PRs that unblock every other lane
 owner: zeus
-status: in_progress
+status: done
 plan_ref: plan/dev-history-2026.md §"Open threads" item 1
 repos: [lattice-server, lattice-sdk, lattice-dashboard]
 branches: []
@@ -52,12 +52,17 @@ and blocks nobody.
 
 ## DoD
 
-- [ ] each of the eight PRs has a recorded verdict (PR comment + Olympus letter)
-- [ ] merge-order letter sent (broadcast) naming stacking and the two-sided deploy constraint
-- [ ] merge-blocking findings each have a follow-up TASK (draft is fine)
-- [ ] `memory/notes/map-draft-pr-backlog` records the inventory and verdicts
-- [ ] hephaestus told explicitly when items 1–4 are ack'd — that message unblocks TASK-0002 Phase 2
-- [ ] finish letter sent
+- [x] each of the eight PRs has a recorded verdict (PR comment + Olympus letter) — 7 PRs
+      commented (server#7/#8/#10/#11/#12, sdk#6, dash#9); bridge-host-origin has NO PR
+      (predates the draft-PR law): verdict recorded in letter 20260726-0756Z to athena
+- [x] merge-order letter sent (broadcast 20260726-0748Z) — stacking, two-sided constraint,
+      rollback floor alpha-0.2.2, LATTICE_PUBLIC_URL precondition
+- [x] merge-blocking findings: NONE. Non-blocking findings got follow-ups anyway:
+      TASK-0008 (RPC deny-before-reveal, Low) · TASK-0009 (envelope AAD decision)
+- [x] `memory/notes/map-draft-pr-backlog` records inventory, verdicts, and the
+      integration↔main divergence map (sdk one-way, dashboard TWO-WAY, sub-store one-way)
+- [x] hephaestus told explicitly (letter 20260726-0746Z) — TASK-0002 Phase 2 unblocked
+- [x] finish letter sent (broadcast 20260726-0800Z)
 
 ## Log (append-only, newest first)
 
