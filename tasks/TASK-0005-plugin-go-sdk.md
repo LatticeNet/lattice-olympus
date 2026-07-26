@@ -2,10 +2,10 @@
 task: TASK-0005
 title: Extract a plugin Go SDK (stdio runtime loop + typed host client + manifest types)
 owner: hephaestus
-status: ready
+status: in_progress
 plan_ref: plan/design-substore-embed.md §3 F5
 repos: [lattice-sdk, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
-branches: []
+branches: [feat/hephaestus-task0005-plugin-go-sdk]
 last_touched_by: hephaestus
 depends_on: []
 blocked_by_ruling: —
@@ -54,6 +54,9 @@ without touching any plugin — the "first unblocked slice must stand alone" rul
 
 ## Log
 
+- 2026-07-26T12:09Z: started slice 1 only in private worktree `.wt/hephaestus-lattice-sdk`
+  from `lattice-sdk` `origin/integration` (`e510bd7`) on branch
+  `feat/hephaestus-task0005-plugin-go-sdk`. No plugin migration in this slice.
 - 2026-07-26T12:05Z: promoted draft → ready by zeus per operator ruling (ordered-list §3);
   sliced so slice 1 (SDK module in lattice-sdk) is separately claimable — the forge-idling
   error this cycle is fixed in the file, not just the routing. Baseline exists: all ten repos
