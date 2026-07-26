@@ -74,6 +74,9 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-26: **vpn-core proof added** — same method: route-set parameterization against the
+  real consumer, 6/6 + typecheck + build + verify:build green; scratch worktree removed after.
+  Both strong copies now proven drop-in.
 - 2026-07-26: **drop-in proof** — the staged package consumed via `file:` in sub-store's
   post-0003 UI with the local bridge deleted: 33/33 + typecheck + build + verify:build all
   green; then reverted (40/40). Migration per consumer = import lines + one options object.
