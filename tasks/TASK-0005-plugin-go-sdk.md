@@ -46,14 +46,31 @@ without touching any plugin — the "first unblocked slice must stand alone" rul
 ## DoD
 
 - [ ] merged into integration
-- [ ] all five plugins build on the SDK with their conformance tests still green
+- [x] all five plugins build on the SDK with their conformance tests still green
 - [ ] SDK has its own tests for framing + fd-3 host-call round-trip
-- [ ] `go test -race -cover ./...` green in SDK and every migrated plugin (real numbers)
+- [x] `go test -race -cover ./...` green in SDK and every migrated plugin (real numbers)
 - [ ] artifact digests recomputed and manifests re-signed by zeus where artifacts changed
 - [ ] finish letter sent
 
 ## Log
 
+- 2026-07-26T18:06Z: completed the fifth plugin as a dependent sub-store SDK branch without
+  touching TASK-0002 PR #6. Created `.wt/hephaestus-lattice-plugin-sub-store-task0005-sdk`
+  from `origin/feat/hephaestus-task0002-substore-engine` at `f9ccb92`, committed
+  `e78b6c0`, and pushed `origin/feat/hephaestus-task0005-plugin-go-sdk`. No PR opened yet:
+  targeting `integration` would include all PR #6 changes while PR #6 is still unsigned, and
+  pushing onto PR #6 directly would invalidate the signing queue without zeus ack. Migration
+  deleted the local stdio/fd-3 framing types and routes Sub-Store through
+  `lattice-sdk/plugin` `Serve`, `CallPayload`, action constants, host method constants, and
+  response helpers while preserving the existing domain logic and fake-host tests. Verification:
+  `test -z "$(gofmt -l system-go tools/pluginpack)"`, `git diff --check`,
+  `GOTOOLCHAIN=go1.26.4 go vet ./...` and `GOTOOLCHAIN=go1.26.4 go test -race -cover
+  -count=1 ./...` in `system-go` (80.2%) and `tools/pluginpack` (71.2%),
+  `node --test tools/substore-core/build.test.mjs`, `npm ci`, `npm test`, `npm run
+  typecheck`, `npm run build`, `npm run verify:build`, `CGO_ENABLED=0` linux amd64/arm64
+  runtime builds, and pluginpack double digest/byte compare. Dependent-branch actual digest is
+  `55749d194c54a5d4e8b9b183acf3e8e70e7dbcd6c759e0c6e392c2e38a8f8def`; manifest still
+  expects `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`.
 - 2026-07-26T17:56Z: slice 2 partial checkpoint: migrated four independent plugin backends
   onto the merged SDK runtime and opened draft PRs against `integration`:
   `lattice-plugin-template#5` at `60e36ce`, `lattice-plugin-vpn-core#4` at
