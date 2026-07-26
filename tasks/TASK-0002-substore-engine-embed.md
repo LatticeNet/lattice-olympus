@@ -2,10 +2,10 @@
 task: TASK-0002
 title: Embed the Sub-Store conversion engine in the plugin artifact (engine spike → implementation)
 owner: hephaestus
-status: ready
+status: in_progress
 plan_ref: plan/design-substore-embed.md §4 (Option C) + §6 step 3
 repos: [lattice-plugin-sub-store]
-branches: []
+branches: [feat/hephaestus-task0002-substore-engine-spike]
 last_touched_by: hephaestus
 depends_on: [TASK-0001 items 1–4 — Phase 2 only; Phase 1 depends on nothing]
 blocked_by_ruling: <the §4 ruling letter — Phase 2 only; fill in when it lands>
@@ -83,4 +83,7 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T07:32Z: claimed Phase 1 spike; branch registered as
+  `feat/hephaestus-task0002-substore-engine-spike`; Phase 2 remains gated on zeus's §4 ruling
+  and TASK-0001 items 1–4.
 - 2026-07-25: created at instantiation; Phase 1 spike is `ready`, Phase 2 gated on the §4 ruling.
