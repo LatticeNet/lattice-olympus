@@ -2,11 +2,11 @@
 task: TASK-0008
 title: RPC bus — deny before reveal (grant check ahead of lifecycle probe)
 owner: hephaestus
-status: draft
+status: in_progress
 plan_ref: TASK-0001 finding (server#8 review)
 repos: [lattice-server]
-branches: []
-last_touched_by: zeus
+branches: [feat/hephaestus-task0008-rpc-deny-before-reveal]
+last_touched_by: hephaestus
 depends_on: []
 blocked_by_ruling: —
 needs_ack: yes   # security semantics — zeus review is the merge gate (rules/01 §4)
@@ -40,4 +40,7 @@ new information), found and recorded in the TASK-0001 server#8 verdict.
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T08:14Z: started from `lattice-server` `origin/integration` in private worktree
+  `.wt/hephaestus-lattice-server` on branch
+  `feat/hephaestus-task0008-rpc-deny-before-reveal`.
 - 2026-07-26: drafted by zeus from the TASK-0001 server#8 finding.

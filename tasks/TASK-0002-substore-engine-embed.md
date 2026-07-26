@@ -2,7 +2,7 @@
 task: TASK-0002
 title: Embed the Sub-Store conversion engine in the plugin artifact (engine spike → implementation)
 owner: hephaestus
-status: in_progress
+status: blocked
 plan_ref: plan/design-substore-embed.md §4 (Option C) + §6 step 3
 repos: [lattice-plugin-sub-store]
 branches: [feat/hephaestus-task0002-substore-engine-spike]
@@ -83,6 +83,8 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T08:14Z: parked after Phase 1 + cap sweep; no §4 engine ruling in inbox, so
+  switched to TASK-0008 per no-idle rule. Draft PR #5 stays open for the spike branch.
 - 2026-07-26T08:11Z: deepened Phase 1 on branch with commit `b82e4ef` (spike harness
   output-budget sweep flags + parser tests). `go test -race -cover ./...` in
   `tools/substore-engine-spike` passed; qjs synthetic sing-box boundary: 4306 nodes =
