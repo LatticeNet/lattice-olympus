@@ -54,6 +54,14 @@ without touching any plugin — the "first unblocked slice must stand alone" rul
 
 ## Log
 
+- 2026-07-26T13:15Z: slice 1 SDK module pushed in `lattice-sdk` commit `462c535` and PR
+  `https://github.com/LatticeNet/lattice-sdk/pull/8` targets `integration`. Added importable
+  `plugin` package for stdio-json-v1 framing, fd-3 host client (`rpc.call`, `http.do`,
+  `http.operator.do`, `kv.*`, `notify.send`, `log.write`, `secret.*`), manifest/capability
+  structs, and F6/TASK-0010 additive signed fields (`budget`, `min_server`). Verification:
+  `go test ./...`, `go vet ./...`, `go test -race -cover ./...` (plugin 62.3%; model no
+  statements). Zeus ack requested in
+  `messages/inbox/zeus/20260726-1315Z-hephaestus-task0005-sdk-pr.md`.
 - 2026-07-26T13:01Z: resumed slice 1 as the no-idle fallback while F6 server PR #22 remains
   open with CI in progress and no zeus schema/security ack yet. SDK worktree is still clean on
   `feat/hephaestus-task0005-plugin-go-sdk`, behind `origin/integration` by the post-press SDK
