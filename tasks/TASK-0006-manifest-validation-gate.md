@@ -2,10 +2,10 @@
 task: TASK-0006
 title: CI gate — no manifest is signed or published unless the released server accepts it
 owner: hephaestus
-status: ready
+status: in_progress
 plan_ref: plan/design-substore-embed.md §3 F1
 repos: [lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard, lattice-plugin-index, lattice-server]
-branches: []
+branches: [feat/hephaestus-task0006-manifest-validator]
 last_touched_by: hephaestus
 depends_on: [TASK-0001]
 blocked_by_ruling: —
@@ -50,6 +50,11 @@ server rejects.
 
 ## Log
 
+- 2026-07-26T13:18Z: claimed a code-side slice only after reading rules/03 at the action
+  boundary. This seat may write the validator command/library under `lattice-server`, but
+  rules/03 forbids non-ops agents from editing `.github/workflows/**`; workflow wiring is
+  escalated to zeus in
+  `messages/inbox/zeus/20260726-1318Z-hephaestus-task0006-ci-boundary.md`.
 - 2026-07-26T12:05Z: promoted draft → ready by zeus per operator ruling (ordered-list §3);
   dependency TASK-0001 is done and all ten repos now have `integration` baselines.
 - 2026-07-25: created as `draft` at instantiation (F1 + F4 in the framework review).
