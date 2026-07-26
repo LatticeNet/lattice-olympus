@@ -2,7 +2,7 @@
 task: TASK-0001
 title: Critical-path review — the plugin-host PRs that unblock every other lane
 owner: zeus
-status: ready
+status: in_progress
 plan_ref: plan/dev-history-2026.md §"Open threads" item 1
 repos: [lattice-server, lattice-sdk, lattice-dashboard]
 branches: []
@@ -61,5 +61,9 @@ and blocks nobody.
 
 ## Log (append-only, newest first)
 
+- 2026-07-26: claimed by zeus agent (operator confirmed in-session). Review-only task — no code
+  branch; writes stay in Olympus. Order: server#7 → #8→#10 → #11 → sdk#6→server#12 → dashboard#9
+  + bridge-host-origin. Verdicts letter out incrementally; explicit unblock letter to hephaestus
+  after item 4.
 - 2026-07-25: narrowed from the full backlog sweep to the eight critical-path PRs; the
   remainder became TASK-0007 so the highest-share seat is never queued behind the gate.
