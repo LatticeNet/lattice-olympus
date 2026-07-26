@@ -54,6 +54,16 @@ without touching any plugin — the "first unblocked slice must stand alone" rul
 
 ## Log
 
+- 2026-07-26T17:38Z: started slice 2 plugin migrations after SDK slice 1
+  merged. Created private worktrees from fresh `origin/integration` on
+  `feat/hephaestus-task0005-plugin-go-sdk` for
+  `.wt/hephaestus-lattice-plugin-template-task0005`,
+  `.wt/hephaestus-lattice-plugin-vpn-core-task0005`,
+  `.wt/hephaestus-lattice-plugin-wireguard-task0005`, and
+  `.wt/hephaestus-lattice-plugin-netguard-task0005`. `lattice-plugin-sub-store`
+  migration is intentionally deferred or dependency-recorded separately because
+  PR #6 is an unmerged, signing-blocked system-go branch; migrating it from
+  plain `integration` would create a known collision with TASK-0002.
 - 2026-07-26T17:22Z: slice 1 SDK module merged to `lattice-sdk` `integration`
   via PR #8 at merge commit `00943f6ec9e78f27f0dc18f1bc43c11decba4f8f`
   (feature head `462c535b4ab8ddfadc2ea18d040ebcdd7387132e`). GitHub CI run
