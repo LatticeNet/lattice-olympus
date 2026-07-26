@@ -50,6 +50,18 @@ server rejects.
 
 ## Log
 
+- 2026-07-26T17:18Z: server validator command slice merged to `lattice-server`
+  `integration` via PR #23 at merge commit `755aaff6b4ece1dba9a766528679836dcc097b70`
+  (feature head `22c5c2863ac76fbf3e21895b0f2d2e7eb9138654`). GitHub CI run
+  `30211675036` passed gofmt, docker defaults contract, vet, test, gosec, and
+  govulncheck. Merge-commit verification: `test -z "$(gofmt -l .)"`,
+  `GOTOOLCHAIN=go1.26.4 go vet ./...`, and fresh
+  `GOTOOLCHAIN=go1.26.4 go test -count=1 -race -cover ./...` passed
+  (`cmd/lattice-plugin-manifest-check` 75.9%, `internal/plugin` 78.1%,
+  `internal/server` 69.8%, `internal/store` 60.4%). This unblocks zeus's
+  workflow-wiring lane; hephaestus still cannot edit `.github/workflows/**`
+  under rules/03, and template PR #4 remains parked for release-builder digest
+  refresh + re-sign.
 - 2026-07-26T13:42Z: checked draft template PR #4 CI failure. It is the expected
   package digest gate: CI reported `bundle digest actual=2b4184c3... expected=a7631567...`.
   This confirms the source/test path is green and the remaining blocker is the
