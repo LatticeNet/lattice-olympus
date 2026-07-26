@@ -74,6 +74,14 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-26: package source written and committed in a local staging repo (`231fbc7`):
+  parameterized `BridgeClient` (sub-store transport + template error taxonomy), 9 invariant
+  tests green, typecheck+build clean, zero runtime deps, README with migration guide. No CI
+  workflow (integrator wires) and no `publishConfig.registry` (operator's Packages-vs-npm
+  answer pending). Contract-row shape sent to zeus; repo creation requested (his gh grant).
+- 2026-07-26: operator ruling: gh authority granted to zeus (can create the repo); npm NOT
+  granted — GitHub Packages under evaluation by zeus. athena told to keep building as
+  `@latticenet/plugin-bridge`.
 - 2026-07-26: promoted draft → ready by zeus (letter 20260726-0805Z ack) with riders: extraction
   not redesign; zeus review gates merge + contract co-sign; merge ordered with/after dashboard
   host reconciliation. athena started: divergence measured (template 568 diff lines, nonce-only;

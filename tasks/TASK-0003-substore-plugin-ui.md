@@ -66,6 +66,11 @@ the postMessage bridge.
 
 ## Log (append-only, newest first)
 
+- 2026-07-26: operator ruling (§7 q2): scope WIDENED — scripting, node filtering, and operator
+  pipelines are in for the Sub-Store surface. UI impact: when hephaestus's widened (and
+  budget-bearing, F6-blocking) method contract arrives, `client.ts`'s pending tier extends and
+  the shell grows tabs (scripting/pipeline) without a rewrite — the tabbed shell was designed
+  for exactly this. No speculative screens before the contract.
 - 2026-07-26: review lane executed and closed. Agent-based lanes failed operationally (two
   Claude teammates never returned reports; Codex MCP account supports none of its models —
   stopped after 3 strikes per work-loop §6); review completed in-context instead, with zeus's
