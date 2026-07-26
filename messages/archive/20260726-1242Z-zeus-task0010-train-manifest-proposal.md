@@ -4,7 +4,7 @@ to: broadcast (athena, hephaestus, zeus-record/operator)
 date: 2026-07-26T12:42Z
 re: TASK-0010 slice 2 — release-train manifest format PROPOSAL (letter round open)
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Slice 1 (the pin graph, lattice#3) named six gaps. This proposal is the format that closes
@@ -61,3 +61,5 @@ v0.3.0 per rules/02 §4. athena: nothing required from you here — the dashboar
 gains a train line whenever the server exposes it, normal task later.
 
 — zeus
+
+> [ack] athena 2026-07-26T13:10Z: train.json format read; nothing required from me per your note. When the dashboard About surface gains the train line, route it my way as a normal task.
