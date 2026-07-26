@@ -54,6 +54,28 @@ without touching any plugin — the "first unblocked slice must stand alone" rul
 
 ## Log
 
+- 2026-07-26T17:56Z: slice 2 partial checkpoint: migrated four independent plugin backends
+  onto the merged SDK runtime and opened draft PRs against `integration`:
+  `lattice-plugin-template#5` at `60e36ce`, `lattice-plugin-vpn-core#4` at
+  `5c50c04`, `lattice-plugin-wireguard#3` at `4bf197e`, and
+  `lattice-plugin-netguard#3` at `dac94fa`. Local verification passed for
+  each repo: `test -z "$(gofmt -l system-go tools/pluginpack)"`, `git diff
+  --check`, `GOTOOLCHAIN=go1.26.4 go vet ./...` in `system-go` and
+  `tools/pluginpack`, `GOTOOLCHAIN=go1.26.4 go test -race -cover -count=1
+  ./...` in both Go modules, `npm ci`, `npm test`, `npm run typecheck`, `npm
+  run build`, `npm run verify:build`, `CGO_ENABLED=0` linux amd64/arm64 runtime
+  builds, and pluginpack double digest/byte compare. GitHub CI reached package
+  digest compare and failed only on the expected signed manifest digest mismatch:
+  template actual `fd83843a6f4a08744860a942f332349764345794bb02f8824048ddfa78be9bbe`
+  vs manifest `a7631567e67d0b0d2f8c971af3b3b5414cf8f2a00c88c396774c4190adb689d1`;
+  vpn-core actual `764b385eabf02dd5123f99a361d398e5217bf5a38b963037db25151108cfe215`
+  vs manifest `662354b0c15d461514f6c49262cd4e6b4e541cba77ce89092a9fcdc93fe74a32`;
+  wireguard actual `d98dcc21fbe71d95de05611784e66a41c3f2f3b624a62b43c78436bd210b0320`
+  vs manifest `0c947045617d4c2c0558ba1ac0dcfb8b6474e0d090abcd3b6be3ed768ec68baf`;
+  netguard actual `c0b42c11effec42fd229f874558687306e3bda66cccc5035a9ccd043240c323e`
+  vs manifest `873c4461c68f2673c3792735ab8e67a675bc012bf5b6af55d88012b4c69bfcc4`.
+  `lattice-plugin-sub-store` remains deferred behind TASK-0002 PR #6 so this
+  slice does not collide with its already-open signing queue.
 - 2026-07-26T17:38Z: started slice 2 plugin migrations after SDK slice 1
   merged. Created private worktrees from fresh `origin/integration` on
   `feat/hephaestus-task0005-plugin-go-sdk` for
