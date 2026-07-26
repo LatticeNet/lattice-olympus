@@ -40,7 +40,12 @@ close-with-landing-commit (rules/01 §8.5), never merged. Exception: dashboard
 rollback past #8 (strands re-signed plugins). #7 adds: no LATTICE_PUBLIC_URL → plugin assets
 503 (same family as [[decision-webauthn-rpid]]).
 
-**Remaining open drafts (TASK-0007 scope)**: dashboard #3 lines / #4 sidebar / #5 passkeys
-(#6 inventory no longer open — verify how it landed); plugin re-sign PRs (vpn-core/netguard/
-wireguard/sub-store/template #2, template#3); plugin-index#1; gitignore-signing-seeds family.
+**TASK-0007 final state (2026-07-26)**: closed-as-landed with landing commits — server#3/#4
+(a0308cb), dashboard#5/#4 (0115575), dashboard#3 (5c3d82f), sub-store#2 (int tip 3c3571f);
+dashboard#6 was properly MERGED. [ack] merge-ready, awaiting integrator pass — seeds ×7
+(history re-scanned clean in all 7 repos), backing ×4 (conformance -race green per head;
+signatures rest on 2026-07-15 field load "4/0"), template#3 execute-reference (-race green;
+injection test real; manual e2e owed). Six plugin/index repos still need `integration` created.
+Still open beyond queue: server#7/#8/#10/#11/#12, sdk#6, dashboard#9 (TASK-0001 closure sweep,
+operator-gated) + athena's sub-store#4 (her round protocol).
 [[gotcha-published-vs-acceptable-manifest]] [[decision-plugin-backing]]

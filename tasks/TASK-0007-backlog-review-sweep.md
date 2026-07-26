@@ -2,7 +2,7 @@
 task: TASK-0007
 title: Review sweep of the remaining draft-PR backlog (nobody is blocked on this)
 owner: zeus
-status: in_progress
+status: done
 plan_ref: plan/dev-history-2026.md §"Open threads" item 1
 repos: [lattice-dashboard, lattice-plugin-template, lattice-plugin-vpn-core, lattice-plugin-netguard, lattice-plugin-wireguard, lattice-plugin-sub-store, lattice-plugin-index, lattice-server]
 branches: []
@@ -43,11 +43,15 @@ what zeus works between rulings.
 
 ## DoD
 
-- [ ] every remaining open draft PR has a recorded verdict (PR comment + Olympus letter)
-- [ ] closed-but-landed PRs annotated with their landing commits
-- [ ] `memory/notes/map-draft-pr-backlog` updated with the full picture
-- [ ] merge-blocking findings each have a follow-up TASK
-- [ ] finish letter sent
+- [x] every remaining open draft PR has a recorded verdict (PR comment + Olympus letter) —
+      seeds ×7 [ack] batch · backing ×4 [ack] · template#3 [ack]; letter 20260726-0815Z
+- [x] closed-but-landed PRs annotated with their landing commits — server#3/#4 (a0308cb),
+      dashboard#5/#4 (0115575), #3 (5c3d82f), sub-store#2 (integration tip 3c3571f);
+      dashboard#6 verified properly MERGED
+- [x] `memory/notes/map-draft-pr-backlog` updated with the full picture
+- [x] merge-blocking findings: NONE — all open PRs merge-ready, gated only on the integrator
+      pass (integration-branch creation ×6, operator queue)
+- [x] finish letter sent (broadcast 20260726-0815Z)
 
 ## Log (append-only, newest first)
 
