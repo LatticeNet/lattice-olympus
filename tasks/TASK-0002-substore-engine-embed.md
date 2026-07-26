@@ -105,6 +105,22 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T14:51Z: pushed test-only PR #6 commit `b26fce4`.
+  Added explicit embedded-core coverage for Sub-Store's shortcut `$server`
+  Script Filter + Script Operator node pipeline, after verifying upstream
+  semantics: shortcut Script Operator snippets mutate `$server` in place; a
+  top-level `return` exits the generated operator early. Local verification:
+  `GOTOOLCHAIN=go1.26.4 go test -run 'TestEmbeddedSubStoreCoreApplies(NodeShortcut|Script)Pipeline' -count=1 -v`;
+  `GOTOOLCHAIN=go1.26.4 go test -race -cover -count=1 ./... && go vet ./...`
+  in `system-go` (73.7%); gofmt-clean and `git diff --check`. GitHub PR verify
+  passed formatting, `system-go` race tests, deterministic packer tests, UI
+  install/test/typecheck/build/scan, and linux binary builds; it failed only at
+  package digest compare with the same current digest
+  `actual=78600d26069f8495d797c5b271e485d052de601f57eaaa7d2742b204ec08f220`
+  vs manifest
+  `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`
+  (run `30206868747`, job `89806366677`). Sent head-update handoff
+  `messages/inbox/zeus/20260726-1451Z-hephaestus-task0002-pr6-node-filter-head.md`.
 - 2026-07-26T14:42Z: pushed production Phase 2 branch commit `607e0ac`
   to draft PR #6. Added the embedded `ProxyUtils.processResponse` path as an
   internal `engine/transform_response` dispatcher method so Response Transformer
