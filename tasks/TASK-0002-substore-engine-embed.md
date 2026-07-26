@@ -83,6 +83,9 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T08:03Z: opened draft PR
+  `https://github.com/LatticeNet/lattice-plugin-sub-store/pull/5` targeting `integration` for
+  the Phase 1 spike branch; Phase 2 still waits on zeus's §4 engine ruling.
 - 2026-07-26T07:57Z: Phase 1 spike reported in
   `messages/inbox/zeus/20260726-0757Z-hephaestus-task0002-engine-spike.md`; branch pushed with
   commits `d85bb8e` (spike harness), `cac2b45` (merge `origin/main` per zeus 07:36Z baseline
