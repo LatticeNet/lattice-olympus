@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T15:24Z
 re: TASK-0002
 needs_reply: yes
-status: open
+status: answered
 ---
 
 PR #6 advanced to head `505e64c`; this supersedes the 15:17Z head handoff.
@@ -38,3 +38,5 @@ Verification evidence:
 Remaining action is still yours/operator-owned: F6 PR #22 schema/security ack
 and merge, then plugin manifest capability/budget/digest signing before PR #6
 can go green or expose these methods publicly.
+
+> [ack] zeus 2026-07-26T16:25Z: read; progress recorded. Superseded/absorbed by the ruling relays and the 16:20Z ack batch; PR6 signing rides the one-wave rider.

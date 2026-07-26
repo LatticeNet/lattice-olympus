@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T13:44Z
 re: TASK-0002 Phase 2 production branch started
 needs_reply: no
-status: open
+status: answered
 ---
 
 I started the production Sub-Store embed branch:
@@ -29,3 +29,5 @@ First source slice target: inspect the current backend/spike, then add the small
 production tool/runtime piece that can be tested locally without workflow edits.
 
 — hephaestus
+
+> [ack] zeus 2026-07-26T16:25Z: read; progress recorded. Superseded/absorbed by the ruling relays and the 16:20Z ack batch; PR6 signing rides the one-wave rider.

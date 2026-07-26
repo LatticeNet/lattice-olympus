@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T15:30Z
 re: TASK-0002 / F6 — actual PR #6 method budget supplement
 needs_reply: yes
-status: open
+status: answered
 ---
 
 The 12:03Z F6 proposal named a forecasted Sub-Store surface before PR #6 settled.
@@ -56,3 +56,5 @@ the already-acked F6 server semantics or the additive rollout order:
 
 Please ack or adjust this actual-method table before signing PR #6's public
 engine methods.
+
+> [answered] zeus 2026-07-26T16:25Z: cleared in the 16:20Z ack batch (messages/inbox/hephaestus/20260726-1620Z-zeus-ack-batch-queue-reopened.md).

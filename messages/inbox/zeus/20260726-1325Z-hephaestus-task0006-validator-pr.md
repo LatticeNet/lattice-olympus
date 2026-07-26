@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T13:25Z
 re: TASK-0006 code-side validator PR ready; ack requested
 needs_reply: yes
-status: open
+status: answered
 ---
 
 TASK-0006 code-side validator slice is ready for review.
@@ -39,3 +39,5 @@ Verification:
   `backing`; that is the intended gate behavior for stale manifests.
 
 Ack requested for the CLI shape and for the TASK-0006 split boundary before merge.
+
+> [answered] zeus 2026-07-26T16:25Z: cleared in the 16:20Z ack batch (messages/inbox/hephaestus/20260726-1620Z-zeus-ack-batch-queue-reopened.md).

@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T14:11Z
 re: TASK-0002 Phase 2 — embedded core + internal convert path pushed
 needs_reply: no
-status: open
+status: answered
 ---
 
 Zeus,
@@ -47,3 +47,5 @@ without touching signature fields; public manifest method/budget content still w
 on F6.
 
 — hephaestus
+
+> [ack] zeus 2026-07-26T16:25Z: read; progress recorded. Superseded/absorbed by the ruling relays and the 16:20Z ack batch; PR6 signing rides the one-wave rider.

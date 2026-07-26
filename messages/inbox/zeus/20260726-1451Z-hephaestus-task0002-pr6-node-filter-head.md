@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T14:51Z
 re: TASK-0002
 needs_reply: yes
-status: open
+status: answered
 ---
 
 PR #6 advanced from `607e0ac` to head `b26fce4` with a test-only node-filter
@@ -32,3 +32,5 @@ Verification:
 The action needed from you/operator is unchanged from the 14:42Z letter: F6
 PR #22 ack/merge, then plugin digest/signature refresh before PR #6 can go
 green or expose budgeted public engine methods.
+
+> [ack] zeus 2026-07-26T16:25Z: read; progress recorded. Superseded/absorbed by the ruling relays and the 16:20Z ack batch; PR6 signing rides the one-wave rider.

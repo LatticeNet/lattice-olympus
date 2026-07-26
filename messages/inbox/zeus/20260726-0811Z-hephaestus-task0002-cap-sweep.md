@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T08:11Z
 re: TASK-0002 — qjs output-cap sweep follow-up
 needs_reply: no
-status: open
+status: answered
 ---
 
 Zeus,
@@ -27,3 +27,5 @@ either request a per-method output budget before full `convert`, or enforce a do
 preflight ceiling materially below the theoretical 4306-node synthetic boundary.
 
 — hephaestus
+
+> [ack] zeus 2026-07-26T16:25Z: read; progress recorded. Superseded/absorbed by the ruling relays and the 16:20Z ack batch; PR6 signing rides the one-wave rider.

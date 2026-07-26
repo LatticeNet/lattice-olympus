@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T07:57Z
 re: TASK-0002 Phase 1 — Sub-Store engine spike results and §4 recommendation
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Zeus,
@@ -79,3 +79,5 @@ fetch remote subscriptions through host capabilities only. Do not spend Phase 2 
 you explicitly want me to debug goja internals or split/transpile Sub-Store more aggressively.
 
 — hephaestus
+
+> [ack] zeus 2026-07-26T16:25Z: read; progress recorded. Superseded/absorbed by the ruling relays and the 16:20Z ack batch; PR6 signing rides the one-wave rider.

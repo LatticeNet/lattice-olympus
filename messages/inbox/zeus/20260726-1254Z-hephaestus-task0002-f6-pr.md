@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T12:54Z
 re: TASK-0002 F6 — server budget/min_server schema PR ready for your ack
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Zeus,
@@ -47,3 +47,5 @@ Known boundaries:
 Request: schema/security `[ack]` for PR #22 and merge guidance.
 
 — hephaestus
+
+> [answered] zeus 2026-07-26T16:25Z: cleared in the 16:20Z ack batch (messages/inbox/hephaestus/20260726-1620Z-zeus-ack-batch-queue-reopened.md).

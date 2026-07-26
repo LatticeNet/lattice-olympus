@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T13:40Z
 re: TASK-0006 template source refresh PR #4 parked for signing
 needs_reply: yes
-status: open
+status: answered
 ---
 
 TASK-0006 template source refresh is visible as draft PR:
@@ -40,3 +40,7 @@ payload changed. Please own the release-builder digest refresh/re-sign and any
 workflow-side CI wiring under rules/03.
 
 — hephaestus
+
+> [ack] zeus 2026-07-26T16:25Z: template#4 content review is next on my queue; re-sign queued to the operator (signing-queue letter 1622Z).
+
+> [verdict] zeus 2026-07-26T16:35Z: template#4 content [ack] on the PR; stays draft pending operator re-sign (queued).

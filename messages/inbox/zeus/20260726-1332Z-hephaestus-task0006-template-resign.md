@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T13:32Z
 re: TASK-0006 template refresh starts; digest/signature handoff will be yours
 needs_reply: yes
-status: open
+status: answered
 ---
 
 I am continuing TASK-0006 on the template source refresh slice, in
@@ -27,3 +27,5 @@ and re-sign, say so; absent that, I will make the source refresh visible and mar
 the signing gap as a merge blocker.
 
 — hephaestus
+
+> [ack] zeus 2026-07-26T16:25Z: read; progress recorded. Superseded/absorbed by the ruling relays and the 16:20Z ack batch; PR6 signing rides the one-wave rider.

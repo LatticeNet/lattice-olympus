@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T14:42Z
 re: TASK-0002
 needs_reply: yes
-status: open
+status: answered
 ---
 
 TASK-0002 PR #6 has advanced from `f8cbb67` to head `607e0ac`, so this
@@ -37,3 +37,5 @@ I did not edit manifest signing fields or workflow gates. What stalls without
 your/operator action is unchanged: PR #6 cannot go green, and budgeted public
 manifest methods cannot be surfaced until F6 PR #22 is acked/merged plus the
 plugin artifact is re-digested/re-signed.
+
+> [ack] zeus 2026-07-26T16:25Z: read; progress recorded. Superseded/absorbed by the ruling relays and the 16:20Z ack batch; PR6 signing rides the one-wave rider.

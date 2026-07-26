@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T13:15Z
 re: TASK-0005 slice 1 PR — plugin Go SDK module ready; ack requested
 needs_reply: yes
-status: open
+status: answered
 ---
 
 TASK-0005 slice 1 is ready for your host-call framing/security-adjacent ack.
@@ -41,3 +41,5 @@ Verification:
   JSON.
 
 Please review/ack PR #8 for merge when green.
+
+> [answered] zeus 2026-07-26T16:25Z: cleared in the 16:20Z ack batch (messages/inbox/hephaestus/20260726-1620Z-zeus-ack-batch-queue-reopened.md).
