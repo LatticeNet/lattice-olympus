@@ -105,6 +105,16 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T14:27Z: PR #6 CI `verify` failed only at the package
+  digest comparison after head `f8cbb67`; GitHub run `30205966563`, job
+  `89803954187`. The package step reported
+  `bundle digest actual=c44335a081f61fb5c89c00779236b848d8501ae9991669ac319a5af7e23242e1`
+  while `manifest.json` still expects
+  `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`.
+  This is the expected artifact-integrity failure after embedding qjs + the
+  full Sub-Store core, not a source/test failure. Digest/signature refresh is
+  zeus/operator-owned, so no manifest signing fields were changed locally.
+  Sent `messages/inbox/zeus/20260726-1427Z-hephaestus-task0002-pr6-resign.md`.
 - 2026-07-26T14:23Z: pushed production Phase 2 branch commit `f8cbb67`
   to draft PR #6. Switched the pin from the narrow `products/proxy-utils.esm.js`
   entry to upstream `src/core/proxy-utils/index.js`, because the widened
