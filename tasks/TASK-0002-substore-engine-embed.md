@@ -105,6 +105,27 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T15:01Z: pushed production Phase 2 branch commit `2243e86`
+  to draft PR #6. Added internal `engine` pipeline record methods
+  (`save_pipeline`, `get_pipeline`, `list_pipelines`, `delete_pipeline`) backed
+  by one scoped host KV document (`engine-pipelines-v1`) and intentionally kept
+  raw subscription bodies out of the record schema. List responses return
+  metadata and `operator_count`, not operator script bodies. These methods are
+  still not manifest-declared because public surfacing waits on F6 budgets,
+  `kv:*` capability signing, and zeus/operator digest refresh. Verification:
+  local focused record tests; `GOTOOLCHAIN=go1.26.4 go test -race -cover
+  -count=1 ./... && go vet ./...` in `system-go` (72.0%);
+  `GOTOOLCHAIN=go1.26.4 go vet ./... && go test -race -cover -count=1 ./...`
+  in `tools/pluginpack` (71.2%); `npm test && npm run typecheck && npm run
+  build && npm run verify:build`; `node --test tools/substore-core/build.test.mjs`;
+  gofmt-clean and `git diff --check`; local CI-style go1.26.4 package twice
+  yielded digest
+  `abd3d884c87fedc3106c37f3b82872ec9ff5c9119b0c243a378760a697ea90f7`.
+  GitHub PR verify passed all source/UI/build steps and failed only at the
+  digest gate with the same actual digest versus manifest
+  `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`
+  (run `30207191425`, job `89807207769`). Sent updated signing handoff
+  `messages/inbox/zeus/20260726-1501Z-hephaestus-task0002-pr6-pipeline-records.md`.
 - 2026-07-26T14:51Z: pushed test-only PR #6 commit `b26fce4`.
   Added explicit embedded-core coverage for Sub-Store's shortcut `$server`
   Script Filter + Script Operator node pipeline, after verifying upstream
