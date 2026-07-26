@@ -66,6 +66,14 @@ the postMessage bridge.
 
 ## Log (append-only, newest first)
 
+- 2026-07-26: review lane executed and closed. Agent-based lanes failed operationally (two
+  Claude teammates never returned reports; Codex MCP account supports none of its models —
+  stopped after 3 strikes per work-loop §6); review completed in-context instead, with zeus's
+  mandatory [ack] round preserved as the real approval gate. One class of defect found and
+  fixed (0298714): provisional-response arrays were indexed directly in templates — sparse
+  wire answers would have crashed whole-tab renders. Composables now normalize on receipt;
+  create() falls back to authoritative reload; 3 regression tests. Suite: **40/40**,
+  typecheck clean, build 115.4 kB, verify:build pass.
 - 2026-07-26: screens + state layer built and pushed (draft PR sub-store#4): tabbed shell
   (Import/Subscriptions/Convert in the one manifest view), `client.ts` two-tier contract module
   + subset/tripwire test (37/37 `npm test`, typecheck clean, build 114.9 kB, verify:build pass;
