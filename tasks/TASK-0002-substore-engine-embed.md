@@ -105,6 +105,22 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T14:23Z: pushed production Phase 2 branch commit `f8cbb67`
+  to draft PR #6. Switched the pin from the narrow `products/proxy-utils.esm.js`
+  entry to upstream `src/core/proxy-utils/index.js`, because the widened
+  operator scope needs `ProxyUtils.process` / `processResponse` as well as
+  `parse` / `produce`. Regenerated `system-go/lib/substore-core.js` at
+  1,266,359 bytes with sha256
+  `994423340ddfbbcb4c858dc497bbbd249aac89b736a03606ada2f8958b1f0d4b`.
+  `engine/convert` now accepts an optional operator pipeline and awaits upstream
+  `process` before produce; test coverage includes a real `Script Filter` +
+  `Script Operator` pipeline with no host calls. Verification:
+  `go test -race -cover ./... && go vet ./...` in `system-go` (74.0%);
+  `go vet ./... && go test -race -cover ./...` in `tools/pluginpack` (71.2%);
+  `node --test tools/substore-core/build.test.mjs`; full-core builder-to-checked-in
+  `cmp` reproduced hash `99442334...`; linux `amd64`/`arm64` cross-builds
+  passed (10,545,756 and 10,215,715 bytes); `git diff --check`. PR #6 CI
+  `verify` was in progress when checked at 2026-07-26T14:23Z.
 - 2026-07-26T14:11Z: pushed production Phase 2 branch commit `59ab062`
   to draft PR #6. Embedded the pinned ProxyUtils bundle at
   `system-go/lib/substore-core.js` (1,266,414 bytes; sha256
