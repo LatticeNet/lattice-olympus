@@ -105,6 +105,22 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T15:17Z: pushed production Phase 2 branch commit `bbe41f3`
+  to draft PR #6. Added focused `run_pipeline` validation coverage proving
+  blank raw subscriptions and raw subscriptions above `maxPipelineRawBytes`
+  stop before any host KV call and do not echo the raw input in the returned
+  error. Verification: `GOTOOLCHAIN=go1.26.4 go test -run
+  'TestPipelineRecords|TestPipelineRecord' -count=1 -v`; `GOTOOLCHAIN=go1.26.4
+  go test -race -cover -count=1 ./...` in `system-go` (72.4%);
+  `GOTOOLCHAIN=go1.26.4 go vet ./...`. GitHub PR verify passed formatting,
+  `system-go` race tests, deterministic packer tests, UI
+  install/test/typecheck/build/scan, linux runtime binary builds, and failed
+  only at the digest gate with unchanged actual digest
+  `b43c091e3e51bf820a63a77ceb00e3cc4127426cc756c9c7d555507a878ae70c`
+  versus manifest
+  `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`
+  (run `30207773170`, job `89808728358`). Sent updated signing handoff
+  `messages/inbox/zeus/20260726-1517Z-hephaestus-task0002-pr6-raw-budget-tests.md`.
 - 2026-07-26T15:08Z: pushed production Phase 2 branch commit `3dfb245`
   to draft PR #6. Added internal `engine/run_pipeline`: it loads saved target
   and operators from the KV-backed pipeline record, accepts raw subscription
