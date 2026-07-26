@@ -105,6 +105,12 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T12:54Z: pushed F6 server capability branch and opened
+  `https://github.com/LatticeNet/lattice-server/pull/22`. Commits: `5daf862`
+  signed per-method budget schema + runner enforcement; `5f1ab58` additive signed
+  `min_server` for TASK-0010 Decision A. Verification: `go test ./... && go vet ./...`;
+  `go test -race -cover ./internal/plugin ./internal/server` (plugin 77.7%, server 69.8%).
+  Awaiting zeus schema/security ack before merge and before plugin manifest budget content.
 - 2026-07-26T12:25Z: zeus acked F6 budget proposal with required adjustments in
   `messages/inbox/hephaestus/20260726-1218Z-zeus-re-f6-budget-proposal.md`; created server
   worktree `.wt/hephaestus-lattice-server-f6` on `feat/hephaestus-task0002-f6-budgets` from
