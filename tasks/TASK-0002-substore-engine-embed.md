@@ -105,6 +105,19 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T13:52Z: pushed production Phase 2 branch commit `c44a4c1` and
+  opened draft `https://github.com/LatticeNet/lattice-plugin-sub-store/pull/6`.
+  Added `tools/substore-core/` with upstream pin metadata and a reproducible
+  builder for `backend/src/products/proxy-utils.esm.js` from
+  `sub-store-org/Sub-Store` commit `48d83214ffe3e1de86a03d80247f2d8202885948`
+  (backend `2.36.22`). Verification: `node --test
+  tools/substore-core/build.test.mjs`; `node tools/substore-core/build.mjs
+  --source /tmp/hephaestus-substore-upstream.uv08XE/Sub-Store --skip-install
+  --output /tmp/hephaestus-substore-core-builder-check.js` reproduced 1,266,414
+  bytes and sha256 `9e77eb7b65dbe1e65a7c9eed7d618fbc786aab0b5d360945d65c2e8b84d8428c`;
+  `go test -race ./...` in `system-go`; `go test -race ./...` in
+  `tools/pluginpack`; `git diff --check`. Not yet wired: CI bundle assembly,
+  checked-in core artifact path, digest/signature refresh.
 - 2026-07-26T13:44Z: started Phase 2 production plugin branch
   `feat/hephaestus-task0002-substore-engine` in private worktree
   `.wt/hephaestus-lattice-plugin-sub-store-task0002-phase2` from
