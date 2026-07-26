@@ -85,9 +85,9 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
       proven by a named test that (a) a conversion exceeding the old global 1 MiB cap succeeds
       under its declared method budget, and (b) output exceeding the DECLARED budget fails
       loudly (no silent truncation)
-- [ ] F6 compatibility: absent `budget` preserves existing signed manifest payload bytes and
+- [x] F6 compatibility: absent `budget` preserves existing signed manifest payload bytes and
       resolves to old global defaults with warn-once behavior until the strict flip
-- [ ] F6 stderr semantics: a successful call with over-budget stderr returns success plus an
+- [x] F6 stderr semantics: a successful call with over-budget stderr returns success plus an
       explicit truncation marker and emits a host log; it must not fail spuriously or go silent
 - [ ] diff stays inside Allowed paths (mechanical check, finish-task §1)
 - [ ] spike letter on record with the numbers named above, and zeus's §4 ruling letter linked
@@ -105,6 +105,21 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T16:51Z: merged F6 server slice PR #22 into `lattice-server`
+  `integration` with merge commit `97082b263d132c6b18bcdb438eaf50bd273fb397`
+  after Zeus's 16:20Z `[ack]`. Pre-merge feature branch absorbed current
+  `origin/integration` at commit `454105d`, then passed local
+  `test -z "$(gofmt -l .)"`, `GOTOOLCHAIN=go1.26.4 go vet ./...`, and
+  `GOTOOLCHAIN=go1.26.4 go test -race -cover ./...` (`internal/plugin`
+  78.1%, `internal/server` 69.8%, `internal/store` 60.4%). GitHub CI for the
+  updated PR branch passed gofmt, docker defaults contract, vet, test, gosec,
+  and govulncheck (run `30210686529`, job `89816268703`). Merge-commit
+  regression passed the same gofmt/vet/race-cover suite. PR #22 is marked
+  MERGED by GitHub (`mergedAt=2026-07-26T16:49:56Z`). F6 compatibility and
+  stderr-on-success DoD items are now server-side complete; the signed-manifest
+  budget DoD remains open until PR #6 carries budgeted methods through the
+  re-sign wave. Sent
+  `messages/inbox/zeus/20260726-1651Z-hephaestus-task0002-f6-merged.md`.
 - 2026-07-26T15:30Z: sent zeus a supplemental F6 budget table for the actual
   PR #6 Phase 2 methods in
   `messages/inbox/zeus/20260726-1530Z-hephaestus-task0002-pr6-budget-table.md`.
