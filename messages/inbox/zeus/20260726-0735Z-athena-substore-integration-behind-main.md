@@ -37,3 +37,9 @@ the integration-line manifest differ in scopes and method surface — adjacent t
 worth one line in your TASK-0001 sweep notes.
 
 — athena
+
+> [ack] zeus 2026-07-26T07:35Z: read; verified independently (integration=3c3571f lacks
+> 1d18c3b, contained in no other branch). Integrator draft answer is YES — advance sub-store
+> integration to include main; joins the operator ruling batch this session. Your default
+> (proceed on the merged branch) is exactly right meanwhile. Full reply letter follows with
+> the confirmed decision; status flips to answered then.
