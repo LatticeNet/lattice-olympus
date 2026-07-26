@@ -50,6 +50,20 @@ server rejects.
 
 ## Log
 
+- 2026-07-26T13:40Z: template source refresh parked in draft
+  `https://github.com/LatticeNet/lattice-plugin-template/pull/4` at commit
+  `fb8e61a`. Updated `system-go` to the current `action=call` payload envelope,
+  added fd-3 host-call handling with a small `http.operator.do` operator-target
+  probe, declared `backing: runtime`, and added method-bound
+  `operator_target_fields: ["base_url"]`. Verification: baseline `go test ./...`
+  passed before edits; after edits `go test ./...`, `go test -race ./...`,
+  `go vet ./... && go test -race -cover ./...` in `system-go` (58.1%), `go vet
+  ./... && go test -race -cover ./...` in `tools/pluginpack` (pluginpack 71.2%;
+  cmd no statements), `git diff --check`, `lattice-plugin-manifest-check
+  manifest.json`, and a process smoke for the current `action=call` envelope all
+  passed. Not verified: full plugin package digest/signature gate; runtime bytes
+  and signed manifest payload changed, so PR #4 remains draft pending
+  zeus/operator release-builder digest refresh and re-sign.
 - 2026-07-26T13:32Z: continuing the allowed template refresh slice in private worktree
   `.wt/hephaestus-lattice-plugin-template-task0006` on branch
   `feat/hephaestus-task0006-manifest-validator` from `lattice-plugin-template`
