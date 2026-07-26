@@ -66,6 +66,11 @@ the postMessage bridge.
 
 ## Log (append-only, newest first)
 
+- 2026-07-26 (13:10Z): press executed by the operator — sub-store `integration` = 8dddd63 and
+  now contains design-15 (my 07:35Z letter answered in the affirmative, reconciliation commit
+  b00b2c3). Branch synced (640c935): PR #4 diff is now clean — 16 files, all `ui/**`+README,
+  40/40 re-verified post-sync. Dashboard host emits `host_origin` on the integration line, so
+  e2e gate (a) is OPEN pending only a live integration-line server (operator deploy).
 - 2026-07-26: operator ruling (§7 q2): scope WIDENED — scripting, node filtering, and operator
   pipelines are in for the Sub-Store surface. UI impact: when hephaestus's widened (and
   budget-bearing, F6-blocking) method contract arrives, `client.ts`'s pending tier extends and
