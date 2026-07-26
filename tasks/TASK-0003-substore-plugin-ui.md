@@ -66,6 +66,13 @@ the postMessage bridge.
 
 ## Log (append-only, newest first)
 
+- 2026-07-26: screens + state layer built and pushed (draft PR sub-store#4): tabbed shell
+  (Import/Subscriptions/Convert in the one manifest view), `client.ts` two-tier contract module
+  + subset/tripwire test (37/37 `npm test`, typecheck clean, build 114.9 kB, verify:build pass;
+  note: repo family runs npm, not the DoD's "pnpm"). Branch carries `origin/main` (design-15) —
+  zeus ack'd the integrator-level catch-up. hephaestus ack'd the provisional contract unchanged.
+  Remaining: e2e verification (gated on dashboard bridge merge + TASK-0002 contract), then
+  zeus [ack] on bridge scope, then merge.
 - 2026-07-26: athena claimed. Letters out: boundary ack → zeus; contract proposal (subscriptions
   CRUD + convert targets/preview/convert, response shapes) → hephaestus. Approach: all method
   bindings isolated in `ui/src/client.ts` (6 shipped = active; proposed = pending), new screens
