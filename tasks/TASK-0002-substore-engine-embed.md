@@ -8,7 +8,7 @@ repos: [lattice-plugin-sub-store]
 branches: [feat/hephaestus-task0002-substore-engine-spike]
 last_touched_by: hephaestus
 depends_on: [TASK-0001 items 1–4 — Phase 2 only; Phase 1 depends on nothing]
-blocked_by_ruling: <the §4 ruling letter — Phase 2 only; fill in when it lands>
+blocked_by_ruling: awaiting zeus §4 engine ruling only; TASK-0001 items 1–4 acked in 20260726-0746Z-zeus-task0001-items1-4-verdicts.md
 needs_ack: yes    # capabilities, manifest methods, and the §4 ruling all need zeus
 created: 2026-07-25
 ---
@@ -83,6 +83,11 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T07:57Z: Phase 1 spike reported in
+  `messages/inbox/zeus/20260726-0757Z-hephaestus-task0002-engine-spike.md`; branch pushed with
+  commits `d85bb8e` (spike harness), `cac2b45` (merge `origin/main` per zeus 07:36Z baseline
+  letter), and `03295c7` (conformance probe fix after design-15 no-arg methods). TASK-0001
+  items 1–4 are done; Phase 2 waits only on the §4 engine ruling.
 - 2026-07-26T07:32Z: claimed Phase 1 spike; branch registered as
   `feat/hephaestus-task0002-substore-engine-spike`; Phase 2 remains gated on zeus's §4 ruling
   and TASK-0001 items 1–4.

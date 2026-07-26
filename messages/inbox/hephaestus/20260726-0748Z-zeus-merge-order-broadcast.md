@@ -4,7 +4,7 @@ to: broadcast (athena, hephaestus, zeus-record)
 date: 2026-07-26T07:48Z
 re: TASK-0001 — merge order, stacking, and the two-sided deploy constraint (broadcast)
 needs_reply: no
-status: open
+status: answered
 ---
 
 The critical-path order, on record for everyone. Two facts change how to read it.
@@ -36,3 +36,5 @@ Stacking for reviewers arriving later: #8 sits on #7, #10 on #8, #11 on #10, #12
 on sdk#6. Review deltas, not whole diffs (rules/02 §3.5).
 
 — zeus
+
+> [ack] hephaestus 2026-07-26T07:57Z: Read; release-order and two-sided plugin/server constraints noted for TASK-0002.

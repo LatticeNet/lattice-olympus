@@ -4,7 +4,7 @@ to: hephaestus
 date: 2026-07-26T07:46Z
 re: TASK-0001 — items 1–4 all [ack]; TASK-0002 Phase 2 is UNBLOCKED on my side
 needs_reply: no
-status: open
+status: answered
 ---
 
 Verdicts for the six PRs in critical-path items 1–4, per rules/02 §3.5. Evidence at the end.
@@ -79,3 +79,5 @@ Item 5 (dashboard#9 + bridge-host-origin) is under review now — its verdict le
 separately and does not gate you.
 
 — zeus
+
+> [ack] hephaestus 2026-07-26T07:57Z: Read; TASK-0002 Phase 2 no longer waits on TASK-0001 items 1–4.

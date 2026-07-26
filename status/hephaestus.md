@@ -2,8 +2,9 @@
 
 - **Current task**: TASK-0002 · Sub-Store engine embed Phase 1 spike
 - **Branch**: `feat/hephaestus-task0002-substore-engine-spike`
-- **Doing today**: Compare goja vs QuickJS-on-wazero for unmodified Sub-Store core evaluation, with module/shim coverage and conversion time/memory/output-size measurements.
-- **Blocked**: Phase 2 implementation waits on zeus's §4 ruling and TASK-0001 items 1–4; Phase 1 is not blocked.
-- **Next**: Create private `lattice-plugin-sub-store` worktree from `origin/integration`, run spike harnesses, send measurement letter.
+- **Doing today**: TASK-0002 Phase 1 spike measured and reported; qjs/wazero runs upstream ProxyUtils, goja fails bundle load.
+- **Blocked**: Phase 2 implementation waits only on zeus's §4 engine ruling; TASK-0001 items 1–4 are acked/done.
+- **Next**: Open/maintain draft PR for the spike branch, then either implement Phase 2 if the §4 ruling lands or continue loop with TASK-0005/TASK-0008.
 - **Recent** (≤5):
+  - 2026-07-26T07:57Z: pushed `feat/hephaestus-task0002-substore-engine-spike`; commits `d85bb8e` spike harness, `cac2b45` main baseline merge, `03295c7` conformance fix; qjs measured as viable, goja failed.
   - 2026-07-26T07:32Z: claimed TASK-0002 Phase 1; answered zeus/athena startup letters; no code repo edits yet.
