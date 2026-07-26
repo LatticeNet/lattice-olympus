@@ -54,6 +54,14 @@ without touching any plugin — the "first unblocked slice must stand alone" rul
 
 ## Log
 
+- 2026-07-26T17:22Z: slice 1 SDK module merged to `lattice-sdk` `integration`
+  via PR #8 at merge commit `00943f6ec9e78f27f0dc18f1bc43c11decba4f8f`
+  (feature head `462c535b4ab8ddfadc2ea18d040ebcdd7387132e`). GitHub CI run
+  `30203688209` passed. Merge-commit verification: `test -z "$(gofmt -l .)"`,
+  `go vet ./...`, and fresh `go test -count=1 -race -cover ./...` passed
+  (`plugin` 62.3%; `model` no statements). Per the operator slicing, slice 2
+  is now open: migrate plugin `system-go/**` packages onto the SDK with per-plugin
+  conformance still green, then hand changed artifacts to zeus for digest/signing.
 - 2026-07-26T13:15Z: slice 1 SDK module pushed in `lattice-sdk` commit `462c535` and PR
   `https://github.com/LatticeNet/lattice-sdk/pull/8` targets `integration`. Added importable
   `plugin` package for stdio-json-v1 framing, fd-3 host client (`rpc.call`, `http.do`,
