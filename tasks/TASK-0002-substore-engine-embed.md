@@ -105,6 +105,24 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T15:08Z: pushed production Phase 2 branch commit `3dfb245`
+  to draft PR #6. Added internal `engine/run_pipeline`: it loads saved target
+  and operators from the KV-backed pipeline record, accepts raw subscription
+  text only for the current call, runs the embedded conversion, and returns the
+  conversion result without storing the raw input. Verification: focused
+  pipeline record tests including missing-record raw redaction;
+  `GOTOOLCHAIN=go1.26.4 go test -race -cover -count=1 ./... && go vet ./...`
+  in `system-go` (72.1%); `GOTOOLCHAIN=go1.26.4 go vet ./... && go test
+  -race -cover -count=1 ./...` in `tools/pluginpack` (71.2%);
+  `npm test && npm run typecheck && npm run build && npm run verify:build`;
+  `node --test tools/substore-core/build.test.mjs`; gofmt-clean and
+  `git diff --check`; local CI-style package twice yielded digest
+  `b43c091e3e51bf820a63a77ceb00e3cc4127426cc756c9c7d555507a878ae70c`.
+  GitHub PR verify passed all source/UI/build steps and failed only at the
+  digest gate with the same actual digest versus manifest
+  `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`
+  (run `30207447949`, job `89807873141`). Sent updated signing handoff
+  `messages/inbox/zeus/20260726-1508Z-hephaestus-task0002-pr6-run-pipeline.md`.
 - 2026-07-26T15:01Z: pushed production Phase 2 branch commit `2243e86`
   to draft PR #6. Added internal `engine` pipeline record methods
   (`save_pipeline`, `get_pipeline`, `list_pipelines`, `delete_pipeline`) backed
