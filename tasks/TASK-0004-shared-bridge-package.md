@@ -2,7 +2,7 @@
 task: TASK-0004
 title: One published bridge package to replace the four divergent bridge.ts copies
 owner: athena
-status: draft
+status: ready
 plan_ref: plan/design-substore-embed.md §3 F2 (spec §8 "Plugin UI Toolkit")
 repos: [lattice-dashboard, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
 branches: []
