@@ -50,6 +50,14 @@ server rejects.
 
 ## Log
 
+- 2026-07-26T13:32Z: continuing the allowed template refresh slice in private worktree
+  `.wt/hephaestus-lattice-plugin-template-task0006` on branch
+  `feat/hephaestus-task0006-manifest-validator` from `lattice-plugin-template`
+  `origin/integration` (`793b476`). Scope is `system-go/**` + `manifest.json`
+  content fields only: refresh runtime call framing and declare current manifest
+  backing without touching `.github/workflows/**` or signature fields. Artifact-bound
+  changes will require zeus/operator digest + re-sign before merge/release; dependency
+  letter sent in `messages/inbox/zeus/20260726-1332Z-hephaestus-task0006-template-resign.md`.
 - 2026-07-26T13:25Z: code-side validator slice pushed in `lattice-server` commit
   `86c94a1` and PR `https://github.com/LatticeNet/lattice-server/pull/23` targets
   `integration`. Added `cmd/lattice-plugin-manifest-check`, a thin wrapper around
