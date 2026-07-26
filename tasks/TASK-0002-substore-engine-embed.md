@@ -105,6 +105,14 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T15:30Z: sent zeus a supplemental F6 budget table for the actual
+  PR #6 Phase 2 methods in
+  `messages/inbox/zeus/20260726-1530Z-hephaestus-task0002-pr6-budget-table.md`.
+  This keeps the approved host maxima unchanged (30s / 8 MiB stdout / 1 MiB
+  stderr / 64 host calls), proposes 6 MiB stdout for conversion-like methods
+  because the runner budgets the JSON response envelope rather than only the
+  produced subscription body, and keeps pipeline CRUD methods tight. This is an
+  ack request for the manifest-signing pass; no code or manifest signing changed.
 - 2026-07-26T15:27Z: reconciled DoD evidence at PR #6 head `505e64c`.
   Marked four already-proven items complete: embedded representative conversion
   without host/network capability (`TestSubStoreEngineConvertCallDoesNotUseHost`
