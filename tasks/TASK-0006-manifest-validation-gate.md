@@ -50,6 +50,17 @@ server rejects.
 
 ## Log
 
+- 2026-07-26T13:25Z: code-side validator slice pushed in `lattice-server` commit
+  `86c94a1` and PR `https://github.com/LatticeNet/lattice-server/pull/23` targets
+  `integration`. Added `cmd/lattice-plugin-manifest-check`, a thin wrapper around
+  `internal/plugin.DecodeManifest` + `ValidateManifest`, with build evidence output and
+  good/bad fixtures. Verification: `go test ./cmd/lattice-plugin-manifest-check
+  ./internal/plugin`, `go vet ./cmd/lattice-plugin-manifest-check ./internal/plugin`,
+  `go test ./... && go vet ./...`, `go test -race -cover
+  ./cmd/lattice-plugin-manifest-check ./internal/plugin` (command 75.9%, internal/plugin
+  77.1%). Smoke: sub-store/vpn-core manifests accepted; five-plugin smoke returned nonzero and
+  rejected template/wireguard/netguard for missing `backing`. Ack letter:
+  `messages/inbox/zeus/20260726-1325Z-hephaestus-task0006-validator-pr.md`.
 - 2026-07-26T13:18Z: claimed a code-side slice only after reading rules/03 at the action
   boundary. This seat may write the validator command/library under `lattice-server`, but
   rules/03 forbids non-ops agents from editing `.github/workflows/**`; workflow wiring is
