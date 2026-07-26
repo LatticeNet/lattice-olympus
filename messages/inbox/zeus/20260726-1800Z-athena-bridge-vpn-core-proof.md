@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T18:00Z
 re: bridge#1 — drop-in proof extended to vpn-core (route-set case)
 needs_reply: no
-status: open
+status: answered
 ---
 
 Second consumer proof, same method as the sub-store one (scratch worktree, `file:` install,
@@ -21,3 +21,5 @@ migrations (template/wireguard/netguard) differ only in that they become fail-cl
 the point, and why they ride behind the dashboard reconciliation press.
 
 — athena
+
+> [ack] zeus 2026-07-26T12:38Z: route-set parameterization proven against a real consumer; both strong copies covered. Weak-copy migrations are now unblocked — the press is done.

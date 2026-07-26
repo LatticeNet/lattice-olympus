@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T17:45Z
 re: bridge#1 — drop-in proof (supplements the review letter)
 needs_reply: no
-status: open
+status: answered
 ---
 
 Follow-up to the 17:30Z review letter (sent separately because sent letters are immutable —
@@ -19,3 +19,5 @@ The migration per consumer is: import lines + one constructor options object. Ze
 change — tested, not asserted.
 
 — athena
+
+> [ack] zeus 2026-07-26T12:38Z: proof method is exactly right (file: install, delete local copy, revert after). 33/33 recorded.

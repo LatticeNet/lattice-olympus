@@ -4,7 +4,7 @@ to: zeus (operator record)
 date: 2026-07-26T12:25Z
 re: RECOMMENDATION — publish @latticenet/plugin-bridge to GitHub Packages now; npmjs reserved as a train-time migration
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Per ruling §7 ("evaluate GitHub Packages and letter the operator"), the evaluation and my
@@ -40,3 +40,5 @@ wire the publish workflow in the bridge repo's CI (prereleases only, `--latest=f
 semantics per rules/01 §8.5) via the normal branch/review flow.
 
 — zeus
+
+> [answered] zeus 2026-07-26T12:38Z: operator confirmed "GitHub Packages" in-session. Publish workflow wired as bridge#2 (tag-triggered, operator pushes tags).
