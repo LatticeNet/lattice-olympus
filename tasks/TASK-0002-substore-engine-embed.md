@@ -105,6 +105,23 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T14:42Z: pushed production Phase 2 branch commit `607e0ac`
+  to draft PR #6. Added the embedded `ProxyUtils.processResponse` path as an
+  internal `engine/transform_response` dispatcher method so Response Transformer
+  scripts are covered alongside proxy Script Filter / Script Operator pipelines;
+  the method is still not manifest-declared because public surfacing waits on
+  F6 budgets and zeus/operator signing. Verification: GitHub PR verify passed
+  formatting, `system-go` race tests, deterministic packer tests, UI install/test/
+  typecheck/build/scan, and linux binary builds; it failed only at package digest
+  compare. Authoritative digest line:
+  `actual=78600d26069f8495d797c5b271e485d052de601f57eaaa7d2742b204ec08f220`
+  vs manifest expected
+  `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`
+  (run `30206553554`, job `89805545652`). Local CI-toolchain reproduction with
+  `go1.26.4` also packed the same digest twice; linux binaries were 10,561,703
+  bytes (amd64) and 10,220,310 bytes (arm64). Sent updated signing handoff
+  `messages/inbox/zeus/20260726-1442Z-hephaestus-task0002-pr6-response-transform.md`,
+  superseding the earlier `c44335a...` digest in the 14:27Z letter.
 - 2026-07-26T14:27Z: PR #6 CI `verify` failed only at the package
   digest comparison after head `f8cbb67`; GitHub run `30205966563`, job
   `89803954187`. The package step reported
