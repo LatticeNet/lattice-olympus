@@ -91,20 +91,31 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
       explicit truncation marker and emits a host log; it must not fail spuriously or go silent
 - [ ] diff stays inside Allowed paths (mechanical check, finish-task §1)
 - [ ] spike letter on record with the numbers named above, and zeus's §4 ruling letter linked
-- [ ] conversion runs entirely inside the artifact — proven by a test that runs a
+- [x] conversion runs entirely inside the artifact — proven by a test that runs a
       representative subscription conversion with **no** network capability granted
-- [ ] all remote fetches go through host capabilities — proven by a test asserting the engine
+- [x] all remote fetches go through host capabilities — proven by a test asserting the engine
       context exposes no socket/fs binding
 - [ ] `lib/substore-core.js` is built from a pinned upstream ref and covered by the bundle
       digest — proven by the existing double-pack byte-compare gate still passing
-- [ ] conformance_test green for every manifest-declared method (runtime-backed must answer)
-- [ ] `go test -race -cover ./...` green — real numbers
+- [x] conformance_test green for every manifest-declared method (runtime-backed must answer)
+- [x] `go test -race -cover ./...` green — real numbers
 - [ ] plugin loads on a server built from merged `integration` (not a branch) — stated explicitly
 - [x] README documents the upstream pin + bump procedure
 - [ ] finish letter to zeus + athena (UI contract implications)
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T15:27Z: reconciled DoD evidence at PR #6 head `505e64c`.
+  Marked four already-proven items complete: embedded representative conversion
+  without host/network capability (`TestSubStoreEngineConvertCallDoesNotUseHost`
+  and `TestEmbeddedSubStoreCoreConvertsRepresentativeSubscription`), no
+  socket/fs-style host globals in the engine context
+  (`TestSubStoreEngineConvertsWithQuickJSCoreFixture`), conformance for current
+  manifest-declared methods (`system-go/conformance_test.go` in CI), and
+  `system-go` race/coverage (latest local full run: 72.4%; latest GitHub run
+  `30208029099` passed the runtime test stage). Left the pinned-core bundle
+  digest item open until manifest digest/signature are refreshed, because the
+  current CI still fails at the expected signed digest gate by design.
 - 2026-07-26T15:24Z: pushed production Phase 2 branch commit `505e64c`
   to draft PR #6. Documented the embedded Sub-Store core pin in the root
   README: upstream commit/backend package, checked-in payload location, rebuild
