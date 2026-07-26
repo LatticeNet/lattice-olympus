@@ -105,6 +105,20 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T14:03Z: pushed production Phase 2 branch commit `f8e1963`
+  to draft PR #6. Added `system-go` QuickJS-on-wazero wrapper around the
+  pinned Sub-Store ProxyUtils core contract, with per-conversion fresh runtime,
+  no-op mutable `console` shim, stdout/stderr discarded, local memory/stack/GC
+  guardrails, byte-accurate output length, and hash-only conversion/panic error
+  reporting so raw subscription contents do not leak. Verification:
+  `go test -race -cover ./...` in `system-go` (74.5%); `go vet ./...` in
+  `system-go`; `LATTICE_SUBSTORE_CORE_JS=/tmp/hephaestus-substore-core-builder-check.js
+  go test -run TestSubStoreEngineConvertsPinnedCoreWhenProvided -count=1 -v`;
+  `go vet ./... && go test -race -cover ./...` in `tools/pluginpack` (71.2%);
+  `node --test tools/substore-core/build.test.mjs`; `git diff --check`.
+  PR #6 CI `verify` was in progress when checked at 2026-07-26T14:03Z.
+  Not yet wired: checked-in core artifact path, manifest methods/budgets,
+  digest/signature refresh.
 - 2026-07-26T13:52Z: pushed production Phase 2 branch commit `c44a4c1` and
   opened draft `https://github.com/LatticeNet/lattice-plugin-sub-store/pull/6`.
   Added `tools/substore-core/` with upstream pin metadata and a reproducible
