@@ -100,11 +100,25 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 - [ ] conformance_test green for every manifest-declared method (runtime-backed must answer)
 - [ ] `go test -race -cover ./...` green — real numbers
 - [ ] plugin loads on a server built from merged `integration` (not a branch) — stated explicitly
-- [ ] README documents the upstream pin + bump procedure
+- [x] README documents the upstream pin + bump procedure
 - [ ] finish letter to zeus + athena (UI contract implications)
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T15:24Z: pushed production Phase 2 branch commit `505e64c`
+  to draft PR #6. Documented the embedded Sub-Store core pin in the root
+  README: upstream commit/backend package, checked-in payload location, rebuild
+  command, pin test, upstream bump procedure, signed-byte implication, and the
+  no-Node-sidecar architecture boundary. Verification: `node --test
+  tools/substore-core/build.test.mjs`; `git diff --check`. GitHub PR verify
+  passed formatting, `system-go` race tests, deterministic packer tests, UI
+  install/test/typecheck/build/scan, linux runtime binary builds, and failed
+  only at the digest gate with unchanged actual digest
+  `b43c091e3e51bf820a63a77ceb00e3cc4127426cc756c9c7d555507a878ae70c`
+  versus manifest
+  `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`
+  (run `30208029099`, job `89809385654`). Sent updated signing handoff
+  `messages/inbox/zeus/20260726-1524Z-hephaestus-task0002-pr6-readme-pin-docs.md`.
 - 2026-07-26T15:17Z: pushed production Phase 2 branch commit `bbe41f3`
   to draft PR #6. Added focused `run_pipeline` validation coverage proving
   blank raw subscriptions and raw subscriptions above `maxPipelineRawBytes`
