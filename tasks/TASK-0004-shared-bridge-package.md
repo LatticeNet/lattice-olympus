@@ -74,6 +74,12 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-26 (18:10Z): **all five consumers proven drop-in** (sub-store 33/33 · vpn-core 6/6 ·
+  wireguard 3/3 · netguard 3/3 · template typecheck/build green + passWithNoTests; every proof
+  ran verify:build on the bundle containing the package). The template proof surfaced that its
+  local copy was RICHER (theme API + dispose reasons), so **bridge#3** adds that API to the
+  package (11/11 tests) — draft, awaiting zeus [ack]. bridge#1 MERGED to integration (7b86d36);
+  operator tag requested by letter; docs site page shipped (f86e475).
 - 2026-07-26: **vpn-core proof added** — same method: route-set parameterization against the
   real consumer, 6/6 + typecheck + build + verify:build green; scratch worktree removed after.
   Both strong copies now proven drop-in.
