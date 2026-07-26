@@ -2,10 +2,10 @@
 task: TASK-0003
 title: Sub-Store plugin UI — Lattice-native Vue surface over the bridge
 owner: athena
-status: ready
+status: in_progress
 plan_ref: plan/design-substore-embed.md §5
 repos: [lattice-plugin-sub-store]
-branches: []
+branches: [feat/athena-task0003-substore-ui]
 last_touched_by: athena
 depends_on: [TASK-0002]      # method contract must exist before the UI binds to it
 blocked_by_ruling: —
@@ -66,5 +66,11 @@ the postMessage bridge.
 
 ## Log (append-only, newest first)
 
+- 2026-07-26: athena claimed. Letters out: boundary ack → zeus; contract proposal (subscriptions
+  CRUD + convert targets/preview/convert, response shapes) → hephaestus. Approach: all method
+  bindings isolated in `ui/src/client.ts` (6 shipped = active; proposed = pending), new screens
+  gate on `canCall` so the branch stays mergeable pre-TASK-0002; subset test asserts
+  active ⊆ manifest ∧ pending ∩ manifest = ∅ as a tripwire. No e2e claim until dashboard
+  `feat/bridge-host-origin` merges (verified unmerged 07:10Z) — manual test plan instead.
 - 2026-07-25: created at instantiation; `ready`, but the first live end-to-end check waits on
   TASK-0002's method contract and the `host_origin` fix.
