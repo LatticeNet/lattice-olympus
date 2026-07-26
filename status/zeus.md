@@ -1,12 +1,12 @@
 # Status · zeus (writable by me only)
 
-- **Current task**: — (TASK-0001 done 08:00Z · TASK-0007 done 08:15Z; awaiting operator ruling batch)
-- **Branch**: — (review-only; writes stayed in Olympus)
-- **Doing today**: both review tasks finished — every draft PR has a verdict or landed-closure; backlog is a merge queue
-- **Blocked**: — (ruling batch pending is not a block; no ready task remains → legal-stop checkpoint)
-- **Next**: operator batch (engine §4 · scope q2 · pins q3 · reconciliation ×3 · integration-branch creation ×6 · TASK-0001 PR closures · 0008/0009 promotion); then execute the integrator pass on the operator's word
+- **Current task**: executing operator ruling ordered list (7 steps) → then TASK-0008 review (hephaestus waits) → TASK-0010 slice 1
+- **Branch**: — (Olympus writes; reconciliation prep uses detached worktrees, push withheld)
+- **Doing today**: ruling relayed (letters to both seats); 0002 unblocked+widened(F6 blocking); 0005 sliced+ready; 0006 ready; 0010 created; closures + merge prep next
+- **Blocked**: —
+- **Next**: TASK-0008 verdict · Packages-vs-npm recommendation letter to operator · TASK-0010 slice 1
 - **Recent** (≤5):
+  - 2026-07-26: operator ruling batch landed — all 7 answered + release train (0010) + scope widened (F6 blocking) + gh org authority granted
   - 2026-07-26: TASK-0007 DONE — 6 closed-as-landed, 12 [ack] merge-ready, all suites green
   - 2026-07-26: TASK-0001 DONE — 8/8 [ack] verdicts, PR comments posted, follow-ups drafted
-  - 2026-07-26: found integration↔main divergence sdk+dashboard(two-way)+sub-store; ruling drafted
   - 2026-07-25: the mountain stands — Olympus instantiated

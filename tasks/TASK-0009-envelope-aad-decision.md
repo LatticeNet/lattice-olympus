@@ -42,4 +42,6 @@ envelope v2 plus a migration for every sealed value on disk.
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T12:05Z: operator ruling batch explicitly left this UNRULED (ordered-list §4) —
+  stays `draft`; do not promote until the AAD decision arrives.
 - 2026-07-26: drafted by zeus from the TASK-0001 server#11 caveat.

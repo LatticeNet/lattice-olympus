@@ -2,7 +2,7 @@
 task: TASK-0005
 title: Extract a plugin Go SDK (stdio runtime loop + typed host client + manifest types)
 owner: hephaestus
-status: draft
+status: ready
 plan_ref: plan/design-substore-embed.md §3 F5
 repos: [lattice-sdk, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
 branches: []
@@ -20,12 +20,18 @@ call/response scanning, error mapping, and manifest/capability types.
 
 ## Scope & boundaries
 
-- In: a Go module (in `lattice-sdk` or a new `lattice-plugin-sdk` — decide in the task, record
-  the reason) carrying the stdio loop, a typed host client (`rpc.call`, `http.do`,
-  `http.operator.do`, `kv.*`, `notify.send`, `log.write`, and `secret.*` once merged), and the
-  manifest/capability types; migrate the five plugins onto it.
+**SLICED (operator ruling 2026-07-26, ordered-list §3): slice 1 stands alone and is claimable
+without touching any plugin — the "first unblocked slice must stand alone" rule.**
+
+- **Slice 1 (standalone, depends on nothing)**: the Go module INSIDE `lattice-sdk` (the ruling
+  fixes the home; the old in-task decision point is resolved) carrying the stdio loop, a typed
+  host client (`rpc.call`, `http.do`, `http.operator.do`, `kv.*`, `notify.send`, `log.write`,
+  `secret.*`), and the manifest/capability types — with its own framing + fd-3 round-trip
+  tests. Deliverable: importable module, green suite, finish note; NO plugin touched.
+- **Slice 2 (after slice 1 merges)**: migrate the five plugins onto it; conformance stays
+  green per plugin; digests recomputed ⇒ zeus re-sign pass.
 - Out: changing the wire protocol; server-side changes.
-- **Allowed paths**: the SDK module + each plugin's `system-go/**`.
+- **Allowed paths**: slice 1 `lattice-sdk/**` only · slice 2 adds each plugin's `system-go/**`.
 - **Forbidden**: duplicating the server's authorization logic into the SDK (the host is the
   gate — an SDK-side check is a convenience, never a control).
 
@@ -48,4 +54,8 @@ call/response scanning, error mapping, and manifest/capability types.
 
 ## Log
 
+- 2026-07-26T12:05Z: promoted draft → ready by zeus per operator ruling (ordered-list §3);
+  sliced so slice 1 (SDK module in lattice-sdk) is separately claimable — the forge-idling
+  error this cycle is fixed in the file, not just the routing. Baseline exists: all ten repos
+  have `integration`.
 - 2026-07-25: created as `draft` at instantiation (F5 in the framework review).

@@ -2,7 +2,7 @@
 task: TASK-0006
 title: CI gate — no manifest is signed or published unless the released server accepts it
 owner: hephaestus
-status: draft
+status: ready
 plan_ref: plan/design-substore-embed.md §3 F1
 repos: [lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard, lattice-plugin-index, lattice-server]
 branches: []
@@ -50,4 +50,6 @@ server rejects.
 
 ## Log
 
+- 2026-07-26T12:05Z: promoted draft → ready by zeus per operator ruling (ordered-list §3);
+  dependency TASK-0001 is done and all ten repos now have `integration` baselines.
 - 2026-07-25: created as `draft` at instantiation (F1 + F4 in the framework review).

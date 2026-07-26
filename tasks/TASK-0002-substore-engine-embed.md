@@ -2,13 +2,13 @@
 task: TASK-0002
 title: Embed the Sub-Store conversion engine in the plugin artifact (engine spike → implementation)
 owner: hephaestus
-status: blocked
+status: in_progress
 plan_ref: plan/design-substore-embed.md §4 (Option C) + §6 step 3
 repos: [lattice-plugin-sub-store]
 branches: [feat/hephaestus-task0002-substore-engine-spike]
 last_touched_by: hephaestus
 depends_on: [TASK-0001 items 1–4 — Phase 2 only; Phase 1 depends on nothing]
-blocked_by_ruling: awaiting zeus §4 engine ruling only; TASK-0001 items 1–4 acked in 20260726-0746Z-zeus-task0001-items1-4-verdicts.md
+blocked_by_ruling: — (§4 RULED Option C 2026-07-26, QuickJS-on-wazero per spike; source olympus-launch/operator-ruling-2026-07-26.md §2)
 needs_ack: yes    # capabilities, manifest methods, and the §4 ruling all need zeus
 created: 2026-07-25
 ---
@@ -41,9 +41,11 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
   upstream commit; embed the chosen engine in `system-go`; implement the conversion + record
   methods; all remote fetching stays on host capabilities (`http.do` / `http.operator.do`) —
   the engine must never get sockets or fs.
+- **Phase 2 scope WIDENED by operator ruling 2026-07-26 (§7 q2)**: scripting, node filtering,
+  and operator pipelines are IN — the operator wants as much of Sub-Store's surface as
+  possible, overriding the narrow-v1 recommendation.
 - Out: a resident/service runner tier (Option A stays deferred — design it separately if ever);
-  reimplementing parsers in Go (Option B, rejected); Sub-Store's scripting/operator pipeline
-  unless the arbiter widens scope (§7 q2); any dashboard work (TASK-0003).
+  reimplementing parsers in Go (Option B, rejected); any dashboard work (TASK-0003).
 - **Allowed paths**: `lattice-plugin-sub-store/system-go/**` · `.../tools/**` ·
   `.../.github/workflows/**` (build-only; not a deploy change) · `.../manifest.json` **content**
   fields · `.../README.md`
@@ -57,9 +59,13 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
   operations/execute path, `substore:*` scopes. Until they land on the server, this plugin's
   published manifest **cannot load on a `main` server** (design §3 F1) — verify against the
   merged server, not a branch, before declaring done.
-- Budgets: a large conversion may exceed the global 10s / 1 MiB invocation limits
-  (`system_runner.go:29-35`). If measurements say so, per-method budgets (design §3 F6) become
-  a blocking dependency — raise it by letter early, don't silently truncate output.
+- **Budgets — F6 is now a BLOCKING prerequisite of Phase 2** (operator ruling 2026-07-26 §3):
+  the spike put the 1 MiB output ceiling at ~4306 synthetic nodes, and the widened scope
+  (pipelines/scripting) pushes past it. Per-method budgets are declared in the SIGNED manifest
+  and clamped by host maxima. Operator's explicit prohibitions: no silent truncation; no
+  widening the global constants (`system_runner.go:29-35`) as a shortcut. Letter zeus a
+  concrete budget proposal early — manifest field shape is signed-surface, so zeus review
+  gates it and a re-sign pass follows.
 - Artifact changes ⇒ new digest ⇒ zeus re-signs; reproduce the old digest with the CI toolchain
   first to prove environment parity ([[gotcha-plugin-digest-reproduction]] — memory).
 - Version bump moves manifest = ui = Go const together (`tools/bump.sh`).
@@ -67,6 +73,10 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 ## DoD
 
 - [ ] merged into integration
+- [ ] **per-method budgets (F6)**: declared in the signed manifest, clamped by host maxima —
+      proven by a named test that (a) a conversion exceeding the old global 1 MiB cap succeeds
+      under its declared method budget, and (b) output exceeding the DECLARED budget fails
+      loudly (no silent truncation)
 - [ ] diff stays inside Allowed paths (mechanical check, finish-task §1)
 - [ ] spike letter on record with the numbers named above, and zeus's §4 ruling letter linked
 - [ ] conversion runs entirely inside the artifact — proven by a test that runs a
@@ -83,6 +93,10 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T12:04Z: zeus applied the operator ruling batch (per its explicit instruction —
+  source olympus-launch/operator-ruling-2026-07-26.md): §4 = Option C ⇒ unblocked,
+  in_progress; scope widened (scripting/filtering/pipelines IN); F6 budgets now BLOCKING with
+  a bound DoD test; relay letter 20260726-1202Z in hephaestus's inbox.
 - 2026-07-26T08:14Z: parked after Phase 1 + cap sweep; no §4 engine ruling in inbox, so
   switched to TASK-0008 per no-idle rule. Draft PR #5 stays open for the spike branch.
 - 2026-07-26T08:11Z: deepened Phase 1 on branch with commit `b82e4ef` (spike harness
