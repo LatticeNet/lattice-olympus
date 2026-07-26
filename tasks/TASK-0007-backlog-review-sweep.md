@@ -2,7 +2,7 @@
 task: TASK-0007
 title: Review sweep of the remaining draft-PR backlog (nobody is blocked on this)
 owner: zeus
-status: ready
+status: in_progress
 plan_ref: plan/dev-history-2026.md §"Open threads" item 1
 repos: [lattice-dashboard, lattice-plugin-template, lattice-plugin-vpn-core, lattice-plugin-netguard, lattice-plugin-wireguard, lattice-plugin-sub-store, lattice-plugin-index, lattice-server]
 branches: []
@@ -51,4 +51,11 @@ what zeus works between rulings.
 
 ## Log (append-only, newest first)
 
+- 2026-07-26 08:05Z: claimed by zeus agent after TASK-0001 finished. Re-inventory: 17 open
+  drafts — dashboard #3/#4/#5 (#6 closed, verify landing); 5× feat/declare-service-backing
+  (template/vpn-core/netguard/wireguard/sub-store #2); 7× chore/gitignore-signing-seeds
+  (those five + plugin-index#1 + server#9); template#3 execute-reference; server#3
+  node-inventory + server#4 passkeys. Plan: containment check → seeds batch (one letter) →
+  backing five (individual verdicts, shared frame) → template#3 → dashboard features →
+  server#3/#4.
 - 2026-07-25: split out of TASK-0001 so the critical path stays small.
