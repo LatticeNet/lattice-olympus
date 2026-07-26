@@ -2,7 +2,7 @@
 task: TASK-0004
 title: One published bridge package to replace the four divergent bridge.ts copies
 owner: athena
-status: ready
+status: in_progress
 plan_ref: plan/design-substore-embed.md §3 F2 (spec §8 "Plugin UI Toolkit")
 repos: [lattice-dashboard, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
 branches: []
@@ -12,6 +12,33 @@ blocked_by_ruling: —
 needs_ack: yes    # bridge protocol is security semantics → zeus
 created: 2026-07-25
 ---
+
+## Design argument (at start, per zeus's promotion riders)
+
+1. **Reference behavior**: the sub-store/vpn-core copy (identical except `expectedPluginId`,
+   route-set-vs-single, id prefix — 3 parameters). It pins `host_origin` in+out, retries ready,
+   applies host theme, cancels with timeout. Missing there and worth taking from the template's
+   copy: the typed `BridgeError` taxonomy. wireguard/netguard carry **pre-host_origin copies**
+   (0 `hostOrigin` matches — the weak bar F2 warns about); template diverged furthest (568 diff
+   lines, nonce-only). Package = sub-store transport hardened into a parameterized client:
+   `{ expectedPluginId, expectedRoutes: string[], idPrefix }`.
+2. **Home & distribution** (needs operator): recommend a new repo `lattice-plugin-bridge`
+   publishing npm **prereleases** `@latticenet/plugin-bridge@0.x-alpha.N`; plugin repos pin
+   exact versions in package-lock. Rationale: my allowed paths exclude plugin CI workflows, so
+   submodule consumption cannot be CI-wired by me; registry consumption keeps every plugin CI
+   byte-identical (`npm ci`). Falls back to submodule+task-amendment only if the operator
+   refuses registry.
+3. **Migration order** (rider 3 — never require `host_origin` against a host that doesn't
+   emit it): (a) operator lands the dashboard reconciliation (host emits `host_origin`);
+   (b) package `0.1.0-alpha.1` published; (c) migrate sub-store + vpn-core (their copies
+   already require it — zero behavior change, proves the package is a faithful extraction);
+   (d) migrate wireguard + netguard + template (their UIs become fail-closed — the security
+   point of the task, safe because (a) landed); (e) delete every local copy, grep proof.
+4. **Contract row**: bridge protocol shape goes to zeus for `contract/api-contract.md` with the
+   extraction PR (message types + invariants: nonce 16–128 chars, exact-origin match,
+   `event.source` primary guard, fail-closed absence).
+5. **Real-browser checks** (DoD): one per migrated plugin — joins the live-server manual-e2e
+   follow-up zeus already tracks; no separate infrastructure requested.
 
 ## Goal
 
@@ -47,4 +74,9 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-26: promoted draft → ready by zeus (letter 20260726-0805Z ack) with riders: extraction
+  not redesign; zeus review gates merge + contract co-sign; merge ordered with/after dashboard
+  host reconciliation. athena started: divergence measured (template 568 diff lines, nonce-only;
+  wireguard/netguard pre-host_origin; vpn-core = sub-store modulo 3 parameters); design argument
+  recorded above; home repo requested from operator by letter.
 - 2026-07-25: created as `draft` at instantiation (F2 in the framework review).
