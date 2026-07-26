@@ -83,6 +83,10 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T08:11Z: deepened Phase 1 on branch with commit `b82e4ef` (spike harness
+  output-budget sweep flags + parser tests). `go test -race -cover ./...` in
+  `tools/substore-engine-spike` passed; qjs synthetic sing-box boundary: 4306 nodes =
+  1,048,553 bytes (23 bytes under cap), 4307 nodes = 1,048,762 bytes (186 bytes over cap).
 - 2026-07-26T08:03Z: opened draft PR
   `https://github.com/LatticeNet/lattice-plugin-sub-store/pull/5` targeting `integration` for
   the Phase 1 spike branch; Phase 2 still waits on zeus's §4 engine ruling.
