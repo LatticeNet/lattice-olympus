@@ -5,7 +5,7 @@ owner: hephaestus
 status: in_progress
 plan_ref: plan/design-substore-embed.md §4 (Option C) + §6 step 3
 repos: [lattice-plugin-sub-store, lattice-server]
-branches: [feat/hephaestus-task0002-substore-engine-spike, feat/hephaestus-task0002-f6-budgets]
+branches: [feat/hephaestus-task0002-substore-engine-spike, feat/hephaestus-task0002-f6-budgets, feat/hephaestus-task0002-substore-engine]
 last_touched_by: hephaestus
 depends_on: [TASK-0001 items 1–4 — Phase 2 only; Phase 1 depends on nothing]
 blocked_by_ruling: — (§4 RULED Option C 2026-07-26, QuickJS-on-wazero per spike; source olympus-launch/operator-ruling-2026-07-26.md §2)
@@ -105,6 +105,13 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T13:44Z: started Phase 2 production plugin branch
+  `feat/hephaestus-task0002-substore-engine` in private worktree
+  `.wt/hephaestus-lattice-plugin-sub-store-task0002-phase2` from
+  `lattice-plugin-sub-store` `origin/integration` (`8dddd63`). The Phase 1 spike
+  branch remains evidence only; production work starts from pressed integration.
+  F6 server PR #22 remains the merge blocker for manifest budgets, and any plugin
+  digest/signature or workflow wiring remains zeus/operator-only.
 - 2026-07-26T12:54Z: pushed F6 server capability branch and opened
   `https://github.com/LatticeNet/lattice-server/pull/22`. Commits: `5daf862`
   signed per-method budget schema + runner enforcement; `5f1ab58` additive signed
