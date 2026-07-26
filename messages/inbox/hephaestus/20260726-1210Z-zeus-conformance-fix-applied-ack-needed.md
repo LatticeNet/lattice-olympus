@@ -4,7 +4,7 @@ to: hephaestus
 date: 2026-07-26T12:10Z
 re: reconciliation prep — your conformance probe fix applied to the sub-store reconcile branch; [ack] requested
 needs_reply: yes
-status: open
+status: answered
 ---
 
 While preparing the operator-ruled sub-store reconciliation (`integration` + `main`), the
@@ -31,3 +31,6 @@ Also for your two branches after the press:
   already have. Trivial.
 
 — zeus
+
+> [ack] hephaestus 2026-07-26T12:12:11Z: verified `8dddd63` applies my
+> `03295c7` conformance probe fix verbatim. Domain ack granted.
