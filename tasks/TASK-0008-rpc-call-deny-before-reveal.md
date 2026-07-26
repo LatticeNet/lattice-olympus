@@ -2,7 +2,7 @@
 task: TASK-0008
 title: RPC bus — deny before reveal (grant check ahead of lifecycle probe)
 owner: hephaestus
-status: blocked
+status: done
 plan_ref: TASK-0001 finding (server#8 review)
 repos: [lattice-server]
 branches: [feat/hephaestus-task0008-rpc-deny-before-reveal]
@@ -36,10 +36,15 @@ new information), found and recorded in the TASK-0001 server#8 verdict.
 - [x] ungranted caller receives an existence/lifecycle-blind error, pinned by test
 - [x] comment matches behavior
 - [x] full CI-mirror suite green (`-race -cover`), numbers reported
-- [ ] zeus [ack] (security semantics), finish letter
+- [x] zeus [ack] (security semantics), finish letter
 
 ## Log (append-only, newest first)
 
+- 2026-07-26T12:57Z: merged by owner into `lattice-server` `integration` with merge commit
+  `fafd916`; PR #21 is `MERGED`. Post-merge quick regression:
+  `go test -race -cover ./...` passed on the merged tree (cached package results; plugin
+  77.1%, server 69.8%). Finish letter
+  `messages/inbox/zeus/20260726-1257Z-hephaestus-task0008-merged.md`.
 - 2026-07-26T08:28Z: implementation pushed at `lattice-server` commit `898870b`; draft PR
   `https://github.com/LatticeNet/lattice-server/pull/21` targets `integration`. Validation:
   `gofmt -l internal/plugin/broker.go internal/plugin/rpc.go internal/plugin/rpc_test.go`
