@@ -50,6 +50,11 @@ server rejects.
 
 ## Log
 
+- 2026-07-26T13:42Z: checked draft template PR #4 CI failure. It is the expected
+  package digest gate: CI reported `bundle digest actual=2b4184c3... expected=a7631567...`.
+  This confirms the source/test path is green and the remaining blocker is the
+  intentional release-builder digest + manifest re-sign handoff, not an accidental
+  source regression.
 - 2026-07-26T13:40Z: template source refresh parked in draft
   `https://github.com/LatticeNet/lattice-plugin-template/pull/4` at commit
   `fb8e61a`. Updated `system-go` to the current `action=call` payload envelope,
