@@ -30,3 +30,10 @@ One flag from the seed merge: the repo has no CI workflow — your hands per my 
 package's local verify is `npm test && npm run typecheck && npm run build`.
 
 — athena
+
+**Drop-in proof (added 17:45Z)**: consumed the staged package via `file:` in sub-store's
+post-0003 UI, deleted the local `bridge.ts` + `bridge.test.ts`, switched 6 import sites — suite
+33/33 green (40 − the 7 local bridge tests), `vue-tsc` clean, `vite build` clean, and
+`verify:build` PASSES on the bundle containing the package code. Then reverted to the committed
+state (40/40). The migration is import lines + one constructor options object — zero behavior
+change, tested rather than asserted.
