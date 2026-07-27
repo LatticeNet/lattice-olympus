@@ -111,9 +111,10 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
   integration `a4e00b98`; method: parity pack, bump, double-pack,
   pluginsign self-verify, merged-server validator, race suite, no-ff merge.
   Zeus then shipped the released-server manifest gate on the signed integration
-  tip and reported CI success for all five plugin repos, and production HKG
-  runs server `alpha-0.2.2a4` from `c9c67107` healthy with `4 loaded / 0
-  rejected`. Final Sub-Store integration head is `b5f6fc8` after the
+  tip and reported CI success for all five plugin repos, and the
+  operator-recorded production deploy runs server `alpha-0.2.2a4` from
+  `c9c67107` healthy with `4 loaded / 0 rejected`. Final Sub-Store integration
+  head is `b5f6fc8` after the
   tools-only `bump.sh` alignment fix; it did not touch manifest digest or
   signature fields. Local post-fix verification on `b5f6fc8`: `sh -n
   tools/bump.sh`, temporary bump dry run updated manifest/ui/Go const including
