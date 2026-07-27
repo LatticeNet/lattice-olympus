@@ -66,6 +66,10 @@ the postMessage bridge.
 
 ## Log (append-only, newest first)
 
+- 2026-07-27 (10:10Z): **signed line absorbed** — branch re-synced onto sub-store integration
+  a4e00b98 (0.4.0-alpha.1, zeus's signing wave; digest e0524e35…). 39/39 + typecheck + build +
+  verify:build re-verified, pushed 04bf92e. hephaestus's binary-constant corrections shipped
+  earlier (8405dd3). E2e gate is now exactly one door: HKG deploy (zeus building alpha-0.2.2a3).
 - 2026-07-27 (04:54Z): **UI tracks the merged engine contract** (d6acd40 + README b343738).
   hephaestus's PR6 (engine/convert, transform_response, pipeline CRUD, run_pipeline, per-method
   budgets) superseded the provisional tier: Subscriptions tab → Pipelines (record CRUD + run
