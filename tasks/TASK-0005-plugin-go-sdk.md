@@ -2,14 +2,14 @@
 task: TASK-0005
 title: Extract a plugin Go SDK (stdio runtime loop + typed host client + manifest types)
 owner: hephaestus
-status: in_progress
+status: blocked
 plan_ref: plan/design-substore-embed.md §3 F5
 repos: [lattice-sdk, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
-branches: [feat/hephaestus-task0005-plugin-go-sdk]
+branches: [feat/hephaestus-task0005-plugin-go-sdk, integration@lattice-sdk:00943f6, integration@lattice-plugin-template:92f470f, integration@lattice-plugin-vpn-core:7a992ff, integration@lattice-plugin-wireguard:695170a, integration@lattice-plugin-netguard:d82f598, integration@lattice-plugin-sub-store:ed92baa]
 last_touched_by: hephaestus
 depends_on: []
-blocked_by_ruling: —
-needs_ack: yes    # host-call framing is security-adjacent → zeus
+blocked_by_ruling: signing-wait — all SDK/runtime content merged; changed plugin artifacts need zeus/operator digest + signature refresh at integration tips
+needs_ack: no     # zeus acked SDK + all plugin migrations 2026-07-27T04:12Z
 created: 2026-07-25
 ---
 
@@ -45,15 +45,32 @@ without touching any plugin — the "first unblocked slice must stand alone" rul
 
 ## DoD
 
-- [ ] merged into integration
+- [x] merged into integration
 - [x] all five plugins build on the SDK with their conformance tests still green
-- [ ] SDK has its own tests for framing + fd-3 host-call round-trip
+- [x] SDK has its own tests for framing + fd-3 host-call round-trip
 - [x] `go test -race -cover ./...` green in SDK and every migrated plugin (real numbers)
 - [ ] artifact digests recomputed and manifests re-signed by zeus where artifacts changed
 - [ ] finish letter sent
 
 ## Log
 
+- 2026-07-27T04:34Z: moved TASK-0005 to signing-wait. Slice 1 SDK is already
+  merged to `lattice-sdk` `integration` at `00943f6`; slice 2 plugin runtime
+  migrations are now merged to plugin `integration` heads after Zeus's 04:12Z
+  `[ack]`: template `92f470f` (combined TASK-0006 template refresh + SDK),
+  vpn-core `7a992ff`, wireguard `695170a`, netguard `d82f598`, and sub-store
+  `ed92baa` (folded into TASK-0002 PR #6 before merge). Post-merge local gates
+  passed for every plugin: gofmt/diff, `system-go` vet + race/coverage,
+  `tools/pluginpack` vet + race/coverage, UI test/typecheck/build/verify,
+  merged-server manifest validator, and deterministic double-pack/byte-compare.
+  Merged-tip actual bundle digests for the signing queue: template
+  `3df5722b5babcba06d63cbc00f5275ce459d88c3217bd31d0e2821b1a3557e70`,
+  vpn-core `764b385eabf02dd5123f99a361d398e5217bf5a38b963037db25151108cfe215`,
+  wireguard `d98dcc21fbe71d95de05611784e66a41c3f2f3b624a62b43c78436bd210b0320`,
+  netguard `c0b42c11effec42fd229f874558687306e3bda66cccc5035a9ccd043240c323e`,
+  sub-store `55749d194c54a5d4e8b9b183acf3e8e70e7dbcd6c759e0c6e392c2e38a8f8def`.
+  Hephaestus did not edit digest or signature fields; remaining TASK-0005 DoD
+  item is zeus/operator re-sign of changed artifacts.
 - 2026-07-26T18:06Z: completed the fifth plugin as a dependent sub-store SDK branch without
   touching TASK-0002 PR #6. Created `.wt/hephaestus-lattice-plugin-sub-store-task0005-sdk`
   from `origin/feat/hephaestus-task0002-substore-engine` at `f9ccb92`, committed

@@ -2,14 +2,14 @@
 task: TASK-0006
 title: CI gate — no manifest is signed or published unless the released server accepts it
 owner: hephaestus
-status: in_progress
+status: blocked
 plan_ref: plan/design-substore-embed.md §3 F1
 repos: [lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard, lattice-plugin-index, lattice-server]
-branches: [feat/hephaestus-task0006-manifest-validator]
+branches: [feat/hephaestus-task0006-manifest-validator, integration@lattice-server:755aaff, integration@lattice-plugin-template:92f470f]
 last_touched_by: hephaestus
 depends_on: [TASK-0001]
-blocked_by_ruling: —
-needs_ack: yes
+blocked_by_ruling: zeus-owned CI/released-server/signing half — hephaestus cannot edit workflows or tag releases under rules/03
+needs_ack: no
 created: 2026-07-25
 ---
 
@@ -44,12 +44,24 @@ server rejects.
 - [ ] merged into integration
 - [ ] every plugin repo's CI fails when a manifest declares something the pinned released
       server rejects — proven by a deliberately-bad fixture in the test
-- [ ] the gate prints the server version it validated against
-- [ ] template refreshed to the current plugin shape (host calls, backing, operator targets)
+- [x] the gate prints the server version it validated against
+- [x] template refreshed to the current plugin shape (host calls, backing, operator targets)
 - [ ] finish letter sent
 
 ## Log
 
+- 2026-07-27T04:34Z: template refresh content is now merged to
+  `lattice-plugin-template` `integration` in combined head
+  `92f470f9558649478b871c1a4dcfd02c6fbe7a74` after Zeus's 04:12Z ack for
+  template #4 and #5. Post-merge template verification passed gofmt/diff,
+  `system-go` vet + race/coverage (73.0%), `tools/pluginpack` vet +
+  race/coverage (71.2%), UI test/typecheck/build/verify, merged-server
+  `lattice-plugin-manifest-check manifest.json`, and deterministic
+  double-pack/byte-compare. Actual bundle digest at merged tip is
+  `3df5722b5babcba06d63cbc00f5275ce459d88c3217bd31d0e2821b1a3557e70`;
+  hephaestus did not edit digest/signature fields. Remaining TASK-0006 work is
+  Zeus-owned per 2026-07-27T04:12Z: released-server CI wiring/tag/signing are
+  outside this seat under rules/03.
 - 2026-07-26T17:18Z: server validator command slice merged to `lattice-server`
   `integration` via PR #23 at merge commit `755aaff6b4ece1dba9a766528679836dcc097b70`
   (feature head `22c5c2863ac76fbf3e21895b0f2d2e7eb9138654`). GitHub CI run

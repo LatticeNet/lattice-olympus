@@ -2,14 +2,14 @@
 task: TASK-0002
 title: Embed the Sub-Store conversion engine in the plugin artifact (engine spike → implementation)
 owner: hephaestus
-status: in_progress
+status: blocked
 plan_ref: plan/design-substore-embed.md §4 (Option C) + §6 step 3
 repos: [lattice-plugin-sub-store, lattice-server]
-branches: [feat/hephaestus-task0002-substore-engine-spike, feat/hephaestus-task0002-f6-budgets, feat/hephaestus-task0002-substore-engine]
+branches: [feat/hephaestus-task0002-substore-engine-spike, feat/hephaestus-task0002-f6-budgets, feat/hephaestus-task0002-substore-engine, integration@lattice-plugin-sub-store:ed92baa]
 last_touched_by: hephaestus
 depends_on: [TASK-0001 items 1–4 — Phase 2 only; Phase 1 depends on nothing]
-blocked_by_ruling: — (§4 RULED Option C 2026-07-26, QuickJS-on-wazero per spike; source olympus-launch/operator-ruling-2026-07-26.md §2)
-needs_ack: yes    # capabilities, manifest methods, and the §4 ruling all need zeus
+blocked_by_ruling: signing-wait — content merged to lattice-plugin-sub-store integration ed92baa; zeus/operator must refresh bundle.digest_sha256 + signature_ed25519
+needs_ack: no     # content acked by zeus 2026-07-27T04:12Z; remaining gate is human signing
 created: 2026-07-25
 ---
 
@@ -80,7 +80,7 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## DoD
 
-- [ ] merged into integration
+- [x] merged into integration
 - [ ] **per-method budgets (F6)**: declared in the signed manifest, clamped by host maxima —
       proven by a named test that (a) a conversion exceeding the old global 1 MiB cap succeeds
       under its declared method budget, and (b) output exceeding the DECLARED budget fails
@@ -89,13 +89,13 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
       resolves to old global defaults with warn-once behavior until the strict flip
 - [x] F6 stderr semantics: a successful call with over-budget stderr returns success plus an
       explicit truncation marker and emits a host log; it must not fail spuriously or go silent
-- [ ] diff stays inside Allowed paths (mechanical check, finish-task §1)
-- [ ] spike letter on record with the numbers named above, and zeus's §4 ruling letter linked
+- [x] diff stays inside Allowed paths (mechanical check, finish-task §1)
+- [x] spike letter on record with the numbers named above, and zeus's §4 ruling letter linked
 - [x] conversion runs entirely inside the artifact — proven by a test that runs a
       representative subscription conversion with **no** network capability granted
 - [x] all remote fetches go through host capabilities — proven by a test asserting the engine
       context exposes no socket/fs binding
-- [ ] `lib/substore-core.js` is built from a pinned upstream ref and covered by the bundle
+- [x] `lib/substore-core.js` is built from a pinned upstream ref and covered by the bundle
       digest — proven by the existing double-pack byte-compare gate still passing
 - [x] conformance_test green for every manifest-declared method (runtime-backed must answer)
 - [x] `go test -race -cover ./...` green — real numbers
@@ -105,6 +105,24 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 
 ## Log (append-only, newest first)
 
+- 2026-07-27T04:34Z: moved TASK-0002 to signing-wait after Zeus's 04:12Z
+  `[ack]` and fold instruction. Fast-forwarded PR #6 branch from `f9ccb92` to
+  SDK-fold head `e78b6c0`, reran the folded branch gate, then merged PR #6 to
+  `lattice-plugin-sub-store` `integration` via merge commit
+  `ed92baabc8ca77115c25c597fd2f01c0c0127649`. Post-merge verification on
+  `ed92baa`: `test -z "$(gofmt -l system-go tools/pluginpack)"`,
+  `git diff --check`, `GOTOOLCHAIN=go1.26.4 go vet ./...` in `system-go` and
+  `tools/pluginpack`, `GOTOOLCHAIN=go1.26.4 go test -race -cover -count=1
+  ./...` in `system-go` (80.2%, 76.304s) and `tools/pluginpack` (71.2%),
+  `node --test tools/substore-core/build.test.mjs`, `npm ci`, `npm test`,
+  `npm run typecheck`, `npm run build`, `npm run verify:build`, merged
+  `lattice-server` `lattice-plugin-manifest-check manifest.json`, and
+  deterministic double-pack/byte-compare. Actual bundle digest at merged tip:
+  `55749d194c54a5d4e8b9b183acf3e8e70e7dbcd6c759e0c6e392c2e38a8f8def`;
+  manifest still expects
+  `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`.
+  Hephaestus did not edit `bundle.digest_sha256` or `signature_ed25519`.
+  Blocked only on zeus/operator signing at the merged integration tip.
 - 2026-07-26T17:35Z: pushed PR #6 commit
   `f9ccb920a107e99e6a72cbedb9c8f22c372357ae` with the Zeus-acked F6
   manifest budget surface. `manifest.json` now declares `kv:read`/`kv:write`
