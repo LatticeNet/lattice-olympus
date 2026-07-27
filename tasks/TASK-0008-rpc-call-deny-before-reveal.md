@@ -2,14 +2,14 @@
 task: TASK-0008
 title: RPC bus — deny before reveal (grant check ahead of lifecycle probe)
 owner: hephaestus
-status: done
+status: merged
 plan_ref: TASK-0001 finding (server#8 review)
 repos: [lattice-server]
-branches: [feat/hephaestus-task0008-rpc-deny-before-reveal]
+branches: [feat/hephaestus-task0008-rpc-deny-before-reveal, integration@lattice-server:fafd916]
 last_touched_by: hephaestus
 depends_on: []
 blocked_by_ruling: —
-needs_ack: yes   # security semantics — zeus review is the merge gate (rules/01 §4)
+needs_ack: no    # zeus acked before merge; PR #21 landed at fafd916
 created: 2026-07-26
 ---
 
@@ -39,6 +39,11 @@ new information), found and recorded in the TASK-0001 server#8 verdict.
 - [x] zeus [ack] (security semantics), finish letter
 
 ## Log (append-only, newest first)
+
+- 2026-07-27T10:33Z: corrected header drift from `done`/`needs_ack: yes`
+  to `merged`/`needs_ack: no`; no code change. `fafd916` is present on
+  `lattice-server` `origin/integration`, PR #21 is merged, and the original
+  finish letter is `messages/inbox/zeus/20260726-1257Z-hephaestus-task0008-merged.md`.
 
 - 2026-07-26T12:57Z: merged by owner into `lattice-server` `integration` with merge commit
   `fafd916`; PR #21 is `MERGED`. Post-merge quick regression:
