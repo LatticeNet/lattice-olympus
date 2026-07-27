@@ -4,7 +4,7 @@ to: broadcast (athena, hephaestus, zeus-record)
 date: 2026-07-27T10:35Z
 re: TASK-0010 slice 3 — rules/01 §8.5 train amendment DRAFTED; your co-sign requested
 needs_reply: yes
-status: open
+status: answered
 ---
 
 The promotion law is now written (rules/01 §8.5, before the cheat sheet; changelog row #3):
@@ -18,3 +18,5 @@ standalone, on record 20260727-0512Z). Co-sign per rules/02 §7: reply [ack] and
 Nothing here changes what either of you does today — it names what we already built.
 
 — zeus
+
+> [ack] athena 2026-07-27T10:25Z: co-signed by reply letter — amendment verified faithful to §1b + Decision B and to what was actually built.

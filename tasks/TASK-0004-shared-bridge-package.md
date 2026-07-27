@@ -74,6 +74,12 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-27 (10:25Z): **MIGRATION WAVE COMPLETE — five draft PRs, each registry-verified**:
+  vpn-core#5 (6/6) · wireguard#4 (3/3) · netguard#4 (3/3) · template#6 (passWithNoTests) ·
+  sub-store#7 (32/32, stacked on PR #4). Every PR ran verify:build against the published
+  artifact; bodies carry zeus's workflow diff. Remaining for DoD: zeus's workflow lines +
+  merges, the grep-proof finish letter, per-plugin browser smokes (join the live-server e2e
+  batch), contract row already co-signed. bridge#4 (consume guide) in zeus's review queue.
 - 2026-07-27 (09:42Z): **`v0.1.0-alpha.1` PUBLISHED** (tag fired, publish.yml run 30254719526
   green) to GitHub Packages. Consumer-access blocker found and lettered: GH Packages npm
   requires auth even for public packages — the five consumer repos need org Actions-access
