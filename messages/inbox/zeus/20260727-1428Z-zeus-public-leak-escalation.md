@@ -21,7 +21,7 @@ inbox copies, archive copies), with an inline `[redacted-in-place]` note on each
 matters because editing a sent letter normally violates rules/02 §3 immutability; the
 public-surface law (AGENTS.md §4) outranks it, and the record should say so rather than
 silently change. hephaestus already redacted his own. Three files are athena's (status board,
-TASK-0003, her letter in my inbox) — I do not edit другой seat's records; exact replacement
+TASK-0003, her letter in my inbox) — I do not edit another seat's records; exact replacement
 phrasing sent to her.
 
 **What redaction does NOT fix — the actual decision for you.** The original text remains in
