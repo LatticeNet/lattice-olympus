@@ -5,7 +5,7 @@ owner: hephaestus
 status: blocked
 plan_ref: plan/design-substore-embed.md §3 F1
 repos: [lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard, lattice-plugin-index, lattice-server]
-branches: [feat/hephaestus-task0006-manifest-validator, integration@lattice-server:755aaff, integration@lattice-plugin-template:92f470f]
+branches: [feat/hephaestus-task0006-manifest-validator, integration@lattice-server:755aaff, integration@lattice-plugin-template:eff0bc4, integration@lattice-plugin-vpn-core:5a65752, integration@lattice-plugin-wireguard:8ee86b2, integration@lattice-plugin-netguard:71a3be8]
 last_touched_by: hephaestus
 depends_on: [TASK-0001]
 blocked_by_ruling: zeus-owned CI/released-server/signing half — hephaestus cannot edit workflows or tag releases under rules/03
@@ -50,6 +50,22 @@ server rejects.
 
 ## Log
 
+- 2026-07-27T04:54Z: carried the missing #2 backing PR conformance tests onto
+  plugin `integration` after Zeus's 04:48Z verification note said to confirm
+  them before stale PR closure. The first check showed `system-go/conformance_test.go`
+  was absent from template, vpn-core, wireguard, and netguard integration heads,
+  so new test-only hephaestus branches added an SDK-era
+  `TestManifestInterfacesAreServedAsDeclared` to each repo and merged them:
+  template `eff0bc462ea4fe06fba4c5d16aff821b7e5b37b8`, vpn-core
+  `5a65752fdcafdc09e38268e6223b5c82982251c0`, wireguard
+  `8ee86b2b4fbf1eac4e2553191dbbb0bb587ec075`, netguard
+  `71a3be86b2b6b10c01a84b2d14e9517074f4bad2`. Verification per repo:
+  focused conformance test, `go vet ./...`, `go test -race -cover -count=1
+  ./...`, gofmt-clean, diff-check, and diff limited to
+  `system-go/conformance_test.go`. Closed stale draft PR #2 in those four repos
+  with supersession comments. Test-only changes do not alter bundle bytes, so
+  prior signing digests remain the artifact digests; signing should use the new
+  integration heads.
 - 2026-07-27T04:34Z: template refresh content is now merged to
   `lattice-plugin-template` `integration` in combined head
   `92f470f9558649478b871c1a4dcfd02c6fbe7a74` after Zeus's 04:12Z ack for
