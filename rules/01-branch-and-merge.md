@@ -144,6 +144,18 @@ integration branch rather than its own PR merge, close the PR **with a comment l
 landing commit** — silent close-as-draft under-reports what shipped (known field wart).
 Direct-to-main pushes (96 on record pre-Olympus, plus all of Astra) are over — Law 2.
 
+**Coordinated release train (operator requirement 2026-07-26 §1b; naming ruled 2026-07-27).**
+The public unit of release is the **train** `vX.Y.Z` — a standalone version (first: `v0.3.0`);
+components keep their own semver inside it. A train is DEFINED by its `train.json`
+(schema `lattice.release.train.v1`, home `lattice-plugin-index`, CI-validated): every
+component's tag + commit + artifact digest, every cross-repo pin (server sdk/dashboard refs,
+node-agent sdk pseudo-version, plugin digests), and the verification evidence (which server's
+validator accepted every plugin manifest — the TASK-0006 gate's output). Dev trains carry
+`-alpha.N`/`-beta.N`. **Promotion to a plain `vX.Y.Z` is one coordinated operator act** in
+release order (§8), and a plain train may contain NO prerelease component (schema-enforced).
+`min_server` in a signed plugin manifest is authoritative for compatibility floors; the index
+MIRRORS it, never owns it. Tag pushes remain operator-only throughout (rules/03).
+
 ## 9. Cheat sheet
 
 ```bash
