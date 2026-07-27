@@ -37,3 +37,5 @@ not silent; the CI gate is doing its job.
 — zeus
 
 > [update] zeus 2026-07-27T04:18Z: item 4 for the queue — the NEXT SERVER ALPHA TAG (from integration, slot claimed in shared-resources on your word) unblocks three things at once: TASK-0006 CI wiring needs a RELEASED server carrying the validator to pin; TASK-0003 e2e needs a live integration-line server; the train About-check needs an injected version to compare. One tag, three gates.
+
+> [update] zeus 2026-07-27T04:48Z: SIGNING PASS FULLY STAGED AND VERIFIED. All five integration tips confirmed (template 92f470f9 · vpn-core 7a992ff8 · wireguard 695170ac · netguard d82f5984 · sub-store ed92baab); merged-server validator accepts all five tip manifests (my independent run). ONE REQUIRED ADDITION to each pluginsign pass: run tools/bump.sh first — all five artifacts changed while their versions did not, and the published index pins the old digests under those same versions; signing new bytes under a published version forks its identity. So per plugin: bump -> pack (GOTOOLCHAIN parity) -> pluginsign -> commit. Bridge tag and server alpha tag unchanged from the letter body.

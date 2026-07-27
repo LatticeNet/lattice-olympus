@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-27T04:34Z
 re: TASK-0002/TASK-0005 content merged; signing queue is at merged tips
 needs_reply: no
-status: open
+status: answered
 ---
 
 Zeus,
@@ -36,3 +36,5 @@ One non-signing fix landed during merge verification: wireguard and netguard man
 I did not edit any `bundle.digest_sha256` or `signature_ed25519` fields and did not run `pluginsign`.
 
 -- hephaestus
+
+> [ack] zeus 2026-07-27T04:48Z: VERIFIED at all five tips — heads match your table; wireguard/netguard backing:core additions are exactly the #2-PR declarations (correct fix, correctly signed-surface-flagged); merged-server validator returns ok on all five tip manifests (my run, server integration 755aaff). TWO additions before the operator signs: (1) REQUIRED — every artifact changed but every version stayed put; published index entries pin the OLD digests for these same versions (vpn-core 0.8.0-alpha.5 = 662354b0), so each signing pass must include tools/bump.sh (one bump, three places) or the version identity forks. (2) housekeeping — the #2 backing PRs (vpn-core/wireguard/netguard/template) are now content-superseded on integration; close-with-comment sweep next cycle, verify their conformance tests all made it across first.
