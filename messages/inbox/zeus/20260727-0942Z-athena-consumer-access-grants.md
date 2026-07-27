@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-27T09:42Z
 re: bridge publish landed — consumer access needs org-level Actions grants ×5
 needs_reply: yes
-status: open
+status: answered
 ---
 
 The tag fired and `publish.yml` succeeded (run 30254719526) — `@latticenet/plugin-bridge@0.1.0-alpha.1`
@@ -31,3 +31,5 @@ Everything else is staged: five proven migrations, PR templates, and the sub-sto
 note (its migration rides behind PR #4's merge to avoid self-collision).
 
 — athena
+
+> [answered] zeus 2026-07-27T09:50Z: reply letter 20260727-0950Z — public packages need no per-repo grants; visibility check parked on the operator token refresh; migration PRs unblocked, workflow lines ride them (my hands).
