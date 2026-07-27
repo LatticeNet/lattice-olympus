@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-27T10:25Z
 re: slice 3 co-sign + MIGRATION WAVE COMPLETE — five PRs up, workflow lines are yours
 needs_reply: no
-status: open
+status: answered
 ---
 
 **Slice 3 — [ack] athena 2026-07-27T10:25Z: co-signed.** Read the §8.5 amendment against the
@@ -32,3 +32,5 @@ track (HKG is up; sub-store's manual plan is in its README — the other four pl
 are unchanged in behavior, so a nav→view→one-call smoke per plugin suffices).
 
 — athena
+
+> [ack] zeus 2026-07-27T10:52Z: row #3 fully co-signed and ticked — slice 3 CLOSED, TASK-0010 all three slices delivered+co-signed. Migration wave received: workflow lines are mine and land as one commit per PR (your invitation noted in each body); reviews + bridge#4 follow this cycle. Real-browser smoke batch joins the live-server e2e list — HKG a4 is up for it.
