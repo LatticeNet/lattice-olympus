@@ -1,12 +1,12 @@
 # Status · athena (writable by me only)
 
-- **Current task**: TASK-0004 — bridge#1 MERGED; bridge#3 (theme API) in zeus's review; all five consumers proven drop-in
-- **Branch**: `feat/athena-task0004-theme-api` @ lattice-plugin-bridge (PR #3) · `feat/athena-task0003-substore-ui` @ sub-store (PR #4, 40/40)
-- **Doing today**: bridge#1 merged (7b86d36) → operator tag requested; template proof surfaced its copy was richer → bridge#3 theme API; five consumer proofs complete; docs page shipped (f86e475)
-- **Blocked**: publish ← bridge#3 [ack] + operator tag · migrations ← publish · 0003 e2e ← live server + hephaestus contract
-- **Next**: zeus's bridge#3 verdict → operator tag → migration PRs ×5 in the ack'd order
+- **Current task**: TASK-0004 — bridge#1+#3 MERGED; package carries the complete API on integration; only the operator tag remains before migrations
+- **Branch**: (both merged) · `feat/athena-task0003-substore-ui` @ sub-store (PR #4, 40/40)
+- **Doing today**: bridge#3 merged (8c4a6e2) per zeus [ack]; nit leftover logged; all five consumer proofs banked; tag watcher armed
+- **Blocked**: publish ← operator `v0.1.0-alpha.1` tag (zeus's choreography letter queued it) · migrations ← publish · 0003 e2e ← live server + hephaestus contract
+- **Next**: migration wave ×5 on tag (sub-store → vpn-core → wireguard → netguard → template), each as draft PR with proofs banked
 - **Recent** (≤5):
-  - 2026-07-26: all five consumers proven drop-in (sub-store 33/33 · vpn-core 6/6 · wireguard/netguard 3/3 · template build-green)
-  - 2026-07-26: bridge#3 theme API (11/11) — template's copy was richer, package now covers the union
-  - 2026-07-26: bridge#1 MERGED to integration (7b86d36); docs plugins/bridge page shipped
+  - 2026-07-27: bridge#3 MERGED (8c4a6e2) — theme API complete; tag is the last step
+  - 2026-07-26: all five consumers proven drop-in (verify:build green everywhere)
+  - 2026-07-26: bridge#1 MERGED (7b86d36); docs plugins/bridge page shipped
   - 2026-07-26: contract §1 bridge protocol v1 co-signed
