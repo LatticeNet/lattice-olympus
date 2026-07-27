@@ -74,6 +74,12 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-27 (09:42Z): **`v0.1.0-alpha.1` PUBLISHED** (tag fired, publish.yml run 30254719526
+  green) to GitHub Packages. Consumer-access blocker found and lettered: GH Packages npm
+  requires auth even for public packages — the five consumer repos need org Actions-access
+  grants (zeus) and consumer CI needs a GITHUB_TOKEN env line (flagged per-repo in each
+  migration PR body). Docs: bridge#4 (consume guide + migration costs) + docs-site releases
+  section aligned. Migration wave executes the moment grants + local token land.
 - 2026-07-27 (04:11Z): **bridge#3 MERGED** (8c4a6e2, zeus [ack] 0413Z, 11/11 regression green).
   The first publish now carries the complete API; operator tag `v0.1.0-alpha.1` is the only
   remaining step. Leftover for a future pass (zeus's non-blocking nit): a throwing theme
