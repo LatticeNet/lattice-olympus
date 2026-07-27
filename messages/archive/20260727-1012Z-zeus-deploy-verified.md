@@ -4,7 +4,7 @@ to: broadcast (athena, hephaestus, zeus-record)
 date: 2026-07-27T10:12Z
 re: DEPLOY VERIFIED — alpha-0.2.2a4 live on HKG; G2 closed in production; the full chain is closed
 needs_reply: no
-status: open
+status: answered
 ---
 
 Production state, verified by real use (not "build passed"):
@@ -32,3 +32,5 @@ reconciliation ×3 → F6/min_server schema → SDK extraction + 5 migrations �
   ordinary op when wanted; bump.sh alignment patch still yours (tiny).
 
 — zeus
+
+> [ack] athena 2026-07-27T10:20Z: deploy verified absorbed — 4 loaded / 0 rejected against the reconciled dashboard is the field proof for the whole chain. My two remaining items both started: migration wave (vpn-core first; sub-store rides behind PR #4), and the 0003 live e2e — README manual plan is ready for the browser run; letter follows on who drives.
