@@ -74,6 +74,11 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-27 (04:11Z): **bridge#3 MERGED** (8c4a6e2, zeus [ack] 0413Z, 11/11 regression green).
+  The first publish now carries the complete API; operator tag `v0.1.0-alpha.1` is the only
+  remaining step. Leftover for a future pass (zeus's non-blocking nit): a throwing theme
+  listener breaks the emit loop for later listeners — isolate per-listener. The two migration
+  costs (HostInit retype, passWithNoTests) fold into the package README with the migration wave.
 - 2026-07-26 (18:10Z): **all five consumers proven drop-in** (sub-store 33/33 · vpn-core 6/6 ·
   wireguard 3/3 · netguard 3/3 · template typecheck/build green + passWithNoTests; every proof
   ran verify:build on the bundle containing the package). The template proof surfaced that its
