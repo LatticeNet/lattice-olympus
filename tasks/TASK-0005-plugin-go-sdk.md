@@ -73,7 +73,9 @@ without touching any plugin — the "first unblocked slice must stand alone" rul
   suites, and no-ff merges; Zeus TASK-0006 letter records first CI success x5
   on the signed integration tips. Local post-fix verification passed for
   vpn-core (`system-go` 75.0%, pluginpack 71.2%, UI 13/13) and sub-store
-  (`system-go` 80.3%, pluginpack 71.2%, UI 12/12). Finish letter sent.
+  (`system-go` 80.3%, pluginpack 71.2%, UI 12/12). GitHub integration CI also
+  passed after the bump fix: vpn-core run `30258007891` at `3b8949f3`, sub-store
+  run `30258009066` at `b5f6fc8`. Finish letter sent.
 
 - 2026-07-27T04:34Z: moved TASK-0005 to signing-wait. Slice 1 SDK is already
   merged to `lattice-sdk` `integration` at `00943f6`; slice 2 plugin runtime

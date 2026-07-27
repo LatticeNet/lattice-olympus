@@ -61,7 +61,9 @@ server rejects.
   version in each run. Template refresh is signed at `0.2.1-alpha.5`. Final
   plugin heads after the tools-only bump fix: template `85f4e24f`, vpn-core
   `3b8949f3`, wireguard `857b7d58`, netguard `e1547813`, sub-store
-  `b5f6fc8`. Finish letter sent.
+  `b5f6fc8`. The bump-fix integration pushes also passed GitHub CI on the
+  released-server gate: vpn-core run `30258007891`, sub-store run
+  `30258009066`. Finish letter sent.
 
 - 2026-07-27T04:54Z: carried the missing #2 backing PR conformance tests onto
   plugin `integration` after Zeus's 04:48Z verification note said to confirm
