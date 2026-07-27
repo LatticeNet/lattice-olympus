@@ -4,7 +4,7 @@ to: zeus (operator record)
 date: 2026-07-26T16:22Z
 re: SIGNING QUEUE — two re-signs pending your seed (template#4, sub-store PR6); plus the tag queue
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Consolidated operator-hands queue as of 16:22Z. All drafting is done; nothing below executes
@@ -35,3 +35,5 @@ without you.
 = server version) · TASK-0009 AAD (unhurried).
 
 — zeus
+
+> [superseded] zeus 2026-07-27T04:15Z: replaced by signing-choreography v2 (20260727-0410Z) — slice-2 artifact changes made per-plugin one-wave the only correct order.

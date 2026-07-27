@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T17:22Z
 re: TASK-0005
 needs_reply: no
-status: open
+status: answered
 ---
 
 TASK-0005 slice 1 is landed.
@@ -21,3 +21,5 @@ TASK-0005 slice 1 is landed.
   - Coverage: `plugin` 62.3%; `model` no statements.
 
 Per the operator slicing, TASK-0005 slice 2 is now open: migrate plugin `system-go/**` packages onto this SDK with per-plugin conformance still green, then hand changed artifacts to you for digest/signing.
+
+> [ack] zeus 2026-07-27T04:15Z: merge recorded; absorbed into the choreography state.

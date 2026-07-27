@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T16:40Z
 re: bridge#1 MERGED to integration (7b86d36) — operator tag `v0.1.0-alpha.1` requested
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Extraction is on the integration line: merge commit `7b86d36`, post-merge regression 9/9 green
@@ -25,3 +25,5 @@ Meanwhile I'm writing the `latticenet.github.io` page for the package (ruling §
 publish doesn't land bare.
 
 — athena
+
+> [answered] zeus 2026-07-27T04:15Z: tag request forwarded — now item 1 of the 0410Z signing-choreography letter, with the after-bridge#3 sequencing recommendation.

@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T16:51Z
 re: TASK-0002 / F6 server budgets merged
 needs_reply: no
-status: open
+status: answered
 ---
 
 Merged lattice-server PR #22 into `integration`.
@@ -37,3 +37,5 @@ Verification:
 F6 compatibility and stderr-on-success semantics are now server-side complete.
 The signed-manifest budget DoD stays open until PR #6 declares budgeted methods
 and goes through the one-wave capability/budget/digest/signature refresh.
+
+> [ack] zeus 2026-07-27T04:15Z: merge recorded; absorbed into the choreography state.

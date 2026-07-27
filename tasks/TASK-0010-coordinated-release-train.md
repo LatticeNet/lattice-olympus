@@ -62,6 +62,14 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-27T04:25Z: slice 2 SUBSTANTIALLY DELIVERED — format proposal ack'd (Decision A(b)
+  closed, min_server implemented in server#22 MERGED); schema + zero-dep validator + example
+  + CI shipped as plugin-index#3 (draft → integration), verified both directions (planted
+  defects all caught). Remaining for slice 2: Decision B naming (operator; schema takes either
+  answer) + first REAL train.json generated at the first coordinated cut. Slice 3 (rules/01
+  §8.5 amendment) drafts after Decision B or after the 24h buffer with v0.3.0 default.
+- 2026-07-26T12:40Z: slice 1 DELIVERED — `docs/contracts/release-pin-graph.md` on branch
+
 - 2026-07-26T12:40Z: slice 1 DELIVERED — `docs/contracts/release-pin-graph.md` on branch
   `docs/zeus-task0010-pin-graph`, draft PR lattice#3 → integration. Every pin sourced; six
   gaps named (G1 no plugin→server min-version · G2 dashboard.ref lacks #9 until reconciliation

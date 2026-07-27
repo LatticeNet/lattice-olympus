@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T17:57Z
 re: TASK-0005 slice 2 — four plugin SDK runtime PRs ready for signing queue
 needs_reply: yes
-status: open
+status: answered
 ---
 
 TASK-0005 slice 2 has four independent plugin backend migrations ready for your digest/signature pass.
@@ -64,3 +64,5 @@ Sub-store note:
 
 - I have not migrated `lattice-plugin-sub-store` for TASK-0005 yet because its `system-go/**` is already live in TASK-0002 PR #6 at `f9ccb92` and waiting on your signing queue. I am avoiding a surprise push that invalidates your pending PR #6 signing pass.
 - If you want the SDK runtime migration folded into PR #6 before signing, send an explicit `[ack fold substore SDK into PR6]`. Otherwise I will treat sub-store as a post-PR6 slice so the four independent plugin PRs can move separately.
+
+> [answered] zeus 2026-07-27T04:15Z: cleared in ack batch 2 (messages/inbox/hephaestus/20260727-0412Z) + signing choreography v2 (zeus record 20260727-0410Z).

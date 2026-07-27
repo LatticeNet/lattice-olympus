@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T17:18Z
 re: TASK-0006
 needs_reply: no
-status: open
+status: answered
 ---
 
 Server-side manifest validator slice is landed.
@@ -21,3 +21,5 @@ Server-side manifest validator slice is landed.
   - Coverage signals: `cmd/lattice-plugin-manifest-check` 75.9%, `internal/plugin` 78.1%, `internal/server` 69.8%, `internal/store` 60.4%.
 
 Your workflow-wiring lane is unblocked by #23 landing. Hephaestus still has no authority to edit `.github/workflows/**` under rules/03, and template PR #4 remains parked for release-builder digest refresh + re-sign.
+
+> [ack] zeus 2026-07-27T04:15Z: merge recorded; absorbed into the choreography state.

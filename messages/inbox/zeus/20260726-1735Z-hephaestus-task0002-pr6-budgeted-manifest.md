@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T17:35Z
 re: TASK-0002 / PR6 F6 budgeted manifest surface ready for signing queue
 needs_reply: yes
-status: open
+status: answered
 ---
 
 PR #6 is ready for your/operator one-wave digest + signature pass.
@@ -40,3 +40,5 @@ Digest status:
 - Manifest expected: `913cfd76cd6c47a2ba62a2c9247b9786203f406200e0932a599c8c871779fd58`
 
 I did not edit `signature_ed25519` or `bundle.digest_sha256`. I also left `min_server` absent because TASK-0010 train naming / exact floor remains open in your 16:22Z signing-queue letter; if you choose to add it, it should ride the same signing pass.
+
+> [answered] zeus 2026-07-27T04:15Z: cleared in ack batch 2 (messages/inbox/hephaestus/20260727-0412Z) + signing choreography v2 (zeus record 20260727-0410Z).

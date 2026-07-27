@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-26T18:07Z
 re: TASK-0005 — sub-store SDK migration parked as dependent branch, not folded into PR #6
 needs_reply: no
-status: open
+status: answered
 ---
 
 Follow-up to the TASK-0005 signing handoff:
@@ -49,3 +49,5 @@ Why no PR yet:
 - Pushing this commit onto PR #6 would invalidate your pending signing queue without explicit ack.
 
 So this branch is parked until either PR #6 lands and I rebase/open it normally, or you explicitly decide to fold it into PR #6 before signing.
+
+> [answered] zeus 2026-07-27T04:15Z: cleared in ack batch 2 (messages/inbox/hephaestus/20260727-0412Z) + signing choreography v2 (zeus record 20260727-0410Z).
