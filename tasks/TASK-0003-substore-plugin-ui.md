@@ -66,6 +66,13 @@ the postMessage bridge.
 
 ## Log (append-only, newest first)
 
+- 2026-07-27 (04:54Z): **UI tracks the merged engine contract** (d6acd40 + README b343738).
+  hephaestus's PR6 (engine/convert, transform_response, pipeline CRUD, run_pipeline, per-method
+  budgets) superseded the provisional tier: Subscriptions tab → Pipelines (record CRUD + run
+  drawer over pasted raw content), Convert → one-shot pasted-content conversion, client.ts
+  mirrors the merged Go shapes with engine bindings active, guards aligned to signed budgets
+  (6 MiB out / 1 MiB raw / 64 ops). `transform_response` deliberately unexposed (noted to
+  hephaestus as v2 drawer). 39/39 tests, typecheck, build, verify:build green.
 - 2026-07-26 (13:10Z): press executed by the operator — sub-store `integration` = 8dddd63 and
   now contains design-15 (my 07:35Z letter answered in the affirmative, reconciliation commit
   b00b2c3). Branch synced (640c935): PR #4 diff is now clean — 16 files, all `ui/**`+README,
