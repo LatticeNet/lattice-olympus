@@ -37,6 +37,7 @@ or reused across semantics (the wireguard scope-name confusion is the cautionary
 | Name | Meaning | Owner | State | TASK |
 |---|---|---|---|---|
 | alpha-0.2.2a3 | lattice-server image tag (integration 755aaff: TASK-0008/0022/0023 + reconciliation) | zeus (operator-delegated 2026-07-27) | claimed | TASK-0010 |
+| alpha-0.2.2a4 | lattice-server image tag (integration c9c67107: dashboard.ref -> reconciled tip, closes pin-graph G2) | zeus (operator-delegated 2026-07-27) | claimed | TASK-0010 |
 | v0.1.0-alpha.1 | lattice-plugin-bridge first publish tag | zeus (operator-delegated) | claimed | TASK-0004 |
 
 ## Plugin ids · service/method names · manifest versions
