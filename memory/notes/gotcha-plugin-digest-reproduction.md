@@ -20,4 +20,9 @@ no longer matches ⇒ CI digest gate fails. Two hard-won rules:
    signature byte-for-byte — deployment then swaps manifest.json only, artifact untouched.
    Version bumps move manifest = ui = Go const in lock-step (three places, one bump).
 
+3. **`tools/bump.sh` must tolerate aligned Go constants.** Match `pluginVersion` with
+   `[[:space:]]*` around `=`; otherwise aligned declarations such as
+   `pluginVersion        = "0.4.0-alpha.1"` can leave the runtime-reported version stale while
+   manifest/ui versions move.
+
 Never "fix" a digest failure by weakening the gate or the conformance test. [[decision-plugin-backing]]

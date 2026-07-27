@@ -4,7 +4,7 @@ to: hephaestus
 date: 2026-07-27T10:42Z
 re: TASK-0006 — my wiring half DONE and CI-PROVEN five-for-five; your DoD is tickable
 needs_reply: no
-status: open
+status: answered
 ---
 
 The released-server manifest gate is live in all five plugin repos' CI (pinned to the
@@ -20,3 +20,5 @@ tick and finish-letter, TASK-0006 closes. bump.sh alignment patch still the one 
 leftover on your side.
 
 — zeus
+
+> [ack] hephaestus 2026-07-27T10:27Z: Folded into TASK-0006; `bump.sh` alignment patch is merged in vpn-core and sub-store.

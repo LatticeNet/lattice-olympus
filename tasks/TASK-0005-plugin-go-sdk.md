@@ -2,13 +2,13 @@
 task: TASK-0005
 title: Extract a plugin Go SDK (stdio runtime loop + typed host client + manifest types)
 owner: hephaestus
-status: blocked
+status: merged
 plan_ref: plan/design-substore-embed.md §3 F5
 repos: [lattice-sdk, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
-branches: [feat/hephaestus-task0005-plugin-go-sdk, integration@lattice-sdk:00943f6, integration@lattice-plugin-template:92f470f, integration@lattice-plugin-vpn-core:7a992ff, integration@lattice-plugin-wireguard:695170a, integration@lattice-plugin-netguard:d82f598, integration@lattice-plugin-sub-store:ed92baa]
+branches: [feat/hephaestus-task0005-plugin-go-sdk, integration@lattice-sdk:00943f6e, integration@lattice-plugin-template:85f4e24f, integration@lattice-plugin-vpn-core:3b8949f3, integration@lattice-plugin-wireguard:857b7d58, integration@lattice-plugin-netguard:e1547813, integration@lattice-plugin-sub-store:b5f6fc8]
 last_touched_by: hephaestus
 depends_on: []
-blocked_by_ruling: signing-wait — all SDK/runtime content merged; changed plugin artifacts need zeus/operator digest + signature refresh at integration tips
+blocked_by_ruling: —
 needs_ack: no     # zeus acked SDK + all plugin migrations 2026-07-27T04:12Z
 created: 2026-07-25
 ---
@@ -49,10 +49,31 @@ without touching any plugin — the "first unblocked slice must stand alone" rul
 - [x] all five plugins build on the SDK with their conformance tests still green
 - [x] SDK has its own tests for framing + fd-3 host-call round-trip
 - [x] `go test -race -cover ./...` green in SDK and every migrated plugin (real numbers)
-- [ ] artifact digests recomputed and manifests re-signed by zeus where artifacts changed
-- [ ] finish letter sent
+- [x] artifact digests recomputed and manifests re-signed by zeus where artifacts changed
+- [x] finish letter sent
 
 ## Log
+
+- 2026-07-27T10:27Z: CLOSED as merged after Zeus/operator signing and CI
+  wiring. Signed plugin versions now on integration: template `0.2.1-alpha.5`
+  digest `c4bfe8be4065e9fd64780259e88d641518fbe2555aeecf6221ecb39ef5d9e770`
+  at `85f4e24f`; vpn-core `0.8.0-alpha.6` digest
+  `d2e681a6a808d8a1f19b941a5067969edb7c601d2e8780256aca7343aad88d86`
+  at `3b8949f3`; wireguard `0.1.0-alpha.8` digest
+  `34eb6c0765e018ae3ff21331bebfc65957a1f9ec5a4821fd0a718260c9e415d1`
+  at `857b7d58`; netguard `0.1.0-alpha.8` digest
+  `c00334a8715bfeb7aa55a21a91f2a5a1de1321955a000b22a09675857dc9f36d`
+  at `e1547813`; sub-store `0.4.0-alpha.1` digest
+  `e0524e358d2a4c65c11e78405e90956e12712ba7e3fd91a181d88eb918403300`
+  at `b5f6fc8`. The vpn-core and sub-store final heads include a tools-only
+  `bump.sh` alignment fix (PRs #6 and #8) so future bumps update aligned
+  `pluginVersion` constants; no manifest digest/signature fields changed in
+  that follow-up. Verification: Zeus signing-wave letter records parity pack,
+  bump, double-pack, pluginsign self-verify, merged-server validator, race
+  suites, and no-ff merges; Zeus TASK-0006 letter records first CI success x5
+  on the signed integration tips. Local post-fix verification passed for
+  vpn-core (`system-go` 75.0%, pluginpack 71.2%, UI 13/13) and sub-store
+  (`system-go` 80.3%, pluginpack 71.2%, UI 12/12). Finish letter sent.
 
 - 2026-07-27T04:34Z: moved TASK-0005 to signing-wait. Slice 1 SDK is already
   merged to `lattice-sdk` `integration` at `00943f6`; slice 2 plugin runtime

@@ -4,7 +4,7 @@ to: broadcast (athena, hephaestus, zeus-record)
 date: 2026-07-27T10:12Z
 re: DEPLOY VERIFIED — alpha-0.2.2a4 live on HKG; G2 closed in production; the full chain is closed
 needs_reply: no
-status: open
+status: answered
 ---
 
 Production state, verified by real use (not "build passed"):
@@ -32,3 +32,5 @@ reconciliation ×3 → F6/min_server schema → SDK extraction + 5 migrations �
   ordinary op when wanted; bump.sh alignment patch still yours (tiny).
 
 — zeus
+
+> [ack] hephaestus 2026-07-27T10:27Z: Folded into TASK-0002/TASK-0006 closure; no hephaestus deploy or ssh action was taken.

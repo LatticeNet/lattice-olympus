@@ -2,13 +2,13 @@
 task: TASK-0002
 title: Embed the Sub-Store conversion engine in the plugin artifact (engine spike → implementation)
 owner: hephaestus
-status: blocked
+status: merged
 plan_ref: plan/design-substore-embed.md §4 (Option C) + §6 step 3
 repos: [lattice-plugin-sub-store, lattice-server]
-branches: [feat/hephaestus-task0002-substore-engine-spike, feat/hephaestus-task0002-f6-budgets, feat/hephaestus-task0002-substore-engine, integration@lattice-plugin-sub-store:ed92baa]
+branches: [feat/hephaestus-task0002-substore-engine-spike, feat/hephaestus-task0002-f6-budgets, feat/hephaestus-task0002-substore-engine, integration@lattice-server:c9c67107, integration@lattice-plugin-sub-store:b5f6fc8]
 last_touched_by: hephaestus
 depends_on: [TASK-0001 items 1–4 — Phase 2 only; Phase 1 depends on nothing]
-blocked_by_ruling: signing-wait — content merged to lattice-plugin-sub-store integration ed92baa; zeus/operator must refresh bundle.digest_sha256 + signature_ed25519
+blocked_by_ruling: —
 needs_ack: no     # content acked by zeus 2026-07-27T04:12Z; remaining gate is human signing
 created: 2026-07-25
 ---
@@ -81,7 +81,7 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
 ## DoD
 
 - [x] merged into integration
-- [ ] **per-method budgets (F6)**: declared in the signed manifest, clamped by host maxima —
+- [x] **per-method budgets (F6)**: declared in the signed manifest, clamped by host maxima —
       proven by a named test that (a) a conversion exceeding the old global 1 MiB cap succeeds
       under its declared method budget, and (b) output exceeding the DECLARED budget fails
       loudly (no silent truncation)
@@ -99,11 +99,29 @@ ruling is late, keep going on Phase 1 depth or pick up TASK-0005 — rulings arr
       digest — proven by the existing double-pack byte-compare gate still passing
 - [x] conformance_test green for every manifest-declared method (runtime-backed must answer)
 - [x] `go test -race -cover ./...` green — real numbers
-- [ ] plugin loads on a server built from merged `integration` (not a branch) — stated explicitly
+- [x] plugin loads on a server built from merged `integration` (not a branch) — stated explicitly
 - [x] README documents the upstream pin + bump procedure
-- [ ] finish letter to zeus + athena (UI contract implications)
+- [x] finish letter to zeus + athena (UI contract implications)
 
 ## Log (append-only, newest first)
+
+- 2026-07-27T10:27Z: CLOSED as merged. Zeus executed the operator signing wave
+  and signed Sub-Store `0.4.0-alpha.1` with bundle digest
+  `e0524e358d2a4c65c11e78405e90956e12712ba7e3fd91a181d88eb918403300` at
+  integration `a4e00b98`; method: parity pack, bump, double-pack,
+  pluginsign self-verify, merged-server validator, race suite, no-ff merge.
+  Zeus then shipped the released-server manifest gate on the signed integration
+  tip and reported CI success for all five plugin repos, and production HKG
+  runs server `alpha-0.2.2a4` from `c9c67107` healthy with `4 loaded / 0
+  rejected`. Final Sub-Store integration head is `b5f6fc8` after the
+  tools-only `bump.sh` alignment fix; it did not touch manifest digest or
+  signature fields. Local post-fix verification on `b5f6fc8`: `sh -n
+  tools/bump.sh`, temporary bump dry run updated manifest/ui/Go const including
+  aligned `pluginVersion        =`, gofmt-clean, `git diff --check`,
+  `GOTOOLCHAIN=go1.26.4 go vet ./...` and `go test -race -cover -count=1
+  ./...` in `system-go` (80.3%) and `tools/pluginpack` (71.2%), plus UI
+  `npm test` (12/12), `npm run typecheck`, `npm run build`, and
+  `npm run verify:build`. Finish letter sent to Zeus and Athena.
 
 - 2026-07-27T04:34Z: moved TASK-0002 to signing-wait after Zeus's 04:12Z
   `[ack]` and fold instruction. Fast-forwarded PR #6 branch from `f9ccb92` to

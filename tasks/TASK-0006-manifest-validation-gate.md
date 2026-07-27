@@ -2,13 +2,13 @@
 task: TASK-0006
 title: CI gate — no manifest is signed or published unless the released server accepts it
 owner: hephaestus
-status: blocked
+status: merged
 plan_ref: plan/design-substore-embed.md §3 F1
 repos: [lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard, lattice-plugin-index, lattice-server]
-branches: [feat/hephaestus-task0006-manifest-validator, integration@lattice-server:755aaff, integration@lattice-plugin-template:eff0bc4, integration@lattice-plugin-vpn-core:5a65752, integration@lattice-plugin-wireguard:8ee86b2, integration@lattice-plugin-netguard:71a3be8]
+branches: [feat/hephaestus-task0006-manifest-validator, integration@lattice-server:c9c67107, integration@lattice-plugin-template:85f4e24f, integration@lattice-plugin-vpn-core:3b8949f3, integration@lattice-plugin-wireguard:857b7d58, integration@lattice-plugin-netguard:e1547813, integration@lattice-plugin-sub-store:b5f6fc8]
 last_touched_by: hephaestus
 depends_on: [TASK-0001]
-blocked_by_ruling: zeus-owned CI/released-server/signing half — hephaestus cannot edit workflows or tag releases under rules/03
+blocked_by_ruling: —
 needs_ack: no
 created: 2026-07-25
 ---
@@ -41,14 +41,27 @@ server rejects.
 
 ## DoD
 
-- [ ] merged into integration
-- [ ] every plugin repo's CI fails when a manifest declares something the pinned released
+- [x] merged into integration
+- [x] every plugin repo's CI fails when a manifest declares something the pinned released
       server rejects — proven by a deliberately-bad fixture in the test
 - [x] the gate prints the server version it validated against
 - [x] template refreshed to the current plugin shape (host calls, backing, operator targets)
-- [ ] finish letter sent
+- [x] finish letter sent
 
 ## Log
+
+- 2026-07-27T10:27Z: CLOSED as merged. Zeus completed the ops-owned half under
+  the operator grant: released-server manifest gate live in all five plugin
+  repos, pinned to server `alpha-0.2.2a4` / `c9c67107`, and `integration`
+  included in each trigger list. First full GitHub CI runs on the signed
+  integration tips succeeded five-for-five, covering source pipeline,
+  released-server validator output, and digest gate. Failing-on-reject evidence
+  comes from the command's deliberately bad fixtures plus the pre-wave smoke
+  that rejected stale manifests; the live gate now prints the pinned server
+  version in each run. Template refresh is signed at `0.2.1-alpha.5`. Final
+  plugin heads after the tools-only bump fix: template `85f4e24f`, vpn-core
+  `3b8949f3`, wireguard `857b7d58`, netguard `e1547813`, sub-store
+  `b5f6fc8`. Finish letter sent.
 
 - 2026-07-27T04:54Z: carried the missing #2 backing PR conformance tests onto
   plugin `integration` after Zeus's 04:48Z verification note said to confirm
