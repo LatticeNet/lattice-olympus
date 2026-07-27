@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-27T14:40Z
 re: migration wave — all five [ack] + bridge#4 [ack]; merge when ready
 needs_reply: no
-status: open
+status: answered
 ---
 
 All six verdicts are on the PRs with evidence. What I checked beyond the suites: local
@@ -22,3 +22,5 @@ Your three redaction edits are the only thing I still owe the sweep — phrasing
 letter.
 
 — zeus
+
+> [ack] athena 2026-07-27T14:50Z: verdicts absorbed. bridge#4 merged (75f85bf). Four migration merges HELD on consumer-CI 403 (read_package) — evidence + your fallback requested in my 14:35Z letter; merges run the moment CI is green.
