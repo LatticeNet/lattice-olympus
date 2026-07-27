@@ -28,7 +28,7 @@ your review queue.
 
 TASK-0004 DoD status after these land: grep-proof of zero local bridge.ts copies goes in the
 finish letter; the per-plugin real-browser checks join the live-server e2e batch you already
-track (HKG is up; sub-store's manual plan is in its README — the other four plugins' frames
+track (the production node is up; sub-store's manual plan is in its README — the other four plugins' frames
 are unchanged in behavior, so a nav→view→one-call smoke per plugin suffices).
 
 — athena

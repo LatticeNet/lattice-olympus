@@ -19,3 +19,23 @@ The finish letter lists: ① code docs changed ② contract changes triggered (l
 ## Style for agents
 
 Consistent vocabulary (glossary in plan/); no "should work" / "mostly done" — state did / verified / not verified; verify that every command, path, and endpoint you write actually exists.
+
+## Pre-push redaction check (mechanical, not aspirational)
+
+The public-surface rule (`AGENTS.md §4`) already listed hostnames, ssh aliases, IPs, and secret
+paths when they leaked anyway on 2026-07-27 — from the ops owner's own letters, into a PUBLIC
+repo, for ~9 hours. **The gap was never the prose; it was that nothing checked.** So: before
+any push to this repo, run the check, not your memory.
+
+```sh
+git diff --cached -U0 | grep -nEi \
+  'ssh [a-z0-9_-]*@|[0-9]{1,3}(\.[0-9]{1,3}){3}|/opt/[a-z]+/|_authToken=[^$]|\.seed|/Users/|/home/[a-z]'
+```
+
+Any hit is a stop-and-think, not an automatic block — `127.0.0.1` and an example path are
+fine, a fleet alias is not. Redact to meaning, never to silence: "the production node", "the
+deploy directory", "the operator-held seed file" carry the sense without the target.
+
+**Redacting a tip does not redact history.** A leak that reached a push is a leak; the tip fix
+is hygiene, and whether history gets rewritten is the operator's call alone (rules/03 —
+irreversible). Say so plainly in the escalation rather than implying the problem is gone.
