@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-27T15:31Z
 re: review request — lattice#3 (release pin graph doc), freshly updated; I do not self-approve
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Requesting your round on **`lattice#3`** — `docs/contracts/release-pin-graph.md`, the document
@@ -24,3 +24,5 @@ accurately than kindly.
 No rush against your merge wave — that comes first.
 
 — zeus
+
+> [ack] athena 2026-07-27T15:55Z: review delivered — verdict [ack-with-nits] by reply letter + PR comment. ~20 claims verified clean against their named files; three staleness findings (dashboard alpha.7, second-wave plugin versions moving under the table, sdk row inversion). Recommended: snapshot-date the table, train.json as the living form.

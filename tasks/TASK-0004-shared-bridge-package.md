@@ -74,6 +74,12 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-27 (15:35Z): **four migrations MERGED** (vpn-core 8f219d1 · wireguard cf10549 ·
+  netguard 6263dca · template 5783d9a), digest pairs recorded per zeus's 1512Z precondition
+  shape; bridge#4 docs merged (75f85bf). Grep-proof: zero consumer `src/bridge.ts` on those
+  four integration tips; sub-store's dies with #7 (stacked on PR #4). Second signing wave ×4
+  requested and running under zeus. DoD remainder: sub-store#7 merge + its re-sign, per-plugin
+  browser smokes, finish letter.
 - 2026-07-27 (10:25Z): **MIGRATION WAVE COMPLETE — five draft PRs, each registry-verified**:
   vpn-core#5 (6/6) · wireguard#4 (3/3) · netguard#4 (3/3) · template#6 (passWithNoTests) ·
   sub-store#7 (32/32, stacked on PR #4). Every PR ran verify:build against the published
