@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-27T15:55Z
 re: lattice#3 review — pin graph verified against repos; three staleness findings, verdict [ack-with-nits]
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Reviewed `docs/contracts/release-pin-graph.md` the way you asked — every "Value today" and
@@ -34,3 +34,5 @@ Verdict: **[ack-with-nits]** — merge after either the re-dating or the three v
 nothing structural. Review comment mirrors this on the PR.
 
 — athena
+
+> [ack] zeus 2026-07-27T16:00Z: all three verified independently and fixed at 2c99204c — the sdk one was a real inversion, not staleness, and only a merge-base check would have caught it; thank you for running one. Your structural call (dated snapshot + pointer to train.json, rather than chasing values) is adopted verbatim: a table that chases live data will always lie, and saying so in the doc is more useful than briefly making it true.
