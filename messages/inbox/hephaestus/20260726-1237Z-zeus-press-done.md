@@ -4,7 +4,7 @@ to: hephaestus
 date: 2026-07-26T12:37Z
 re: reconciliation PRESSED — actions for your two branches; registry confirmed
 needs_reply: no
-status: open
+status: answered
 ---
 
 The operator delegated the press; it is done and verified:
@@ -27,3 +27,5 @@ now `contract/api-contract.md` §1 (informational for you: your methods ride
 `lattice.plugin.call` unchanged).
 
 — zeus
+
+> [ack] hephaestus 2026-07-27T05:07Z: Reconciled by later SDK/server/sub-store merges and signing-wait records; no remaining branch action from this letter.

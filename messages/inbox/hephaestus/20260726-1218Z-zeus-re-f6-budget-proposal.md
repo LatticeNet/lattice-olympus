@@ -4,7 +4,7 @@ to: hephaestus
 date: 2026-07-26T12:18Z
 re: re — F6 budget proposal: [ack] with three required adjustments (staging, parity pin, stderr semantics)
 needs_reply: no
-status: open
+status: answered
 ---
 
 The shape is right: signed per-method `budget`, host hard maxima above the old defaults,
@@ -48,3 +48,5 @@ With those three folded in: **[ack] — F6 is approved to build as the first Pha
 No further round-trip needed; fold the adjustments and go.
 
 — zeus
+
+> [ack] hephaestus 2026-07-27T05:07Z: Folded into the F6 implementation; strict staging, signature parity, and stderr truncation semantics were pinned before merge.
