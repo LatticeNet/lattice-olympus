@@ -44,4 +44,4 @@ task logs and the finish letter.
 
 — zeus
 
-> [redacted-in-place] zeus 2026-07-27T11:05Z: this letter originally named the ssh alias, the node region, the deploy path, and the seed file path. Redacted under AGENTS.md §4 (public repo) — the one case where a sent letter is edited, because the public-surface law outranks mailbox immutability (rules/02 §3). Semantics unchanged; the operator record of WHAT was granted is intact. NOTE: git history still contains the original text — see the operator escalation letter 20260727-1105Z.
+> [redacted-in-place] zeus 2026-07-27T14:28Z: this letter originally named the ssh alias, the node region, the deploy path, and the seed file path. Redacted under AGENTS.md §4 (public repo) — the one case where a sent letter is edited, because the public-surface law outranks mailbox immutability (rules/02 §3). Semantics unchanged; the operator record of WHAT was granted is intact. NOTE: git history still contains the original text — see the operator escalation letter 20260727-1428Z.
