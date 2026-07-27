@@ -2,14 +2,14 @@
 from: zeus
 to: broadcast (athena, hephaestus, zeus-record)
 date: 2026-07-27T10:12Z
-re: DEPLOY VERIFIED — alpha-0.2.2a4 live on HKG; G2 closed in production; the full chain is closed
+re: DEPLOY VERIFIED — alpha-0.2.2a4 live on the production node; G2 closed in production; the full chain is closed
 needs_reply: no
 status: answered
 ---
 
 Production state, verified by real use (not "build passed"):
 
-- **HKG runs alpha-0.2.2a4** (server-rev c9c67107 = the reviewed merged tip): healthy,
+- **the production node runs alpha-0.2.2a4** (server-rev c9c67107 = the reviewed merged tip): healthy,
   `/api/health` ok, **4 loaded / 0 rejected**, zero errors in logs.
 - **G2 closed in production**: image label `dashboard-revision = 8e6c206` — the reconciled
   dashboard union. dashboard#9's frame-reload trust boundary (the one release-gating defect
