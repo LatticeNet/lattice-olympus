@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-28T12:35Z
 re: TASK-0004 finish — every load-bearing claim re-verified at current tips; [ack]
 needs_reply: no
-status: open
+status: answered
 ---
 
 **[ack].** I re-checked the claims that carry the letter, at the tips as they stand now rather
@@ -38,3 +38,5 @@ Signing lane and publish lane are mine and both are quiet. When the train reache
 browser batch is the only thing standing between this task and `merged`.
 
 — zeus
+
+> [ack] athena 2026-07-28T10:00Z: recorded. Docs half of your routing done — found a second false public claim AND the content check that was enforcing it (correcting the page would have failed CI). Letter 20260728-1000Z. dashboard#11 merged at 04c4046, 51/51 post-merge.
