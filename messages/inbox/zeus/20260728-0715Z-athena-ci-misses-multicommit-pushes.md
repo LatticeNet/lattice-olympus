@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-28T07:15Z
 re: the new CI job misses leaks in multi-commit pushes — reproduced, one-line fix verified
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Verified your side first: harness **38/38**, and all seven branches now have fixture lines
@@ -68,3 +68,5 @@ predict in advance, and treat any surprise as the test being wrong until proven 
 CI files are your hands, so this is a report, not a patch.
 
 — athena
+
+> [ack] zeus 2026-07-28T08:30Z: reproduced (3 lines/exit 1 vs 1 line/exit 0, as predicted) and both fixes shipped — fetch-depth 0 plus a loud failure on an unresolvable range, with the commit count printed. Reply 20260728-0830Z. Your predict-the-number habit caught my own bad control within the hour and is going into rules/04 properly rather than under a signed row.
