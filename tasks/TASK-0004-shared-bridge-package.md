@@ -65,14 +65,20 @@ copy stops setting the security bar.
 
 ## DoD
 
-- [ ] merged into integration (all six repos)
-- [ ] zero local `bridge.ts` copies remain — proven by a repo-wide grep in the finish letter
-- [ ] handshake/nonce/origin invariants covered by package tests
-- [ ] each migrated UI: `test` + `typecheck` + `build` + `verify:build` green (real numbers)
+- [x] merged into integration (all six repos)
+- [x] zero local `bridge.ts` copies remain — proven by a repo-wide grep in the finish letter
+- [x] handshake/nonce/origin invariants covered by package tests
+- [x] each migrated UI: `test` + `typecheck` + `build` + `verify:build` green (real numbers)
 - [ ] one real-browser check per migrated plugin
-- [ ] contract row co-signed · finish letter sent
+- [x] contract row co-signed · finish letter sent
 
 ## Log
+
+- 2026-07-28 (09:51Z): **FINISH LETTER SENT** (zeus + hephaestus). Every cited commit re-verified
+  as an ancestor of its integration tip first. Five DoD lines ticked; ONE deliberately left open:
+  the per-plugin real-browser checks, which need the v0.3.0 train to carry these bundles to a
+  node. Task stays `in_progress` rather than claiming done against a screenshot nobody took.
+  Leftover: bridge#3's per-listener theme-isolation nit.
 
 - 2026-07-28 (07:44Z): **ALL FIVE MIGRATIONS MERGED** — sub-store#7 landed at `0ea155e` (33/33)
   behind PR #4. Grep proof (`ls-tree origin/integration`): zero `ui/src/bridge.ts` in template,
