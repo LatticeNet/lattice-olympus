@@ -43,6 +43,72 @@ write the boundary down before any code makes it convenient to cross.
    paths + a Makefile target), and which stay closed (CI workflows, real signing material,
    tag/release/deploy behavior).
 
+## POLICY DRAFT (2026-07-28, zeus) — read the code first, then decide
+
+Three facts from `internal/plugin/plugin.go` + `cmd/lattice-server/main.go`, not from memory:
+
+- `TrustPolicy.AllowUnsignedHostRisk` already exists. Zero value is **false** (fail-closed), it
+  can be set **only** through the trust-policy JSON file (`LATTICE_PLUGIN_TRUST` names the
+  file), and startup logs `WARNING: … UNSIGNED host-risk plugins will load`.
+- `TrustedPublishers` is a **map**. The trust model already supports more than one publisher.
+- The warning is a log line. Nothing in the dashboard says a server is running relaxed trust.
+
+### Decision 1 — the dev loop must NOT use `AllowUnsignedHostRisk`
+
+That flag disables signature enforcement for **every** host-risk plugin. Using it for
+development trades the whole signature model for one convenience. **A dev key is the better
+primitive and it already works**: generate a per-developer keypair, add its public key to the
+developer's LOCAL trust file under a publisher id of the form `dev.<handle>`, and sign dev
+bundles with it. Signature enforcement stays **on** the entire time; the bundle is
+distinguishable because its manifest names a different publisher.
+
+Consequence worth stating plainly: **F8 needs almost no new trust code.** It needs ergonomics
+(key generation, a local trust file, a `make dev-plugin` target) plus the banner in Decision 3.
+
+### Decision 2 — production refusal is STRUCTURAL, not a mode
+
+No dev-mode switch, no environment variable, no "is this prod?" heuristic — every one of those
+is a thing a deploy can inherit or a detector can get wrong. Instead: **a production trust file
+lists only the `latticenet` publisher** (already the documented rule for the operator's trust
+policy). A dev-signed bundle therefore fails signature verification on any production server for
+the ordinary reason — its publisher is not trusted there. Nothing to switch off, nothing to
+forget, nothing to inherit.
+
+`allow_unsigned_host_risk` stays **false everywhere, including dev**. If a future need seems to
+require it, that is a signal the dev key path is broken, not that the flag should be used.
+
+### Decision 3 — the banner must name the condition, not the mode
+
+Since there is no "dev mode" to announce, the honest signal is: **any trusted publisher other
+than `latticenet`**. When that holds the server logs it at startup (as now) **and** the
+dashboard shows a persistent marker, so a screenshot of a dev-trusted node can never be mistaken
+for production. This is the only part touching the dashboard — athena's area, a small task, and
+it should not ride hephaestus's slice.
+
+### Decision 4 — blast radius, stated rather than assumed
+
+A leaked dev key signs bundles that load **only on servers whose trust file lists that key** —
+in practice, that developer's own machine. Containment follows from the shape: keys are
+**per-developer**, never shared, never committed, never added to CI, and never added to the
+production trust file. A dev key is not a second publisher for the project; it is one
+developer's local convenience.
+
+### Decision 5 — allowed surface for the implementation slice (hephaestus)
+
+- **In**: `tools/**` (key generation + a `make dev-plugin`-style target), plugin-repo docs, and
+  a local example trust file that is `.gitignore`d.
+- **Out**: `.github/workflows/**`; `cmd/pluginsign` behaviour; any production trust file; any
+  change to `TrustPolicy` evaluation; the dashboard banner (athena's).
+- **Forbidden**: committing any key material, or a default that adds a dev publisher to a trust
+  file the server would use in production.
+
+### Open for the operator
+
+1. **Is the dev-key path acceptable at all**, or should local development keep using unsigned
+   plugins in a throwaway environment and never sign anything? (My recommendation: dev keys —
+   it exercises the real signature path, so "works locally" means more.)
+2. Decision 3 costs a small dashboard change. Worth it, or is the startup log sufficient?
+
 ## Scope & boundaries
 
 - In: the written policy (this file + a co-signed contract row if it changes the trust
