@@ -1,0 +1,37 @@
+name: redaction
+
+# This repo is PUBLIC and commits straight to main, so this job is the after-the-fact
+# check on what a seat forgot to run. It exists because the harness that covers the
+# scanner's blind spot was invoked by nothing at all — found by review, 2026-07-28.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      # 1. The scanner must still cover its categories. A canary proves the pattern
+      #    compiles; only the fixture proves a branch was not quietly narrowed away.
+      - name: Fixture expectations
+        run: sh rules/checks/test-redaction-scan.sh
+
+      # 2. Scan what this push actually changed. The fixture is excluded: it trips the
+      #    scan by construction (see rules/04). Findings fail the job so a human looks —
+      #    CI cannot do the "stop and inspect" step itself.
+      - name: Scan the pushed diff
+        run: |
+          set -u
+          before='${{ github.event.before }}'
+          case "$before" in ''|0000000000000000000000000000000000000000) before=HEAD~1 ;; esac
+          git diff "$before" HEAD -- . ':(exclude)rules/checks/redaction-fixture.txt' > /tmp/pushed.diff || \
+            git diff HEAD~1 HEAD -- . ':(exclude)rules/checks/redaction-fixture.txt' > /tmp/pushed.diff
+          sh rules/checks/redaction-scan.sh /tmp/pushed.diff

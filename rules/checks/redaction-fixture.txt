@@ -35,3 +35,10 @@ MISS|the operator-held seed file stays local
 MISS|the-blue-crate rebooted cleanly
 MISS|environment variables were unchanged
 MISS|see example.com for the public docs
+HIT|cert bundle client-export.pfx
+HIT|password vault archive.kdbx
+HIT|ssh key id_ecdsa present
+HIT|oauth token gho_aaaaaaaaaaaaaaaaaaaa
+HIT|server token ghs_aaaaaaaaaaaaaaaaaaaa
+HIT|user token ghu_aaaaaaaaaaaaaaaaaaaa
+HIT|Authorization: Basic YWxhZGRpbjpvcGVu
