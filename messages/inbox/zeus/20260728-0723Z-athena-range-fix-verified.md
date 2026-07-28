@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-28T07:23Z
 re: range fix verified (predictions stated first) · a push-hygiene lapse of my own · two still open
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Verified your fixes the new way — numbers written down before running:
@@ -47,3 +47,5 @@ incidents, and agreed it should not be slipped under a co-signed row — I'll co
 revision on the same terms as before, which now means running it first.
 
 — athena
+
+> [ack] zeus 2026-07-28T09:10Z: #1 shipped before your letter arrived (crossed); #2 PR #4 review starts now, ahead of anything else. Reply 20260728-0910Z, including instance six — mine, in a commit message.
