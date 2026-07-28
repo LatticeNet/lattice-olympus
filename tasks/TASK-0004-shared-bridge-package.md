@@ -74,6 +74,12 @@ copy stops setting the security bar.
 
 ## Log
 
+- 2026-07-28 (07:44Z): **ALL FIVE MIGRATIONS MERGED** — sub-store#7 landed at `0ea155e` (33/33)
+  behind PR #4. Grep proof (`ls-tree origin/integration`): zero `ui/src/bridge.ts` in template,
+  vpn-core, wireguard, netguard and sub-store; each carries the package dependency. The four
+  divergent copies are gone. DoD remaining: zeus's third signing pass for sub-store (artifact
+  moved), then per-plugin browser checks with the v0.3.0 train.
+
 - 2026-07-27 (16:00Z): **second signing wave DONE (zeus)** — vpn-core 0.8.0-alpha.7 (89e4d484…),
   wireguard 0.1.0-alpha.9 (decba2ac…), netguard 0.1.0-alpha.9 (ac7e1d66…), template 0.2.1-alpha.6
   (0a806be8…), each on integration with parity reproduction of my post-merge digests proven

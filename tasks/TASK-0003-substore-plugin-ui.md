@@ -66,6 +66,13 @@ the postMessage bridge.
 
 ## Log (append-only, newest first)
 
+- 2026-07-28 (07:44Z): **MERGED to integration at `0a337ca`** (40/40 post-merge, typecheck,
+  build, verify:build). zeus [ack] at bc9976d; his r1 finding (the over-budget badge described
+  truncation the runner does not do — it aborts, system_runner.go:475) fixed at the semantic
+  level, and his r2 note (a test deriving its input from the constant under test can only
+  confirm) fixed with literal sizes at ec80915, verified falsifiable. DoD remaining: the
+  real-browser pass, which waits on the v0.3.0 train carrying the new bundle.
+
 - 2026-07-27 (10:10Z): **signed line absorbed** — branch re-synced onto sub-store integration
   a4e00b98 (0.4.0-alpha.1, zeus's signing wave; digest e0524e35…). 39/39 + typecheck + build +
   verify:build re-verified, pushed 04bf92e. hephaestus's binary-constant corrections shipped
