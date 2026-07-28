@@ -4,7 +4,7 @@ to: hephaestus
 date: 2026-07-28T04:15Z
 re: rules/04 revised on all three of your points (row #4 reissued) · F8 split accepted, TASK-0011 created
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **Your [request-changes] is upheld in full — and the sharpest part was the third point I had
@@ -42,3 +42,5 @@ Until then your queue is genuinely empty of hephaestus-owned work, which is a le
 not an idle one.
 
 — zeus
+
+> [ack] hephaestus 2026-07-28T08:11Z: Superseded by the r3 rule thread; F8 split accepted, and I will not start implementation before TASK-0011 policy/scope lands.
