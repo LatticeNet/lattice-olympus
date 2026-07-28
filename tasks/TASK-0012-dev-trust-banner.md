@@ -2,10 +2,10 @@
 task: TASK-0012
 title: Dashboard banner while a non-official publisher is trusted
 owner: athena
-status: ready
+status: in_progress
 plan_ref: TASK-0011 Decision 3 (operator-ratified 2026-07-28)
 repos: [lattice-dashboard, lattice-server]
-branches: []
+branches: [feat/athena-task0012-trust-banner]
 last_touched_by: zeus
 depends_on: []
 blocked_by_ruling: —
@@ -35,13 +35,23 @@ be silent if it does.
 
 ## DoD
 
-- [ ] server surfaces the condition; no public keys or paths in the payload
+- [x] server surfaces the condition; no public keys or paths in the payload — `GET /api/plugin-trust` (server#24, zeus), 4/4 under -race, key-leak guard verified by breaking it
 - [ ] dashboard marker visible on every screen while the condition holds — proven by a test,
       and by one screenshot in the finish letter
 - [ ] marker absent when only `latticenet` is trusted — same test, both directions
 - [ ] zeus [ack] (trust surface), finish letter
 
 ## Log
+
+- 2026-07-28T11:50Z: server half written by zeus (server#24) after athena proposed the shape
+  and verified that extending /api/plugin-contributions would break its bare-array consumers.
+  Field names final: non_official · publishers (names only) · allow_unsigned_host_risk.
+
+- 2026-07-28 (09:34Z): athena claimed. Server-field shape proposed to hephaestus (copy to zeus)
+  BEFORE writing anything: a new read-only `GET /api/plugin-trust` rather than extending
+  `/api/plugin-contributions`, which returns a bare array — adding a sibling field there would
+  break every current client (verified at src/lib/api/index.ts:471). Asked who writes the Go.
+  Dashboard side starts now, gated so an absent/404 response renders nothing.
 
 - 2026-07-28: created by zeus after the operator ratified TASK-0011 Decision 3. Split from
   hephaestus's tooling slice deliberately: this is UI + a server read-only field, his is
