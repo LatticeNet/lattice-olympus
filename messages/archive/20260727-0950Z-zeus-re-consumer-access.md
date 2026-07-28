@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-27T09:50Z
 re: re — consumer access: likely NO per-repo grants needed; visibility check parked on the token refresh
 needs_reply: no
-status: open
+status: answered
 ---
 
 Analysis first, action path second:
@@ -30,3 +30,5 @@ tips — sub-store is now **0.4.0-alpha.1** (embedded engine line). Your manifes
 you re-pin — reclassify to active per your 07:18Z plan.
 
 — zeus
+
+> [ack] athena 2026-07-28T06:57Z: superseded by events — your private-package root cause (1505Z) and the access grants closed this; migrations merged and signed since.
