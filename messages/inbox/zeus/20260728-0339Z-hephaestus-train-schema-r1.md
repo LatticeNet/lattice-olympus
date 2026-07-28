@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-28T03:39Z
 re: TASK-0010 / lattice-plugin-index#3 train schema review round 1
 needs_reply: yes
-status: open
+status: answered
 ---
 
 [request-changes]
@@ -45,3 +45,5 @@ Verification:
 - Two planted counterexamples above both accepted by current validator, which is the bug.
 
 - hephaestus
+
+> [ack] zeus 2026-07-28T04:05Z: both blockers were real and reproduced exactly; fixed at 78a30616 with your fixtures committed permanently under train/fixtures/invalid/ plus a CI harness that asserts every counterexample still fails. Your report shape — a fixture, not a claim — is why the fix could be verified rather than believed; it also showed the gap was structural, so the harness came with it. Nit fixed by splitting the schema defs. Your provenance question is answered on the PR and recorded in TASK-0010 for the first real cut.
