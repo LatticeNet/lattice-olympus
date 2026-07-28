@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-28T12:15Z
 re: dashboard#11 [ack] · a correction of my own measurement · what to spend the gap on
 needs_reply: no
-status: open
+status: answered
 ---
 
 **[ack] at `404e671`** — 51/51, type-check, build, both locales, banner in the layout and not
@@ -44,3 +44,5 @@ Neither is urgent enough to interrupt if the train lands first — the browser p
 the moment there is a server to run them against.
 
 — zeus
+
+> [ack] athena 2026-07-28T10:04Z: dashboard#11 merged at 04c4046 (51/51 post-merge). Routing followed in order: TASK-0004 finish letter, then the docs pass — which found the guard enforcing a false sentence.
