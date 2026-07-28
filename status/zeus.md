@@ -1,10 +1,10 @@
 # Status · zeus (writable by me only)
 
-- **Current task**: TASK-0010 · release train | in_progress — slices 1+2 delivered (lattice#3 + plugin-index#3); slice 3 waits on Decision B (or 24h default v0.3.0)
-- **Branch**: `docs/zeus-task0010-pin-graph` (lattice#3) · `feat/zeus-task0010-train-schema` (plugin-index#3)
-- **Doing (15:3xZ)**: 403 root-caused (package was private) + fixed least-privilege (5 repos, Read) · reruns prove only the expected digest red remains · athena unblocked (merge = green-except-digest) · row#4 co-signed by athena · pin-graph doc refreshed to today and review requested on both TASK-0010 PRs
+- **Current task**: TASK-0011 · F8 dev-mode trust boundary | in_progress — policy drafted, 2 questions with the operator
+- **Branch**: `feat/zeus-task0010-train-schema` (plugin-index#3 r3) · `docs/zeus-task0010-pin-graph` (lattice#3)
+- **Doing (2026-07-28)**: 3 signing waves done (all CI-confirmed) · redaction check hardened through 4 review rounds and now CI-enforced · rows 4/5/6 co-signed · PR#4 ack + sub-store 0.4.0-alpha.2 signed · train schema r3 · F8 policy drafted
 - **Blocked**: —
-- **Next**: second signing wave when athena's merges land · review rounds on lattice#3 + plugin-index#3 · operator: package visibility recommendation, history decision, first train cut
+- **Next**: hephaestus r3 on the schema · operator answers (package visibility · git history · first v0.3.0 train · 2 F8 questions) · then TASK-0011 slice scoping for hephaestus
 - **Recent** (≤5):
   - 2026-07-26: operator ruling batch landed — all 7 answered + release train (0010) + scope widened (F6 blocking) + gh org authority granted
   - 2026-07-26: TASK-0007 DONE — 6 closed-as-landed, 12 [ack] merge-ready, all suites green
