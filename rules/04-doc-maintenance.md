@@ -20,21 +20,43 @@ The finish letter lists: ① code docs changed ② contract changes triggered (l
 
 Consistent vocabulary (glossary in plan/); no "should work" / "mostly done" — state did / verified / not verified; verify that every command, path, and endpoint you write actually exists.
 
-## Pre-push redaction check (mechanical, not aspirational)
+## Pre-push redaction check (a floor, never a waiver)
 
 The public-surface rule (`AGENTS.md §4`) already listed hostnames, ssh aliases, IPs, and secret
 paths when they leaked anyway on 2026-07-27 — from the ops owner's own letters, into a PUBLIC
-repo, for ~9 hours. **The gap was never the prose; it was that nothing checked.** So: before
-any push to this repo, run the check, not your memory.
+repo, for ~9 hours. **The gap was never the prose; it was that nothing checked.** So run the
+check before any push to this repo — and then keep reading, because the check cannot see
+everything.
 
 ```sh
 git diff --cached -U0 | grep -nEi \
-  'ssh [a-z0-9_-]*@|[0-9]{1,3}(\.[0-9]{1,3}){3}|/opt/[a-z]+/|_authToken=[^$]|\.seed|/Users/|/home/[a-z]'
+  'ssh +[a-z0-9._-]+@|[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}|[0-9]{1,3}(\.[0-9]{1,3}){3}|\
+/(opt|srv|var/lib)/[a-z]|/(Users|home)/[a-z]|\
+\.(pem|key|seed|p12|pfx|kdbx)\b|id_(rsa|ed25519|ecdsa)|\
+(private[_-]?key|BEGIN [A-Z ]*PRIVATE KEY)|/(secrets?|keystore|credentials)/|\
+\.env([^a-z]|$)|_authToken|Authorization: *(Bearer|Basic)|\
+(ghp|gho|ghs|ghu)_[A-Za-z0-9]{16,}|github_pat_[A-Za-z0-9_]{20,}|\
+xox[baprs]-|AKIA[0-9A-Z]{12,}|sk-[A-Za-z0-9]{16,}'
 ```
 
-Any hit is a stop-and-think, not an automatic block — `127.0.0.1` and an example path are
-fine, a fleet alias is not. Redact to meaning, never to silence: "the production node", "the
-deploy directory", "the operator-held seed file" carry the sense without the target.
+**Two properties of this check, both load-bearing:**
+
+1. **A hit is stop-and-inspect, not an automatic block.** `127.0.0.1`, `example.com`, a
+   documentation path, and a token-shaped example are all legitimate. Read the hit; decide.
+2. **A clean run is NOT permission to push.** The check catches shapes — command forms, path
+   families, token prefixes, address literals. It is blind to the class that actually leaked
+   first: a **bare local alias or node label sitting in prose**, which looks like an ordinary
+   word. Nothing mechanical will reliably separate `the-turin-box` from `the-quick-fix`. So a
+   clean grep satisfies nothing on its own — `AGENTS.md §4` still binds every internal host
+   name, node label, local alias, deploy path, and credential location, and the author is
+   still the one who has to know they wrote one.
+
+Deliberately category-based: the patterns name *kinds* of secret material (private keys, env
+files, token prefixes, credential directories), never this fleet's actual names or paths —
+a rule that has to be redacted to be published is not a rule anyone can use.
+
+Redact to meaning, never to silence: "the production node", "the deploy directory", "the
+operator-held seed file" carry the sense without the target.
 
 **Redacting a tip does not redact history.** A leak that reached a push is a leak; the tip fix
 is hygiene, and whether history gets rewritten is the operator's call alone (rules/03 —
