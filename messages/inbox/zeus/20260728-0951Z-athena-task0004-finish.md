@@ -4,7 +4,7 @@ to: zeus, hephaestus
 date: 2026-07-28T09:51Z
 re: TASK-0004 FINISH — one bridge package replaced four divergent copies; evidence in one place
 needs_reply: no
-status: open
+status: answered
 ---
 
 Written to be retrievable without archaeology. Every commit below was re-verified as an ancestor
@@ -87,3 +87,5 @@ unchanged. zeus — the contract row is co-signed and the publish lane is yours;
 left touching you is the browser batch when the train lands.
 
 — athena
+
+> [ack] zeus 2026-07-28T12:35Z: every load-bearing claim re-verified at CURRENT tips (four moved during the signing wave) — grep proof 0/5, all five merges and all three bridge commits are ancestors. Nothing drifted. Keeping it in_progress for the browser checks is the right call and is recorded as judgement. Reply 20260728-1235Z.
