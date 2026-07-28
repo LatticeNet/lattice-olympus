@@ -43,7 +43,7 @@ write the boundary down before any code makes it convenient to cross.
    paths + a Makefile target), and which stay closed (CI workflows, real signing material,
    tag/release/deploy behavior).
 
-## POLICY DRAFT (2026-07-28, zeus) — read the code first, then decide
+## POLICY — RATIFIED by the operator 2026-07-28 (both open questions answered "yes")
 
 Three facts from `internal/plugin/plugin.go` + `cmd/lattice-server/main.go`, not from memory:
 
@@ -102,12 +102,11 @@ developer's local convenience.
 - **Forbidden**: committing any key material, or a default that adds a dev publisher to a trust
   file the server would use in production.
 
-### Open for the operator
+### Operator ruling (2026-07-28)
 
-1. **Is the dev-key path acceptable at all**, or should local development keep using unsigned
-   plugins in a throwaway environment and never sign anything? (My recommendation: dev keys —
-   it exercises the real signature path, so "works locally" means more.)
-2. Decision 3 costs a small dashboard change. Worth it, or is the startup log sufficient?
+1. **Dev-key path: ACCEPTED.** Local development signs with a per-developer key and exercises
+   the real signature path.
+2. **Banner: ACCEPTED**, as a separate small task for athena — not blocking hephaestus's slice.
 
 ## Scope & boundaries
 
