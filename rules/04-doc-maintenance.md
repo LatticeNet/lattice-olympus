@@ -92,9 +92,13 @@ should not rest on a headcount, and the first draft of this one miscounted itsel
 | 7 | exit status read through a pipe — **twice, hours apart, by both parties, after this lesson was written down** | the measurement | taking the bare measurement alongside it |
 | 8 | a harness inheriting an exported variable, waiving a case that must always fire | the test's environment | local and CI disagreeing |
 | 9 | CI scanning a narrower range than the push, after a fallback quietly narrowed it | the check's input | a reviewer reproducing it in a real clone |
+| 10 | a test whose input was derived from the constant it tested — it could only ever confirm | the test | breaking the guard it protected and watching nothing go red |
+| 11 | an edit script that failed to parse, so **nothing changed** — and the suite passed, because nothing had changed | the work, not the check | an error printed *above* the green |
 
 Different mechanisms, one shape: **the thing measured sat adjacent to the thing claimed, and
-success was the default appearance.** Re-reading caught none of them. Every one was caught by a
+success was the default appearance.** Row 11 is the sharpest variant: the success signal was
+entirely *honest* — the suite really did pass the state it was given. What had not happened was
+the work. Re-reading caught none of them. Every one was caught by a
 number that contradicted an expectation, or by running the artifact instead of reasoning about
 it.
 
