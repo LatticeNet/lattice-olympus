@@ -1,0 +1,35 @@
+# Expectation fixture for redaction-scan.sh — "<EXPECT>|<line>".
+# HIT  = the scanner must flag this line.  MISS = it must not.
+# Designed with athena (2026-07-28) after she reproduced the published check as inert.
+# Nothing here may use a real host, node label, path, or credential from this fleet.
+HIT|ssh root@203.0.113.9 uptime
+HIT|deploy@build.example.org ran the step
+HIT|listener bound at 192.0.2.44
+HIT|copied into /opt/someservice/config
+HIT|state under /var/lib/someservice
+HIT|wrote /srv/data/output
+HIT|path /Users/somebody/.config/thing
+HIT|path /home/somebody/.config/thing
+HIT|attached signing.pem to the release
+HIT|the publisher key file signer.seed
+HIT|keystore blob wrapped.p12
+HIT|generated id_ed25519 for the box
+HIT|generated id_rsa for the box
+HIT|field private_key was populated
+HIT|-----BEGIN OPENSSH PRIVATE KEY-----
+HIT|mounted /secrets/registry at boot
+HIT|mounted /credentials/ci at boot
+HIT|copy .env.production into place
+HIT|//npm.pkg.github.com/:_authToken=${SOMETOKEN}
+HIT|Authorization: Bearer abcdefghij
+HIT|token ghp_aaaaaaaaaaaaaaaaaaaaaaaa leaked
+HIT|token github_pat_aaaaaaaaaaaaaaaaaaaaaa leaked
+HIT|slack token xoxb-111-222-abc
+HIT|aws key AKIAABCDEFGHIJKLMN
+HIT|model key sk-aaaaaaaaaaaaaaaaaaaa
+HIT|loopback 127.0.0.1 in an example
+MISS|the deploy directory on the production node
+MISS|the operator-held seed file stays local
+MISS|the-blue-crate rebooted cleanly
+MISS|environment variables were unchanged
+MISS|see example.com for the public docs

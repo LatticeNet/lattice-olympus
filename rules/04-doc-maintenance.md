@@ -24,36 +24,43 @@ Consistent vocabulary (glossary in plan/); no "should work" / "mostly done" — 
 
 The public-surface rule (`AGENTS.md §4`) already listed hostnames, ssh aliases, IPs, and secret
 paths when they leaked anyway on 2026-07-27 — from the ops owner's own letters, into a PUBLIC
-repo, for ~9 hours. **The gap was never the prose; it was that nothing checked.** So run the
-check before any push to this repo — and then keep reading, because the check cannot see
-everything.
+repo, for ~9 hours. **The gap was never the prose; it was that nothing checked.**
 
 ```sh
-git diff --cached -U0 | grep -nEi \
-  'ssh +[a-z0-9._-]+@|[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}|[0-9]{1,3}(\.[0-9]{1,3}){3}|\
-/(opt|srv|var/lib)/[a-z]|/(Users|home)/[a-z]|\
-\.(pem|key|seed|p12|pfx|kdbx)\b|id_(rsa|ed25519|ecdsa)|\
-(private[_-]?key|BEGIN [A-Z ]*PRIVATE KEY)|/(secrets?|keystore|credentials)/|\
-\.env([^a-z]|$)|_authToken|Authorization: *(Bearer|Basic)|\
-(ghp|gho|ghs|ghu)_[A-Za-z0-9]{16,}|github_pat_[A-Za-z0-9_]{20,}|\
-xox[baprs]-|AKIA[0-9A-Z]{12,}|sk-[A-Za-z0-9]{16,}'
+rules/checks/redaction-scan.sh          # staged diff (run before every push)
+rules/checks/redaction-scan.sh FILE...  # specific files
 ```
 
-**Two properties of this check, both load-bearing:**
+**It is a script, not a command in prose, and that is the point.** The first two published
+versions of this check were both broken — one had `\b` inside a group, the next had shell
+line-continuations inside a single-quoted pattern — and the second failure was the dangerous
+kind: grep exited 2 and printed **nothing**, which is indistinguishable from a clean run to an
+author following the rule literally. A transcribed command is a copy that rots silently; a
+committed script can be tested, and is:
 
-1. **A hit is stop-and-inspect, not an automatic block.** `127.0.0.1`, `example.com`, a
-   documentation path, and a token-shaped example are all legitimate. Read the hit; decide.
-2. **A clean run is NOT permission to push.** The check catches shapes — command forms, path
-   families, token prefixes, address literals. It is blind to the class that actually leaked
-   first: a **bare local alias or node label sitting in prose**, which looks like an ordinary
-   word. Nothing mechanical will reliably separate `the-turin-box` from `the-quick-fix`. So a
-   clean grep satisfies nothing on its own — `AGENTS.md §4` still binds every internal host
-   name, node label, local alias, deploy path, and credential location, and the author is
-   still the one who has to know they wrote one.
+- `rules/checks/redaction-fixture.txt` — one line per category with its expected HIT/MISS
+- `rules/checks/test-redaction-scan.sh` — asserts every expectation; run it after any edit
 
-Deliberately category-based: the patterns name *kinds* of secret material (private keys, env
-files, token prefixes, credential directories), never this fleet's actual names or paths —
-a rule that has to be redacted to be published is not a rule anyone can use.
+**Three distinguishable outcomes** (verified, not asserted):
+
+| Exit | Meaning | What you do |
+|---|---|---|
+| `1` | findings printed | Stop and inspect each. A hit is not automatically a block — `127.0.0.1`, `example.com`, a documentation path and a token-shaped example all hit legitimately. |
+| `0` | no pattern hits, said out loud | Keep reading below. |
+| `2` | **the scanner itself is broken** | Fix the scanner before pushing. It self-tests against a canary so it can never fail quietly. |
+
+**A clean run is NOT permission to push.** The scan catches shapes — command forms, path
+families, token prefixes, address literals. It is blind to the class that actually leaked
+first: a **bare local alias or node label sitting in prose**, which looks like an ordinary
+word. Nothing mechanical will reliably separate `the-blue-crate` from `the-quick-fix`. So exit
+0 settles nothing on its own — `AGENTS.md §4` still binds every internal host name, node label,
+local alias, deploy path, and credential location, and the author is still the one who has to
+know they wrote one. (An earlier draft of this very paragraph used an illustration built from a
+real node label's distinctive token — inside the rule that forbids exactly that. Caught at
+co-sign. Illustrations here must be words with no relationship to anything deployed.)
+
+Patterns name *kinds* of secret material, never this fleet's actual names or paths: a rule that
+has to be redacted before it can be published is not a rule anyone can use.
 
 Redact to meaning, never to silence: "the production node", "the deploy directory", "the
 operator-held seed file" carry the sense without the target.
