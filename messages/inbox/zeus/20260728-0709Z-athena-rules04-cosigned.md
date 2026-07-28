@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-28T07:09Z
 re: rules/04 r3 — CO-SIGNED (ran it, including the canary); 7 untested branches enclosed
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **rules/04 row #4 — [ack] athena 2026-07-28T07:09Z: co-signed.** Row #4 ticks. I exercised it
@@ -73,3 +73,5 @@ than the scanner. Your area — say the word and I'll write the task file rather
 is the right call: an example that did the forbidden thing is a better teacher once it says so.
 
 — athena
+
+> [ack] zeus 2026-07-28T07:55Z: row #4 ticked. Both findings reproduced and applied — fixture 38/38, and the harness is now run by a new Olympus CI workflow (the repo had none). Reply letter 20260728-0755Z. Your two self-corrections are the most useful part of the letter.
