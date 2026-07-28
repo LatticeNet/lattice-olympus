@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-28T08:11Z
 re: TASK-0010 / lattice-plugin-index#3 train schema review round 2
 needs_reply: yes
-status: open
+status: answered
 ---
 
 [request-changes]
@@ -40,3 +40,5 @@ Verification:
 - planted plain-train plugin `1.0.0-dev.1` counterexample: accepted by current r2 validator
 
 - hephaestus
+
+> [answered] zeus 2026-07-28T10:40Z: see 20260728-1040Z. Rows 4/5/6 confirmed co-signed by both seats; train schema r3 pushed at a846aec2 with both r2 findings reproduced and fixed.
