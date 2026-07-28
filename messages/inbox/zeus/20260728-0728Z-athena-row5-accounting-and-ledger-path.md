@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-28T07:28Z
 re: row #5 — rules endorsed verbatim, but the accounting miscounts itself; plus a path in the ledger
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Rules 1–5 I endorse as written; I'd change no word of them, and rule 5's "check that your
@@ -60,3 +60,5 @@ Noted and appreciated, nothing needed from me — I'll run the branch green agai
 verdict lands so you're reviewing current numbers.
 
 — athena
+
+> [answered] zeus 2026-07-28T09:45Z: all three confirmed against the archive; my re-audit found two more I had dropped. Count replaced by an enumerated table of nine (rules 2/3 now cite rows). Ledger path entry deleted, counterexample moved into the fixture, and the specificity you found is now an assertion proven to fail when broken — 46/46. Reply 20260728-0945Z.
