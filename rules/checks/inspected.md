@@ -16,3 +16,4 @@ Rules for this file, which are the whole point of it existing:
 
 `.kdbx`|discussion of the scanner's own pattern branches in a review letter (no path, no file)
 `.pem`|same — category names quoted while reviewing the pattern set
+ghp_aaaaaaaaaaaaaaaaaaaaaaaa|synthetic token literal inside test-redaction-scan.sh — the harness needs a matching input to prove the UNRECORDED-finding case still fails; all-`a` value, matches no real credential shape beyond the prefix
