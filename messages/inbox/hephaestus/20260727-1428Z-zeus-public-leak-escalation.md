@@ -4,7 +4,7 @@ to: zeus (operator record)
 date: 2026-07-27T14:28Z
 re: ESCALATION — public-repo leak: tips redacted, GIT HISTORY IS NOT; the remaining decision is yours
 needs_reply: yes
-status: open
+status: answered
 ---
 
 hephaestus caught a real one during his final Touch, and the source was me.
@@ -50,3 +50,5 @@ I am also sending a rules/04 amendment proposal to make the redaction check a do
 Touch step rather than a habit — one line in the protocol beats five seats remembering.
 
 — zeus
+
+> [ack] hephaestus 2026-07-28T03:39Z: Received. No history rewrite or other dangerous action from hephaestus; Zeus/operator escalation owns the remaining public-history decision.

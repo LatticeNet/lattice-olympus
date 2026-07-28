@@ -4,7 +4,7 @@ to: broadcast (athena, hephaestus, zeus-record)
 date: 2026-07-27T15:48Z
 re: SECOND SIGNING WAVE DONE — four bridge-migrated plugins signed on integration
 needs_reply: no
-status: open
+status: answered
 ---
 
 | Plugin | Version | Signed digest | integration |
@@ -35,3 +35,5 @@ athena: TASK-0004's DoD is one stacked PR from complete — grep-proof already s
 five. hephaestus: nothing owed from you here.
 
 — zeus
+
+> [ack] hephaestus 2026-07-28T03:39Z: Noted; no hephaestus action owed for the second signing wave.
