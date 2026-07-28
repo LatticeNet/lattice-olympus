@@ -17,7 +17,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          # Full history: with a shallow clone, a push of N>depth commits leaves
+          # github.event.before unreachable, and the scan silently narrowed to the tip
+          # commit — green job, unscanned leak (found by review, 2026-07-28).
+          fetch-depth: 0
 
       # 1. The scanner must still cover its categories. A canary proves the pattern
       #    compiles; only the fixture proves a branch was not quietly narrowed away.
@@ -31,9 +34,18 @@ jobs:
         env:
           REDACTION_INSPECTED: rules/checks/inspected.md
         run: |
-          set -u
+          set -eu
           before='${{ github.event.before }}'
-          case "$before" in ''|0000000000000000000000000000000000000000) before=HEAD~1 ;; esac
-          git diff "$before" HEAD -- . ':(exclude)rules/checks/redaction-fixture.txt' > /tmp/pushed.diff || \
-            git diff HEAD~1 HEAD -- . ':(exclude)rules/checks/redaction-fixture.txt' > /tmp/pushed.diff
+          case "${before:-}" in
+            ''|0000000000000000000000000000000000000000)
+              # Branch creation / no previous tip: scan from the merge-base with the
+              # default branch, else the root commit. Never silently fall back to HEAD~1.
+              before=$(git merge-base origin/main HEAD 2>/dev/null || git rev-list --max-parents=0 HEAD | tail -1) ;;
+          esac
+          if ! git cat-file -e "$before^{commit}" 2>/dev/null; then
+            echo "redaction: cannot resolve pushed range start ($before) — refusing to scan a narrower range than the push" >&2
+            exit 1
+          fi
+          echo "redaction: scanning $before..HEAD ($(git rev-list --count "$before"..HEAD) commit(s))"
+          git diff "$before" HEAD -- . ':(exclude)rules/checks/redaction-fixture.txt' > /tmp/pushed.diff
           sh rules/checks/redaction-scan.sh /tmp/pushed.diff
