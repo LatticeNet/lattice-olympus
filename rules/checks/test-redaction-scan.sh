@@ -3,6 +3,11 @@
 # The fixture is the only thing that would have caught BOTH published failures of this
 # check (a `\b` inside a group; then in-string backslashes making it exit 2 silently).
 set -u
+# Hermetic: the fixture cases must behave identically whether or not the caller happens
+# to export REDACTION_INSPECTED. They did not — an exported ledger in my shell waived a
+# fixture line and the harness reported a failure that CI could not reproduce. A test
+# whose result depends on ambient environment is testing the environment.
+unset REDACTION_INSPECTED
 here=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 scan="$here/redaction-scan.sh"
 fixture="$here/redaction-fixture.txt"
@@ -13,7 +18,7 @@ while IFS= read -r raw; do
   case "$raw" in ''|'#'*) continue ;; esac
   expect=${raw%%|*}; line=${raw#*|}
   printf '%s\n' "$line" > "$tmp"
-  sh "$scan" "$tmp" >/dev/null 2>&1; rc=$?
+  REDACTION_INSPECTED= sh "$scan" "$tmp" >/dev/null 2>&1; rc=$?
   checked=$((checked+1))
   if [ "$rc" -ge 2 ]; then
     echo "SCANNER BROKEN while checking: $line" >&2; fails=$((fails+1)); continue
