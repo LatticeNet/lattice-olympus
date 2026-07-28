@@ -35,6 +35,43 @@ else
   out=$(git diff --cached -U0 | grep -nEi "$PATTERNS" 2>&1) ; status=$?
 fi
 
+# An inspected-findings ledger keeps a coordination repo honest without going permanently
+# red: this repo WRITES ABOUT the patterns, so legitimate hits recur (this scanner's own
+# review thread produced several). Entries are exact snippets plus a reason, reviewed in
+# the diff like anything else — an audit trail, never a mute button. Unlisted findings
+# still fail.
+INSPECTED=${REDACTION_INSPECTED:-}
+if [ -n "$INSPECTED" ] && [ -f "$INSPECTED" ] && [ -n "${out:-}" ] && [ "$status" -eq 0 ]; then
+  remaining=$out
+  entries=0
+  while IFS= read -r entry; do
+    # An entry is EXACTLY a line of the form <snippet>|<reason>. Prose, bullets and
+    # headings in the ledger are not entries — an earlier version treated a markdown
+    # bullet as a snippet, grep read its leading "-" as an option, the error was
+    # swallowed, and every finding vanished: the ledger passed BECAUSE it was broken.
+    case "$entry" in *'|'*) : ;; *) continue ;; esac
+    case "$entry" in '#'*|'|'*) continue ;; esac
+    snippet=${entry%%|*}
+    [ -n "$snippet" ] || continue
+    entries=$((entries+1))
+    filtered=$(printf '%s\n' "$remaining" | grep -vF -e "$snippet") ; rc=$?
+    if [ "$rc" -ge 2 ]; then
+      echo "redaction-scan: SCANNER BROKEN — ledger entry could not be applied: $snippet" >&2
+      exit 2
+    fi
+    remaining=$filtered
+  done < "$INSPECTED"
+  if [ "$entries" -eq 0 ]; then
+    echo "redaction-scan: ledger $INSPECTED has no usable entries; findings stand" >&2
+  fi
+  if [ -z "$(printf '%s' "$remaining" | tr -d '[:space:]')" ]; then
+    echo "redaction-scan: all findings are recorded as inspected in $INSPECTED"
+    echo "                (recorded ≠ safe — the ledger is reviewed like any other diff)"
+    exit 0
+  fi
+  out=$remaining
+fi
+
 case "$status" in
   0) printf '%s\n' "$out"
      echo "redaction-scan: FINDINGS above — stop and inspect each one (a hit is not automatically a block)" >&2

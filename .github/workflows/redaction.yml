@@ -28,6 +28,8 @@ jobs:
       #    scan by construction (see rules/04). Findings fail the job so a human looks —
       #    CI cannot do the "stop and inspect" step itself.
       - name: Scan the pushed diff
+        env:
+          REDACTION_INSPECTED: rules/checks/inspected.md
         run: |
           set -u
           before='${{ github.event.before }}'

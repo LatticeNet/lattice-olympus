@@ -24,6 +24,24 @@ while IFS= read -r raw; do
   fi
 done < "$fixture"
 
+# --- ledger behaviour. The ledger is a waiver path, so it needs the harder tests:
+# it must NOT blanket-pass, and a ledger it cannot apply must fail loudly rather than
+# quietly emptying the findings (which is what the first version did).
+led=$(mktemp); a=$(mktemp); b=$(mktemp); c=$(mktemp); trap 'rm -f "$tmp" "$led" "$a" "$b" "$c"' EXIT
+printf 'ZZZ-recorded-marker|test entry\n' > "$led"
+printf 'a line with ZZZ-recorded-marker in it\n' > "$a"
+printf 'token ghp_aaaaaaaaaaaaaaaaaaaaaaaa\n' > "$b"
+cat "$a" "$b" > "$c"
+ledger_case() { # <file> <expected-exit> <label>
+  REDACTION_INSPECTED="$led" sh "$scan" "$1" >/dev/null 2>&1; rc=$?
+  checked=$((checked+1))
+  if [ "$rc" -ne "$2" ]; then echo "FAIL ledger/$3: expected exit $2 got $rc" >&2; fails=$((fails+1));
+  else echo "PASS (ledger)     $3"; fi
+}
+ledger_case "$a" 0 "recorded finding is waived"
+ledger_case "$b" 1 "UNRECORDED finding still fails"
+ledger_case "$c" 1 "one unrecorded finding outweighs a recorded one"
+
 [ "$checked" -gt 0 ] || { echo "FAIL: fixture empty — the harness proves nothing" >&2; exit 1; }
 if [ "$fails" -gt 0 ]; then echo "$fails/$checked fixture expectations failed" >&2; exit 1; fi
 echo "redaction-scan: $checked/$checked fixture expectations met"
