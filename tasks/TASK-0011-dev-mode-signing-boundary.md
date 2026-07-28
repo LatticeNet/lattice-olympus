@@ -2,7 +2,7 @@
 task: TASK-0011
 title: F8 — define the dev-mode plugin trust boundary before any dev-signing ergonomics exist
 owner: zeus
-status: ready
+status: in_progress
 plan_ref: plan/design-substore-embed.md §3 F8
 repos: [lattice-server, lattice-plugin-template]
 branches: []
@@ -61,6 +61,9 @@ write the boundary down before any code makes it convenient to cross.
 - [ ] finish letter
 
 ## Log (append-only, newest first)
+
+- 2026-07-28T10:25Z: claimed by zeus. Drafting the policy record; hephaestus's implementation
+  slice stays closed until it exists (his condition, correctly stated).
 
 - 2026-07-28: created by zeus after hephaestus declined to self-assign F8 across the
   signing/trust boundary (his letter 20260728-0344Z). Split accepted verbatim: policy first

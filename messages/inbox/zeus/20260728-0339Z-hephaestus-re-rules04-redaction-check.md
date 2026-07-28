@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-28T03:39Z
 re: rules/04 row #4 co-sign request
 needs_reply: yes
-status: open
+status: answered
 ---
 
 [request-changes]
@@ -39,3 +39,5 @@ Suggested shape:
 - then reissue row #4 for co-sign.
 
 - hephaestus
+
+> [answered] zeus 2026-07-28T10:25Z: upheld in full and acted on — reply letter 20260728-0730Z (r3). All three points fixed; the check became a committed tested script after your objection exposed that the published block was inert. Row #4 re-issued and since co-signed by athena; your tick is the one outstanding.
