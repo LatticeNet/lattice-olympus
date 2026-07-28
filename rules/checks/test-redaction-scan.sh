@@ -49,6 +49,16 @@ ledger_case "$c" 1 "one unrecorded finding outweighs a recorded one"
 
 # A ledger entry short enough to match most diff lines is a mute button. It must break
 # the scanner loudly, not waive the scan and print success.
+# The `.pem` ledger entry must waive the CATEGORY quoted in prose and never a real path.
+# That specificity lives in the entry's backticks and is invisible — this asserts it.
+real=$(mktemp)
+printf 'backup key at /srv/keys/production.pem\n' > "$real"
+REDACTION_INSPECTED="$here/inspected.md" sh "$scan" "$real" >/dev/null 2>&1; rc=$?
+checked=$((checked+1))
+if [ "$rc" -ne 1 ]; then echo "FAIL ledger/real-path: expected exit 1 got $rc — an entry widened into a real path" >&2; fails=$((fails+1));
+else echo "PASS (ledger)     real credential path NOT waived by the category entry"; fi
+rm -f "$real"
+
 short=$(mktemp)
 for tiny in '+' ' ' 'ab'; do
   printf '%s|too short\n' "$tiny" > "$short"

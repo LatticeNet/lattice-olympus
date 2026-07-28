@@ -42,3 +42,4 @@ HIT|oauth token gho_aaaaaaaaaaaaaaaaaaaa
 HIT|server token ghs_aaaaaaaaaaaaaaaaaaaa
 HIT|user token ghu_aaaaaaaaaaaaaaaaaaaa
 HIT|Authorization: Basic YWxhZGRpbjpvcGVu
+HIT|backup key at /srv/keys/production.pem

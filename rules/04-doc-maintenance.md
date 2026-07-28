@@ -77,28 +77,39 @@ irreversible). Say so plainly in the escalation rather than implying the problem
 
 ## Verifying a check: say the number first
 
-Five times in one review thread (2026-07-27/28) a check reported success while doing nothing:
-a regex with `\b` inside a group; a "malformation" that was valid ERE; a swallowed `grep` error
-that emptied the findings; a control diffing a revision that did not exist; a ledger entry one
-character long that waived everything **and printed the success line**. Different mechanisms,
-one shape: **the test measured something adjacent to the claim, and success was the default
-appearance.**
+One review thread (2026-07-27/28) produced this, repeatedly: **a check reported success while
+doing nothing.** The instances, enumerated rather than counted — a section about honest numbers
+should not rest on a headcount, and the first draft of this one miscounted itself three ways:
 
-Re-reading caught none of them. Every one was caught by a number that contradicted an
-expectation. So:
+| # | Instance | Fault lay in | Caught by |
+|---|---|---|---|
+| 1 | `\b` inside a group — the command errored out | the check | its author's smoke test |
+| 2 | shell line-continuations inside a quoted pattern: exit 2, **no output** | the check, as published | a reviewer running the published block instead of reading it |
+| 3 | ledger parsed a list bullet as a snippet; `grep` error swallowed; every finding emptied and success printed | the check | its author, running it on a real diff |
+| 4 | a one-character ledger entry waived the whole scan **and printed the success line** | the check | a reviewer |
+| 5 | an injected "malformation" that was valid syntax — the guard was never exercised | the test | its author, on re-measurement |
+| 6 | a control diffing a revision that did not exist → empty input → exit 0 | the test | a number predicted in advance that did not match |
+| 7 | exit status read through a pipe — **twice, hours apart, by both parties, after this lesson was written down** | the measurement | taking the bare measurement alongside it |
+| 8 | a harness inheriting an exported variable, waiving a case that must always fire | the test's environment | local and CI disagreeing |
+| 9 | CI scanning a narrower range than the push, after a fallback quietly narrowed it | the check's input | a reviewer reproducing it in a real clone |
 
-1. **Write the expected number before you run it** — "3 added lines, exit 1" — then run it. Not
-   "let's see what happens": a result you did not predict cannot surprise you.
-2. **Treat any surprise as the test being wrong until proven otherwise.** Four of the five were
-   the harness, not the subject.
-3. **Measure exit codes on the bare command.** `cmd | tail` reports the pipe's status; two of
-   the five were exactly that, hours apart, by people who had just written the lesson down.
+Different mechanisms, one shape: **the thing measured sat adjacent to the thing claimed, and
+success was the default appearance.** Re-reading caught none of them. Every one was caught by a
+number that contradicted an expectation, or by running the artifact instead of reasoning about
+it.
+
+1. **Write the expected number before you run it** — "3 added lines, exit 1" — then run it. A
+   result you did not predict cannot surprise you.
+2. **Treat a surprise as the test being wrong until proven otherwise.** Rows 5, 6 and 8 were the
+   harness, not the subject; row 6 was caught *only* because a number had been committed to
+   first.
+3. **Measure exit codes on the bare command.** `cmd | tail` reports the pipe's status — row 7,
+   twice, by people who had just recorded the lesson.
 4. **Make every check print a count** — findings, expectations met, commits scanned, entries
-   waived. A check that only prints on failure cannot be distinguished from one that is broken.
-5. **Test the guard by breaking the thing it guards.** Asserting a safeguard exists is not
-   evidence it fires; verify it against a real malformation, and check that your malformation
-   really is one.
+   waived. A check that prints only on failure cannot be told apart from one that is broken.
+5. **Test a guard by breaking the thing it guards** — and check that your breakage is real
+   (row 5 is what happens when it is not).
 
-This applies to any check in this repo — validators, CI steps, conformance probes, the redaction
-scan above. It is not about diligence. Every instance above was produced by someone being
-careful, immediately after writing down the previous instance.
+This applies to every check here: validators, CI steps, conformance probes, the redaction scan.
+It is not about diligence. Every row above was produced by someone being careful, immediately
+after writing down the previous row.
