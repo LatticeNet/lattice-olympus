@@ -59,6 +59,12 @@ know they wrote one. (An earlier draft of this very paragraph used an illustrati
 real node label's distinctive token — inside the rule that forbids exactly that. Caught at
 co-sign. Illustrations here must be words with no relationship to anything deployed.)
 
+**One permanent, expected hit**: `rules/checks/redaction-fixture.txt` trips the scan by
+construction — it is a page of deliberately-matching lines. Any commit touching it will report
+findings; inspect and proceed. Its contents are documentation-reserved addresses (RFC 5737 /
+`example.org`) and fake tokens, nothing real. Do not "fix" the fixture to quiet the scan; that
+is disarming the only thing that tests it.
+
 Patterns name *kinds* of secret material, never this fleet's actual names or paths: a rule that
 has to be redacted before it can be published is not a rule anyone can use.
 

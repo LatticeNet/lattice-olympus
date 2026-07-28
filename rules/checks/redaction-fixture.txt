@@ -1,5 +1,7 @@
 # Expectation fixture for redaction-scan.sh — "<EXPECT>|<line>".
 # HIT  = the scanner must flag this line.  MISS = it must not.
+# NOTE: this file trips redaction-scan.sh on purpose. Every address here is
+# documentation-reserved (RFC 5737, example.org) and every token is fake.
 # Designed with athena (2026-07-28) after she reproduced the published check as inert.
 # Nothing here may use a real host, node label, path, or credential from this fleet.
 HIT|ssh root@203.0.113.9 uptime
