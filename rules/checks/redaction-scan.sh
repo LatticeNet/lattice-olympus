@@ -53,12 +53,25 @@ if [ -n "$INSPECTED" ] && [ -f "$INSPECTED" ] && [ -n "${out:-}" ] && [ "$status
     case "$entry" in '#'*|'|'*) continue ;; esac
     snippet=${entry%%|*}
     [ -n "$snippet" ] || continue
+    # A one-character entry ("+", " ") matches every added line in a diff: it waives the
+    # whole scan AND prints the success line. Found by review 2026-07-28 — the mute button
+    # arriving through the mechanism built to prevent mute buttons. A length floor is a
+    # floor, not proof of specificity; the waive count below is what makes breadth visible.
+    if [ ${#snippet} -lt 4 ]; then
+      echo "redaction-scan: SCANNER BROKEN — ledger entry too short to be specific: '$snippet'" >&2
+      echo "                a snippet under 4 chars matches most diff lines; write the real text" >&2
+      exit 2
+    fi
     entries=$((entries+1))
+    before_n=$(printf '%s\n' "$remaining" | grep -c . || true)
     filtered=$(printf '%s\n' "$remaining" | grep -vF -e "$snippet") ; rc=$?
     if [ "$rc" -ge 2 ]; then
       echo "redaction-scan: SCANNER BROKEN — ledger entry could not be applied: $snippet" >&2
       exit 2
     fi
+    after_n=$(printf '%s\n' "$filtered" | grep -c . || true)
+    waived=$((before_n - after_n))
+    [ "$waived" -gt 0 ] && echo "redaction-scan: ledger waived $waived finding(s) via: $snippet" >&2
     remaining=$filtered
   done < "$INSPECTED"
   if [ "$entries" -eq 0 ]; then

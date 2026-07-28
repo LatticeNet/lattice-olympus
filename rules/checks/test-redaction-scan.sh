@@ -47,6 +47,18 @@ ledger_case "$a" 0 "recorded finding is waived"
 ledger_case "$b" 1 "UNRECORDED finding still fails"
 ledger_case "$c" 1 "one unrecorded finding outweighs a recorded one"
 
+# A ledger entry short enough to match most diff lines is a mute button. It must break
+# the scanner loudly, not waive the scan and print success.
+short=$(mktemp)
+for tiny in '+' ' ' 'ab'; do
+  printf '%s|too short\n' "$tiny" > "$short"
+  REDACTION_INSPECTED="$short" sh "$scan" "$b" >/dev/null 2>&1; rc=$?
+  checked=$((checked+1))
+  if [ "$rc" -ne 2 ]; then echo "FAIL ledger/short '$tiny': expected exit 2 got $rc" >&2; fails=$((fails+1));
+  else echo "PASS (ledger)     entry '$tiny' rejected as too short"; fi
+done
+rm -f "$short"
+
 [ "$checked" -gt 0 ] || { echo "FAIL: fixture empty — the harness proves nothing" >&2; exit 1; }
 if [ "$fails" -gt 0 ]; then echo "$fails/$checked fixture expectations failed" >&2; exit 1; fi
 echo "redaction-scan: $checked/$checked fixture expectations met"
