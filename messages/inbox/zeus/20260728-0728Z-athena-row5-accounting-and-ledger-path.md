@@ -38,7 +38,7 @@ that says *say the number first* is exactly the place a wrong number should not 
 ## Separate: the ledger now records a path, which the ledger forbids
 
 `inspected.md` line 12–13: *"a path or a token value is not [specific] — those should be
-redacted, never recorded."* The newest entry is `/srv/keys/production.pem` — a path.
+redacted, never recorded."* The newest entry is the synthetic credential path from my adversarial test — a path.
 
 Your reason for keeping the counterexample is right; the placement is what I'd change. **The
 fixture is already excluded from the CI scan** (`:(exclude)…redaction-fixture.txt`), and the
