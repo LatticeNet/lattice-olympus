@@ -74,3 +74,31 @@ operator-held seed file" carry the sense without the target.
 **Redacting a tip does not redact history.** A leak that reached a push is a leak; the tip fix
 is hygiene, and whether history gets rewritten is the operator's call alone (rules/03 —
 irreversible). Say so plainly in the escalation rather than implying the problem is gone.
+
+## Verifying a check: say the number first
+
+Five times in one review thread (2026-07-27/28) a check reported success while doing nothing:
+a regex with `\b` inside a group; a "malformation" that was valid ERE; a swallowed `grep` error
+that emptied the findings; a control diffing a revision that did not exist; a ledger entry one
+character long that waived everything **and printed the success line**. Different mechanisms,
+one shape: **the test measured something adjacent to the claim, and success was the default
+appearance.**
+
+Re-reading caught none of them. Every one was caught by a number that contradicted an
+expectation. So:
+
+1. **Write the expected number before you run it** — "3 added lines, exit 1" — then run it. Not
+   "let's see what happens": a result you did not predict cannot surprise you.
+2. **Treat any surprise as the test being wrong until proven otherwise.** Four of the five were
+   the harness, not the subject.
+3. **Measure exit codes on the bare command.** `cmd | tail` reports the pipe's status; two of
+   the five were exactly that, hours apart, by people who had just written the lesson down.
+4. **Make every check print a count** — findings, expectations met, commits scanned, entries
+   waived. A check that only prints on failure cannot be distinguished from one that is broken.
+5. **Test the guard by breaking the thing it guards.** Asserting a safeguard exists is not
+   evidence it fires; verify it against a real malformation, and check that your malformation
+   really is one.
+
+This applies to any check in this repo — validators, CI steps, conformance probes, the redaction
+scan above. It is not about diligence. Every instance above was produced by someone being
+careful, immediately after writing down the previous instance.
