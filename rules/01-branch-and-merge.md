@@ -65,6 +65,27 @@ git push origin feat/<handle>-task<NNNN>-<slug>    # keep the branch for the rec
 
 Then push the Olympus side: finish letter + task status + status board.
 
+### 5.1 Multi-worktree hazard: never let a failed checkout reach a destructive command
+
+Every seat runs several worktrees of the same repo. **`git checkout <branch>` FAILS if that
+branch is checked out in another worktree** — including your own other worktree. That failure is
+survivable; what is not is a `||` fallback or an ignored exit code letting the next command run
+anyway. Field incident (2026-07-28): a failed `checkout integration` was swallowed, and the
+following `git reset --hard origin/integration` rewrote **the branch the seat was standing on**,
+silently retargeting a live task branch. Nothing was lost — remote and reflog both had it — but
+only because the work had been pushed.
+
+- Prefer **`git switch --detach origin/integration`** (or `git checkout --detach`): a detached
+  HEAD cannot collide with another worktree, so the operation has no failure mode to swallow.
+- If you do check out a branch, **let a failure stop the script** — `set -e`, no `||` fallback
+  before anything destructive. A `reset --hard` must never inherit an unverified assumption
+  about which branch it is on.
+- Verify the target *before* the destructive command, not after: `git rev-parse --abbrev-ref
+  HEAD` costs nothing.
+
+Same principle as the checks in rules/04: **a guard that fails quietly is worse than no guard**,
+because the destructive step then runs with false confidence.
+
 ## 6. Pulling someone's progress
 
 | Case | Do |

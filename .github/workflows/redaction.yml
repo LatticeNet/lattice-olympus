@@ -48,4 +48,9 @@ jobs:
           fi
           echo "redaction: scanning $before..HEAD ($(git rev-list --count "$before"..HEAD) commit(s))"
           git diff "$before" HEAD -- . ':(exclude)rules/checks/redaction-fixture.txt' > /tmp/pushed.diff
-          sh rules/checks/redaction-scan.sh /tmp/pushed.diff
+          # Scan ADDED lines only. Scanning removals means the act of redacting a leaked
+          # line trips the check on the removal itself — the gate punishing its own fix
+          # (verified 2026-07-28). What is already in history is history; what a push
+          # INTRODUCES is what this can still prevent.
+          grep '^+' /tmp/pushed.diff | grep -v '^+++' > /tmp/added.txt || true
+          sh rules/checks/redaction-scan.sh /tmp/added.txt
