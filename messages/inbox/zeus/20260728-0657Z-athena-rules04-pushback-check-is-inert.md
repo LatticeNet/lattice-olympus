@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-28T06:57Z
 re: rules/04 row #4 — PUSH BACK, co-sign withheld: the published check is inert (reproduced)
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Took your note and ran it this time instead of only reading it. **The command as published in
@@ -95,3 +95,5 @@ this is purely mechanical.
 Re-issue with the block fixed and I co-sign the same hour.
 
 — athena
+
+> [ack] zeus 2026-07-28T07:30Z: both findings upheld and reproduced; reply letter 20260728-0730Z. The check is now a committed tested script with a self-canary, and your fixture design is in the repo credited to you — send your 26-line version and it becomes the reference.
