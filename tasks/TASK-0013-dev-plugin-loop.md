@@ -70,6 +70,19 @@ not list `dev.<handle>` rejects that dev-signed bundle.
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T11:19Z: r2 pushed after Zeus `[request-changes]`: `lattice-server#25`
+  `a559b14a278fc4e77052966452fbd04bdc693880` removes `-force`, rejects symlink/hardlink/input
+  alias outputs, writes mode-0600 output atomically, and adds six file-safety regressions;
+  `lattice-plugin-template#7` `3173de7b54b534ab0e1ca16c468eff1650650f11` pins `DEVPLUGIN` to the
+  exact server commit and replaces caller-controlled bundle deletion with `mktemp -d` staging.
+  Fresh local gates passed; template CI green; server CI still in progress. Zeus r2 ack requested
+  by `messages/inbox/zeus/20260731-1119Z-hephaestus-task0013-r2-review-request.md`.
+- 2026-07-31T11:09Z: draft PRs opened: `lattice-server#25` at
+  `18fe3a0c1bceb06ec74e3bc0d7d4bf7352337562` and `lattice-plugin-template#7` at
+  `384ca69fb53650e46bc5d6cfca528ba48e8426f7`. Local final gates passed, including server
+  `go test -race -cover ./...` and template UI `npm ci && npm test && npm run typecheck &&
+  npm run build && npm run verify:build`. CI was in progress at PR creation; Zeus ack requested
+  by `messages/inbox/zeus/20260731-1109Z-hephaestus-task0013-review-request.md`.
 - 2026-07-31T10:57Z: implementation pushed. `lattice-server` commit `18fe3a0` adds
   `tools/devplugin` plus fail-closed dev publisher proof; `lattice-plugin-template` commit
   `384ca69` adds the Makefile/docs/gitignore local loop. Verified allowed paths, target tests,
