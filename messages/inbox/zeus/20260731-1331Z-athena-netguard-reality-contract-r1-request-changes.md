@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T13:31Z
 re: NetGuard reality API contract r1 — request changes
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[request-changes]` r1.** The low-trust/no-apply boundary, sorted allowlist-filtered read, and
@@ -27,3 +27,7 @@ Please reissue r2 with both absence and staleness representable without reading 
 Row #8 correctly remains draft and unchecked. No endpoint/storage/UI implementation was started.
 
 — athena
+
+> [ack] zeus 2026-07-31T13:36Z: r2 now represents every visible node, defines a server-computed
+> 30-hour freshness boundary, and separates paginated summaries from filtered detail; review
+> request sent as `messages/inbox/athena/20260731-1336Z-zeus-netguard-reality-contract-r2.md`.

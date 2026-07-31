@@ -8,8 +8,8 @@ Suggested conventions (adapt per project): idempotency key + optimistic version 
 ## 0. Enum literals (highest-order contract)
 
 ```
-<object>.<field> ∈ value_a | value_b | value_c
-…
+NetGuardRealitySummary.snapshot_status ∈ unknown | fresh | stale
+NetGuardRealityDetail.snapshot_status ∈ unknown | fresh | stale
 ```
 
 ## 1. Plugin UI bridge protocol v1 (owner: athena; consumers: every plugin UI; host: dashboard; steward: zeus)
@@ -89,18 +89,46 @@ policy, enqueue an apply task, approve a plan, or bypass the existing reviewed a
 
 ### 2.2 Operator/dashboard read
 
-- **Route**: `GET /api/netguard/reality` behind `netguard:read`; optional `?node_id=<id>`.
-- **Response**: `{"realities":[{"reality":<GuardNodeReality>,"received_at":<RFC3339>}]}`, sorted
-  by `reality.node_id`. Without a filter it contains only nodes allowed by the principal's server
-  allowlist. With a filter, missing and unauthorized nodes both return `404 not_found`.
-- The read route returns normalized fields only. It exposes no agent token, source address, raw
-  request, or collector stderr. Consumers must label foreign tables as unmanaged and must treat a
-  missing/stale snapshot as unknown, never as proof that the node matches desired policy.
+- **Route and visibility**: `GET /api/netguard/reality` behind `netguard:read`. With
+  `?node_id=<id>` it returns one node detail. Without `node_id`, it returns a node-id-sorted summary
+  page over the principal's visible node inventory, including visible nodes that have never
+  reported a snapshot. Principal server-allowlist filtering happens before pagination. Summary
+  pagination uses opaque `cursor` plus `limit` (default 100, maximum 500); `node_id` is mutually
+  exclusive with `cursor`/`limit`.
+- **Server-authoritative freshness**: `snapshot_status` is exactly `unknown|fresh|stale`.
+  `unknown` means no stored snapshot. For a snapshot, the server sets
+  `stale_after = normalized collected_at + 30 hours` (daily collection plus a six-hour delivery
+  buffer); it returns `fresh` before that instant and `stale` at or after it. The server computes
+  the status at response time and returns `stale_after`; clients must not substitute their own
+  threshold. `received_at` remains separately visible but is not the freshness clock.
+- **Unfiltered summary response**:
+
+  ```json
+  {"nodes":[{"node_id":"node-a","snapshot_status":"fresh","collected_at":"2026-07-31T13:00:00Z","received_at":"2026-07-31T13:00:01Z","stale_after":"2026-08-01T19:00:00Z","managed_sha":"","listener_count":2,"interface_count":3,"foreign_table_count":1},{"node_id":"node-b","snapshot_status":"unknown"}],"next_cursor":"opaque"}
+  ```
+
+  Unknown summaries omit snapshot-derived timestamps, hash, and counts. Full listeners,
+  interfaces, process/address data, and foreign-table names are never returned by the summary
+  list. `next_cursor` is omitted on the final page.
+- **Filtered detail response**:
+
+  ```json
+  {"node":{"node_id":"node-a","snapshot_status":"fresh","reality":<GuardNodeReality>,"received_at":"2026-07-31T13:00:01Z","stale_after":"2026-08-01T19:00:00Z"}}
+  ```
+
+  A visible node with no snapshot returns `200` with
+  `{"node":{"node_id":"node-b","snapshot_status":"unknown","reality":null,"received_at":null,"stale_after":null}}`.
+  A nonexistent or unauthorized filtered node returns `404 not_found`, so the route does not
+  enumerate hidden nodes.
+- Both read shapes expose normalized fields only and no agent token, source address, raw request,
+  or collector stderr. Consumers must label foreign tables as unmanaged and render both `unknown`
+  and `stale` as unknown posture, never as proof that the node matches desired policy.
 
 ### 2.3 Stable errors and concurrency
 
 - `400 bad_request`: invalid envelope/payload, node-id mismatch, bounds/grammar failure, missing
-  collection time, malformed/trailing/oversize JSON.
+  collection time, malformed/trailing/oversize JSON, invalid cursor/limit, or mixing `node_id`
+  with pagination parameters.
 - `401 invalid_node_token`: every agent authentication failure.
 - `404 not_found`: filtered read missing or unauthorized.
 - `409 guard_reality_stale`: older report, or same timestamp with different normalized content.

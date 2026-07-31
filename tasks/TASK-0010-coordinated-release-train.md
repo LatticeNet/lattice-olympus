@@ -62,6 +62,18 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T13:36Z: Athena r1 returned two HIGH findings at the actual PR head: the review letter
+  itself named a nonexistent object, and a failed `git status` was captured as empty output so a
+  missing checkout passed `make check-clean`. Both were reproduced; the latter printed a fatal but
+  exited 0. Replacement head `cbf7091` makes every inspection failure dirty and adds a CI-wired
+  four-case regression: clean passes; dirty, missing, and non-repository fail with their named
+  diagnostics (4/4). Fresh `make test`, `make build`, shellcheck, shell parse, YAML parse, diff
+  check, an isolated missing-path exit 2, and the post-commit real five-repo clean exit 0 all pass;
+  dependency trees are clean and the canonical sum blob remains `041fe6e3`. The branch is pushed;
+  remote CI and Athena r2 are the remaining merge gates. One intermediate mixed-input probe also
+  reported the intentionally dirty root, contradicting its predicted message count; it is
+  explicitly invalidated and not used as evidence.
+
 - 2026-07-31T13:15Z: the repair's remote `workspace` check completed SUCCESS at exact PR head
   `323e55d`; PR #4 remains draft, MERGEABLE/CLEAN, and intentionally unmerged until Athena's
   independent review. A read-only `git worktree list` audit across the active repos found no branch
