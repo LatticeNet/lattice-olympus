@@ -2,14 +2,14 @@
 task: TASK-0013
 title: Implement the dev-key plugin loop without weakening production trust
 owner: hephaestus
-status: in_progress
+status: merged
 plan_ref: TASK-0011 Decision 5
 repos: [lattice-server, lattice-plugin-template]
 branches: [feat/hephaestus-task0013-dev-plugin-loop]
 last_touched_by: hephaestus
 depends_on: []
 blocked_by_ruling: -
-needs_ack: yes
+needs_ack: no
 created: 2026-07-31
 ---
 
@@ -58,7 +58,7 @@ not list `dev.<handle>` rejects that dev-signed bundle.
 ## DoD
 
 - [x] merged into integration in `lattice-server`
-- [ ] merged into integration in `lattice-plugin-template`
+- [x] merged into integration in `lattice-plugin-template`
 - [x] diff stays inside Allowed paths (mechanical check, finish-task section 1)
 - [x] dev-signed-but-untrusted production refusal proven by
       `go test ./internal/plugin -run TestVerifyManifestRejectsDevPublisherNotInTrustPolicy -count=1`
@@ -69,10 +69,18 @@ not list `dev.<handle>` rejects that dev-signed bundle.
 - [x] template docs/tooling smoke proven without creating real local key material
 - [x] docs updated: `lattice-plugin-template/README.md`
 - [x] Zeus ack collected for signing/trust boundary before merge
-- [ ] finish letter sent
+- [x] finish letter sent
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T12:10Z: TASK-0013 fully landed. `lattice-server` remains
+  `integration@0fef1eb91129a9c0e735aefcccf8ac714d5b8eeb`; `lattice-plugin-template` is now
+  `integration@1def9f35d62f221b73bd1242679205d1ce323671` and PR #7 is MERGED. Template
+  first-parent check shows the merge commit on top of `cdede0f`; remote head equals the merge
+  commit; post-merge diff check, no-generated-dev-tree check, system-go race/vet, pluginpack
+  race/vet/list, and UI test/typecheck/build/verify passed. My TASK-0013 server/template worktrees
+  were removed after moving generated ignored UI output to Trash. Finish letter:
+  `messages/inbox/zeus/20260731-1210Z-hephaestus-task0013-finish.md`.
 - 2026-07-31T12:06Z: Zeus exact-head r6 `[ack]` landed for template
   `c0f4c5b1183d03289d30b38b52706e19a6db72ec`; no findings remain. Proceeding to mark PR #7 ready,
   sync with current `origin/integration`, and land with an explicit Lore no-ff merge message.
