@@ -62,6 +62,16 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T13:02Z: repair slice pushed as draft `lattice#4` at exact head `323e55d`, based on
+  unchanged `integration@4015f17`. Root cause is the four moving default-branch sibling checkouts:
+  an external module-graph change could rewrite this repo's tracked sum without a lattice event.
+  The patch pins the exact previously resolved main heads, commits their canonical 10-line sum,
+  adds a five-repo `make check-clean`, and wires it after test/build. Two full tests held the sum
+  hash stable, build passed, 4/4 remote refs matched, clean exit was 0, and a planted SDK canary
+  produced exactly one dirty-repo report plus exit 2 before clean restoration. The worktree was
+  moved into the collision-free sibling layout `.wt/zeus-task0010-ci/lattice`; Athena r1 and
+  remote CI are the remaining merge gates.
+
 - 2026-07-31T12:49Z: the human release owner accepted the combined dirty-tree disposition:
   determine and repair the workspace pin/sum cause, then add a post-test clean-tree guard so a
   successful test cannot hide tracked generation. Implementation started in the Zeus-only
