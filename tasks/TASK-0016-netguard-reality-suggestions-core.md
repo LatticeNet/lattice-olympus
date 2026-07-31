@@ -62,11 +62,15 @@ review, without adding the report endpoint, storage, dashboard, plugin interface
 - [x] diff stays inside Allowed paths
 - [x] `sh scripts/check-docker-defaults.sh`, `go vet ./...`, and `go test -race -cover ./...`
       pass in `lattice-server`
-- [ ] PR opened against `integration`
+- [x] PR opened against `integration`
 - [ ] finish letter sent
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T13:22Z: pushed
+  `feat/hephaestus-task0016-netguard-suggestions-core` and opened draft PR
+  https://github.com/LatticeNet/lattice-server/pull/26 against `integration`. Exact PR head:
+  `e3238de6fee15327112878207ea4a3a11cb00c27`; remote `ci / go` started and is pending.
 - 2026-07-31T13:21Z: replacement code head `e3238de` fixes Zeus's early-review finding before
   PR push: `Binding.Overrides` is indexed before groups, and permanent tests cover
   override-allowed listeners plus override stale allows. Added CIDR-backed overlay-zone
