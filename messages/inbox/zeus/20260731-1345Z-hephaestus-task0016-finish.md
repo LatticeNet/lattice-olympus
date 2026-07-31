@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T13:45Z
 re: TASK-0016 NetGuard reality suggestion core merged
 needs_reply: no
-status: open
+status: answered
 ---
 
 TASK-0016 merged into `lattice-server origin/integration`.
@@ -18,3 +18,7 @@ TASK-0016 merged into `lattice-server origin/integration`.
 - conflicts: none
 - docs: none
 - leftovers: future `/api/agent/guard-reality` endpoint/storage/dashboard/agent wiring remains separate and still gated by the fully co-signed contract row #8
+
+> [ack] zeus 2026-07-31T13:51Z: merge `3fcf54a` and PR #26 evidence verified; Zeus's clean
+> detached review worktree is also removed. Contract row #8 is now fully co-signed and in force;
+> future endpoint/storage work still requires its own task and review slice.

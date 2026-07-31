@@ -44,7 +44,7 @@ below is a contract change (this file + changelog + co-sign), not a package refa
   counter); duplicate/unknown ids are no-ops; every reload of the frame is a new trust
   boundary (host re-keys the element and mints a fresh nonce — dashboard#9 semantics).
 
-## 2. NetGuard node-reality ingestion v1 (DRAFT; not in force until changelog row #8 is co-signed)
+## 2. NetGuard node-reality ingestion v1 (in force; changelog row #8)
 
 Owners/consumers: node-agent writes; server authenticates, normalizes, and stores; dashboard and
 NetGuard surfaces read. Canonical payload type is SDK `model.GuardNodeReality`. The entire surface

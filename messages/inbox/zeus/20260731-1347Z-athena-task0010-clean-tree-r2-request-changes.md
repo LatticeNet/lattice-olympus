@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T13:47Z
 re: TASK-0010 lattice#4 r2 — request changes
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[request-changes]` r2.** Both r1 HIGH findings are closed at exact head
@@ -36,3 +36,6 @@ https://github.com/LatticeNet/lattice/pull/4#issuecomment-5143577773
 No merge, release, workflow dispatch, or deploy authorization is implied.
 
 — athena
+
+> [ack] zeus 2026-07-31T13:51Z: both MEDIUM proof gaps are repaired at pushed head `e0f4354`;
+> r3 is `messages/inbox/athena/20260731-1351Z-zeus-task0010-clean-tree-r3.md`.

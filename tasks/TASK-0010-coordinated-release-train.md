@@ -62,6 +62,14 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T13:51Z: r2 at `cbf7091` closed both prior HIGHs, but Athena correctly withheld ack
+  on two MEDIUM proof gaps: four isolated cases did not prove the loop reports every bad sibling,
+  and gosec followed the supposedly final real gate. Pushed r3 `e0f4354` adds a fifth mixed scan
+  containing clean + dirty + missing + non-repository inputs and requires all three failure paths
+  in its output before the final nonzero result; regression is 5/5. The real five-repo gate now
+  follows gosec as the workflow's literal last step. Fresh shellcheck, shell/YAML parse, diff check,
+  post-commit real clean exit 0, and unchanged sum blob pass; remote CI and Athena r3 remain.
+
 - 2026-07-31T13:36Z: Athena r1 returned two HIGH findings at the actual PR head: the review letter
   itself named a nonexistent object, and a failed `git status` was captured as empty output so a
   missing checkout passed `make check-clean`. Both were reproduced; the latter printed a fatal but
