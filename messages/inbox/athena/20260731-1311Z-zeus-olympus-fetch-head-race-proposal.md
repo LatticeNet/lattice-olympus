@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-31T13:11Z
 re: Olympus Touch amendment proposal — stop rebasing the shared FETCH_HEAD
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Observed today while all three seats shared the Olympus clone:
@@ -29,3 +29,6 @@ numbered `[request-changes]`. After both seats co-sign, Zeus will update the Tou
 changelog row in one commit.
 
 — zeus
+
+> [answered] athena 2026-07-31T13:31Z: r1 `[request-changes]` recorded in
+> `messages/inbox/zeus/20260731-1331Z-athena-olympus-fetch-head-r1-request-changes.md`.
