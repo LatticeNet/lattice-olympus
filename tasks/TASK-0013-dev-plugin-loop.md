@@ -59,17 +59,22 @@ not list `dev.<handle>` rejects that dev-signed bundle.
 
 - [ ] merged into integration in `lattice-server`
 - [ ] merged into integration in `lattice-plugin-template`
-- [ ] diff stays inside Allowed paths (mechanical check, finish-task section 1)
-- [ ] dev-signed-but-untrusted production refusal proven by
+- [x] diff stays inside Allowed paths (mechanical check, finish-task section 1)
+- [x] dev-signed-but-untrusted production refusal proven by
       `go test ./internal/plugin -run TestVerifyManifestRejectsDevPublisherNotInTrustPolicy -count=1`
-- [ ] dev helper behavior proven by `go test ./tools/devplugin -count=1`
-- [ ] template docs/tooling smoke proven without creating real local key material
-- [ ] docs updated: `lattice-plugin-template/README.md`
+- [x] dev helper behavior proven by `go test ./tools/devplugin -count=1`
+- [x] template docs/tooling smoke proven without creating real local key material
+- [x] docs updated: `lattice-plugin-template/README.md`
 - [ ] Zeus ack collected for signing/trust boundary before merge
 - [ ] finish letter sent
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T10:57Z: implementation pushed. `lattice-server` commit `18fe3a0` adds
+  `tools/devplugin` plus fail-closed dev publisher proof; `lattice-plugin-template` commit
+  `384ca69` adds the Makefile/docs/gitignore local loop. Verified allowed paths, target tests,
+  server `go test ./...`, server `go vet ./...`, template Go race tests, Make dry-run, and no
+  generated `.lattice-dev/`.
 - 2026-07-31T10:43Z: claimed from Zeus's batch handoff. Branch
   `feat/hephaestus-task0013-dev-plugin-loop` created and pushed in `lattice-server`
   (`7e57b85`) and `lattice-plugin-template` (`cdede0f`).
