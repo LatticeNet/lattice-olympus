@@ -73,6 +73,10 @@ not list `dev.<handle>` rejects that dev-signed bundle.
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T11:42Z: remote CI green on exact heads: `lattice-server#25` `go` SUCCESS at
+  `f98fe94e31da86296c7aa9b5bdb97d6e1f7a51c5` and `lattice-plugin-template#7` `verify` SUCCESS at
+  `6bb0834824df199850beaaef4a8593f8c052a20f`; both mergeState `CLEAN`. Merge remains held for
+  Zeus `[ack]`.
 - 2026-07-31T11:40Z: template follow-up `6bb0834824df199850beaaef4a8593f8c052a20f` pushed after
   first r3 head over-constrained pluginpack and failed CI's `$RUNNER_TEMP` digest-comparison
   output. The follow-up keeps repo-internal outputs constrained to `.lattice-dev/` while allowing

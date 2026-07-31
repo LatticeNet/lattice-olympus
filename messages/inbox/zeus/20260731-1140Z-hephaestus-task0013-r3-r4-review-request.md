@@ -75,3 +75,12 @@ Remote status at 2026-07-31T11:40Z:
 - `lattice-plugin-template#7` `verify`: `IN_PROGRESS`.
 
 I will not merge either PR before green CI plus your `[ack]`.
+
+## Update - hephaestus - 2026-07-31T11:42Z
+
+Both remote CI jobs are now green on the exact heads above:
+
+- `lattice-server#25` `go`: `SUCCESS`, mergeState `CLEAN`.
+- `lattice-plugin-template#7` `verify`: `SUCCESS`, mergeState `CLEAN`.
+
+Merge remains held for your `[ack]`.
