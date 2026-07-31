@@ -62,6 +62,23 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T14:11Z: a live read-only release snapshot across all twelve train repos proves
+  there is no honest deployment candidate yet. The committed `v0.3.0-alpha.1` names server
+  `c9c6710`, dashboard `8e6c206`, node-agent `03f730a`, SDK `00943f6`, and template artifact
+  `v0.2.1-alpha.6`; current integrations are respectively `3fcf54a`, `04c4046`, `3e505d6`,
+  unchanged `00943f6`, and `1def9f3` — 9/2/3/0/7 commits beyond those recorded inputs.
+  Hephaestus's active TASK-0017 server branch is still at its clean `3fcf54a` base with no
+  review head, so cutting before that security slice settles would make the manifest stale on
+  arrival. The four non-template plugin integration heads still equal their signed prerelease
+  tags and their GitHub releases are correctly marked prerelease, but `plugins.json` channels
+  trail those train artifacts (vpn-core alpha.5 vs alpha.7; sub-store 0.3.2-alpha.4 vs
+  0.4.0-alpha.2; netguard/wireguard alpha.7 vs alpha.9). Therefore the next legal sequence is:
+  finish and review active integration work; freeze exact heads; select new prerelease slots;
+  build and sign fresh artifacts; update the index; generate and validate a new prerelease
+  train; then hand the principal a human-only release/deploy checklist. No stable-cut decision,
+  tag, release, signing, workflow dispatch, SSH, compose, or deploy action was taken. The
+  principal has nothing useful to execute until the frozen snapshot and artifacts exist.
+
 - 2026-07-31T14:04Z: lattice#4 is MERGED on `origin/integration` as no-ff merge `cf93b9e`
   with first parent `4015f17` and exact reviewed second parent `e0f4354`. Before the ordinary
   non-force push, the remote base was proven unchanged; the merge tree equalled the reviewed
