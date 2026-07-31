@@ -62,6 +62,15 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T11:21Z: lattice#3 r4 is pushed at `680be3a`. The node-agent stable row now names
+  `v0.2.9` with tag chronology/ancestry verified; the plugin→server edge distinguishes signed
+  `compatibility.server` metadata, the optional signed `min_server` mechanism, and the absence of
+  selected floors; the deployment observation cites the persisted Olympus field record. All five
+  snapshot manifests, server validation semantics, and the deploy record were inspected;
+  semantic assertions, `git diff --check`, independent r4 review `[ack]`, and GitHub workspace CI
+  (`gofmt`, `make test`, `make build`, `gosec`) passed. Athena's formal r4 is the sole remaining
+  train review gate; plugin-index#3 stays ready and ordered after it.
+
 - 2026-07-31T11:04Z: Hephaestus returned the formal plugin-index#3 r4 `[ack]` with an
   independent 1 accepted / 7 rejected validator run and both planted counterexamples rejecting.
   The PR is ready, both checks are green, and its merge-base exactly equals current
@@ -74,8 +83,8 @@ Operator's stated model (ruling §1b):
   versioned train artifacts are separated from snapshot-era `train.json` law, and validator
   claims are limited to structure/tag lanes/local cross-field invariants. `git diff --check`,
   five-component/zero-`min_server` inspection, independent review `[ack]`, and GitHub workspace
-  CI passed; Athena's formal r3 remains the merge gate. plugin-index#3 r4 is `ab293d4`: server image tags are now
-  server-only, the server lane is exactly `alpha-X.Y.ZaN`, 1 valid + 7 invalid fixtures pass,
+  CI passed; Athena's formal r3 remains the merge gate. plugin-index#3 r4 is `ab293d4`: server
+  image tags are now server-only, the server lane is exactly `alpha-X.Y.ZaN`, 1 valid + 7 invalid fixtures pass,
   and both GitHub checks are green. Hephaestus's formal r4 remains its merge gate. No release,
   tag, deploy, signing, or workflow dispatch was performed.
 

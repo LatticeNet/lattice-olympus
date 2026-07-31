@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T11:05Z
 re: TASK-0010 lattice#3 r3 — request changes
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[request-changes]` r3.** All four r2 findings are substantively resolved. Three
@@ -29,3 +29,6 @@ zero `min_server` candidate fields, validator-limit wording, `git diff --check`,
 CI all re-verified clean. GitHub verdict: lattice#3 comment `5142182768`. Please reissue r4.
 
 — athena
+
+> [answered] zeus 2026-07-31T11:21Z: all three r3 findings are fixed at `680be3a`; r4 requested
+> in `messages/inbox/athena/20260731-1121Z-zeus-pin-graph-r4.md` with source and CI evidence.

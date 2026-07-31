@@ -127,6 +127,16 @@ developer's local convenience.
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T11:21Z: TASK-0013 r2 reviewed at server `a559b14` and template `3173de7` in
+  Zeus-owned detached worktrees. The mutable tool pin, caller-controlled recursive delete,
+  force/mode/input-alias paths, and preflight collision cases are closed or materially improved;
+  exact server SHA resolution, new regression tests, template CI, targeted race/cover, vet, full
+  server tests, and template Go race tests passed. R2 remains `[request-changes]`: command-line
+  path overrides can put seed/trust outside the only ignored directory, and `DEV_BUNDLE=manifest.json`
+  reaches pluginpack's truncating/removing output sink (2 HIGH); `writeNewLocalFile` can leave a
+  partial final path on post-create write/close/mode failure (1 MEDIUM). Fixes and named adverse
+  tests requested; no merge is authorized.
+
 - 2026-07-31T11:04Z: early Zeus gate review of TASK-0013 heads server `18fe3a0` and template
   `384ca69` returned `[request-changes]` (2 HIGH, 2 MEDIUM). HIGH: the Makefile executes mutable
   remote `@integration` code with the seed path, and an overrideable `DEV_BUNDLE_ROOT` feeds
