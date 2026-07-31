@@ -75,4 +75,5 @@ in memory. Claim the collection name here first.
 
 | Collection | Content | Owner | State | TASK |
 |---|---|---|---|---|
+| GuardRealitySnapshots | Latest normalized low-trust `GuardNodeReality` per node plus server `received_at`; plaintext by design because raw payloads, tokens, stderr, key material, and secrets are forbidden from this collection | hephaestus | in_progress | TASK-0017 |
 | | | | | |
