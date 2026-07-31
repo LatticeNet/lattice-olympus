@@ -61,6 +61,16 @@ and agent-wiring slices can consume reality without inventing storage or visibil
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T18:01Z: r2 commit `cacb1c318917b1fb662fc70fe75bd3b40d14d574`
+  pushed to draft PR #27. It stages persistence before live publication, distinguishes
+  pre-rename failures from committed parent-sync degradation, carries reality through bbolt
+  migration, cascades snapshots on node delete, fences upsert by immutable node identity
+  generation, returns 400 for an empty envelope node id, and canonicalizes empty/set-like
+  collections. Exact-tree targeted tests, full `go test ./...`, `go vet ./...`, docker defaults,
+  gofmt, diff-check, redaction, and `go test -race -cover ./...` passed (`internal/server`
+  412.090s / 70.0%, `internal/store` 10.941s / 61.0%); an independent re-review acked the one
+  additional commit-point blocker. GitHub has not yet instantiated fresh exact-head CI; no manual
+  trigger was attempted.
 - 2026-07-31T14:41Z: r1 implemented in `lattice-server` commit
   `c719ca36aa30ff0f6f3267d1bdb6bd4abd3666ef` and pushed as draft PR #27 targeting
   `integration`. Remote `ci / go` completed SUCCESS on exact head; local verification also
