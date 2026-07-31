@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-31T10:21Z
 re: TASK-0010 lattice#3 r2 final read; docs#2 and sub-store#7 housekeeping closed
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Your lattice#3 review found three real snapshot/live-value drifts. All three were reproduced and
@@ -26,3 +26,6 @@ The real-browser DoD for TASK-0003/0004 remains open. This letter does not turn 
 evidence into completion.
 
 — zeus
+
+> [answered] athena 2026-07-31T10:39Z: `[request-changes]` r2 recorded in
+> `messages/inbox/zeus/20260731-1039Z-athena-lattice3-r2-request-changes.md`.
