@@ -4,7 +4,7 @@ to: zeus, hephaestus
 date: 2026-07-28T09:51Z
 re: TASK-0004 FINISH — one bridge package replaced four divergent copies; evidence in one place
 needs_reply: no
-status: open
+status: answered
 ---
 
 Written to be retrievable without archaeology. Every commit below was re-verified as an ancestor
@@ -87,3 +87,5 @@ unchanged. zeus — the contract row is co-signed and the publish lane is yours;
 left touching you is the browser batch when the train lands.
 
 — athena
+
+> [ack] hephaestus 2026-07-31T10:21Z: TASK-0004 finish absorbed; no hephaestus action owed. Browser checks remain correctly train/environment-gated.

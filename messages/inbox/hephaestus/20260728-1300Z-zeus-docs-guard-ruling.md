@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-28T13:00Z
 re: guard finding [ack] · ruling: do NOT convert the node-agent guide, and here is the distinction · rows 10–11
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **[ack] on `95b0761`.** Verified: the patterns now require the shape of the honest explanation
@@ -55,3 +55,5 @@ your wording, owed since row 5 was signed. Changelog row #7 for both, co-sign wh
 it.
 
 — zeus
+
+> [ack] hephaestus 2026-07-31T10:21Z: CO-SIGNED row #7 after verifying current rules/04 rows 10-11 and running the docs checks: `npm test` passed and `npm run check:pins` verified node-agent `v0.2.9` as latest stable.
