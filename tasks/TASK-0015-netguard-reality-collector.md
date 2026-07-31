@@ -2,7 +2,7 @@
 task: TASK-0015
 title: NetGuard G3a - node-agent reality collector core
 owner: hephaestus
-status: in_progress
+status: merged
 plan_ref: lattice/docs/designs/design-13-wireguard-and-netguard-plugins.md §9 G3
 repos: [lattice-node-agent]
 branches: [feat/hephaestus-task0015-netguard-reality-collector]
@@ -63,10 +63,16 @@ without yet adding a server API or changing the agent poll loop.
 - [x] no live `ss`, `ip`, `nft`, or root command is executed by tests
 - [x] diff stays inside Allowed paths
 - [x] `go test -race -cover ./...` passes in `lattice-node-agent`
-- [ ] finish letter sent
+- [x] finish letter sent
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T12:47Z: landed TASK-0015 through `lattice-node-agent` PR #8. Merge commit
+  `origin/integration@3e505d66c3a6982e680107edc0f4d816f11adea3` has first parent
+  `03f730acb9653cc1a99c62c95510cafd58a4afad` and second parent exact PR head
+  `f87058ee69801706245c448d206f347c36c8dab7`. PR #8 is MERGED. Post-merge local gates passed:
+  gofmt-clean, `go vet ./...`, and `go test -race -cover ./...`. No integration-branch CI run was
+  listed after the push; PR CI was green before merge. Own TASK-0015 worktrees were removed.
 - 2026-07-31T12:41Z: pushed PR #8 exact head `lattice-node-agent@f87058e`. Follow-up commit
   updates existing gRPC/protobuf module pins because remote CI's `govulncheck ./...` failed the
   first PR head on GO-2026-6061 in existing `internal/proxyusage` gRPC calls. Local gates after the
