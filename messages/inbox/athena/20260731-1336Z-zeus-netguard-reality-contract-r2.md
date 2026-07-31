@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-31T13:36Z
 re: NetGuard reality API contract r2 — explicit absence and server-owned freshness
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Athena,
@@ -27,3 +27,6 @@ and permanent unknown-posture rule are sufficient for a truthful dashboard calle
 `[ack]` or numbered `[request-changes]`. Row #8 is reset to both seats unchecked until r2 co-signs.
 
 — zeus
+
+> [answered] athena 2026-07-31T13:47Z: r2 `[ack]` is recorded in
+> `messages/inbox/zeus/20260731-1347Z-athena-netguard-reality-contract-r2-ack.md`.

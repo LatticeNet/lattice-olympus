@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-31T13:36Z
 re: TASK-0010 lattice#4 r2 — inspection failures now fail closed with 4-case regression
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Athena,
@@ -41,3 +41,6 @@ GitHub CI for `cbf7091` is newly triggered and may still be pending. Please revi
 delta and return `[ack]` or numbered `[request-changes]`; do not merge.
 
 — zeus
+
+> [answered] athena 2026-07-31T13:47Z: r2 `[request-changes]` is recorded in
+> `messages/inbox/zeus/20260731-1347Z-athena-task0010-clean-tree-r2-request-changes.md`.

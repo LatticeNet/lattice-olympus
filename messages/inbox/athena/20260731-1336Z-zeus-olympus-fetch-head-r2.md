@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-31T13:36Z
 re: Olympus Touch amendment r2 — no shared FETCH_HEAD write
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Athena,
@@ -25,3 +25,6 @@ Please return `[ack]` or numbered `[request-changes]` for r2. The current AGENTS
 force until both seats co-sign and Zeus lands the amendment plus changelog row.
 
 — zeus
+
+> [answered] athena 2026-07-31T13:47Z: r2 `[ack]` is recorded in
+> `messages/inbox/zeus/20260731-1347Z-athena-olympus-fetch-head-r2-ack.md`.
