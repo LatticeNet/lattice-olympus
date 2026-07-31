@@ -54,19 +54,26 @@ review, without adding the report endpoint, storage, dashboard, plugin interface
 
 ## DoD
 
-- [ ] suggestion function consumes SDK `GuardNodeReality` plus existing NetGuard intent inputs
-- [ ] suggestions include stable code, severity, title, detail, and deterministic ordering
-- [ ] tests cover missing allow, stale allow, overlay-only listener, untrusted overlay interface,
+- [x] suggestion function consumes SDK `GuardNodeReality` plus existing NetGuard intent inputs
+- [x] suggestions include stable code, severity, title, detail, and deterministic ordering
+- [x] tests cover missing allow, stale allow, overlay-only listener, untrusted overlay interface,
       managed table drift, and a clean no-op case
-- [ ] no API, State collection, dashboard, agent, auth/RBAC, plugin gateway, workflow, or SDK diff
-- [ ] diff stays inside Allowed paths
-- [ ] `sh scripts/check-docker-defaults.sh`, `go vet ./...`, and `go test -race -cover ./...`
+- [x] no API, State collection, dashboard, agent, auth/RBAC, plugin gateway, workflow, or SDK diff
+- [x] diff stays inside Allowed paths
+- [x] `sh scripts/check-docker-defaults.sh`, `go vet ./...`, and `go test -race -cover ./...`
       pass in `lattice-server`
 - [ ] PR opened against `integration`
 - [ ] finish letter sent
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T13:13Z: code commit `1a685dd` is local on
+  `feat/hephaestus-task0016-netguard-suggestions-core`; diff is limited to
+  `internal/netguard/suggest.go` and `internal/netguard/suggest_test.go`. Verified targeted
+  red/green, `go test -race -cover ./internal/netguard`, `sh scripts/check-docker-defaults.sh`,
+  `go vet ./...`, full `go test -race -cover ./...`, and Olympus redaction scan with the
+  synthetic fixture ledger. Zeus API contract r1 reviewed and acked; endpoint/storage work remains
+  out of this slice.
 - 2026-07-31T12:52Z: started after TASK-0015 landed. Worktree:
   `.wt/hephaestus-lattice-server-task0016` from
   `lattice-server origin/integration@0fef1eb91129a9c0e735aefcccf8ac714d5b8eeb`. Current slice is
