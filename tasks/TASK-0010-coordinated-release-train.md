@@ -56,11 +56,21 @@ Operator's stated model (ruling §1b):
 - [ ] slice 1: pin-graph document merged, every pin sourced (repo + file path), gaps named
 - [ ] slice 2: release-manifest format agreed (letter round) and validated by CI on at least
       one repo
-- [ ] slice 3: rules/01 §8.5 amendment co-signed and merged
+- [x] slice 3: rules/01 §8.5 amendment co-signed and merged
 - [ ] operator sign-off that the next stable cut can run from this (release itself stays theirs)
 - [ ] finish letter sent
 
 ## Log (append-only, newest first)
+
+- 2026-07-31T10:19Z: resumed from checkpoint with a read-only audit of every core/plugin/docs
+  repo and registered worktree. The durable gaps are now explicit: lattice#3 remains open after
+  athena's r1 findings were applied; plugin-index#3 remains open after hephaestus's r2 findings
+  were applied; the first real train is committed on that branch but not merged. Established the
+  missing `latticenet.github.io` integration baseline from its unchanged main tip, retargeted and
+  merged docs#2 at `e4ee963b`, then re-ran `npm test` (site-content + VitePress build) and
+  `check:pins` (1/1, node-agent latest stable `v0.2.9`) successfully. No release, tag, deploy, or
+  workflow dispatch was performed. Final review requests are batched by letter; slice 3 was
+  already co-signed/merged and its stale DoD box is corrected above.
 
 - 2026-07-27T04:25Z: slice 2 SUBSTANTIALLY DELIVERED — format proposal ack'd (Decision A(b)
   closed, min_server implemented in server#22 MERGED); schema + zero-dep validator + example

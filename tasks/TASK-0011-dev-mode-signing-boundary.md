@@ -127,6 +127,13 @@ developer's local convenience.
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T10:20Z: current-state audit confirmed the policy is ratified but the ergonomics
+  slice never started. Server#24 (trust endpoint + startup warning, head `a84c3fe`) remains open;
+  dashboard#11 is merged at integration `04c4046`; the screenshot/browser proof still requires a
+  real dev-trusted environment and is not claimed. Batched hephaestus a security review of
+  server#24 plus the implementation handoff: claim the next available task number, stay inside
+  Decision 5's allowed surface, and keep workflows/pluginsign/trust evaluation out of scope.
+
 - 2026-07-28T10:25Z: claimed by zeus. Drafting the policy record; hephaestus's implementation
   slice stays closed until it exists (his condition, correctly stated).
 

@@ -1,12 +1,13 @@
 # Status · zeus (writable by me only)
 
-- **Current task**: TASK-0011 · F8 dev-mode trust boundary | in_progress — policy drafted, 2 questions with the operator
-- **Branch**: `feat/zeus-task0010-train-schema` (plugin-index#3 r3) · `docs/zeus-task0010-pin-graph` (lattice#3)
-- **Doing (2026-07-28)**: 3 signing waves done (all CI-confirmed) · redaction check hardened through 4 review rounds and now CI-enforced · rows 4/5/6 co-signed · PR#4 ack + sub-store 0.4.0-alpha.2 signed · train schema r3 · F8 policy drafted
-- **Blocked**: —
-- **Next**: hephaestus r3 on the schema · operator answers (package visibility · git history · first v0.3.0 train · 2 F8 questions) · then TASK-0011 slice scoping for hephaestus
+- **Current task**: TASK-0010 · coordinated release train | in_progress — three merge gates remain; TASK-0011 policy is ratified and its implementation slice is being routed
+- **Branch**: `docs/zeus-task0010-pin-graph` (lattice#3) · `feat/zeus-task0010-train-schema` (plugin-index#3) · `feat/zeus-task0012-trust-endpoint` (server#24)
+- **Doing (2026-07-31)**: audited 15 repos + every registered worktree without mutation · established docs-site `integration` · merged docs#2 at `e4ee963b` with post-merge site/pin verification · closed sub-store#7 as landed at `0ea155e5`
+- **Blocked**: merge gates only — athena final read of lattice#3; hephaestus r3 of plugin-index#3 + security review of server#24 + rules row #7 co-sign
+- **Next**: merge the green reviewed PRs in order · close TASK-0010 with honest stable-release gap · route TASK-0011 tooling slice to hephaestus · preserve browser/deploy gates as unverified
 - **Recent** (≤5):
-  - 2026-07-26: operator ruling batch landed — all 7 answered + release train (0010) + scope widened (F6 blocking) + gh org authority granted
-  - 2026-07-26: TASK-0007 DONE — 6 closed-as-landed, 12 [ack] merge-ready, all suites green
-  - 2026-07-26: TASK-0001 DONE — 8/8 [ack] verdicts, PR comments posted, follow-ups drafted
-  - 2026-07-25: the mountain stands — Olympus instantiated
+  - 2026-07-31: docs release-pin workflow merged to its new integration line; `npm test` + pin check 1/1 green
+  - 2026-07-31: worktree audit found no branch/path collision; dirty shared clones and other-seat `.omc/` artifacts left untouched
+  - 2026-07-28: first `v0.3.0-alpha.1` train assembled; F8 policy ratified; five plugin prereleases published by the operator
+  - 2026-07-28: rules rows 4/5/6 co-signed; row 7 still awaits hephaestus
+  - 2026-07-26: TASK-0001 and TASK-0007 review backlogs completed
