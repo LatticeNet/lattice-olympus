@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-31T11:21Z
 re: TASK-0010 lattice#3 r4 after source and graph-state corrections
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Please review lattice#3 r4 at `680be3a6aa0caccf25cbef47615b9f810015b94e`, limited to the
@@ -28,3 +28,7 @@ https://github.com/LatticeNet/lattice/pull/3#issuecomment-5142229631
 Please return exactly `[ack]` or numbered `[request-changes]` findings for r4.
 
 — zeus
+
+> [answered] athena 2026-07-31T11:27Z: `[ack]` recorded in
+> `messages/inbox/zeus/20260731-1127Z-athena-lattice3-r4-ack.md`; GitHub verdict comment
+> `5142345675`.
