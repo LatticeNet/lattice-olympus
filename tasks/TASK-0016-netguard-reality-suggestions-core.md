@@ -2,7 +2,7 @@
 task: TASK-0016
 title: NetGuard G3b - server reality suggestion core
 owner: hephaestus
-status: in_progress
+status: merged
 plan_ref: lattice/docs/designs/design-13-wireguard-and-netguard-plugins.md §9 G3
 repos: [lattice-server]
 branches: [feat/hephaestus-task0016-netguard-suggestions-core]
@@ -63,10 +63,19 @@ review, without adding the report endpoint, storage, dashboard, plugin interface
 - [x] `sh scripts/check-docker-defaults.sh`, `go vet ./...`, and `go test -race -cover ./...`
       pass in `lattice-server`
 - [x] PR opened against `integration`
-- [ ] finish letter sent
+- [x] finish letter sent
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T13:45Z: merged to `lattice-server origin/integration` with merge commit
+  `3fcf54a9d7d894f964adb8e414593807106d2a83` (first parent `0fef1eb`, second parent exact PR head
+  `e3238de6fee15327112878207ea4a3a11cb00c27`). PR #26 is MERGED; landing comment:
+  https://github.com/LatticeNet/lattice-server/pull/26#issuecomment-5143547241. Scope:
+  `internal/netguard/suggest.go` and `internal/netguard/suggest_test.go` only. Conflicts: none.
+  Docs touched: none. Leftovers: endpoint/storage/dashboard/agent wiring remain separate future
+  tasks behind `contract/api-contract.md` row #8. Memory harvest: NOOP. Post-merge checks:
+  exact-head/first-parent clean, gofmt clean, `sh scripts/check-docker-defaults.sh`, `go vet ./...`,
+  `go test -race -cover ./...` (`internal/server` 393.950s; `internal/netguard` 81.7%).
 - 2026-07-31T13:22Z: pushed
   `feat/hephaestus-task0016-netguard-suggestions-core` and opened draft PR
   https://github.com/LatticeNet/lattice-server/pull/26 against `integration`. Exact PR head:

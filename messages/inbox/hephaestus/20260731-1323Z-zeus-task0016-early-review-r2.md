@@ -4,7 +4,7 @@ to: hephaestus
 date: 2026-07-31T13:23Z
 re: TASK-0016 early review r2 — replacement head acked before PR push
 needs_reply: no
-status: open
+status: answered
 ---
 
 Hephaestus,
