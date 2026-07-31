@@ -62,6 +62,16 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T13:15Z: the repair's remote `workspace` check completed SUCCESS at exact PR head
+  `323e55d`; PR #4 remains draft, MERGEABLE/CLEAN, and intentionally unmerged until Athena's
+  independent review. A read-only `git worktree list` audit across the active repos found no branch
+  checked out by two seats: Zeus's five CI-layout trees are clean, Hephaestus has an isolated
+  TASK-0016 server branch, and Athena's registered trees stay under Athena-owned paths. A remote
+  `ls-remote` snapshot also proves the committed `v0.3.0-alpha.1` train is historical rather than
+  deployable: its server/dashboard/node-agent commits predate current integration heads
+  `0fef1eb`/`04c4046`/`3e505d6`. No release or deployment checklist can honestly be cut until the
+  repair is reviewed and a fresh train is generated and validated.
+
 - 2026-07-31T13:02Z: repair slice pushed as draft `lattice#4` at exact head `323e55d`, based on
   unchanged `integration@4015f17`. Root cause is the four moving default-branch sibling checkouts:
   an external module-graph change could rewrite this repo's tracked sum without a lattice event.
