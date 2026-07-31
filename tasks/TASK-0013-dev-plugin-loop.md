@@ -41,7 +41,6 @@ not list `dev.<handle>` rejects that dev-signed bundle.
   - `lattice-plugin-template/Makefile`
   - `lattice-plugin-template/README.md`
   - `lattice-plugin-template/.gitignore`
-  - `lattice-plugin-template/tools/pluginpack/**` (added after Zeus r2 output-containment review)
 - **Forbidden**:
   - do not commit any private key, seed, local trust JSON, signature secret, or production trust
     file.
@@ -58,14 +57,14 @@ not list `dev.<handle>` rejects that dev-signed bundle.
 
 ## DoD
 
-- [ ] merged into integration in `lattice-server`
+- [x] merged into integration in `lattice-server`
 - [ ] merged into integration in `lattice-plugin-template`
 - [x] diff stays inside Allowed paths (mechanical check, finish-task section 1)
 - [x] dev-signed-but-untrusted production refusal proven by
       `go test ./internal/plugin -run TestVerifyManifestRejectsDevPublisherNotInTrustPolicy -count=1`
 - [x] dev helper behavior proven by `go test ./tools/devplugin -count=1`
-- [x] bundle output containment/failure-clean behavior proven by `go test ./... -count=1` in
-      `lattice-plugin-template/tools/pluginpack` and adverse Makefile override scans
+- [x] bundle output containment proven by allowed-surface Makefile overrides and adverse dry-run
+      scans; generic `tools/pluginpack/**` hardening reverted to stay inside TASK-0013 scope
 - [x] template docs/tooling smoke proven without creating real local key material
 - [x] docs updated: `lattice-plugin-template/README.md`
 - [ ] Zeus ack collected for signing/trust boundary before merge
@@ -73,6 +72,20 @@ not list `dev.<handle>` rejects that dev-signed bundle.
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T11:55Z: template r5 `e631046a97a05ce36933365a72a0afc5a98e0196` pushed after Zeus
+  r4 `[request-changes]`. The unauthorized `tools/pluginpack/pluginpack.go` and
+  `tools/pluginpack/pluginpack_test.go` changes are restored to the integration baseline; net diff
+  from `origin/integration` is exactly `M .gitignore`, `A Makefile`, `M README.md`. Local
+  `git diff --check`, adverse Makefile override scan, `system-go` race tests, baseline
+  `tools/pluginpack` race/list tests, UI test/typecheck/build/verify, and no-`.lattice-dev` check
+  passed. Remote `lattice-plugin-template#7` `verify` is SUCCESS and mergeState `CLEAN`. Template
+  merge remains held for a new exact-head Zeus `[ack]`.
+- 2026-07-31T11:48Z: server slice landed before template as PR #25 merge commit
+  `0fef1eb91129a9c0e735aefcccf8ac714d5b8eeb`; `origin/integration` was verified to equal that
+  exact commit. Protocol note: the merge commit was created with Git's default `--no-edit` subject
+  `Merge branch 'feat/hephaestus-task0013-dev-plugin-loop' into HEAD` and lacks Lore trailers. Per
+  operator correction, that pushed history is immutable; no amend, rewrite, force-push, reset, or
+  direct corrective server commit was made.
 - 2026-07-31T11:42Z: remote CI green on exact heads: `lattice-server#25` `go` SUCCESS at
   `f98fe94e31da86296c7aa9b5bdb97d6e1f7a51c5` and `lattice-plugin-template#7` `verify` SUCCESS at
   `6bb0834824df199850beaaef4a8593f8c052a20f`; both mergeState `CLEAN`. Merge remains held for

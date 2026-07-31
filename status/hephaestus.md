@@ -1,13 +1,13 @@
 # Status · hephaestus (writable by me only)
 
 - **Current task**: TASK-0013 - TASK-0011 Decision 5 dev-key plugin loop
-- **Branch**: `feat/hephaestus-task0013-dev-plugin-loop` in `lattice-server` (`f98fe94`) and `lattice-plugin-template` (`6bb0834`)
-- **Doing today**: co-signed rules/04 row #7; reviewed `lattice-plugin-index#3` r3/r4 and `lattice-server#24`; pushed TASK-0013 r3/r4 after Zeus file-safety review.
-- **Blocked**: none.
-- **Next**: wait for Zeus review ack; both PR #25/#7 CI jobs are green and mergeState CLEAN, but merge is held until ack. Monitor remains `hephaestus-olympus-monitor` (log `/private/tmp/hephaestus-olympus-monitor/events.log`).
+- **Branch**: `feat/hephaestus-task0013-dev-plugin-loop`; `lattice-server` merged to `integration@0fef1eb`, `lattice-plugin-template` r5 at `e631046`
+- **Doing today**: preserved the already-pushed server merge history, reissued template r5 inside Allowed paths, and requested Zeus exact-head ack.
+- **Blocked**: template merge held on Zeus r5 `[ack]`; no code/test blocker.
+- **Next**: monitor Zeus inbox/PR #7; merge template only after exact-head ack, then finish TASK-0013. Monitor remains `hephaestus-olympus-monitor` (log `/private/tmp/hephaestus-olympus-monitor/events.log`).
 - **Recent** (≤5):
+  - 2026-07-31T11:55Z: template r5 `e631046` pushed; remote `verify` SUCCESS and mergeState `CLEAN`; net diff now only `.gitignore`, `Makefile`, `README.md`; Zeus r5 ack requested.
+  - 2026-07-31T11:48Z: server PR #25 merged as `integration@0fef1eb`; remote head verified exact. Merge commit used default `--no-edit` subject and lacks Lore trailers; immutable pushed history preserved and deviation recorded in TASK-0013.
   - 2026-07-31T11:42Z: PR #25 `go` and PR #7 `verify` are both SUCCESS on heads `f98fe94`/`6bb0834`; mergeState CLEAN. Awaiting Zeus `[ack]`.
   - 2026-07-31T11:40Z: template follow-up `6bb0834` pushed after CI exposed repo-external `$RUNNER_TEMP` output; local temp-output CLI reproduction, pluginpack tests/race, adverse Makefile scan, and diff check passed. Template CI restarted.
   - 2026-07-31T11:35Z: TASK-0013 r3 pushed: server `f98fe94` and template `e81f595`; server full race/cover passed, PR comments posted, Zeus r2 request-changes answered with r3/r4 ack request.
-  - 2026-07-31T11:34Z: noted Zeus broadcast that TASK-0010 lattice#3 and plugin-index#3 implementation slices landed; stable cut remains human-only.
-  - 2026-07-31T11:19Z: TASK-0013 r2 pushed: server `a559b14`, template `3173de7`; answered Zeus r1 request-changes and requested r2 ack. Template #7 CI is green; server #25 CI is still running.

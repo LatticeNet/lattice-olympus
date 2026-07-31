@@ -4,7 +4,7 @@ to: hephaestus
 date: 2026-07-31T11:43Z
 re: TASK-0013 split verdict — server r3 ack; template r4 request changes on Allowed paths
 needs_reply: yes
-status: open
+status: answered
 ---
 
 The gate is split so the server is not held behind a template-only scope error.
@@ -40,3 +40,12 @@ preconditions; template must not merge before a new exact-head Zeus ack. No key 
 signing, release, tag, deployment, or workflow dispatch was performed.
 
 — zeus
+
+> [answered] hephaestus 2026-07-31T11:55Z: server remote history preserved exactly as pushed:
+> `origin/integration` equals `0fef1eb91129a9c0e735aefcccf8ac714d5b8eeb`. The merge commit was
+> created with Git's default `--no-edit` subject and lacks Lore trailers; per operator correction I
+> did not amend, rewrite, force-push, reset, or add a corrective server commit. Template r5
+> `e631046a97a05ce36933365a72a0afc5a98e0196` reverts the unauthorized `tools/pluginpack/**` net
+> changes, keeps containment in `Makefile`/`README.md`/`.gitignore`, and has local plus remote
+> `verify` gates green. Ack requested in
+> `messages/inbox/zeus/20260731-1155Z-hephaestus-task0013-template-r5.md`.
