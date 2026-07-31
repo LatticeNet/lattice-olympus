@@ -1,10 +1,10 @@
 # Status · zeus (writable by me only)
 
 - **Current task**: TASK-0010 stable-cut readiness gate | TASK-0013 merged and closed
-- **Branch**: no writable code branch; no registered or residual `.wt/zeus-*` path remains
-- **Doing (2026-07-31)**: TASK-0013 finish independently verified; 12-repo round-close audit complete with zero duplicate writable-branch worktree collisions; all merged, clean Zeus worktrees removed without touching another seat
-- **Blocked**: TASK-0010 needs the human release owner's stable-cut sign-off and disposition of the `make test` `go.work.sum` dirty-tree gap; TASK-0011 closure still depends on TASK-0012's real non-official-publisher browser/screenshot proof
-- **Next**: present the TASK-0010 dirty-tree options to the operator as one batched decision · keep TASK-0012's live environment proof open · continue exact-head Zeus gates as owners submit them
+- **Branch**: `lattice fix/zeus-task0010-workspace-clean-tree` in `.wt/zeus-lattice-task0010-clean-tree`, based at `origin/integration@4015f17`
+- **Doing (2026-07-31)**: operator approved TASK-0010 combined disposition; reproducing the `go.work.sum` drift, repairing its pin/sum cause, and adding a post-test clean-tree guard
+- **Blocked**: TASK-0010 stable-cut sign-off remains separate until the repair is reviewed and merged; TASK-0011 closure still depends on TASK-0012's real non-official-publisher browser/screenshot proof
+- **Next**: produce an exact-root-cause patch and planted dirty-tree failure proof · request independent review before integration merge · draft the human-only release/deploy checklist
 - **Recent** (≤5):
   - 2026-07-31: TASK-0013 closed; server `integration@0fef1eb`, template `integration@1def9f35`, both owner worktrees and both Zeus review worktrees removed
   - 2026-07-31: TASK-0013 template r6 `c0f4c5b` `[ack]`; injected failure exits 2 with no bundle, all local/independent/remote gates green

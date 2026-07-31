@@ -62,6 +62,13 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T12:49Z: the human release owner accepted the combined dirty-tree disposition:
+  determine and repair the workspace pin/sum cause, then add a post-test clean-tree guard so a
+  successful test cannot hide tracked generation. Implementation started in the Zeus-only
+  `.wt/zeus-lattice-task0010-clean-tree` worktree on branch
+  `fix/zeus-task0010-workspace-clean-tree`, based at `lattice origin/integration@4015f17`.
+  Stable release approval remains separate and dangerous operations remain human-only.
+
 - 2026-07-31T11:43Z: post-merge verification exposed a stable-cut readiness gap that the green
   workflow does not report. The isolated CI-layout `make test` exited 0 but changed tracked
   `go.work.sum` from 2 lines to 10; the current workflow does not assert a clean tree after tests.
