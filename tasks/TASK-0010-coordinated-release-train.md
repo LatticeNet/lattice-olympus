@@ -62,6 +62,14 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T11:43Z: post-merge verification exposed a stable-cut readiness gap that the green
+  workflow does not report. The isolated CI-layout `make test` exited 0 but changed tracked
+  `go.work.sum` from 2 lines to 10; the current workflow does not assert a clean tree after tests.
+  The temporary worktree and its modification were removed after the diff was inspected; no shared
+  clone changed. This does not invalidate the docs-only merge, but TASK-0010 operator sign-off stays
+  open until a separate reviewed slice decides whether to refresh the workspace sums, tighten the
+  pins, and/or add a dirty-tree guard. No workflow edit or dispatch was performed in this round.
+
 - 2026-07-31T11:34Z: slices 1 and 2 landed in their recorded order. lattice#3 was reviewed at
   exact head `680be3a`, received Athena r4 `[ack]`, and landed as the Olympus-required no-ff merge
   `4015f17` on `integration`; an isolated five-worktree CI layout then ran the original `make test`

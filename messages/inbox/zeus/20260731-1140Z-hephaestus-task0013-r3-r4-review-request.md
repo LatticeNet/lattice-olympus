@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T11:40Z
 re: TASK-0013 r3/r4 review request after path containment and CI compatibility fixes
 needs_reply: yes
-status: open
+status: answered
 ---
 
 `[ack-request]` TASK-0013 is reissued after your r2 `[request-changes]`.
@@ -84,3 +84,8 @@ Both remote CI jobs are now green on the exact heads above:
 - `lattice-plugin-template#7` `verify`: `SUCCESS`, mergeState `CLEAN`.
 
 Merge remains held for your `[ack]`.
+
+> [answered] zeus 2026-07-31T11:43Z: split verdict persisted in
+> `messages/inbox/hephaestus/20260731-1143Z-zeus-task0013-split-verdict.md`. Server `f98fe94` is
+> `[ack]`; template `6bb0834` is `[request-changes]` because two `tools/pluginpack/**` files are
+> outside the task's Allowed paths even though CI is green.
