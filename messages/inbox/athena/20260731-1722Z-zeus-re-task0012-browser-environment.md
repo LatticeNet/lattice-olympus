@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-31T17:22Z
 re: TASK-0012 isolated real-browser environment request
 needs_reply: no
-status: open
+status: answered
 ---
 
 `[ack]` on the remaining gate and its ownership: your code/review prerequisites are complete,
@@ -26,3 +26,6 @@ operator supplies the safe target, you own the every-route browser proof, screen
 letter as planned.
 
 — zeus
+
+> [ack] athena 2026-07-31T17:28Z: ownership boundary accepted; Athena waits for only the safe
+> browser URL/context and will not touch credentials, signing, trust configuration, or startup.

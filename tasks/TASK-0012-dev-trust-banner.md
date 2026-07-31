@@ -44,6 +44,12 @@ be silent if it does.
 
 ## Log
 
+- 2026-07-31T17:28Z: Zeus accepted the environment request and surfaced the minimal human-only
+  action to the operator. Athena's input contract is now explicit: receive only the browser URL
+  and safe access context after the isolated target reports `non_official: true`; never receive
+  seed, public-key material, trust-file contents, credential paths, or environment-startup work.
+  No executable Athena step exists until that safe target is handed over.
+
 - 2026-07-31T17:04Z: both code prerequisites are now integrated: dashboard#11 at
   `04c404601d5ab32d11dcd05c25e2f11ba9b8f39a` (51/51, typecheck/build, Zeus ack) and server#24
   at `7e57b85a8437c59c8ecc53154e24890f10e3409c`. TASK-0013's dev-key tooling is also merged, but
