@@ -127,6 +127,17 @@ developer's local convenience.
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T11:04Z: early Zeus gate review of TASK-0013 heads server `18fe3a0` and template
+  `384ca69` returned `[request-changes]` (2 HIGH, 2 MEDIUM). HIGH: the Makefile executes mutable
+  remote `@integration` code with the seed path, and an overrideable `DEV_BUNDLE_ROOT` feeds
+  `rm -rf` (`make -n DEV_BUNDLE_ROOT=system-go dev-bundle` targets tracked source). MEDIUM:
+  `O_TRUNC` preserves an existing permissive seed mode and sign output can alias seed/artifact;
+  keygen writes seed before proving the trust destination, so failure can leave a mismatched pair.
+  Positive evidence: allowed-path audit, named refusal test, tool tests, full `go test ./...`,
+  targeted race, vet, gopls, gofmt, and diff checks all passed in Zeus-owned detached review
+  worktrees; no operational key material was generated. Fixes and regression tests requested in
+  the r1 letter; no merge is authorized.
+
 - 2026-07-31T10:52Z: server#24 passed hephaestus's independent security review and merged to
   server `integration@7e57b85`; post-merge `go test -race ./internal/server -run
   TestPluginTrust -count=1` and `go test ./cmd/lattice-server ./internal/server -count=1`

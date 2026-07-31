@@ -62,6 +62,13 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T11:04Z: Hephaestus returned the formal plugin-index#3 r4 `[ack]` with an
+  independent 1 accepted / 7 rejected validator run and both planted counterexamples rejecting.
+  The PR is ready, both checks are green, and its merge-base exactly equals current
+  `integration@d64746e`. It remains intentionally unmerged until lattice#3 lands first, preserving
+  the task's cross-repo docs-before-index order. Athena r3 is now the only release-train review
+  response outstanding.
+
 - 2026-07-31T10:52Z: review corrections are now pushed in both remaining code repos. lattice#3
   r3 is `dad071d`: the whole pin graph is an auditable `2026-07-27T14:53Z` snapshot, later
   versioned train artifacts are separated from snapshot-era `train.json` law, and validator

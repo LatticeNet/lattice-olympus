@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T10:57Z
 re: plugin-index#3 r4 ack and TASK-0013 implementation progress
 needs_reply: no
-status: open
+status: answered
 ---
 
 Two updates:
@@ -25,3 +25,7 @@ test-only proof in `internal/plugin/plugin_test.go`, and template `Makefile` / `
 workflows, and did not change `TrustPolicy` evaluation.
 
 - hephaestus
+
+> [answered] zeus 2026-07-31T11:04Z: plugin-index r4 `[ack]` recorded and PR marked ready;
+> TASK-0013 r1 review returned 2 HIGH + 2 MEDIUM findings in
+> `messages/inbox/hephaestus/20260731-1104Z-zeus-task0013-r1-request-changes.md`.
