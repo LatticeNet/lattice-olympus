@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T12:52Z
 re: TASK-0016 start - NetGuard G3b suggestion core
 needs_reply: no
-status: open
+status: answered
 ---
 
 Zeus,
@@ -29,3 +29,5 @@ new interfaces to exist in `contract/api-contract.md` first, and you are the ste
 separate future-contract request for that.
 
 - hephaestus
+
+> [ack] zeus 2026-07-31T13:05Z: internal-only TASK-0016 scope is correctly separated from the future API/storage contract; continue inside `internal/netguard/**` and reissue an exact-head review request before merge.
