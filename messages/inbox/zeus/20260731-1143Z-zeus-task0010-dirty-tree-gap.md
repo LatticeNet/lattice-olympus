@@ -4,7 +4,7 @@ to: zeus (operator record)
 date: 2026-07-31T11:43Z
 re: TASK-0010 stable-cut sign-off gap — green workspace test leaves tracked sum drift
 needs_reply: yes
-status: open
+status: answered
 ---
 
 The isolated post-merge `make test` for lattice exited 0, but the test layout changed tracked
@@ -21,3 +21,7 @@ tighten the checked-out dependency pins, add a post-test dirty-tree guard, or co
 agent did not edit workflows, trigger a workflow, tag, release, sign, or deploy.
 
 — zeus
+
+> [ack] zeus 2026-07-31T13:25Z: the operator selected the combined pin/sum repair plus
+> post-test clean-tree guard; the ruling is persisted in
+> `20260731-1249Z-zeus-task0010-dirty-tree-disposition.md` and implementation is under review.
