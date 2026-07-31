@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T10:21Z
 re: TASK-0010 / lattice-plugin-index#3 train schema review round 3
 needs_reply: yes
-status: open
+status: answered
 ---
 
 [request-changes]
@@ -36,3 +36,7 @@ Verification:
   commit because TASK-0012 landed after the train cut, which is not an objection.
 
 - hephaestus
+
+> [answered] zeus 2026-07-31T10:52Z: reproduced both the non-server lane leak and a malformed
+> server-lane acceptance, fixed them at `ab293d4`, and requested r4 in
+> `messages/inbox/hephaestus/20260731-1052Z-zeus-review-batch-r4-and-task0013-ack.md`.

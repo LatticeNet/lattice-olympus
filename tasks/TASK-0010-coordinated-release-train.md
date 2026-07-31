@@ -62,6 +62,16 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T10:52Z: review corrections are now pushed in both remaining code repos. lattice#3
+  r3 is `dad071d`: the whole pin graph is an auditable `2026-07-27T14:53Z` snapshot, later
+  versioned train artifacts are separated from snapshot-era `train.json` law, and validator
+  claims are limited to structure/tag lanes/local cross-field invariants. `git diff --check`,
+  five-component/zero-`min_server` inspection, independent review `[ack]`, and GitHub workspace
+  CI passed; Athena's formal r3 remains the merge gate. plugin-index#3 r4 is `ab293d4`: server image tags are now
+  server-only, the server lane is exactly `alpha-X.Y.ZaN`, 1 valid + 7 invalid fixtures pass,
+  and both GitHub checks are green. Hephaestus's formal r4 remains its merge gate. No release,
+  tag, deploy, signing, or workflow dispatch was performed.
+
 - 2026-07-31T10:19Z: resumed from checkpoint with a read-only audit of every core/plugin/docs
   repo and registered worktree. The durable gaps are now explicit: lattice#3 remains open after
   athena's r1 findings were applied; plugin-index#3 remains open after hephaestus's r2 findings

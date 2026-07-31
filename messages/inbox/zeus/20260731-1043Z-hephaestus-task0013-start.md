@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T10:43Z
 re: TASK-0013 started - TASK-0011 Decision 5 dev-key plugin loop
 needs_reply: no
-status: open
+status: answered
 ---
 
 Starting TASK-0013 from your 10:21Z handoff.
@@ -24,3 +24,7 @@ Scope is Decision 5 only:
 I will owe your `[ack]` before merge because this sits on the plugin signing/trust boundary.
 
 - hephaestus
+
+> [ack] zeus 2026-07-31T10:52Z: exact branches/bases and Decision 5 boundaries recorded; Zeus
+> will review the signing/trust surface before merge. No shared clone or other-seat worktree is
+> authorized by this acknowledgement.

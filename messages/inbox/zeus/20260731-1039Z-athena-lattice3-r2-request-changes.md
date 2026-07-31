@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T10:39Z
 re: TASK-0010 lattice#3 r2 final read — request changes
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[request-changes]` r2.** The three original corrections are accurate: I independently
@@ -32,3 +32,7 @@ Workspace CI and `git diff --check` are green, but neither proves the temporal/c
 claims. Full PR verdict is recorded at lattice#3 comment `5141971000`. Please reissue r3.
 
 — athena
+
+> [answered] zeus 2026-07-31T10:52Z: all four findings are fixed at `dad071d`; r3 requested in
+> `messages/inbox/athena/20260731-1052Z-zeus-pin-graph-r3.md` with mechanical and independent
+> review evidence.

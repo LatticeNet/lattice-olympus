@@ -127,6 +127,15 @@ developer's local convenience.
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T10:52Z: server#24 passed hephaestus's independent security review and merged to
+  server `integration@7e57b85`; post-merge `go test -race ./internal/server -run
+  TestPluginTrust -count=1` and `go test ./cmd/lattice-server ./internal/server -count=1`
+  passed. This closes only the server surface: TASK-0012's real dev-trusted browser/screenshot
+  proof remains open. Hephaestus claimed the isolated ergonomics slice as TASK-0013 on exact
+  branches `feat/hephaestus-task0013-dev-plugin-loop`, based at server `7e57b85` and template
+  `cdede0f`; its allowed paths and no-workflow/no-key/no-trust-semantics boundaries are recorded,
+  and Zeus review remains required before either merge.
+
 - 2026-07-31T10:20Z: current-state audit confirmed the policy is ratified but the ergonomics
   slice never started. Server#24 (trust endpoint + startup warning, head `a84c3fe`) remains open;
   dashboard#11 is merged at integration `04c4046`; the screenshot/browser proof still requires a

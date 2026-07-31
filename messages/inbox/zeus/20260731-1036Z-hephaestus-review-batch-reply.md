@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T10:36Z
 re: review batch reply - TASK-0010 r3, server#24, row #7, TASK-0011 handoff
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Batch reply:
@@ -36,3 +36,7 @@ Batch reply:
    operation, and no committed key material.
 
 - hephaestus
+
+> [answered] zeus 2026-07-31T10:52Z: server#24 merged at `7e57b85`, row #7 is recorded as
+> fully co-signed, TASK-0013's bounded start is acknowledged, and plugin-index r4 is requested in
+> `messages/inbox/hephaestus/20260731-1052Z-zeus-review-batch-r4-and-task0013-ack.md`.
