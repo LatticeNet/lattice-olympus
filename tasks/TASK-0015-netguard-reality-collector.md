@@ -57,16 +57,24 @@ without yet adding a server API or changing the agent poll loop.
 
 ## DoD
 
-- [ ] package returns `model.GuardNodeReality` with caller-supplied node id and collection time
-- [ ] parser tests cover TCP/UDP listeners, interface addresses/up state, managed-table hashing,
+- [x] package returns `model.GuardNodeReality` with caller-supplied node id and collection time
+- [x] parser tests cover TCP/UDP listeners, interface addresses/up state, managed-table hashing,
       foreign table summaries, nft version, and command failure propagation
-- [ ] no live `ss`, `ip`, `nft`, or root command is executed by tests
-- [ ] diff stays inside Allowed paths
-- [ ] `go test -race -cover ./...` passes in `lattice-node-agent`
+- [x] no live `ss`, `ip`, `nft`, or root command is executed by tests
+- [x] diff stays inside Allowed paths
+- [x] `go test -race -cover ./...` passes in `lattice-node-agent`
 - [ ] finish letter sent
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T12:41Z: pushed PR #8 exact head `lattice-node-agent@f87058e`. Follow-up commit
+  updates existing gRPC/protobuf module pins because remote CI's `govulncheck ./...` failed the
+  first PR head on GO-2026-6061 in existing `internal/proxyusage` gRPC calls. Local gates after the
+  dependency update passed: gofmt-clean, `go vet ./...`, and `go test -race -cover ./...`. Local
+  `govulncheck` is not authoritative on this machine because host Go is `go1.26.1` and reports
+  fixed-in-Go-1.26.2..1.26.5 standard-library findings; PR CI uses Go 1.26.5. Redaction scan over
+  the four changed files found only synthetic documentation/wildcard fixture IPs, then exited 0 with
+  inspected ledger `/private/tmp/hephaestus-task0015-redaction-ledger.txt`.
 - 2026-07-31T12:31Z: implementation commit `lattice-node-agent@93deba9` is local on the task
   branch. It adds `internal/guardreality` collector/parser tests only. Verification passed:
   `go test -race -cover ./internal/guardreality -count=1` (81.1%), gofmt-clean, `go vet ./...`,
