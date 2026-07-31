@@ -62,6 +62,20 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T14:04Z: lattice#4 is MERGED on `origin/integration` as no-ff merge `cf93b9e`
+  with first parent `4015f17` and exact reviewed second parent `e0f4354`. Before the ordinary
+  non-force push, the remote base was proven unchanged; the merge tree equalled the reviewed
+  feature tree. Fresh post-merge `make test`, `make build`, 5/5 clean-tree regression, shell
+  syntax, ShellCheck, workflow YAML parse, and real five-repo `make check-clean` all passed;
+  remote run `30635984550` was green on the exact reviewed head. The landing was recorded on PR
+  #4, then all five clean Zeus TASK-0010 worktrees were unregistered and their parent removed;
+  no other seat's worktree was entered or changed. Two orchestration artifacts were explicitly
+  excluded from proof: one earlier long shell wrapper lost its session handle after timeout, and
+  one remove/re-add shell continued from a cwd it had just removed; both left no stray process or
+  wrong commit, and every affected validation/action was rerun successfully from a fresh process.
+  The code repair gate is closed. TASK-0010 itself remains open only for a current validated train
+  and the principal's stable-cut sign-off; the historical committed alpha train is not deployable.
+
 - 2026-07-31T13:51Z: r2 at `cbf7091` closed both prior HIGHs, but Athena correctly withheld ack
   on two MEDIUM proof gaps: four isolated cases did not prove the loop reports every bad sibling,
   and gosec followed the supposedly final real gate. Pushed r3 `e0f4354` adds a fifth mixed scan
