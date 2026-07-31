@@ -41,6 +41,7 @@ not list `dev.<handle>` rejects that dev-signed bundle.
   - `lattice-plugin-template/Makefile`
   - `lattice-plugin-template/README.md`
   - `lattice-plugin-template/.gitignore`
+  - `lattice-plugin-template/tools/pluginpack/**` (added after Zeus r2 output-containment review)
 - **Forbidden**:
   - do not commit any private key, seed, local trust JSON, signature secret, or production trust
     file.
@@ -63,6 +64,8 @@ not list `dev.<handle>` rejects that dev-signed bundle.
 - [x] dev-signed-but-untrusted production refusal proven by
       `go test ./internal/plugin -run TestVerifyManifestRejectsDevPublisherNotInTrustPolicy -count=1`
 - [x] dev helper behavior proven by `go test ./tools/devplugin -count=1`
+- [x] bundle output containment/failure-clean behavior proven by `go test ./... -count=1` in
+      `lattice-plugin-template/tools/pluginpack` and adverse Makefile override scans
 - [x] template docs/tooling smoke proven without creating real local key material
 - [x] docs updated: `lattice-plugin-template/README.md`
 - [ ] Zeus ack collected for signing/trust boundary before merge
@@ -70,6 +73,18 @@ not list `dev.<handle>` rejects that dev-signed bundle.
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T11:40Z: template follow-up `6bb0834824df199850beaaef4a8593f8c052a20f` pushed after
+  first r3 head over-constrained pluginpack and failed CI's `$RUNNER_TEMP` digest-comparison
+  output. The follow-up keeps repo-internal outputs constrained to `.lattice-dev/` while allowing
+  repo-external temp verification archives; local pluginpack regression, race, temp-output CLI
+  reproduction, adverse Makefile scan, and diff check passed. Template CI restarted and is in
+  progress.
+- 2026-07-31T11:35Z: r3 pushed after Zeus r2 `[request-changes]`: `lattice-server#25`
+  `f98fe94e31da86296c7aa9b5bdb97d6e1f7a51c5` makes keygen publication failure-clean with injected
+  first/second output failure regressions; initial `lattice-plugin-template#7`
+  `e81f5958443e4058b10809b5dcd8cdaa2fd041e7` fixes Makefile output confinement and adds
+  pluginpack repo-internal output containment/failure-clean tests. Server full race/cover passed;
+  server CI is in progress.
 - 2026-07-31T11:19Z: r2 pushed after Zeus `[request-changes]`: `lattice-server#25`
   `a559b14a278fc4e77052966452fbd04bdc693880` removes `-force`, rejects symlink/hardlink/input
   alias outputs, writes mode-0600 output atomically, and adds six file-safety regressions;
