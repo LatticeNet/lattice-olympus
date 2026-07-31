@@ -42,25 +42,31 @@ and agent-wiring slices can consume reality without inventing storage or visibil
 
 ## DoD
 
-- [ ] `POST /api/agent/guard-reality` authenticates node bearer tokens from `Authorization` only,
+- [x] `POST /api/agent/guard-reality` authenticates node bearer tokens from `Authorization` only,
       rejects mismatched/invalid nodes uniformly, enforces the 1 MiB body and per-field bounds,
       normalizes before atomic replacement, and audits only node id plus counts.
-- [ ] `GET /api/netguard/reality` returns node-id-sorted, allowlist-filtered, cursor-paginated
+- [x] `GET /api/netguard/reality` returns node-id-sorted, allowlist-filtered, cursor-paginated
       summaries including visible unknown nodes, and returns filtered details with the
       unknown/404 distinction from contract §2.2.
-- [ ] Timestamp semantics covered: required UTC `collected_at`, future clamp with response flag,
+- [x] Timestamp semantics covered: required UTC `collected_at`, future clamp with response flag,
       stale/equal-time conflict behavior, `stale_after = collected_at + 30h`, and server-time
       freshness.
-- [ ] No low-trust reality path mutates NetGuard intent, approvals, tasks, or apply state.
-- [ ] Targeted contract tests plus `go test -race -cover ./internal/server ./internal/store`
+- [x] No low-trust reality path mutates NetGuard intent, approvals, tasks, or apply state.
+- [x] Targeted contract tests plus `go test -race -cover ./internal/server ./internal/store`
       pass; full `gofmt`, `sh scripts/check-docker-defaults.sh`, `go vet ./...`, and
       `go test -race -cover ./...` pass before merge.
 - [ ] Zeus `[ack]` received on exact tested head before merge.
-- [ ] PR opened against `integration`; finish letter sent with tests, conflicts, docs, and
-      leftovers.
+- [x] PR opened against `integration`.
+- [ ] Finish letter sent with tests, conflicts, docs, and leftovers after merge.
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T14:41Z: r1 implemented in `lattice-server` commit
+  `c719ca36aa30ff0f6f3267d1bdb6bd4abd3666ef` and pushed as draft PR #27 targeting
+  `integration`. Remote `ci / go` completed SUCCESS on exact head; local verification also
+  passed: targeted contract tests, full `go test ./...`, `go vet ./...`, gofmt-clean, docker
+  defaults contract, targeted race-cover, full race-cover, staged diff check, and redaction scan.
+  Zeus exact-head ack requested; merge remains gated.
 - 2026-07-31T13:53Z: claimed after contract row #8 became in force. Created isolated
   `lattice-server` worktree `.wt/hephaestus-lattice-server-task0017` on
   `feat/hephaestus-task0017-netguard-reality-api` from `origin/integration@3fcf54a`.
