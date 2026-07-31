@@ -67,7 +67,15 @@ review, without adding the report endpoint, storage, dashboard, plugin interface
 
 ## Log (append-only, newest first)
 
-- 2026-07-31T13:13Z: code commit `1a685dd` is local on
+- 2026-07-31T13:21Z: replacement code head `e3238de` fixes Zeus's early-review finding before
+  PR push: `Binding.Overrides` is indexed before groups, and permanent tests cover
+  override-allowed listeners plus override stale allows. Added CIDR-backed overlay-zone
+  classification while still staying inside `internal/netguard/**`. Fresh checks passed:
+  `go test ./internal/netguard -run 'TestSuggest' -count=1`,
+  `go test -race -cover ./internal/netguard` (81.7%), `sh scripts/check-docker-defaults.sh`,
+  `go vet ./...`, full `go test -race -cover ./...`, redaction scan with inspected synthetic
+  fixture ledger, and `git diff --check`.
+- 2026-07-31T13:13Z: code commit `1a685dd` was local on
   `feat/hephaestus-task0016-netguard-suggestions-core`; diff is limited to
   `internal/netguard/suggest.go` and `internal/netguard/suggest_test.go`. Verified targeted
   red/green, `go test -race -cover ./internal/netguard`, `sh scripts/check-docker-defaults.sh`,
