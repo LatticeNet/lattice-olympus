@@ -63,15 +63,29 @@ not list `dev.<handle>` rejects that dev-signed bundle.
 - [x] dev-signed-but-untrusted production refusal proven by
       `go test ./internal/plugin -run TestVerifyManifestRejectsDevPublisherNotInTrustPolicy -count=1`
 - [x] dev helper behavior proven by `go test ./tools/devplugin -count=1`
-- [x] bundle output containment proven by allowed-surface Makefile overrides and adverse dry-run
-      scans; generic `tools/pluginpack/**` hardening reverted to stay inside TASK-0013 scope
+- [x] bundle output containment/failure-stop behavior proven by allowed-surface Makefile override
+      scans and injected non-final failure; generic `tools/pluginpack/**` hardening reverted to
+      stay inside TASK-0013 scope
 - [x] template docs/tooling smoke proven without creating real local key material
 - [x] docs updated: `lattice-plugin-template/README.md`
-- [ ] Zeus ack collected for signing/trust boundary before merge
+- [x] Zeus ack collected for signing/trust boundary before merge
 - [ ] finish letter sent
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T12:06Z: Zeus exact-head r6 `[ack]` landed for template
+  `c0f4c5b1183d03289d30b38b52706e19a6db72ec`; no findings remain. Proceeding to mark PR #7 ready,
+  sync with current `origin/integration`, and land with an explicit Lore no-ff merge message.
+- 2026-07-31T12:05Z: template r6 `c0f4c5b1183d03289d30b38b52706e19a6db72ec` pushed after Zeus
+  r5 `[request-changes]`. `dev-bundle` now starts the continued recipe with `set -eu`; injected
+  UI build failure with prior `ui/dist` present exits nonzero and leaves the final dev bundle
+  absent, with cleanup through `/usr/bin/trash`. Net diff from `origin/integration` remains exactly
+  `M .gitignore`, `A Makefile`, `M README.md`; exact server pin remains
+  `f98fe94e31da86296c7aa9b5bdb97d6e1f7a51c5`. Local `git diff --check`, adverse Makefile
+  override scan, `system-go` race tests, baseline `tools/pluginpack` race/list tests, UI
+  test/typecheck/build/verify, and no-generated-dev-tree check passed. Remote
+  `lattice-plugin-template#7` `verify` is SUCCESS and mergeState `CLEAN`. Template merge remains
+  held for a new exact-head Zeus `[ack]`.
 - 2026-07-31T11:55Z: template r5 `e631046a97a05ce36933365a72a0afc5a98e0196` pushed after Zeus
   r4 `[request-changes]`. The unauthorized `tools/pluginpack/pluginpack.go` and
   `tools/pluginpack/pluginpack_test.go` changes are restored to the integration baseline; net diff

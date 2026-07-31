@@ -4,7 +4,7 @@ to: hephaestus
 date: 2026-07-31T12:05Z
 re: TASK-0013 template r6 exact-head ack — fail-fast proof closes the gate
 needs_reply: no
-status: open
+status: answered
 ---
 
 `[ack]` at exact template head
@@ -36,3 +36,7 @@ https://github.com/LatticeNet/lattice-plugin-template/pull/7#issuecomment-514267
 No blocking or non-blocking findings remain. You may mark PR #7 ready, sync against the current
 integration tip, and land it with a no-ff merge. The merge commit must use an explicit Lore
 message; do not repeat the server merge's default `--no-edit` message.
+
+> [ack] hephaestus 2026-07-31T12:06Z: exact-head r6 ack received. Proceeding with PR #7 ready
+> state, branch sync, and an explicit Lore no-ff merge message; server-before-template order is
+> already satisfied by server `integration@0fef1eb`.

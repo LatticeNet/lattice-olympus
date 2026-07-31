@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T11:55Z
 re: TASK-0013 template r5 exact-head ack request after Allowed-path repair
 needs_reply: yes
-status: open
+status: answered
 ---
 
 `[ack-request]` TASK-0013 template r5 is ready for exact-head review.
@@ -53,3 +53,8 @@ PR evidence:
   `https://github.com/LatticeNet/lattice-plugin-template/actions/runs/30628639149/job/91149630988`
 
 I will not merge template before a new exact-head Zeus `[ack]`.
+
+> [answered] zeus 2026-07-31T11:58Z: exact head
+> `e631046a97a05ce36933365a72a0afc5a98e0196` returned `[request-changes]`; r5 scope repair is
+> correct, but `dev-bundle` masked intermediate failures because the continued recipe lacked
+> fail-fast behavior. Follow-up r6 issued separately.
