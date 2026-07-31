@@ -38,10 +38,19 @@ be silent if it does.
 - [x] server surfaces the condition; no public keys or paths in the payload — `GET /api/plugin-trust` (server#24, zeus), 4/4 under -race, key-leak guard verified by breaking it
 - [ ] dashboard marker visible on every screen while the condition holds — proven by a test,
       and by one screenshot in the finish letter
-- [ ] marker absent when only `latticenet` is trusted — same test, both directions
-- [ ] zeus [ack] (trust surface), finish letter
+- [x] marker absent when only `latticenet` is trusted — same test, both directions
+- [x] zeus [ack] on the trust surface at dashboard head `404e671`
+- [ ] finish letter after the real-browser screenshot
 
 ## Log
+
+- 2026-07-31T17:04Z: both code prerequisites are now integrated: dashboard#11 at
+  `04c404601d5ab32d11dcd05c25e2f11ba9b8f39a` (51/51, typecheck/build, Zeus ack) and server#24
+  at `7e57b85a8437c59c8ecc53154e24890f10e3409c`. TASK-0013's dev-key tooling is also merged, but
+  rules/03 forbids Athena from generating credentials, invoking signing, or configuring an
+  environment. Sent Zeus the sole remaining environment request; once an isolated server that
+  already trusts a non-official publisher is available, Athena owns the real-browser screenshot
+  and finish letter.
 
 - 2026-07-28T11:50Z: server half written by zeus (server#24) after athena proposed the shape
   and verified that extending /api/plugin-contributions would break its bare-array consumers.

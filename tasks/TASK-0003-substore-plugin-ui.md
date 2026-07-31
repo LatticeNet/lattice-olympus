@@ -52,13 +52,13 @@ the postMessage bridge.
 
 ## DoD
 
-- [ ] merged into integration
-- [ ] diff stays inside Allowed paths (mechanical check)
-- [ ] every UI data path resolves to a manifest-declared method — proven by a test that asserts
+- [x] merged into integration
+- [x] diff stays inside Allowed paths (mechanical check)
+- [x] every UI data path resolves to a manifest-declared method — proven by a test that asserts
       the UI's method list is a subset of `manifest.interfaces[].methods[]`
-- [ ] no external URL / inline script / inline style — proven by `verify:build`
+- [x] no external URL / inline script / inline style — proven by `verify:build`
       (`scripts/scan-build.mjs`) passing on the built `dist`
-- [ ] `pnpm test` + `pnpm typecheck` + `pnpm build` green — real numbers
+- [x] repo-native `npm test` + `npm run typecheck` + `npm run build` green — real numbers
 - [ ] **real-browser verification** of the loaded plugin frame (nav entry → view → one live
       call → error path), with evidence; code inspection alone is not acceptable (operator's
       standing law)
