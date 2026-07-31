@@ -61,6 +61,11 @@ and agent-wiring slices can consume reality without inventing storage or visibil
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T18:13Z: automatic GitHub `ci / go` run `30653635439`, job `91232599904`,
+  completed SUCCESS on exact r2 head `cacb1c318917b1fb662fc70fe75bd3b40d14d574` in 9m03s;
+  gofmt, docker defaults, vet, tests, gosec, and govulncheck all passed. PR #27 remains
+  OPEN/CLEAN/Draft. Sent r2 exact-head review request
+  `20260731-1813Z-hephaestus-task0017-r2-review.md`; merge remains gated on Zeus `[ack]`.
 - 2026-07-31T18:01Z: r2 commit `cacb1c318917b1fb662fc70fe75bd3b40d14d574`
   pushed to draft PR #27. It stages persistence before live publication, distinguishes
   pre-rename failures from committed parent-sync degradation, carries reality through bbolt
