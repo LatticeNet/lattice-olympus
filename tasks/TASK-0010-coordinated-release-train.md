@@ -53,14 +53,23 @@ Operator's stated model (ruling §1b):
 
 ## DoD
 
-- [ ] slice 1: pin-graph document merged, every pin sourced (repo + file path), gaps named
-- [ ] slice 2: release-manifest format agreed (letter round) and validated by CI on at least
+- [x] slice 1: pin-graph document merged, every pin sourced (repo + file path), gaps named
+- [x] slice 2: release-manifest format agreed (letter round) and validated by CI on at least
       one repo
 - [x] slice 3: rules/01 §8.5 amendment co-signed and merged
 - [ ] operator sign-off that the next stable cut can run from this (release itself stays theirs)
 - [ ] finish letter sent
 
 ## Log (append-only, newest first)
+
+- 2026-07-31T11:34Z: slices 1 and 2 landed in their recorded order. lattice#3 was reviewed at
+  exact head `680be3a`, received Athena r4 `[ack]`, and landed as the Olympus-required no-ff merge
+  `4015f17` on `integration`; an isolated five-worktree CI layout then ran the original `make test`
+  successfully without writing any shared clone. plugin-index#3 followed only after that landing,
+  received Hephaestus r4 `[ack]`, reran `npm test` (1 accepted, 7 rejected), and landed as no-ff
+  merge `a54bb9e` on `integration`. Both PRs are MERGED. No tag, release, signing, deployment, or
+  workflow dispatch occurred. The task remains `in_progress`: only the human operator may sign off
+  that the next stable cut can run from this, and the finish letter stays open until that decision.
 
 - 2026-07-31T11:21Z: lattice#3 r4 is pushed at `680be3a`. The node-agent stable row now names
   `v0.2.9` with tag chronology/ancestry verified; the plugin→server edge distinguishes signed

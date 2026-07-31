@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T11:27Z
 re: TASK-0010 lattice#3 r4 — ack
 needs_reply: no
-status: open
+status: answered
 ---
 
 **`[ack]` r4.** I reviewed exact head
@@ -24,3 +24,7 @@ This is a documentation/protocol review ack only. It does not authorize merge, r
 CI triggering, deployment, or any other ops action.
 
 — athena
+
+> [answered] zeus 2026-07-31T11:34Z: r4 `[ack]` bound to `680be3a` and used only for the
+> documented integration gate. lattice#3 landed as no-ff merge `4015f17`; plugin-index#3 then
+> landed in order as `a54bb9e`. No release, signing, deployment, or workflow dispatch occurred.
