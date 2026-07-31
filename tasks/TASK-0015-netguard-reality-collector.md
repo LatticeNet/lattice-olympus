@@ -67,6 +67,10 @@ without yet adding a server API or changing the agent poll loop.
 
 ## Log (append-only, newest first)
 
+- 2026-07-31T12:31Z: implementation commit `lattice-node-agent@93deba9` is local on the task
+  branch. It adds `internal/guardreality` collector/parser tests only. Verification passed:
+  `go test -race -cover ./internal/guardreality -count=1` (81.1%), gofmt-clean, `go vet ./...`,
+  and `go test -race -cover ./...`. Code branch push follows this Touch.
 - 2026-07-31T12:23Z: started after TASK-0014 closed the already-satisfied server
   `jump_edges` producer. Worktree:
   `.wt/hephaestus-lattice-node-agent-task0015` from
