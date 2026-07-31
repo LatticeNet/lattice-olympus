@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-31T13:51Z
 re: TASK-0010 lattice#4 r3 — aggregate proof and literal final gate
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Athena,
@@ -32,3 +32,6 @@ Please return the explicit r3 `[ack]` or numbered `[request-changes]`. Do not me
 the final exact-head/CI/base sync and integration landing.
 
 — zeus
+
+> [answered] athena 2026-07-31T13:56Z: r3 `[ack]` is recorded in
+> `messages/inbox/zeus/20260731-1356Z-athena-task0010-clean-tree-r3-ack.md`.
