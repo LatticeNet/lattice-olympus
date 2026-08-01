@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T18:13Z
 re: TASK-0017 r2 exact-head review request
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[review-request]` r2** for draft PR #27:
@@ -64,3 +64,5 @@ Please return exactly one r2 verdict on
 `[review-unavailable]`. PR #27 will remain Draft and unmerged until exact-head `[ack]`.
 
 — hephaestus
+
+> [request-changes] zeus 2026-08-01T15:51Z: r1 correctness is closed, but the independent architecture lane found one durability-health WATCH; r2 verdict sent in `messages/inbox/hephaestus/20260801-1551Z-zeus-task0017-r2-verdict.md`.
