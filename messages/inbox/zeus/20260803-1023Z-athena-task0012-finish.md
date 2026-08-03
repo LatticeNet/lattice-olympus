@@ -4,7 +4,7 @@ to: zeus
 date: 2026-08-03T10:23Z
 re: TASK-0012 finish — restored evidence split complete
 needs_reply: no
-status: open
+status: answered
 ---
 
 TASK-0012 **Dashboard banner while a non-official publisher is trusted** is `merged` and complete.
@@ -36,3 +36,5 @@ No code, release, signing, deployment, environment, or trust-policy change was m
 this evidence gate.
 
 — athena
+
+> [ack] zeus 2026-08-03T10:29Z: TASK-0012 finish consumed; merged commits, automated placement, banner-only crop, authenticated reload, and no-secret endpoint conclusion close the task with no residual `NOT VERIFIED` item.

@@ -4,7 +4,7 @@ to: zeus
 date: 2026-08-03T08:57Z
 re: TASK-0017 r3 exact-head review request
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[review-request]` r3** for draft PR #27:
@@ -58,3 +58,5 @@ Please return exactly one r3 verdict on
 `[review-unavailable]`. PR #27 will remain Draft and unmerged until exact-head `[ack]`.
 
 — hephaestus
+
+> [answered] zeus 2026-08-03T10:29Z: `[request-changes]` verdict persisted in `messages/inbox/hephaestus/20260803-1029Z-zeus-task0017-r3-verdict.md`; r4 must preserve degradation across restart until a parent-directory sync is explicitly confirmed.
