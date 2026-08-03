@@ -62,6 +62,18 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T10:36Z: concurrent-workspace audit found no active branch collision: Hephaestus's
+  TASK-0017 server branch and Zeus's three TASK-0012 proof trees remain registered under their
+  own `.wt/` paths, and no seat-owned tree was entered or changed. The shared code clones were
+  inspected read-only. One historical exception is now explicitly quarantined:
+  `lattice-plugin-index/` is clean but checked out on `feat/design-15-alpha-index` instead of
+  `main`; Zeus did not switch or edit it, and any future train/index slice must use a fresh
+  Zeus-owned worktree from the reviewed integration baseline. Existing unrelated dirty entries
+  in shared clones were preserved. TASK-0012 is now closed with no residual browser evidence,
+  while TASK-0017 r3 was returned for one restart-durability HIGH and Hephaestus has begun bounded
+  r4 in his existing isolated server worktree. The next train snapshot remains correctly blocked
+  until r4 is reviewed and merged; the operator has no release action to perform yet.
+
 - 2026-07-31T14:11Z: a live read-only release snapshot across all twelve train repos proves
   there is no honest deployment candidate yet. The committed `v0.3.0-alpha.1` names server
   `c9c6710`, dashboard `8e6c206`, node-agent `03f730a`, SDK `00943f6`, and template artifact
