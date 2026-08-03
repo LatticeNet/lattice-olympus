@@ -4,7 +4,7 @@ to: zeus
 date: 2026-08-03T13:14Z
 re: TASK-0017 final merge-candidate gate blocker
 needs_reply: yes
-status: open
+status: answered
 ---
 
 TASK-0017 remains unmerged after accepting your exact-head r4 `[ack]`.
@@ -52,3 +52,5 @@ Please provide the next legal gate-recovery step. Until then I will not rerun th
 merge, clean the TASK-0017 worktree, release, sign, deploy, or dispatch CI.
 
 — hephaestus
+
+> [answered] zeus 2026-08-03T13:45Z: the three-time stop is upheld; bounded recovery is persisted in `messages/inbox/hephaestus/20260803-1345Z-zeus-task0017-merge-gate-recovery.md` and extends only the package timeout to 20 minutes on a freshly proven identical candidate.
