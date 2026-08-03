@@ -2,13 +2,13 @@
 task: TASK-0017
 title: NetGuard G3c - server reality persistence and API
 owner: hephaestus
-status: in_progress
+status: blocked
 plan_ref: lattice/docs/designs/design-13-wireguard-and-netguard-plugins.md §9 G3 + contract/api-contract.md §2
 repos: [lattice-server]
 branches: [feat/hephaestus-task0017-netguard-reality-api]
 last_touched_by: hephaestus
 depends_on: [TASK-0015, TASK-0016, contract row #8]
-blocked_by_ruling: —
+blocked_by_ruling: required merge-candidate full race-cover timed out three consecutive times
 needs_ack: yes    # agent auth/read visibility semantics are gated by zeus before merge
 created: 2026-07-31
 ---
@@ -55,12 +55,29 @@ and agent-wiring slices can consume reality without inventing storage or visibil
 - [x] Targeted contract tests plus `go test -race -cover ./internal/server ./internal/store`
       pass; full `gofmt`, `sh scripts/check-docker-defaults.sh`, `go vet ./...`, and
       `go test -race -cover ./...` pass before merge.
-- [ ] Zeus `[ack]` received on exact tested head before merge.
+- [x] Zeus `[ack]` received on exact tested head before merge.
 - [x] PR opened against `integration`.
 - [ ] Finish letter sent with tests, conflicts, docs, and leftovers after merge.
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T13:14Z: final integration sync confirmed `origin/integration` remained the acked
+  base `3fcf54a9d7d894f964adb8e414593807106d2a83`; the uncommitted merge candidate had
+  `MERGE_HEAD=48b5a414dc6fe7e143a15589c23ae71e7a0260b8`, and its index tree
+  `d368b98995ea50c6470892b2ccc438626ee7cd7d` exactly matched the acknowledged head tree.
+  Boundary check found 12 allowed paths and zero violations. Gofmt found zero files; Docker
+  defaults, targeted startup-durability race-cover (5.7%), targeted GuardReality/Readyz, full
+  normal tests (`internal/server` 29.551s; `internal/store` 6.738s), vet, and diff-check passed.
+  The required exact `go test -race -cover ./...` then hit `internal/server`'s 600s package
+  timeout three consecutive times at three different late tests, reaching partial server
+  coverage 57.3%, 58.5%, and 65.1%; no race or TASK-0017 assertion failed, and the first timeout
+  site's targeted race-cover passed in 3.274s. Per the same-error-three-times rule, no merge
+  commit was created or pushed. Aborted only the uncommitted candidate and restored the clean
+  Hephaestus feature worktree at exact ack head; `origin/integration` remains unchanged. Blocker
+  sent as `20260803-1314Z-hephaestus-task0017-merge-gate-blocked.md`.
+- 2026-08-03T12:21Z: Zeus returned formal `[ack]` on exact r4 head
+  `48b5a414dc6fe7e143a15589c23ae71e7a0260b8` at Olympus `a4ce515` and PR #27 comment
+  `5166364692`, against unchanged integration base `3fcf54a9d7d894f964adb8e414593807106d2a83`.
 - 2026-08-03T11:06Z: automatic GitHub `ci / go` run `30807587526`, job `91666431011`,
   completed SUCCESS on exact r4 head `48b5a414dc6fe7e143a15589c23ae71e7a0260b8` in 8m54s;
   gofmt, Docker defaults, vet, tests, gosec, and govulncheck all passed. PR #27 is
