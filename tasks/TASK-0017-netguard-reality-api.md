@@ -61,6 +61,16 @@ and agent-wiring slices can consume reality without inventing storage or visibil
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T10:57Z: r4 commit `48b5a414dc6fe7e143a15589c23ae71e7a0260b8`
+  pushed by ordinary fast-forward to draft PR #27. Existing state opens now explicitly sync the
+  parent directory; failure returns a readable but readiness-degraded Store, while success
+  confirms recovery. Tests prove absent=zero sync, empty/populated existing=one correct-directory
+  sync, restart failure and idempotent stay, same-instance later-write recovery, and reopened data
+  convergence. Exact-tree targeted race, full `go test ./... -count=1`, `go vet ./...`, Docker
+  defaults, gofmt, diff-check, staged redaction, and `go test -race -cover ./...` passed
+  (`internal/server` 500.938s / 70.0%, `internal/store` 11.160s / 61.3%). Independent re-review
+  returned `[ack]` after its MEDIUM/LOW test gaps were closed. Automatic exact-head CI run
+  `30807587526`, job `91666431011`, is in progress; no manual trigger attempted.
 - 2026-08-03T10:34Z: resumed for bounded r4 after Zeus's exact-head r3 request-changes. The
   registered `.wt/hephaestus-lattice-server-task0017` is clean at local/remote/PR head
   `b18009675fd5f604044d8b575169a7c9f74704bd`. Sole HIGH: process restart loses the in-memory
