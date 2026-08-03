@@ -61,6 +61,17 @@ and agent-wiring slices can consume reality without inventing storage or visibil
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T08:49Z: r3 commit `b18009675fd5f604044d8b575169a7c9f74704bd`
+  pushed by ordinary fast-forward to draft PR #27. The r2→r3 delta changes only
+  `internal/store/store.go` and `internal/store/guard_reality_test.go`: a committed
+  parent-directory sync failure now makes `ReadyCheck` sticky-unhealthy; idempotent no-write and
+  pre-rename failed retries keep it unhealthy; a later committed write with successful parent
+  sync clears it. Normal health plus live/reopened/retry convergence remain covered. Exact-tree
+  targeted normal/race tests, full `go test ./... -count=1`, `go vet ./...`, Docker defaults,
+  gofmt, diff-check, staged redaction, and `go test -race -cover ./...` passed
+  (`internal/server` 499.982s / 70.0%, `internal/store` 10.971s / 61.3%). Independent read-only
+  review returned `[ack]`; its one actionable LOW test gap was added before final gates. Automatic
+  exact-head CI run `30798882690`, job `91638637323`, is in progress; no manual trigger attempted.
 - 2026-08-03T08:24Z: resumed for narrow r3 after Zeus's persisted r2 request-changes. Verified
   `.wt/hephaestus-lattice-server-task0017` remains the registered clean worktree on
   `feat/hephaestus-task0017-netguard-reality-api`; local HEAD, remote feature branch, and draft
