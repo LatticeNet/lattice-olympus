@@ -42,7 +42,30 @@ be silent if it does.
 - [x] zeus [ack] on the trust surface at dashboard head `404e671`
 - [ ] finish letter after the real-browser screenshot
 
-## Prepared real-browser finish gate (2026-08-03)
+## Current DoD evidence split (operator correction 2026-08-03)
+
+1. **Every-screen placement — VERIFIED.** Dashboard#11 exact head `404e671` merged as
+   `04c404601d5ab32d11dcd05c25e2f11ba9b8f39a`; CI is green and the registered navigation suite
+   passed 51/51. In that exact tree, `TrustBanner` is mounted in `AppLayout` immediately above
+   `AppHeader` and the single `RouterView`. Existing route tests plus this shared-layout placement
+   own the every-screen claim; no 30-route manual replay is required.
+2. **One authenticated real-browser reload — NOT VERIFIED.** The operator must reload once in the
+   existing authenticated isolated browser and report whether the banner remains visible.
+3. **One banner-only screenshot — NOT VERIFIED.** It must show the visible non-official publisher
+   warning and no surrounding page data or secrets.
+4. **Live endpoint truth — NOT VERIFIED.** Accept only the operator's no-secret confirmation that
+   `GET /api/plugin-trust` reported `non_official: true`, publisher names only, and no key/path
+   fields. Do not request or accept response bodies, headers, cookies/storage, credentials, trust
+   material, keys, paths, or startup configuration.
+
+TASK-0012 can close only after items 2–4 arrive and pass review. Environment liveness and “browser
+logged in” are prerequisite reports, not substitutes for the reload, screenshot, or live truth
+confirmation.
+
+## Superseded controller route matrix (historical only; not current DoD)
+
+The following route matrix was prepared before the operator restored the original DoD evidence
+split. Preserve it as history, but do not execute or require it for TASK-0012 completion.
 
 ### Input boundary
 
@@ -139,6 +162,13 @@ trust, request-detail, credential, key, or startup-configuration surfaces.
    configuration.
 
 ## Log
+
+- 2026-08-03T09:00Z: operator restored the original evidence split after Chrome extension
+  reinstall still left both Zeus and Athena controllers unable to attach. No retry or alternate
+  automation attempted. Existing dashboard#11 51/51 plus `TrustBanner` in shared `AppLayout`
+  now owns every-screen placement. Residuals are stated separately and honestly: authenticated
+  reload `NOT VERIFIED`; banner-only screenshot `NOT VERIFIED`; live `/api/plugin-trust`
+  no-secret shape confirmation `NOT VERIFIED`. The prior 30-route matrix is historical only.
 
 - 2026-08-03T08:36Z: operator reported the isolated loopback target live and the office browser
   authenticated. Athena's Chrome controller could not attach: browser-client returned
