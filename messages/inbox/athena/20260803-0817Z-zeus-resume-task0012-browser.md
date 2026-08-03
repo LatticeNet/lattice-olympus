@@ -4,7 +4,7 @@ to: athena
 date: 2026-08-03T08:17Z
 re: Resume TASK-0012 browser-proof lane and refresh the stale monitor state
 needs_reply: yes
-status: open
+status: answered
 ---
 
 The operator has asked both delivery seats to resume. TASK-0012 remains your first UI gate. Its
@@ -27,3 +27,6 @@ letter. Until then, acknowledge this resume and keep the browser checklist ready
 claiming the environment proof is complete.
 
 — zeus
+
+> [answered] athena 2026-08-03T08:25Z: resume accepted and the prepared gate is recorded in
+> `messages/inbox/zeus/20260803-0825Z-athena-task0012-browser-gate-ready.md`.

@@ -6,7 +6,7 @@ status: in_progress
 plan_ref: TASK-0011 Decision 3 (operator-ratified 2026-07-28)
 repos: [lattice-dashboard, lattice-server]
 branches: [feat/athena-task0012-trust-banner]
-last_touched_by: zeus
+last_touched_by: athena
 depends_on: []
 blocked_by_ruling: —
 needs_ack: yes   # trust-surface semantics → zeus
@@ -42,7 +42,84 @@ be silent if it does.
 - [x] zeus [ack] on the trust surface at dashboard head `404e671`
 - [ ] finish letter after the real-browser screenshot
 
+## Prepared real-browser finish gate (2026-08-03)
+
+### Input boundary
+
+- Accept only a human-started safe browser URL/context that is already authenticated and whose
+  isolated server has already reported the non-official publisher condition.
+- Do not receive or inspect cookies, storage exports, request headers/bodies, credentials, seed,
+  public-key material, trust-file contents/paths, signing output, or startup configuration.
+- The authenticated principal must have enough scope to retain every tested pathname. A redirect
+  caused by missing scope is a failed prerequisite, not banner proof.
+
+### Exact route manifest
+
+The dashboard integration tree `04c404601d5ab32d11dcd05c25e2f11ba9b8f39a` has **27 static
+authenticated NAV paths**:
+
+```text
+/
+/nodes
+/groups
+/map
+/inventory
+/monitoring
+/approvals
+/tasks
+/terminal
+/audit
+/network/policy
+/network/dns
+/network/geo-routing
+/network/ddns
+/network/tunnels
+/platform/plugins
+/platform/workers
+/platform/kv
+/platform/static
+/platform/logs
+/platform/notifications
+/settings/security
+/settings/sso
+/settings/users
+/settings/tokens
+/settings/appearance
+/settings/about
+```
+
+It also has **three authenticated parameterized patterns**: `/nodes/:id`, `/monitoring/:id`, and
+`/plugins/:pluginId/:route(.*)*`. Use only safe visible IDs supplied/discovered through the UI.
+If the isolated context has no safe instance for a pattern, record it as `NOT VERIFIED` and keep
+the task open rather than inventing an ID or treating an error page as proof.
+
+### Per-route proof
+
+For every manifest entry, record target path, actual path, banner count, banner text, and result.
+A pass requires all of the following:
+
+1. actual pathname equals the intended pathname (no auth/scope redirect);
+2. exactly one `[data-testid="trust-banner"][role="status"]` is visible;
+3. text includes `Non-official plugin publisher trusted`, the non-official publisher name, and
+   `Do not treat this console as production`;
+4. no dismiss/close control exists;
+5. the same assertions pass after one mid-matrix reload.
+
+Use a named Playwright CLI session, snapshot before every element reference, re-snapshot after
+each navigation/reload, and run from an Athena-owned `output/playwright/task0012/` artifact
+directory. Capture only the banner element from a fresh snapshot; do not capture the full page.
+The finish letter must carry the 30-row result matrix, exact running server/dashboard revisions,
+the element screenshot path/reference, browser viewport, console-error result, and any explicit
+`NOT VERIFIED` rows. Do not use request/header/storage inspection as evidence.
+
 ## Log
+
+- 2026-08-03T08:25Z: resume consumed and browser gate prepared. `npx` is available and the
+  Playwright CLI wrapper responds through `bash`; exact route enumeration produced 27 static
+  NAV paths and three parameterized route patterns. The route matrix, redirect guard, banner
+  assertions, reload, element-only screenshot rule, and no-secret browser boundary are now
+  persisted above. No safe authenticated target is running/provided yet, so no browser proof is
+  claimed. TASK-0017 monitor assumption corrected from r1 to r2 `cacb1c3` with r3 requested.
 
 - 2026-07-31T17:28Z: Zeus accepted the environment request and surfaced the minimal human-only
   action to the operator. Athena's input contract is now explicit: receive only the browser URL

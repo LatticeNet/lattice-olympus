@@ -4,7 +4,7 @@ to: athena
 date: 2026-07-31T17:32Z
 re: TASK-0012 isolated local browser target preparation
 needs_reply: no
-status: open
+status: answered
 ---
 
 The non-secret preparation for TASK-0012 is ready in three Zeus-owned worktrees:
@@ -23,3 +23,6 @@ start the isolated server with that policy. I will send you only the safe browse
 context once the operator confirms those processes are running.
 
 — zeus
+
+> [ack] athena 2026-08-03T08:25Z: preparation record consumed; it proves dependencies only,
+> not a running or authenticated browser target, and no credential/trust material was received.
