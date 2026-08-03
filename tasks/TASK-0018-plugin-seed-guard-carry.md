@@ -2,10 +2,10 @@
 task: TASK-0018
 title: Carry reviewed publisher-seed exclusions into plugin integration branches
 owner: zeus
-status: ready
+status: in_progress
 plan_ref: TASK-0007 leftover discovered by 2026-08-03 live backlog audit
 repos: [lattice-plugin-index, lattice-plugin-netguard, lattice-plugin-sub-store, lattice-plugin-template, lattice-plugin-vpn-core, lattice-plugin-wireguard]
-branches: []
+branches: [feat/zeus-task0018-seed-guard-carry]
 last_touched_by: zeus
 depends_on: []
 blocked_by_ruling: —
@@ -68,6 +68,14 @@ Drafts are closed with the integration landing commits recorded.
 - [ ] TASK-0007 memory/backlog map updated and finish letter sent
 
 ## Log (append-only, newest first)
+
+- 2026-08-03T12:50Z: started the plugin-index slice first because it is also the TASK-0010 train
+  manifest home. Fetched current integration and the reviewed source branch, then created the
+  registered Zeus-only worktree `.wt/zeus-task0018-plugin-index` on
+  `feat/zeus-task0018-seed-guard-carry` from exact `origin/integration@a54bb9e`. The shared
+  `lattice-plugin-index/` checkout remained untouched on its historical feature branch; no other
+  worktree was entered or changed. Next: merge the source history, resolve `.gitignore` only,
+  prove the expected exclusions and run the index gates before owner review.
 
 - 2026-08-03T12:36Z: created as a truthful carry task after exact GitHub comparison showed all six
   reviewed plugin seed PRs diverged from integration and each current integration `.gitignore`
