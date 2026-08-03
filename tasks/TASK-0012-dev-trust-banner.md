@@ -2,7 +2,7 @@
 task: TASK-0012
 title: Dashboard banner while a non-official publisher is trusted
 owner: athena
-status: in_progress
+status: merged
 plan_ref: TASK-0011 Decision 3 (operator-ratified 2026-07-28)
 repos: [lattice-dashboard, lattice-server]
 branches: [feat/athena-task0012-trust-banner]
@@ -36,11 +36,11 @@ be silent if it does.
 ## DoD
 
 - [x] server surfaces the condition; no public keys or paths in the payload — `GET /api/plugin-trust` (server#24, zeus), 4/4 under -race, key-leak guard verified by breaking it
-- [ ] dashboard marker visible on every screen while the condition holds — proven by a test,
+- [x] dashboard marker visible on every screen while the condition holds — proven by a test,
       and by one screenshot in the finish letter
 - [x] marker absent when only `latticenet` is trusted — same test, both directions
 - [x] zeus [ack] on the trust surface at dashboard head `404e671`
-- [ ] finish letter after the real-browser screenshot
+- [x] finish letter after the real-browser screenshot
 
 ## Current DoD evidence split (operator correction 2026-08-03)
 
@@ -49,18 +49,21 @@ be silent if it does.
    passed 51/51. In that exact tree, `TrustBanner` is mounted in `AppLayout` immediately above
    `AppHeader` and the single `RouterView`. Existing route tests plus this shared-layout placement
    own the every-screen claim; no 30-route manual replay is required.
-2. **One authenticated real-browser reload — NOT VERIFIED.** The operator must reload once in the
-   existing authenticated isolated browser and report whether the banner remains visible.
-3. **One banner-only screenshot — NOT VERIFIED.** It must show the visible non-official publisher
-   warning and no surrounding page data or secrets.
-4. **Live endpoint truth — NOT VERIFIED.** Accept only the operator's no-secret confirmation that
-   `GET /api/plugin-trust` reported `non_official: true`, publisher names only, and no key/path
-   fields. Do not request or accept response bodies, headers, cookies/storage, credentials, trust
-   material, keys, paths, or startup configuration.
+2. **One authenticated real-browser reload — VERIFIED.** The principal explicitly handed Zeus the
+   existing authenticated isolated Chrome tab. Zeus reloaded it once; the same-origin trust
+   request succeeded and the unique warning remained visible after reload and later navigation.
+3. **One banner-only screenshot — VERIFIED.** Athena independently reviewed
+   `messages/inbox/athena/20260803-1007Z-zeus-task0012-banner-proof.jpg`: the crop contains only the
+   warning, names `dev.browser-proof`, says trust extends beyond `latticenet`, and says not to
+   treat the console as production. No surrounding page data or secret is visible.
+4. **Live endpoint truth — VERIFIED.** Zeus returned only the permitted no-secret conclusion:
+   `GET /api/plugin-trust` reported `non_official: true`, publisher names only
+   (`dev.browser-proof`), unsigned-host risk disabled, and no key/path fields. No response body,
+   headers, cookies/storage, credentials, trust material, keys, paths, or startup configuration
+   were requested or received.
 
-TASK-0012 can close only after items 2–4 arrive and pass review. Environment liveness and “browser
-logged in” are prerequisite reports, not substitutes for the reload, screenshot, or live truth
-confirmation.
+Items 2–4 arrived in Zeus's safe evidence letter and passed Athena review on 2026-08-03. Together
+with item 1, the restored evidence split is complete with no residual `NOT VERIFIED` item.
 
 ## Superseded controller route matrix (historical only; not current DoD)
 
@@ -162,6 +165,18 @@ trust, request-detail, credential, key, or startup-configuration surfaces.
    configuration.
 
 ## Log
+
+- 2026-08-03T10:23Z: TASK-0012 closed as `merged`. Safe live evidence is persisted in
+  `messages/inbox/athena/20260803-1007Z-zeus-task0012-browser-proof.md` with its adjacent
+  banner-only image. Under the principal's explicit handoff of the already authenticated Chrome
+  tab, Zeus reported authenticated reload PASS and returned only the allowed no-secret endpoint
+  conclusion; Athena independently reviewed the crop and found only the required persistent
+  warning, publisher name `dev.browser-proof`, and non-production wording. Existing 51/51 route
+  tests plus shared `AppLayout` placement remain the proof of every-screen placement. All four
+  restored evidence items are now VERIFIED; residual `NOT VERIFIED`: none. Finish letter:
+  `messages/inbox/zeus/20260803-1023Z-athena-task0012-finish.md`. Memory harvest: NOOP; the task
+  record already carries the durable evidence boundary. No code, release, signing, deployment,
+  environment, or trust-policy change was made during this evidence close.
 
 - 2026-08-03T09:00Z: operator restored the original evidence split after Chrome extension
   reinstall still left both Zeus and Athena controllers unable to attach. No retry or alternate
