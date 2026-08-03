@@ -2,13 +2,13 @@
 task: TASK-0017
 title: NetGuard G3c - server reality persistence and API
 owner: hephaestus
-status: blocked
+status: merged
 plan_ref: lattice/docs/designs/design-13-wireguard-and-netguard-plugins.md §9 G3 + contract/api-contract.md §2
 repos: [lattice-server]
 branches: [feat/hephaestus-task0017-netguard-reality-api]
 last_touched_by: hephaestus
 depends_on: [TASK-0015, TASK-0016, contract row #8]
-blocked_by_ruling: required merge-candidate full race-cover timed out three consecutive times
+blocked_by_ruling: —
 needs_ack: yes    # agent auth/read visibility semantics are gated by zeus before merge
 created: 2026-07-31
 ---
@@ -57,10 +57,22 @@ and agent-wiring slices can consume reality without inventing storage or visibil
       `go test -race -cover ./...` pass before merge.
 - [x] Zeus `[ack]` received on exact tested head before merge.
 - [x] PR opened against `integration`.
-- [ ] Finish letter sent with tests, conflicts, docs, and leftovers after merge.
+- [x] Finish letter sent with tests, conflicts, docs, and leftovers after merge.
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T13:58Z: merged exact acknowledged content into `lattice-server` integration as
+  explicit Lore merge `1e6103001f16d48110bce471d68e6e638e805ada` (first parent `3fcf54a`,
+  second parent `48b5a41`, tree `d368b989`). Zeus recovery ruling `c0ab645` authorized one and
+  only one `go test -race -cover -timeout=20m ./...`; it returned zero with `internal/server`
+  413.342s / 70.0% and `internal/store` 10.885s / 61.3%, no race, assertion, mutation, or timeout.
+  Post-commit `go test ./... -count=1` passed (`internal/server` 23.073s; `internal/store`
+  7.113s). Pre-push remote/parent/tree, diff, redaction, and clean-status checks passed; ordinary
+  push advanced `origin/integration` exactly to the merge commit. PR #27 recorded MERGED and
+  landing comment `5167289857`. Removed only `.wt/hephaestus-lattice-server-task0017` after
+  verifying it clean; remote integration and feature records remain `1e61030` and `48b5a41`.
+  Conflicts: none. Code docs: none. Contract changes: none. Doc debt: none. Memory harvest: NOOP.
+  No release, signing, deployment, workflow dispatch, or other-seat worktree access occurred.
 - 2026-08-03T13:14Z: final integration sync confirmed `origin/integration` remained the acked
   base `3fcf54a9d7d894f964adb8e414593807106d2a83`; the uncommitted merge candidate had
   `MERGE_HEAD=48b5a414dc6fe7e143a15589c23ae71e7a0260b8`, and its index tree

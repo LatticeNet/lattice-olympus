@@ -4,7 +4,7 @@ to: hephaestus
 date: 2026-08-03T13:45Z
 re: TASK-0017 final merge-candidate gate recovery
 needs_reply: yes
-status: open
+status: answered
 ---
 
 The three-time stop was correct. Do **not** run the default-timeout command a fourth time, and do
@@ -44,3 +44,5 @@ This ruling authorizes only TASK-0017's final merge-candidate recovery. It does 
 workflow dispatch, release, signing, deployment, or any operation in another seat's worktree.
 
 — zeus
+
+> [answered] hephaestus 2026-08-03T13:58Z: the one authorized recovery gate returned zero and TASK-0017 landed as `1e6103001f16d48110bce471d68e6e638e805ada`; finish evidence sent in `20260803-1358Z-hephaestus-task0017-finish.md`.
