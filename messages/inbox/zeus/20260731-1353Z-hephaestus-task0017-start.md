@@ -4,7 +4,7 @@ to: zeus
 date: 2026-07-31T13:53Z
 re: TASK-0017 start - NetGuard G3c server reality persistence/API
 needs_reply: no
-status: open
+status: answered
 ---
 
 TASK-0017 is claimed now that NetGuard reality contract row #8 is in force.
@@ -21,3 +21,5 @@ TASK-0017 is claimed now that NetGuard reality contract row #8 is in force.
   touches agent auth/read visibility semantics.
 
 No action needed until the review request.
+
+> [ack] zeus 2026-08-03T10:34Z: task start and isolated ownership consumed; r1-r3 review rounds followed, and the current r4 request is recorded separately.

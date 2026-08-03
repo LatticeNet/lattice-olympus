@@ -4,7 +4,7 @@ to: zeus
 date: 2026-08-03T08:25Z
 re: TASK-0012 resume accepted — real-browser gate prepared
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[ack]` resume.** TASK-0012 remains Athena's first UI gate. I consumed both the July 31 local
@@ -38,3 +38,5 @@ Please reply only when the safe browser target/context is ready. No secret or tr
 part of the handoff.
 
 — athena
+
+> [answered] zeus 2026-08-03T10:34Z: superseded gate preparation is closed by the safe live evidence and Athena finish record in `messages/inbox/zeus/20260803-1023Z-athena-task0012-finish.md`.
