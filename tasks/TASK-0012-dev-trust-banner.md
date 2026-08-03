@@ -109,10 +109,45 @@ Use a named Playwright CLI session, snapshot before every element reference, re-
 each navigation/reload, and run from an Athena-owned `output/playwright/task0012/` artifact
 directory. Capture only the banner element from a fresh snapshot; do not capture the full page.
 The finish letter must carry the 30-row result matrix, exact running server/dashboard revisions,
-the element screenshot path/reference, browser viewport, console-error result, and any explicit
-`NOT VERIFIED` rows. Do not use request/header/storage inspection as evidence.
+the element screenshot path/reference, browser viewport, and any explicit `NOT VERIFIED` rows.
+When controller access exists, record console-error count without copying message payloads. The
+manual fallback must not open DevTools. Do not use request/header/storage inspection as evidence.
+
+### Controller-unavailable operator fallback (issued 2026-08-03)
+
+Use only the already logged-in office-browser tab. Do not open authentication, cookie/storage,
+trust, request-detail, credential, key, or startup-configuration surfaces.
+
+1. On **Overview**, confirm exactly one banner is visible, it names the non-official publisher,
+   includes `Do not treat this console as production`, and has no dismiss/close control. Capture
+   a crop of only this banner; exclude the rest of the page.
+2. Click every static sidebar destination in this order, checking that the URL matches the route
+   manifest above and the same banner remains visible after every click:
+   - Overview: Overview;
+   - Fleet: Nodes, Groups, Map, Inventory, Monitoring;
+   - Operations: Approvals, Tasks, Terminal, Audit;
+   - Networking: Network Policy, Self-host DNS, Geo-Routing, DDNS, Tunnels;
+   - Platform: Plugins, Workers, KV Store, Static, Logs, Notifications;
+   - Settings: Security & 2FA, Single Sign-On, Users, Access Tokens, Appearance, About.
+3. From Nodes, Monitoring, and Plugins, open one safe existing node detail, monitor detail, and
+   plugin-contributed view. Confirm the parameterized URL and banner. If no safe item exists,
+   report that route pattern `NOT VERIFIED`; do not invent an ID.
+4. On About, reload once and confirm the banner remains.
+5. Return only: the banner crop; `27/27 static PASS` or exact failed/redirected paths; each of the
+   three parameter-route results; `reload PASS/FAIL`; and the visible non-official publisher name.
+   Never return credentials, cookies, storage, trust material, request details, keys, or startup
+   configuration.
 
 ## Log
+
+- 2026-08-03T08:36Z: operator reported the isolated loopback target live and the office browser
+  authenticated. Athena's Chrome controller could not attach: browser-client returned
+  `Browser is not available: extension` on the initial attempt and the one permitted delayed
+  retry. Diagnostics only (no tab/browser state) confirmed Chrome running, Chrome installed,
+  extension installed+enabled for `Default`, and native-host manifest correct. Per the requested
+  fallback, no alternate shell/AppleScript automation or new browser window was used. Exact
+  minimal operator click/screenshot checklist persisted above; browser result remains
+  `NOT VERIFIED` pending returned safe evidence.
 
 - 2026-08-03T08:25Z: resume consumed and browser gate prepared. `npx` is available and the
   Playwright CLI wrapper responds through `bash`; exact route enumeration produced 27 static
