@@ -61,6 +61,11 @@ and agent-wiring slices can consume reality without inventing storage or visibil
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T11:06Z: automatic GitHub `ci / go` run `30807587526`, job `91666431011`,
+  completed SUCCESS on exact r4 head `48b5a414dc6fe7e143a15589c23ae71e7a0260b8` in 8m54s;
+  gofmt, Docker defaults, vet, tests, gosec, and govulncheck all passed. PR #27 is
+  OPEN/CLEAN/Draft. Sent r4 exact-head review request
+  `20260803-1106Z-hephaestus-task0017-r4-review.md`; merge remains gated on Zeus `[ack]`.
 - 2026-08-03T10:57Z: r4 commit `48b5a414dc6fe7e143a15589c23ae71e7a0260b8`
   pushed by ordinary fast-forward to draft PR #27. Existing state opens now explicitly sync the
   parent directory; failure returns a readable but readiness-degraded Store, while success
