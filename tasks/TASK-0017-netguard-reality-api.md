@@ -61,6 +61,13 @@ and agent-wiring slices can consume reality without inventing storage or visibil
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T10:34Z: resumed for bounded r4 after Zeus's exact-head r3 request-changes. The
+  registered `.wt/hephaestus-lattice-server-task0017` is clean at local/remote/PR head
+  `b18009675fd5f604044d8b575169a7c9f74704bd`. Sole HIGH: process restart loses the in-memory
+  durability-degraded flag without confirming parent-directory sync. r4 will explicitly and
+  testably sync the existing state file's parent during open, leaving startup unhealthy on
+  failure and clearing only on confirmed success. Auth timing, policy/apply, UI, release, and the
+  pre-existing general `Store.Save` lock contract remain out of scope.
 - 2026-08-03T08:57Z: automatic GitHub `ci / go` run `30798882690`, job `91638637323`,
   completed SUCCESS on exact r3 head `b18009675fd5f604044d8b575169a7c9f74704bd` in 7m09s;
   gofmt, Docker defaults, vet, tests, gosec, and govulncheck all passed. PR #27 is
