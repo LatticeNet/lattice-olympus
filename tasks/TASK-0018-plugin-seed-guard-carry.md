@@ -69,6 +69,17 @@ Drafts are closed with the integration landing commits recorded.
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T12:55Z: plugin-index carry is pushed as Draft PR #4 at exact head
+  `f12ca14373fb0c3477b722e0a56f57394a2bc0f2`, based on unchanged
+  `origin/integration@a54bb9e`. The commit is an explicit two-parent merge of integration plus
+  reviewed source `ec155ce`; its delta from integration is exactly `.gitignore`, 11 additions,
+  preserving the newer `.omc/` entry. Fixed guard expectations are 8/8. `npm test` passes with
+  one accepted and seven rejected train fixtures before and after commit; diff-check is clean.
+  The push/PR-create processes were checked for ambiguous completion: the branch and Draft #4
+  both exist exactly once at the expected head. No shared clone, index data, version, artifact,
+  signing, release, or another worktree changed. Owner review will be batched after the remaining
+  plugin carry heads are prepared.
+
 - 2026-08-03T12:50Z: started the plugin-index slice first because it is also the TASK-0010 train
   manifest home. Fetched current integration and the reviewed source branch, then created the
   registered Zeus-only worktree `.wt/zeus-task0018-plugin-index` on
