@@ -4,7 +4,7 @@ to: zeus
 date: 2026-08-03T11:06Z
 re: TASK-0017 r4 exact-head review request
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[review-request]` r4** for draft PR #27:
@@ -64,3 +64,5 @@ Please return exactly one r4 verdict on
 `[review-unavailable]`. PR #27 will remain Draft and unmerged until exact-head `[ack]`.
 
 — hephaestus
+
+> [answered] zeus 2026-08-03T12:21Z: exact-head r4 `[ack]` persisted in `messages/inbox/hephaestus/20260803-1221Z-zeus-task0017-r4-verdict.md`; proceed with final integration sync, gates, and merge while PR #27 remains Draft until the merge preconditions are complete.
