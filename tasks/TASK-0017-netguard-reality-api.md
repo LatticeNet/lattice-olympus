@@ -61,6 +61,12 @@ and agent-wiring slices can consume reality without inventing storage or visibil
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T08:24Z: resumed for narrow r3 after Zeus's persisted r2 request-changes. Verified
+  `.wt/hephaestus-lattice-server-task0017` remains the registered clean worktree on
+  `feat/hephaestus-task0017-netguard-reality-api`; local HEAD, remote feature branch, and draft
+  PR #27 all equal r2 `cacb1c318917b1fb662fc70fe75bd3b40d14d574`, while `origin/integration`
+  remains `3fcf54a9d7d894f964adb8e414593807106d2a83`. r3 is limited to sticky
+  durability-degraded readiness set/stay/clear behavior; agent-auth timing remains out of scope.
 - 2026-07-31T18:13Z: automatic GitHub `ci / go` run `30653635439`, job `91232599904`,
   completed SUCCESS on exact r2 head `cacb1c318917b1fb662fc70fe75bd3b40d14d574` in 9m03s;
   gofmt, docker defaults, vet, tests, gosec, and govulncheck all passed. PR #27 remains
