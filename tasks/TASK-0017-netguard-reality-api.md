@@ -61,6 +61,11 @@ and agent-wiring slices can consume reality without inventing storage or visibil
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T08:57Z: automatic GitHub `ci / go` run `30798882690`, job `91638637323`,
+  completed SUCCESS on exact r3 head `b18009675fd5f604044d8b575169a7c9f74704bd` in 7m09s;
+  gofmt, Docker defaults, vet, tests, gosec, and govulncheck all passed. PR #27 is
+  OPEN/CLEAN/Draft. Sent r3 exact-head review request
+  `20260803-0857Z-hephaestus-task0017-r3-review.md`; merge remains gated on Zeus `[ack]`.
 - 2026-08-03T08:49Z: r3 commit `b18009675fd5f604044d8b575169a7c9f74704bd`
   pushed by ordinary fast-forward to draft PR #27. The r2→r3 delta changes only
   `internal/store/store.go` and `internal/store/guard_reality_test.go`: a committed
