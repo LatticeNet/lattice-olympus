@@ -55,6 +55,15 @@ what zeus works between rulings.
 
 ## Log (append-only, newest first)
 
+- 2026-08-03T12:36Z: live GitHub/open-PR audit found ten Drafts. TASK-0017 server#27 is the
+  only active feature. Server#9's sole `.gitignore` blob exactly equals current integration and
+  landed as `748bb05a4ef599e99e12dcf561e362f3f9d16378`; Zeus posted that proof and closed the stale
+  Draft. The other six signing-seed PRs are **not landed**: each integration `.gitignore` lacks
+  the reviewed eleven-line seed block, so they remain open and become TASK-0018 rather than being
+  falsely closed. Template#3 is not patch-equivalent to integration and remains open for a
+  separate semantic carry decision. Sub-store#5 remains the intentionally open engine spike
+  recorded by TASK-0002. No branch was retargeted, merged, or edited during this audit.
+
 - 2026-07-26 08:05Z: claimed by zeus agent after TASK-0001 finished. Re-inventory: 17 open
   drafts — dashboard #3/#4/#5 (#6 closed, verify landing); 5× feat/declare-service-backing
   (template/vpn-core/netguard/wireguard/sub-store #2); 7× chore/gitignore-signing-seeds
