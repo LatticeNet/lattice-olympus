@@ -62,6 +62,24 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T12:58Z: the operator started the first frozen Linux package and authenticated the
+  browser through the loopback tunnel, but the live Plugins page authoritatively showed zero
+  registered plugins. Read-only source inspection then proved the package launcher omitted four
+  load-bearing server inputs: `LATTICE_PLUGIN_DIR`, private runtime/cache directories, and
+  `LATTICE_PUBLIC_URL`. The dashboard's Verify dialog cannot repair that omission: its API is a
+  preflight only and intentionally never installs or registers a bundle. One Sub-Store preflight
+  form load was attempted; no install, lifecycle transition, plugin call, or browser PASS was
+  claimed. The private package launcher and README are corrected locally: all five official
+  bundles are now supplied to the startup loader, runtime/cache stay under the disposable state
+  directory, and the plugin asset origin is the tunneled loopback URL. The checksum ledger now
+  covers all 94 non-ledger files (94/94 pass); rebuilt 34 MiB archive SHA-256 is
+  `424bdf65478ec6dda04522b762b2cd2ccc8c1404a888586c32d62f9ae8ee6b5f`. The running remote
+  process is still the old zero-plugin launch and must be stopped/restarted by the human. After
+  boot, the human must complete exact `verified -> installed -> active` environment setup for
+  each loaded bundle before returning the session; Athena's matrix remains NOT VERIFIED. No
+  production path, tag, signing key, workflow, deployment directory, or other seat's worktree was
+  touched.
+
 - 2026-08-04T12:10Z: the human-owned browser environment is not running, but its frozen Linux
   amd64 input package is now prepared and independently checkable. Eight new Zeus-only worktrees
   were created from the exact 11:04Z server/dashboard/five-plugin/index remote heads; every shared
