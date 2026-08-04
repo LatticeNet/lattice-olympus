@@ -92,6 +92,16 @@ plus dashboard `04c404601d5ab32d11dcd05c25e2f11ba9b8f39a`; plugin-index mirror i
 `4ed4e5049eed77f76f91bee93a7c0c742c0fd310`. Any mismatch is a recorded finding and stops the
 pass.
 
+**Principal amendment (2026-08-04)** — same two deviations recorded in TASK-0003: the server head
+moves to the no-ff merge `d6399ac81c7dcd6864032be2c6c087db6705fd64`, whose tree differs from
+`1e61030` in exactly one line (`dashboard.ref`) and in no runtime code, and the environment is the
+operator's own deployment under a read-only boundary instead of a fresh isolated one.
+
+One row cannot be reached under that boundary and is called out in advance rather than quietly
+counted: the **reference template** (`example.lattice-plugin`) is not among the four bundles
+installed on that deployment, and installing it is exactly what the ruling forbids. That row stays
+**NOT VERIFIED** and needs an isolated environment or a separate ruled install.
+
 ### Minimal human-run environment checklist (outcomes, not commands)
 
 1. A human operator owns startup and shutdown of one fresh, isolated, non-production loopback

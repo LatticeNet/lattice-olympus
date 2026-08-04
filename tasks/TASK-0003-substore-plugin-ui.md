@@ -71,11 +71,30 @@ environment; the prior dev process is stopped and its server checkout predates t
 Until the matrix below is executed in a real authenticated browser, the browser DoD is
 **NOT VERIFIED**.
 
+### Principal amendment to the freeze (2026-08-04T14:0xZ)
+
+Two deliberate deviations from the frozen checklist, recorded before any evidence is collected
+rather than discovered in the results:
+
+1. **Server head moves to `d6399ac81c7dcd6864032be2c6c087db6705fd64`** — the no-ff merge that
+   lands `dashboard.ref → 04c4046`. Its tree differs from `1e61030` in exactly one line
+   (`git diff --stat 1e61030 d6399ac` = `dashboard.ref | 2 +-`) and in no runtime code. The
+   dashboard head itself is unchanged at `04c4046`. Without this the image would ship a dashboard
+   that predates the surface under test.
+2. **The environment is the operator's own deployment, not a fresh isolated loopback one.** The
+   checklist asked for isolation; I am overriding that, and the reason is worth stating: an
+   isolated environment was assembled twice and produced no evidence either time, while a
+   read-only pass over a real deployment tests the exact bundles that are actually serving. The
+   boundary that makes this safe is the ruling's: navigation and manifest-declared **read** calls
+   only — no install, no lifecycle transition, no host-risk operation, no write.
+
+Rows that a read-only pass cannot reach stay **NOT VERIFIED** and say so.
+
 ### Exact environment identity
 
 | Component | Required exact head |
 |---|---|
-| server | `1e6103001f16d48110bce471d68e6e638e805ada` |
+| server | `1e6103001f16d48110bce471d68e6e638e805ada` → amended to `d6399ac` (dashboard.ref only) |
 | dashboard | `04c404601d5ab32d11dcd05c25e2f11ba9b8f39a` |
 | Sub-Store | `3bf7bf5350ad2527665fbc66479e90ce0f5a47e8` (`0.4.0-alpha.2`) |
 | plugin-index mirror | `4ed4e5049eed77f76f91bee93a7c0c742c0fd310` |
