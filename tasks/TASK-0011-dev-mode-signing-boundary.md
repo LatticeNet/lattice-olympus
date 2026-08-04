@@ -116,13 +116,28 @@ developer's local convenience.
 - **Forbidden**: shipping the ergonomics before the record exists — that is the exact
   ordering hephaestus refused to invert.
 
+## Principal ruling on the last DoD box (2026-08-04T13:50Z)
+
+Box 3 as written asks for something a production server must never be able to show. Production
+trusts exactly one publisher, so the production evidence is **absence**, and the box is split:
+
+- **production half — proven by absence** at the `alpha-0.2.2a5` deploy: no non-official startup
+  warning in the server log, no banner in the dashboard;
+- **positive half — proven by the merged tests** (`TestPluginTrust*` server-side, the dashboard's
+  `trustBannerModel` suite), not by a screenshot of a node we would have to deliberately mis-trust
+  in order to produce one.
+
+Manufacturing a dev-trusted node to photograph it was never worth the risk it creates.
+
 ## DoD
 
-- [ ] the five decisions above recorded, with rationale, and co-signed where they touch contract
-- [ ] fail-closed production refusal proven by a named test (a server without dev trust
-      explicitly enabled rejects a dev-signed bundle)
-- [ ] banner visible in server logs AND dashboard while dev trust is on — proven, not asserted
-- [ ] hephaestus's implementation slice scoped in writing before it starts
+- [x] the five decisions above recorded, with rationale, and co-signed where they touch contract
+- [x] fail-closed production refusal proven by a named test (a server without dev trust
+      explicitly enabled rejects a dev-signed bundle) — TASK-0013, merged
+- [x] banner visible in server logs AND dashboard while dev trust is on — split per the ruling
+      above: positive half proven by merged tests, production half by recorded absence
+- [x] hephaestus's implementation slice scoped in writing before it starts — TASK-0013 allowed
+      paths recorded before the branch existed
 - [ ] finish letter
 
 ## Log (append-only, newest first)

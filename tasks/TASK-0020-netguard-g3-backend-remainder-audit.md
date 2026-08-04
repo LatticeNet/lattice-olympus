@@ -6,9 +6,9 @@ status: in_progress
 plan_ref: lattice/docs/designs/design-13-wireguard-and-netguard-plugins.md §9 G3
 repos: [lattice-server, lattice-sdk, lattice-node-agent, lattice-plugin-netguard]
 branches: []
-last_touched_by: hephaestus
+last_touched_by: principal
 depends_on: [TASK-0015, TASK-0016, TASK-0017, TASK-0019]
-blocked_by_ruling: Zeus G3 read-surface and apply-state semantic gate requested 2026-08-04T11:48Z
+blocked_by_ruling: —   # granted 2026-08-04T13:50Z (principal); Phase 1 authorized, see Gate ruling
 needs_ack: yes
 created: 2026-08-04
 ---
@@ -101,6 +101,28 @@ No SDK model change is presently required; no NetGuard plugin `system-go/**` cha
 core-backed interface, and manifest/signature/UI work remains expressly excluded. No code branch
 or worktree may be created until the fresh Zeus contract/apply gate is persisted.
 
+## Gate ruling (principal, 2026-08-04T13:50Z) — GRANTED, both parts
+
+Phase 0's binary conclusion is accepted as written. Asking before building on it was the right
+order, and the proposed slice is authorized with one constraint made explicit rather than implied.
+
+1. **Read-only review projection — granted as a NEW route.** Not a change to
+   `contract/api-contract.md §2`'s fixed reality response, not a core-RPC shape change, no manifest
+   or signature work. It returns per-node suggestions, reality freshness/drift, current binding and
+   re-plan inputs behind `netguard:read` and the in-force reality visibility rules. Reason for the
+   shape: a new route can be removed later; a changed contract response cannot be un-shipped.
+2. **Server-authoritative binding apply-state — granted, with the authoring rule stated:**
+   **clients can never author `Last*` or `AppliedTableSHA`.** The operator upsert strips them from
+   the request; `handleNetGuardPlan` records `LastPlanSHA`; `handleApprovalTaskResult` writes
+   `LastAppliedAt` plus the canonical managed-table SHA on success, and `LastError` on failure or
+   stale plan. Reality ingestion stays low-trust and writes no apply state.
+3. **The node-agent helper is included.** Without the agent emitting the collector's canonical
+   managed-table SHA in the trusted apply result, the server would be recording a guess as an
+   applied SHA — worse than the current gap.
+
+Sequencing: out of the `alpha-0.2.2a5` train, lands after the deploy. Phase 1 may take a fresh
+Hephaestus worktree from the recorded anchors.
+
 ## DoD
 
 - [x] all four remote integration refs equal the recorded anchors
@@ -115,6 +137,12 @@ or worktree may be created until the fresh Zeus contract/apply gate is persisted
 - [ ] finish letter sent
 
 ## Log (append-only, newest first)
+
+- 2026-08-04T13:50Z: principal granted the gate in full — new read-only review route (not an
+  api-contract §2 response change), server-authoritative binding apply-state with `Last*`/
+  `AppliedTableSHA` stripped from client input, and the node-agent canonical-SHA helper. Phase 1 is
+  authorized from the recorded anchors and is explicitly sequenced after the `alpha-0.2.2a5` deploy,
+  so it is not a release blocker. `blocked_by_ruling` cleared.
 
 - 2026-08-04T11:48Z: Phase 0 proved a backend gap. The collector/poll, normalized latest snapshot,
   server freshness, SDK fields, and deterministic suggestion/drift core exist, but no route or core

@@ -57,7 +57,10 @@ Operator's stated model (ruling §1b):
 - [x] slice 2: release-manifest format agreed (letter round) and validated by CI on at least
       one repo
 - [x] slice 3: rules/01 §8.5 amendment co-signed and merged
-- [ ] operator sign-off that the next stable cut can run from this (release itself stays theirs)
+- [x] operator sign-off that the next cut can run from this — **given 2026-08-04T13:50Z for the
+      alpha lane only** (`alpha-0.2.2a5`). The stable `v0.3.0` promotion stays open: §8.5 forbids a
+      plain train containing any prerelease component, and every plugin in the fleet is still a
+      prerelease.
 - [ ] finish letter sent
 
 ## Log (append-only, newest first)
