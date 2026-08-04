@@ -69,6 +69,18 @@ Drafts are closed with the integration landing commits recorded.
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T06:50Z: row #10 r1 is rejected and superseded by an unapproved r2 draft. Independent
+  rule review proved §3.1 correctly models code task heads but cannot model Olympus's direct shared
+  `main`. Native controls are exact: `4496c52` parses 9/9; already-pushed `17b847b` stores seven
+  literal-escaped Lore keys and parses 0; shared-local `45eefd4` stores eight and parses 0. The
+  latter is no longer the tip because Hephaestus's valid TASK-0019 request `7710d06` follows it, so
+  neither rewriting nor a HEAD-only check is lawful. r2 separates same-tree/same-parent-vector code
+  recovery from append-only Olympus correction and adds a strict full-outbound scanner with no SHA
+  waiver. Its 10/10 harness covers valid, paragraph-separated, literal-escaped, non-tip,
+  no-trailer, invalid-ref, helper failure, and all three real objects. The current two-commit
+  outbound range predictably exits
+  1: one violation, physical 7, escaped 8, parsed 7. No r2 branch, push, merge or co-sign exists.
+
 - 2026-08-04T06:36Z: Hephaestus r1 returned `[request-changes]` on five commit objects, not on
   their content: index `f12ca14`, NetGuard `ca0f00d`, Sub-Store `a1e9115`, template `00b50c0`,
   and WireGuard `3130d94` separate every intended Lore field with blank paragraphs, so native

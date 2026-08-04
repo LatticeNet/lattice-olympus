@@ -75,6 +75,33 @@ operator-held seed file" carry the sense without the target.
 is hygiene, and whether history gets rewritten is the operator's call alone (rules/03 —
 irreversible). Say so plainly in the escalation rather than implying the problem is gone.
 
+## Pre-push native Lore check
+
+Lore fields are optional, but a field that is written must be a native Git trailer. Blank lines
+between fields make Git parse only the final paragraph; passing literal `\\n` text through a
+commit command can make Git parse none of them. Before every Olympus push, after the required
+fetch/rebase pair, run:
+
+```sh
+rules/checks/lore-commit-scan.sh refs/remotes/origin/main..HEAD
+```
+
+The script scans every outbound commit, counts physical line-start fields, literal escaped fields
+and native parsed fields by **name and multiplicity**, and prints `commits_scanned=N
+violations=N`. Checking only `HEAD`, or comparing only aggregate counts, is insufficient. Its
+independent harness is `rules/checks/test-lore-commit-scan.sh`.
+
+| Exit | Meaning | What you do |
+|---|---|---|
+| `0` | every outbound commit is native-clean | continue with redaction review and the other push gates |
+| `1` | one or more malformed commit objects | stop; follow rules/01 §3.2 — later prose does not repair the objects |
+| `2` | range, Git command or scanner failed | fix the scanner/input before any push |
+
+There is deliberately no SHA allowlist and no "corrected, therefore green" mode. A known malformed
+object remains malformed forever. If concurrent shared-main work has already built later commits
+on it, the additive correction record and principal-only exact-range ruling in rules/01 §3.2 are
+the one bounded incident path; they do not change the scan result.
+
 ## Verifying a check: say the number first
 
 One review thread (2026-07-27/28) produced this, repeatedly: **a check reported success while
@@ -94,6 +121,8 @@ should not rest on a headcount, and the first draft of this one miscounted itsel
 | 9 | CI scanning a narrower range than the push, after a fallback quietly narrowed it | the check's input | a reviewer reproducing it in a real clone |
 | 10 | a test whose input was derived from the constant it tested — it could only ever confirm | the test | breaking the guard it protected and watching nothing go red |
 | 11 | an edit script that failed to parse, so **nothing changed** — and the suite passed, because nothing had changed | the work, not the check | an error printed *above* the green |
+| 12 | eight intended Lore fields were separated into paragraphs; native Git parsed only the last one | the commit construction and the missing pre-push object check | predicting 8, then measuring 1 with `git interpret-trailers --parse` |
+| 13 | a commit command stored literal `\\n` text; prose claimed a native check, but Git parsed 0 of 7/8 fields | the commit construction and an unverified verification claim | scanning the full outbound range after the malformed commit was no longer `HEAD` |
 
 Different mechanisms, one shape: **the thing measured sat adjacent to the thing claimed, and
 success was the default appearance.** Row 11 is the sharpest variant: the success signal was

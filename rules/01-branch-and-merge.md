@@ -35,14 +35,20 @@ git checkout -b feat/<handle>-task<NNNN>-<slug> origin/integration
 - **Pull** integration mid-task only when: a contract change lands · you're about to touch a shared file · the task exceeds 3 working days.
 - **Never** rebase or force-push a branch that's been pushed.
 
-### 3.1 Immutable commit-object recovery (the only second-branch exception)
+### 3.1 Code task-head immutable-object recovery (the only second-branch exception)
 
-Commit parents, trees and messages are immutable. If a **pushed task head** fails a mandatory
+This section applies only to pushed **code-repository task branches and their Draft PRs**. It does
+not apply to the shared Olympus `main`; use §3.2 there.
+
+Commit parents, trees and messages are immutable. If a pushed task head fails a mandatory
 commit-object check (for example native Lore trailer parsing), an ordinary follow-up commit cannot
 repair the defective object, while rewriting it would violate the no-force rule above. Use this
 bounded recovery only when all of the following are on record: a reviewer returned
-`[request-changes]`; the intended content tree is already proven correct; and the repair changes
-only immutable commit metadata or provenance.
+`[request-changes]`; the intended content tree is already proven correct; and the replacement
+changes only the reviewer-identified defective immutable field. Its content tree and every
+non-defective object property remain identical. Ordered parents must equal the expected parent
+vector already recorded by the reviewer; "provenance" is never permission to choose different
+ancestry.
 
 1. **Preserve the failed record.** Never force-push, rebase, delete or repoint the published branch.
    Record its exact head and Draft PR in the task log.
@@ -60,6 +66,39 @@ only immutable commit metadata or provenance.
 Do not use an empty "fix metadata" descendant: it leaves the malformed object in the candidate
 history and only makes the tip look compliant. Do not use this section to avoid an ordinary
 review change, integration refresh, conflict resolution or failed test.
+
+### 3.2 Malformed commits on the shared Olympus main
+
+Olympus commits directly to one shared `main`; §3.1 recovery branches and replacement PRs do not
+apply. If a malformed commit is already published on Olympus `main`, or is already present in the
+shared local `main` with later commits based on it:
+
+1. **Preserve the exact object.** Do not amend, rebase, reset, force-push, delete or repoint history
+   solely to change its metadata.
+2. **Add a compliant, append-only correction record.** Name the malformed full SHA, the mandatory
+   check and the observed result. State explicitly: **the original commit remains malformed; this
+   record does not repair or validate that object.** The correction commit must change durable
+   state; an empty descendant is metadata laundering.
+3. **Separate content truth from object truth.** Restate or link the intended decision and record
+   which persisted file content remains valid, but never count the malformed object as
+   Lore-compliant. A malformed co-sign does not put a rule in force; obtain a fresh compliant ack.
+4. **Keep the scanner strict.** Before every Olympus push, after the required no-write fetch and
+   explicit rebase, run `rules/checks/lore-commit-scan.sh refs/remotes/origin/main..HEAD`. It scans
+   the entire outbound range, not only `HEAD`, and has no SHA allowlist or automatic correction
+   waiver. Already-published historical objects naturally fall outside later outbound ranges but
+   remain named in their correction records.
+5. **Escalate an outbound historical defect.** If the strict scan finds a malformed object already
+   embedded below later shared-local commits, persist the correction and fresh reviews, then stop.
+   Only the human principal may authorize one exact-range push with the predicted non-zero result.
+   The persisted ruling must name the full remote-base SHA, full local-head SHA, ordered outbound
+   commit list and predicted scanner counts. Immediately before push, repeat the no-write fetch,
+   then compare the fetched remote base, current local head, ordered list and counts with the
+   authorization **before any history-changing rebase**. Any mismatch voids the ruling: stop
+   without rebasing. Only an exact match permits the required explicit rebase, which must be a
+   no-op; recheck all four values afterward. Any movement requires fresh review; the agent cannot
+   turn one incident into a reusable bypass.
+6. **Review new policy as new policy.** A correction that materially amends a rule or contract
+   needs fresh affected-seat review. Earlier acknowledgements do not carry over.
 
 ## 4. Merge preconditions (all required)
 
