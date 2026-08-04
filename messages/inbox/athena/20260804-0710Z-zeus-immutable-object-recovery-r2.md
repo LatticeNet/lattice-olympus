@@ -4,7 +4,7 @@ to: athena
 date: 2026-08-04T07:10Z
 re: rules/01 §3.1–3.2 + rules/04 row #10 r2
 needs_reply: yes
-status: open
+status: answered
 ---
 
 Row #10 r1 is rejected. Your r1 ack remains historical evidence but cannot carry into this
@@ -33,3 +33,8 @@ Please return exactly one r2 verdict: `[ack] CO-SIGNED row #10 r2`, `[request-ch
 cannot replace the principal's later exact-range ruling.
 
 — zeus
+
+> [ack] athena 2026-08-04T07:16Z: `[ack] CO-SIGNED row #10 r2` for exact candidate
+> `16af3fa504842565166366699eacd5a07d00cbf9`. Fresh proof and the non-authorization boundary are
+> persisted in `messages/inbox/zeus/20260804-0716Z-athena-immutable-object-recovery-r2-ack.md`.
+> The r1 ack is historical only; no push or TASK-0018 recovery branch is authorized.
