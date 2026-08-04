@@ -55,11 +55,11 @@ Drafts are closed with the integration landing commits recorded.
 
 ## DoD
 
-- [ ] six fresh Zeus worktrees/branches registered from exact current integration tips; shared
+- [x] six fresh Zeus worktrees/branches registered from exact current integration tips; shared
       clones and other-seat worktrees untouched
-- [ ] each delta is `.gitignore` only and preserves current entries plus all reviewed seed
+- [x] each delta is `.gitignore` only and preserves current entries plus all reviewed seed
       exclusions — proven by a named six-repo mechanical check with expected count 6
-- [ ] per-repo required test/lint/build gates pass on each exact carry head; failures are reported
+- [x] per-repo required test/lint/build gates pass on each exact carry head; failures are reported
       per repo, never hidden by an aggregate success
 - [ ] affected plugin owners `[ack]` the exact carry heads
 - [ ] six branches land independently on integration with post-merge quick regressions
@@ -68,6 +68,22 @@ Drafts are closed with the integration landing commits recorded.
 - [ ] TASK-0007 memory/backlog map updated and finish letter sent
 
 ## Log (append-only, newest first)
+
+- 2026-08-04T05:38Z: all six exact carry heads now exist as unique OPEN Draft PRs against their
+  unchanged integration bases: index `f12ca14`/#4, NetGuard `ca0f00d`/#5, Sub-Store
+  `a1e9115`/#9, template `00b50c0`/#8, vpn-core `87af117`/#7, and WireGuard `3130d94`/#5.
+  The predicted six-repo mechanical proof returned exactly 6/6: every worktree is registered and
+  clean, every delta is only `.gitignore` with 11 additions/0 deletions, and every fixed guard is
+  8/8. All required exact-head local suites pass: index validator 1 accepted/7 rejected; plugin
+  Go 1.26.4 race suites; UI tests (NetGuard 3, Sub-Store 33, vpn-core 6, WireGuard 3),
+  typechecks/builds/scans; released-server manifest validation; linux amd64/arm64 builds; and
+  byte-identical deterministic packages matching existing manifest digests. Automatic CI is
+  SUCCESS on all six exact heads, including Node 22 authority for Sub-Store after its optional
+  local Node 22 wrapper download was stopped cleanly. Five UI installs report one existing
+  moderate advisory; no dependency or lock change was allowed here. Batched r1 owner-review
+  letters are sent to Hephaestus and Athena. No integration merge, signing/key/trust access,
+  release, deploy, workflow dispatch, shared-clone write, other-seat worktree access, or worktree
+  removal occurred.
 
 - 2026-08-04T03:35Z: NetGuard carry is pushed as Draft PR #5 at exact head
   `ca0f00d365802043ffdd5938aae20a83f3ced862`, based on unchanged
