@@ -62,6 +62,26 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T12:10Z: the human-owned browser environment is not running, but its frozen Linux
+  amd64 input package is now prepared and independently checkable. Eight new Zeus-only worktrees
+  were created from the exact 11:04Z server/dashboard/five-plugin/index remote heads; every shared
+  clone and other-seat worktree remained untouched. The current server cross-built as a static
+  Linux amd64 binary. The five plugin UIs built offline and passed `verify:build`; both Linux
+  runtime architectures rebuilt; deterministic packaging reproduced the existing signed manifest
+  digests exactly: template `0a806be8`, vpn-core `89e4d484`, NetGuard `ac7e1d66`, WireGuard
+  `decba2ac`, Sub-Store `9cc70651`. Plugin-index validation remained 1 accepted/7 rejected. The
+  fresh dashboard build was not counted: the package-manager safety wrapper refused an unavailable
+  registry-signature check before build. Instead the package reuses the already browser-proven
+  static dashboard output from the exact same frozen dashboard commit `04c4046`; no different
+  source or version was substituted. The private 106-file package contains server, dashboard,
+  five official-publisher manifest/bundle pairs, index mirror, human-run loopback launcher, and
+  SHA256SUMS; all entries verify and the final 34 MiB archive SHA-256 is
+  `bb761caf0da1157428ea256312e19bb202b4be80eb092585fd9ddac3a1696d43`. It contains no credential,
+  trust policy, publisher material, state, release tag or production config. Environment startup,
+  transfer and SSH tunnel remain the operator's hands; eight proof worktrees remain registered
+  until the browser matrix finishes. No signing, new artifact identity, release, workflow dispatch,
+  remote host contact or deployment occurred.
+
 - 2026-08-04T11:04Z: the first post-TASK-0018 verification freeze is now exact and read-only.
   Remote heads are Olympus main `2915d6755db26228c39e54184caa72388d8c63f5`; SDK
   `00943f6ec9e78f27f0dc18f1bc43c11decba4f8f`; server
