@@ -69,6 +69,19 @@ Drafts are closed with the integration landing commits recorded.
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T03:35Z: NetGuard carry is pushed as Draft PR #5 at exact head
+  `ca0f00d365802043ffdd5938aae20a83f3ced862`, based on unchanged
+  `origin/integration@9822d816`. The explicit two-parent Lore merge preserves reviewed source
+  `dec87a7`; its delta from integration is exactly `.gitignore`, 11 additions. Fixed seed-guard
+  expectations are 8/8. On the exact head, Go 1.26.4 race tests passed for `system-go` and
+  `tools/pluginpack`; UI tests passed 3/3 with typecheck, build, and build scan; the released-server
+  manifest validator accepted id/version/schema; linux amd64/arm64 builds passed; and two
+  deterministic packages were byte-identical at the signed manifest digest
+  `ac7e1d66b75a911b82f378999c0323c08917fa9d8030046bf790c64eb147b81c`. PR #5 is OPEN,
+  Draft, MERGEABLE, and exact at `ca0f00d`; automatic CI is running. No workflow dispatch,
+  signing, key/trust access, release, deployment, shared-clone write, or other-seat worktree access
+  occurred. Owner review remains intentionally batched until all six heads exist.
+
 - 2026-08-03T12:55Z: plugin-index carry is pushed as Draft PR #4 at exact head
   `f12ca14373fb0c3477b722e0a56f57394a2bc0f2`, based on unchanged
   `origin/integration@a54bb9e`. The commit is an explicit two-parent merge of integration plus

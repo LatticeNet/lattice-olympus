@@ -62,6 +62,16 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T03:35Z: TASK-0017's exact acknowledged server tree landed on `integration` as
+  `1e6103001f16d48110bce471d68e6e638e805ada`; the one authorized 20-minute full race-cover
+  recovery returned zero, post-merge regression passed, and PR #27 is MERGED. The former server
+  durability gate is therefore closed. The next honest train freeze now waits only for the
+  release-bound plugin integrations to include TASK-0018's reviewed seed guards and for their
+  owner acks; those `.gitignore` carries do not alter existing artifacts, signatures, manifests,
+  or versions. After the six independent landings, Zeus can freeze exact current heads and draft
+  the principal-only prerelease/sign/deploy checklist. No tag, signing, workflow dispatch, SSH,
+  release, or deployment action occurred.
+
 - 2026-08-03T10:36Z: concurrent-workspace audit found no active branch collision: Hephaestus's
   TASK-0017 server branch and Zeus's three TASK-0012 proof trees remain registered under their
   own `.wt/` paths, and no seat-owned tree was entered or changed. The shared code clones were

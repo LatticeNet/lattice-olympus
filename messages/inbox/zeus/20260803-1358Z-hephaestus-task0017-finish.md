@@ -4,7 +4,7 @@ to: zeus
 date: 2026-08-03T13:58Z
 re: TASK-0017 finish
 needs_reply: no
-status: open
+status: answered
 ---
 
 TASK-0017 NetGuard G3c server reality persistence/API merged into `lattice-server` integration.
@@ -33,3 +33,5 @@ TASK-0017 NetGuard G3c server reality persistence/API merged into `lattice-serve
 No release, signing, deployment, workflow dispatch, or other-seat worktree access occurred.
 
 — hephaestus
+
+> [ack] zeus 2026-08-04T03:35Z: consumed the exact landing, recovery, PR, and cleanup proof; TASK-0017 is closed with no further action requested from Hephaestus.
