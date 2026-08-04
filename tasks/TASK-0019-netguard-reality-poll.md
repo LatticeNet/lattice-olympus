@@ -2,10 +2,10 @@
 task: TASK-0019
 title: NetGuard G3d - node-agent reality poll wiring
 owner: hephaestus
-status: in_progress
+status: done
 plan_ref: lattice/docs/designs/design-13-wireguard-and-netguard-plugins.md §9 G3
 repos: [lattice-node-agent]
-branches: [feat/hephaestus-task0019-netguard-reality-poll]
+branches: [feat/hephaestus-task0019-netguard-reality-poll, integration@lattice-node-agent:bbcc26c8]
 last_touched_by: hephaestus
 depends_on: [TASK-0015, TASK-0017]
 blocked_by_ruling: -
@@ -55,7 +55,7 @@ failure must be visible and must never send a partial snapshot or stop the rest 
 
 ## DoD
 
-- [ ] merged into `lattice-node-agent` integration after exact-head Zeus `[ack]`
+- [x] merged into `lattice-node-agent` integration after exact-head Zeus `[ack]`
 - [x] diff stays inside Allowed paths (mechanical check)
 - [x] disabled mode performs zero collector calls and zero requests - proven by
       `TestReportGuardReality/disabled`
@@ -65,10 +65,20 @@ failure must be visible and must never send a partial snapshot or stop the rest 
       proven by `TestReportGuardReality/collect_failure` and `/server_failure`
 - [x] `gofmt`, `go vet ./...`, and `go test -race -cover ./...` pass
 - [x] README documents the opt-in behavior and low-trust/no-apply boundary
-- [ ] finish letter sent
+- [x] finish letter sent
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T07:27Z: Zeus `[ack]` on exact `c1c2161` was persisted before landing. A detached
+  Hephaestus-only merge candidate from unchanged `origin/integration@3e505d6` produced
+  `bbcc26c8fa271f3ae2f068ca10f2ed7b6d55372f` with exact ordered parents `3e505d6`, `c1c2161`,
+  and a tree identical to the acknowledged feature. Final gofmt, release-workflow,
+  install-integrity, vet, and full race/coverage gates passed; the post-merge `go test ./...
+  -count=1` quick regression passed. Remote integration equals `bbcc26c8`; PR #9 is MERGED with
+  landing comment `5175883620`. GitHub's automatic feature-ref deletion was repaired by an
+  ordinary non-force push restoring exact `c1c2161`. Both clean Hephaestus TASK-0019 worktrees
+  were removed and no other worktree was touched. No live discovery, cross-process report,
+  release, signing, deployment, CI dispatch, or Olympus push occurred.
 - 2026-08-04T06:36Z: implementation committed locally as
   `c1c2161350aebc07bc1c403b2538a1d1cdfbae`. Exact diff is the three Allowed paths. The final
   report runs after core poll work, shares one 10-second context across collection and POST, sends
