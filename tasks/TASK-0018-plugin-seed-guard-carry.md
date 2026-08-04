@@ -69,6 +69,18 @@ Drafts are closed with the integration landing commits recorded.
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T06:36Z: Hephaestus r1 returned `[request-changes]` on five commit objects, not on
+  their content: index `f12ca14`, NetGuard `ca0f00d`, Sub-Store `a1e9115`, template `00b50c0`,
+  and WireGuard `3130d94` separate every intended Lore field with blank paragraphs, so native
+  `git interpret-trailers --parse` recognizes only `Not-tested:`. vpn-core `87af117` parses all
+  eight and is individually clean. All six `.gitignore` trees, parents, PR bases, automatic CI,
+  tracked-path scans, and build obligations otherwise passed independent review. A follow-up
+  commit cannot repair immutable metadata; force-push is forbidden; and current rules also forbid
+  a replacement task branch. Proposed rules/01 §3.1 + changelog row #10 resolves that conflict by
+  preserving the failed branch/PR and allowing exactly one same-base, identical-tree numbered
+  recovery branch with full gates and fresh review. The rule is not in force until Athena and
+  Hephaestus co-sign; no r2 branch or merge exists. Athena's independent r1 remains in progress.
+
 - 2026-08-04T05:38Z: all six exact carry heads now exist as unique OPEN Draft PRs against their
   unchanged integration bases: index `f12ca14`/#4, NetGuard `ca0f00d`/#5, Sub-Store
   `a1e9115`/#9, template `00b50c0`/#8, vpn-core `87af117`/#7, and WireGuard `3130d94`/#5.

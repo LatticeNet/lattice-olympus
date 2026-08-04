@@ -35,6 +35,32 @@ git checkout -b feat/<handle>-task<NNNN>-<slug> origin/integration
 - **Pull** integration mid-task only when: a contract change lands · you're about to touch a shared file · the task exceeds 3 working days.
 - **Never** rebase or force-push a branch that's been pushed.
 
+### 3.1 Immutable commit-object recovery (the only second-branch exception)
+
+Commit parents, trees and messages are immutable. If a **pushed task head** fails a mandatory
+commit-object check (for example native Lore trailer parsing), an ordinary follow-up commit cannot
+repair the defective object, while rewriting it would violate the no-force rule above. Use this
+bounded recovery only when all of the following are on record: a reviewer returned
+`[request-changes]`; the intended content tree is already proven correct; and the repair changes
+only immutable commit metadata or provenance.
+
+1. **Preserve the failed record.** Never force-push, rebase, delete or repoint the published branch.
+   Record its exact head and Draft PR in the task log.
+2. **Create exactly one numbered recovery branch** from the same reviewed integration base:
+   `<original-branch>-r<review-round>`. This is the sole exception to §2's one-branch-per-task
+   rule. Recreate the same tree and required parents with compliant metadata; any content change
+   disqualifies this recovery and returns to normal task planning.
+3. **Prove equivalence, then review again.** The task record names old/new heads and PRs, proves
+   identical trees and intended parents, reruns the full repo gates on the new exact head, and
+   requests a fresh numbered verdict. Green results never inherit the old ack.
+4. **Retire without erasing.** Only after the replacement Draft exists, comment on and close the
+   superseded Draft. Keep its remote branch as the audit record; never delete it as cleanup. The
+   recovery branch is the only merge candidate.
+
+Do not use an empty "fix metadata" descendant: it leaves the malformed object in the candidate
+history and only makes the tip look compliant. Do not use this section to avoid an ordinary
+review change, integration refresh, conflict resolution or failed test.
+
 ## 4. Merge preconditions (all required)
 
 1. `git fetch origin && git merge origin/integration` — resolve all conflicts **on your branch**;
