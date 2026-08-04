@@ -69,6 +69,12 @@ Drafts are closed with the integration landing commits recorded.
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T07:10Z: additive correction and row #10 r2 candidate committed locally as
+  `16af3fa504842565166366699eacd5a07d00cbf9`; its 10/10 native trailers parse. Independent rule
+  critique returned `[ack]` after helper failure became loud exit 2 and the exact-range ruling was
+  bound before rebase. Fresh r2 co-sign requests are sent to Athena and Hephaestus. Olympus remains
+  unpushed and the strict outbound scan remains red by design; no recovery branch exists.
+
 - 2026-08-04T06:50Z: row #10 r1 is rejected and superseded by an unapproved r2 draft. Independent
   rule review proved §3.1 correctly models code task heads but cannot model Olympus's direct shared
   `main`. Native controls are exact: `4496c52` parses 9/9; already-pushed `17b847b` stores seven
