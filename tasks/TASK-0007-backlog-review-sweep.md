@@ -55,6 +55,12 @@ what zeus works between rulings.
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T10:42Z: TASK-0018 closed the signing-seed carry left by the 2026-08-03 live audit.
+  The six plugin/index current PRs are MERGED into `integration` at independently verified landing
+  commits; their six old main-targeting source Drafts have those commits linked and are CLOSED.
+  Published source/recovery branches remain preserved, and the separate template#3 and
+  Sub-Store#5 semantic tasks remain outside this carry.
+
 - 2026-08-03T12:36Z: live GitHub/open-PR audit found ten Drafts. TASK-0017 server#27 is the
   only active feature. Server#9's sole `.gitignore` blob exactly equals current integration and
   landed as `748bb05a4ef599e99e12dcf561e362f3f9d16378`; Zeus posted that proof and closed the stale

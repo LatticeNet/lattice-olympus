@@ -3,7 +3,7 @@ slug: map-draft-pr-backlog
 kind: map
 keywords: draft PR backlog, critical path, verdicts, landed-in-integration, close-with-landing-commit, integration behind main
 added: 2026-07-26
-verified: 2026-07-26
+verified: 2026-08-04
 by: zeus
 ---
 
@@ -40,12 +40,19 @@ close-with-landing-commit (rules/01 §8.5), never merged. Exception: dashboard
 rollback past #8 (strands re-signed plugins). #7 adds: no LATTICE_PUBLIC_URL → plugin assets
 503 (same family as [[decision-webauthn-rpid]]).
 
-**TASK-0007 final state (2026-07-26)**: closed-as-landed with landing commits — server#3/#4
+**TASK-0007 state (2026-07-26)**: closed-as-landed with landing commits — server#3/#4
 (a0308cb), dashboard#5/#4 (0115575), dashboard#3 (5c3d82f), sub-store#2 (int tip 3c3571f);
 dashboard#6 was properly MERGED. [ack] merge-ready, awaiting integrator pass — seeds ×7
 (history re-scanned clean in all 7 repos), backing ×4 (conformance -race green per head;
 signatures rest on 2026-07-15 field load "4/0"), template#3 execute-reference (-race green;
-injection test real; manual e2e owed). Six plugin/index repos still need `integration` created.
-Still open beyond queue: server#7/#8/#10/#11/#12, sdk#6, dashboard#9 (TASK-0001 closure sweep,
-operator-gated) + athena's sub-store#4 (her round protocol).
+injection test real; manual e2e owed).
+
+**Signing-seed carry reconciled (TASK-0018, 2026-08-04)**: server#9 had already landed as
+`748bb05`; the remaining plugin-index, NetGuard, Sub-Store, template, vpn-core and WireGuard
+changes now land on their `integration` branches as independently reviewed no-ff merges. Their
+current integration PRs are MERGED; stale main-targeting source Drafts #1 are linked to the exact
+landing commits and CLOSED. Source and recovery branches remain preserved for audit. Template#3
+execute-reference and Sub-Store#5 engine spike remain separate semantic work, not seed-guard
+leftovers. Still open beyond this queue: server#7/#8/#10/#11/#12, sdk#6, dashboard#9
+(TASK-0001 closure sweep, operator-gated) + athena's sub-store#4 (her round protocol).
 [[gotcha-published-vs-acceptable-manifest]] [[decision-plugin-backing]]

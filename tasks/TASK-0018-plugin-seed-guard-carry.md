@@ -2,7 +2,7 @@
 task: TASK-0018
 title: Carry reviewed publisher-seed exclusions into plugin integration branches
 owner: zeus
-status: in_progress
+status: merged
 plan_ref: TASK-0007 leftover discovered by 2026-08-03 live backlog audit
 repos: [lattice-plugin-index, lattice-plugin-netguard, lattice-plugin-sub-store, lattice-plugin-template, lattice-plugin-vpn-core, lattice-plugin-wireguard]
 branches: [feat/zeus-task0018-seed-guard-carry, feat/zeus-task0018-seed-guard-carry-r2]
@@ -61,13 +61,39 @@ Drafts are closed with the integration landing commits recorded.
       exclusions — proven by a named six-repo mechanical check with expected count 6
 - [x] per-repo required test/lint/build gates pass on each exact carry head; failures are reported
       per repo, never hidden by an aggregate success
-- [ ] affected plugin owners `[ack]` the exact carry heads
-- [ ] six branches land independently on integration with post-merge quick regressions
-- [ ] six stale Drafts receive the landing commit comment and close only after their repo lands
-- [ ] all six Zeus worktrees removed after landing; no other worktree removed
-- [ ] TASK-0007 memory/backlog map updated and finish letter sent
+- [x] affected plugin owners `[ack]` the exact carry heads
+- [x] six branches land independently on integration with post-merge quick regressions
+- [x] six stale Drafts receive the landing commit comment and close only after their repo lands
+- [x] all six Zeus worktrees removed after landing; no other worktree removed
+- [x] TASK-0007 memory/backlog map updated and finish letter sent
 
 ## Log (append-only, newest first)
+
+- 2026-08-04T10:42Z: TASK-0018 merged independently in plugin-before-index order after Athena
+  and Hephaestus both returned fresh `[ack]` on all six exact candidates. Integration merge
+  commits are NetGuard `22ea8e5a819df14cfe789e608a20041e8f2fcef4`, Sub-Store
+  `3bf7bf5350ad2527665fbc66479e90ce0f5a47e8`, template
+  `a2e355b8c89c269ec479177a0e4e7820be288aeb`, vpn-core
+  `74eb20c08d039dfa7e50729d74f646a5cb24251d`, WireGuard
+  `6ad14c76da3f1180599279564cfa75c11523edc2`, and plugin-index
+  `4ed4e5049eed77f76f91bee93a7c0c742c0fd310`. Every merge preserves the reviewed candidate as
+  second parent and has the candidate tree; all merge messages parse 8/8 native Lore fields.
+  Exact-head full gates remained green. Post-merge quick regressions passed in all six repos:
+  plugin-index validator accepted 1 fixture and rejected 7; each plugin passed its Go/UI/package
+  entry. Sub-Store first exceeded its embedded 30-second QuickJS context while five plugin suites
+  were run concurrently; the same focused test passed serially in 27.40s, then the full serial Go
+  suite passed in 143.472s, UI passed 33/33, packaging passed, and the exact integration merge's
+  natural CI passed. All six natural integration workflows are SUCCESS at the exact merge SHAs.
+  GitHub marks replacement/current PRs index#5, NetGuard#6, Sub-Store#10, template#9, vpn-core#7,
+  and WireGuard#6 MERGED; each has the landing link. All six stale main-targeting source Drafts #1
+  have the landing link and are CLOSED. Source, r1, r2 and vpn-core audit branches remain remote;
+  template's r2 ref was restored to exact `9c4f595655928a17ef1932944ce2ce0b5bd730c0` after GitHub
+  removed it on merge. Exactly 17 clean, registered `zeus-task0018-*` worktrees were removed with
+  `git worktree remove`; zero TASK-0018 paths remain and other-seat/TASK-0012 worktrees are intact.
+  No signing, key/trust access, artifact mutation, release, deployment, manual CI dispatch, shared
+  clone checkout, or remote branch deletion occurred. The existing moderate UI advisory and the
+  parallel-load QuickJS timing margin are recorded residuals; neither changed this `.gitignore`
+  carry.
 
 - 2026-08-04T08:18Z: bounded r2 recovery is now externally visible and fully green. Five new
   commit objects preserve the respective r1 tree, ordered two-parent vector, author/committer
