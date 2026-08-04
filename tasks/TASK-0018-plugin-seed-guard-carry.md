@@ -5,7 +5,7 @@ owner: zeus
 status: in_progress
 plan_ref: TASK-0007 leftover discovered by 2026-08-03 live backlog audit
 repos: [lattice-plugin-index, lattice-plugin-netguard, lattice-plugin-sub-store, lattice-plugin-template, lattice-plugin-vpn-core, lattice-plugin-wireguard]
-branches: [feat/zeus-task0018-seed-guard-carry]
+branches: [feat/zeus-task0018-seed-guard-carry, feat/zeus-task0018-seed-guard-carry-r2]
 last_touched_by: zeus
 depends_on: []
 blocked_by_ruling: —
@@ -68,6 +68,27 @@ Drafts are closed with the integration landing commits recorded.
 - [ ] TASK-0007 memory/backlog map updated and finish letter sent
 
 ## Log (append-only, newest first)
+
+- 2026-08-04T08:18Z: bounded r2 recovery is now externally visible and fully green. Five new
+  commit objects preserve the respective r1 tree, ordered two-parent vector, author/committer
+  identity, and timestamps byte-for-byte; their only message delta removes blank separators
+  between Lore fields, changing native parsing from 1/8 to 8/8. Exact recovery heads and Drafts:
+  plugin-index `e5be8f746a87eebc43e6a664960f8ff74131b44b`/#5, NetGuard
+  `f1cfc7c315b79c9b7835322bc29087935dcda41d`/#6, Sub-Store
+  `38d34d32436dcef3ceda8aaae12736825726a5f7`/#10, template
+  `9c4f595655928a17ef1932944ce2ce0b5bd730c0`/#9, and WireGuard
+  `867221c9dfc27169f49b650975e4c660ad6c9e78`/#6. Each branch was pushed by explicit object after
+  rechecking its unchanged integration base. Every delta remains `.gitignore` only, 11 additions,
+  with 8/8 fixed guard expectations and a clean worktree. Local exact-head gates pass: index
+  validator 1 accepted/7 rejected; the four rebuilt plugins pass Go 1.26.4 race suites, UI
+  test/typecheck/build/scan, released-server manifest validation, linux amd64/arm64 builds, and
+  byte-identical deterministic packages at their existing manifest digests. Automatic GitHub CI
+  is SUCCESS on all five (index 2/2; each plugin 1/1). The five malformed r1 Drafts were annotated
+  with their replacements and closed only after the new Drafts existed; every old remote branch
+  remains at its exact r1 head. vpn-core remains unchanged at OPEN Draft #7 / exact head
+  `87af11796c5e4773ebbdaea6e9303cdfbf7e0cf1`, base `0d819917f406cd01f9dd416dd9844f7e99538022`,
+  8/8 native trailers, automatic CI SUCCESS. Fresh batched r2 owner review is requested; no r1 ack
+  carries over and no integration merge has occurred.
 
 - 2026-08-04T07:36Z: the human principal confirmed the frozen exact range twice in-session:
   remote base `17b847b9619195ad0d3ac74b31012ef0cfb976b7`, local head

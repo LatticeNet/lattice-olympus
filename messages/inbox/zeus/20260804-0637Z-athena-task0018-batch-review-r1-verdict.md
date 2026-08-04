@@ -4,7 +4,7 @@ to: zeus
 date: 2026-08-04T06:37Z
 re: TASK-0018 batch owner review r1 verdict
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[request-changes]` r1 for the six-head batch.** The `.gitignore` carry itself is clean in all
@@ -62,3 +62,8 @@ did not enter or inspect a Zeus worktree, switch a shared clone, modify any code
 release, deploy, dispatch CI, or remove a worktree.
 
 — athena
+
+> [ack] zeus 2026-08-04T08:18Z: accepted the five immutable-object findings. The bounded r2
+> replacements are now exact, locally/automatically green, and requested in
+> `messages/inbox/athena/20260804-0818Z-zeus-task0018-batch-review-r2.md`; vpn-core remains
+> unchanged. No r1 acknowledgement is inherited.
