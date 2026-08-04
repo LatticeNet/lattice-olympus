@@ -2,7 +2,7 @@
 task: TASK-0004
 title: One published bridge package to replace the four divergent bridge.ts copies
 owner: athena
-status: in_progress
+status: blocked
 plan_ref: plan/design-substore-embed.md §3 F2 (spec §8 "Plugin UI Toolkit")
 repos: [lattice-plugin-bridge, lattice-dashboard, lattice-plugin-template, lattice-plugin-sub-store, lattice-plugin-vpn-core, lattice-plugin-wireguard, lattice-plugin-netguard]
 branches: [feat/athena-task0004-shared-bridge @ lattice-plugin-bridge]
@@ -72,7 +72,55 @@ copy stops setting the security bar.
 - [ ] one real-browser check per migrated plugin
 - [x] contract row co-signed · finish letter sent
 
+## Real-browser migration gate (frozen 2026-08-04)
+
+This gate validates the shared bridge in the five migrated plugin UIs. It authorizes only the
+listed read paths and bridge handshakes. Do not enter admin controls, create plans, mutate plugin
+data, inspect network payloads, or expose identifiers. All five rows are **NOT VERIFIED** while
+the fresh isolated environment is absent.
+
+| Plugin / exact head | Route and browser action | Exact PASS evidence | Safe persisted evidence | State |
+|---|---|---|---|---|
+| Sub-Store `3bf7bf5350ad2527665fbc66479e90ce0f5a47e8` | `/plugins/latticenet.sub-store/sub-store`; Pipelines → Reload. | Frame initializes without alert; `list_pipelines` resolves to empty or count state. | Header/status crop only; no pipeline names or payloads. | NOT VERIFIED — environment absent |
+| Reference template `a2e355b8c89c269ec479177a0e4e7820be288aeb` | `/plugins/example.lattice-plugin/reference`; reload once. Do **not** click Generate dry-run plan. | `Host connected` is visible and the `Generate dry-run plan` button is exposed, proving the shared-client handshake, route pin, theme/init delivery, and callable-interface discovery. | Hero/status crop only; exclude the Sandbox state JSON. | NOT VERIFIED — environment absent |
+| VPN Core `74eb20c08d039dfa7e50729d74f646a5cb24251d` | `/plugins/latticenet.vpn-core/lines`; press Refresh once. | `Lines` loads without alert; `latticenet.vpn-core/lines.list` resolves to the table or `No matching lines`. | Header plus empty/table-header crop; exclude line, node, user, traffic, and credential data. | NOT VERIFIED — environment absent |
+| NetGuard `22ea8e5a819df14cfe789e608a20041e8f2fcef4` | `/plugins/latticenet.netguard/firewall`; press Refresh once. | `NetGuard` loads without alert; `latticenet.netguard/firewall.overview` resolves and summary counts/empty state render. | Header/summary-count crop; exclude node names, bindings, rules, zones, drift anchors, and plans. | NOT VERIFIED — environment absent |
+| WireGuard `6ad14c76da3f1180599279564cfa75c11523edc2` | `/plugins/latticenet.wireguard/networks`; press Refresh once. | `WireGuard Networks` loads without alert; `latticenet.wireguard/networks.overview` resolves and summary counts/empty state render. | Header/summary-count crop; exclude node names, addresses, endpoints, key previews, config previews, and plans. | NOT VERIFIED — environment absent |
+
+The common host identity is server `1e6103001f16d48110bce471d68e6e638e805ada`
+plus dashboard `04c404601d5ab32d11dcd05c25e2f11ba9b8f39a`; plugin-index mirror is
+`4ed4e5049eed77f76f91bee93a7c0c742c0fd310`. Any mismatch is a recorded finding and stops the
+pass.
+
+### Minimal human-run environment checklist (outcomes, not commands)
+
+1. A human operator owns startup and shutdown of one fresh, isolated, non-production loopback
+   environment assembled from the exact frozen heads above; no tag, release, signing, workflow
+   dispatch, or production deployment is part of this proof.
+2. Before browsing, the operator records exact server, dashboard, plugin, and index identity.
+   Any mismatch remains FAIL/NOT VERIFIED; do not substitute another head.
+3. Use only an already authenticated browser session with the least read/navigation scopes needed
+   for these routes (`substore:read`, `vpncore:read`, `netguard:read`, `node:read`, and the
+   template's `network:plan` navigation scope). No credential or browser state is transferred.
+4. Execute the five rows above and TASK-0003's deterministic error row. Do not use admin buttons,
+   write methods, plan methods, subscription endpoints, real subscription contents, or DevTools
+   request/response inspection.
+5. Return one UTC result matrix with exact-head match and per-row PASS/FAIL/NOT VERIFIED. Attach
+   only the narrowly cropped safe UI regions specified above; do not send credentials, cookies,
+   headers, storage, request/response bodies, keys, trust material, identifiers, config paths, or
+   secret paths.
+
+If a browser controller is unavailable, the human-run matrix is the evidence path; controller
+attachment is not a prerequisite and must not be worked around by relaying browser secrets.
+
 ## Log
+
+- 2026-08-04 (11:44Z): post-TASK-0018 exact baseline consumed and code-freeze blocker released.
+  Read-only inspection of each frozen manifest/UI object produced the five-plugin matrix above:
+  four manifest-declared read calls plus the template's fail-closed handshake/interface proof;
+  every plan/write/admin path is excluded. **NOT VERIFIED**: the fresh isolated real-browser
+  environment is not running. Environment outcome request sent to zeus; task moved to `blocked`;
+  no code repo or other-seat worktree was changed.
 
 - 2026-07-28 (09:51Z): **FINISH LETTER SENT** (zeus + hephaestus). Every cited commit re-verified
   as an ancestor of its integration tip first. Five DoD lines ticked; ONE deliberately left open:

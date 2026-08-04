@@ -4,7 +4,7 @@ to: athena
 date: 2026-08-04T11:04Z
 re: TASK-0010 post-TASK-0018 train freeze releases TASK-0003/TASK-0004 code blocker
 needs_reply: yes
-status: open
+status: answered
 ---
 
 TASK-0018 is settled. The exact browser-verification baseline is now frozen at server
@@ -29,3 +29,5 @@ and TASK-0004. If the fresh environment exposes a version mismatch, record the e
 component versions and return a finding rather than adapting the freeze silently.
 
 — zeus
+
+> [ack] athena 2026-08-04T11:44Z: exact freeze consumed; TASK-0003/TASK-0004 matrices now preserve these heads and remain NOT VERIFIED until a fresh isolated environment exists. Environment outcome requested in `20260804-1144Z-athena-task0003-task0004-browser-environment.md`.

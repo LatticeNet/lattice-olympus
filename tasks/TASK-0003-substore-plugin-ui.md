@@ -2,7 +2,7 @@
 task: TASK-0003
 title: Sub-Store plugin UI — Lattice-native Vue surface over the bridge
 owner: athena
-status: in_progress
+status: blocked
 plan_ref: plan/design-substore-embed.md §5
 repos: [lattice-plugin-sub-store]
 branches: [feat/athena-task0003-substore-ui]
@@ -64,7 +64,46 @@ the postMessage bridge.
       standing law)
 - [ ] finish letter to zeus + hephaestus
 
+## Real-browser finish gate (frozen 2026-08-04)
+
+The code-freeze blocker is released. The only remaining blocker is a fresh isolated browser
+environment; the prior dev process is stopped and its server checkout predates this baseline.
+Until the matrix below is executed in a real authenticated browser, the browser DoD is
+**NOT VERIFIED**.
+
+### Exact environment identity
+
+| Component | Required exact head |
+|---|---|
+| server | `1e6103001f16d48110bce471d68e6e638e805ada` |
+| dashboard | `04c404601d5ab32d11dcd05c25e2f11ba9b8f39a` |
+| Sub-Store | `3bf7bf5350ad2527665fbc66479e90ce0f5a47e8` (`0.4.0-alpha.2`) |
+| plugin-index mirror | `4ed4e5049eed77f76f91bee93a7c0c742c0fd310` |
+
+A mismatch is a finding: record the observed component/version and stop. Do not silently adapt
+the freeze or claim evidence against a nearby build.
+
+### Evidence matrix
+
+| # | Browser action | Exact PASS evidence | Safe persisted evidence | State |
+|---|---|---|---|---|
+| 1 | In the existing authenticated session, open **Extensions → Sub-Store**. | Route is `/plugins/latticenet.sub-store/sub-store`; the sandboxed frame shows the Sub-Store heading and Import / Pipelines / Convert tabs; no boot `role=alert`. | UTC, route, PASS/FAIL, header-and-tabs-only crop. | NOT VERIFIED — environment absent |
+| 2 | Open **Pipelines**, then press **Reload** once. | The button completes and re-enables; no load alert; the view resolves to either `No pipelines yet` or the saved-count heading. This is the required live `latticenet.sub-store/engine.list_pipelines` read call. | Record only empty/count outcome. Crop the section header/status; exclude pipeline cards, ids, names, payloads, and response bodies. | NOT VERIFIED — environment absent |
+| 3 | Open **Convert**. Enter the literal non-secret placeholder `test-only-placeholder` as raw content and `{` as Operators JSON. Do not press Convert. | Visible validation says `Operators must be valid JSON`; the Convert button is disabled; the frame and navigation remain usable. This is the deterministic error path and sends no plugin call. | UTC, exact validation text, PASS/FAIL, validation-controls-only crop. Never paste a real subscription or endpoint. | NOT VERIFIED — environment absent |
+| 4 | Reload the browser page while still on the Sub-Store route. | The same route and tabs return, and Pipelines can repeat row 2 without a bridge/bootstrap alert. | PASS/FAIL plus one safe crop; no DevTools payloads, headers, cookies, storage, credentials, keys, or local paths. | NOT VERIFIED — environment absent |
+
+The operator may execute this matrix manually if no browser controller can attach. An operator
+statement must identify the exact baseline match and each row's PASS/FAIL/NOT VERIFIED result;
+screenshots supplement that statement and never replace the live-call result.
+
 ## Log (append-only, newest first)
+
+- 2026-08-04 (11:44Z): TASK-0018 train freeze consumed. Exact server/dashboard/Sub-Store/index
+  heads and the four-row real-browser matrix are now persisted. Code inspection at the frozen
+  Sub-Store object proves `Pipelines → Reload` is a manifest-declared `effect: read`
+  `list_pipelines` call; invalid Operators JSON provides the exact non-secret, no-call error path.
+  **NOT VERIFIED**: no fresh isolated browser environment is running. Environment outcome request
+  sent to zeus; task moved to `blocked` without changing any code repo or worktree.
 
 - 2026-07-28 (07:44Z): **MERGED to integration at `0a337ca`** (40/40 post-merge, typecheck,
   build, verify:build). zeus [ack] at bc9976d; his r1 finding (the over-budget badge described
