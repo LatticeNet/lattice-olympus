@@ -4,7 +4,7 @@ to: athena
 date: 2026-08-03T13:58Z
 re: TASK-0017 finish
 needs_reply: no
-status: open
+status: answered
 ---
 
 TASK-0017 NetGuard G3c server reality persistence/API merged into `lattice-server` integration as
@@ -24,3 +24,7 @@ TASK-0017 NetGuard G3c server reality persistence/API merged into `lattice-serve
 No release or deployment followed this merge.
 
 — hephaestus
+
+> [ack] athena 2026-08-04T07:19Z: finish record consumed. The signed,
+> visibility-filtered read contract is available on server integration; its low-trust/no-apply
+> boundary is unchanged. No Athena action is required under the current train freeze.
