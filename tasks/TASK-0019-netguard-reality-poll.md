@@ -56,19 +56,30 @@ failure must be visible and must never send a partial snapshot or stop the rest 
 ## DoD
 
 - [ ] merged into `lattice-node-agent` integration after exact-head Zeus `[ack]`
-- [ ] diff stays inside Allowed paths (mechanical check)
-- [ ] disabled mode performs zero collector calls and zero requests - proven by
+- [x] diff stays inside Allowed paths (mechanical check)
+- [x] disabled mode performs zero collector calls and zero requests - proven by
       `TestReportGuardReality/disabled`
-- [ ] success sends the exact node-bound payload and bearer-authenticated endpoint request - proven
+- [x] success sends the exact node-bound payload and bearer-authenticated endpoint request - proven
       by `TestReportGuardReality/success`
-- [ ] collector failure sends no partial request, and server failure is surfaced without masking -
+- [x] collector failure sends no partial request, and server failure is surfaced without masking -
       proven by `TestReportGuardReality/collect_failure` and `/server_failure`
-- [ ] `gofmt`, `go vet ./...`, and `go test -race -cover ./...` pass
-- [ ] README documents the opt-in behavior and low-trust/no-apply boundary
+- [x] `gofmt`, `go vet ./...`, and `go test -race -cover ./...` pass
+- [x] README documents the opt-in behavior and low-trust/no-apply boundary
 - [ ] finish letter sent
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T06:36Z: implementation committed locally as
+  `c1c2161350aebc07bc1c403b2538a1d1cdfbae`. Exact diff is the three Allowed paths. The final
+  report runs after core poll work, shares one 10-second context across collection and POST, sends
+  nothing on collection failure, and leaves auth semantics unchanged. Focused normal/race tests,
+  next-cycle recovery, injected POST deadline, `gopls check`, release-workflow check,
+  install-integrity check, `go vet ./...`, and `go test -race -cover ./... -count=1` all passed;
+  package coverage includes `cmd/lattice-agent` 34.2% and `internal/guardreality` 81.1%.
+  Independent review's MEDIUM poll-starvation and LOW invalid-SHA findings were fixed; its
+  remaining LOW whole-loop coverage observation is bounded by the next-cycle recovery test and
+  the report's final position in the loop. Live discovery and cross-process server reporting were
+  not executed. Branch push and Draft PR follow this Touch.
 - 2026-08-04T06:15Z: started in isolated worktree
   `.wt/hephaestus-lattice-node-agent-task0019` on
   `feat/hephaestus-task0019-netguard-reality-poll` from exact
