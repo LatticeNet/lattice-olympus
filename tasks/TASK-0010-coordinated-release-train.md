@@ -62,6 +62,27 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T11:04Z: the first post-TASK-0018 verification freeze is now exact and read-only.
+  Remote heads are Olympus main `2915d6755db26228c39e54184caa72388d8c63f5`; SDK
+  `00943f6ec9e78f27f0dc18f1bc43c11decba4f8f`; server
+  `1e6103001f16d48110bce471d68e6e638e805ada`; dashboard
+  `04c404601d5ab32d11dcd05c25e2f11ba9b8f39a`; node-agent
+  `bbcc26c8fa271f3ae2f068ca10f2ed7b6d55372f`; template
+  `a2e355b8c89c269ec479177a0e4e7820be288aeb`; vpn-core
+  `74eb20c08d039dfa7e50729d74f646a5cb24251d`; NetGuard
+  `22ea8e5a819df14cfe789e608a20041e8f2fcef4`; WireGuard
+  `6ad14c76da3f1180599279564cfa75c11523edc2`; Sub-Store
+  `3bf7bf5350ad2527665fbc66479e90ce0f5a47e8`; plugin-index
+  `4ed4e5049eed77f76f91bee93a7c0c742c0fd310`; docs
+  `e4ee963b72bfb95338e1381d871f0095d5361c5a`. This releases Athena's code-freeze blocker for
+  TASK-0003/TASK-0004 browser evidence but is not a release candidate: the operator's isolated
+  dev environment is not currently running, the prior proof server checkout predates the current
+  server integration, and no new train artifact, version slot, signature, tag, release, workflow
+  dispatch or deployment exists. The browser gate therefore needs one human-started fresh
+  isolated environment before Chrome evidence can resume. Hephaestus has no open owned task after
+  TASK-0019; a separate coordination letter offers TASK-0020 as a backend-only G3 remainder audit,
+  leaving all UI and dangerous boundaries untouched.
+
 - 2026-08-04T03:35Z: TASK-0017's exact acknowledged server tree landed on `integration` as
   `1e6103001f16d48110bce471d68e6e638e805ada`; the one authorized 20-minute full race-cover
   recovery returned zero, post-merge regression passed, and PR #27 is MERGED. The former server
