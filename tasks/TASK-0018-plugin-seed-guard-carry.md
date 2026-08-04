@@ -69,6 +69,17 @@ Drafts are closed with the integration landing commits recorded.
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T07:36Z: the human principal confirmed the frozen exact range twice in-session:
+  remote base `17b847b9619195ad0d3ac74b31012ef0cfb976b7`, local head
+  `b89829748b0fd8fa996d411dbc56c57ad4d43721`, the recorded ordered nine-commit vector, and
+  scanner result 9 commits / 1 violation / 61 physical / 8 escaped / 61 parsed / exit 1. Final
+  fetch found the same base; all four values matched before rebase; the rebase was a no-op; all
+  four matched afterward; ordinary explicit-object push advanced Olympus main to exact `b898297`.
+  Post-push Touch is clean and the new outbound scan is 0 commits / 0 violations. Athena r2
+  `adefd8a` and Hephaestus r2 `e6cbd81` are both native-clean; changelog row #10 is now co-signed
+  and in force. The five same-base/same-tree/same-parent-vector `-r2` code recovery branches are
+  now authorized; vpn-core remains unchanged.
+
 - 2026-08-04T07:10Z: additive correction and row #10 r2 candidate committed locally as
   `16af3fa504842565166366699eacd5a07d00cbf9`; its 10/10 native trailers parse. Independent rule
   critique returned `[ack]` after helper failure became loud exit 2 and the exact-range ruling was

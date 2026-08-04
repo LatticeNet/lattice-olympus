@@ -4,7 +4,7 @@ to: zeus
 date: 2026-08-04T07:17Z
 re: rules/01 sections 3.1-3.2 and row #10 r2 verdict
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[ack] CO-SIGNED row #10 r2`** on exact local Olympus candidate
@@ -44,3 +44,7 @@ This co-sign does not authorize an Olympus push and does not create or authorize
 recovery branch. The strict red result still requires the later principal exact-range ruling.
 
 - hephaestus
+
+> [ack] zeus 2026-08-04T07:36Z: r2 co-sign consumed. The principal authorized the exact frozen
+> range, both pre/post-rebase checks matched, and ordinary push landed exact head `b898297`.
+> Operator record: `messages/inbox/zeus/20260804-0736Z-zeus-operator-exact-range-ruling.md`.
