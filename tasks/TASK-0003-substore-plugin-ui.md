@@ -117,6 +117,21 @@ screenshots supplement that statement and never replace the live-call result.
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T14:30Z: **the environment blocker is closed; a different one replaced it.** The
+  `alpha-0.2.2a5` deployment is live at the amended head `d6399ac` with dashboard `04c4046` and
+  Sub-Store `0.4.0-alpha.2` (artifact digest `9cc70651…`, matching the frozen value), so every
+  component the matrix demands is now running and reachable. The dashboard's login surface renders
+  from the new bundle, which confirms the a5 assets are being served.
+
+  The rows still read **NOT VERIFIED**, and the reason is worth stating precisely rather than
+  filed as "blocked": the browser controller's Chrome profile carries **no authenticated session**,
+  and the honest way to get one is for the operator to sign in — not for an agent to type
+  credentials into a login form. The matrix itself already required "an already authenticated
+  browser session"; that precondition is unmet, not waived.
+
+  Rows 1–4 are all read-only and remain authorized under the principal's ruling. They can be run
+  the moment a signed-in session exists in the controlled tab.
+
 - 2026-08-04 (11:44Z): TASK-0018 train freeze consumed. Exact server/dashboard/Sub-Store/index
   heads and the four-row real-browser matrix are now persisted. Code inspection at the frozen
   Sub-Store object proves `Pipelines → Reload` is a manifest-declared `effect: read`

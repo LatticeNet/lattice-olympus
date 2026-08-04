@@ -125,6 +125,15 @@ attachment is not a prerequisite and must not be worked around by relaying brows
 
 ## Log
 
+- 2026-08-04 (14:30Z): the environment blocker is closed — `alpha-0.2.2a5` is deployed at the
+  amended head `d6399ac` with dashboard `04c4046`, and four of the five matrix plugins are loaded
+  and verified at their frozen digests (`plugin loader: 4 loaded, 0 rejected`). Two things keep the
+  rows at **NOT VERIFIED** rather than PASS, both named rather than absorbed: the browser
+  controller's Chrome profile has **no authenticated session**, and an agent typing credentials
+  into a login form is not an acceptable way to obtain one; and the reference-template row is
+  unreachable by design because that bundle is not installed and installing it is what the
+  read-only boundary forbids. The four plugin rows can run as soon as a signed-in session exists.
+
 - 2026-08-04 (11:44Z): post-TASK-0018 exact baseline consumed and code-freeze blocker released.
   Read-only inspection of each frozen manifest/UI object produced the five-plugin matrix above:
   four manifest-declared read calls plus the template's fail-closed handshake/interface proof;

@@ -65,6 +65,40 @@ Operator's stated model (ruling §1b):
 
 ## Log (append-only, newest first)
 
+- 2026-08-04T14:23Z: **`alpha-0.2.2a5` is cut and deployed.** The blocker recorded at 12:58Z —
+  "the human must stop the old zero-plugin process and restart it" — is closed by a different and
+  better route than the one it assumed: rather than repair the private loopback package, the
+  principal took the release and deploy actions directly on the operator's own deployment, which
+  was already correctly configured with all four plugin inputs the package had been missing.
+
+  Sequence, in the order rules/01 §8 requires: one server change landed first
+  (`dashboard.ref → 04c4046`, PR #28, CI green on ubuntu including `go test -race -cover ./...`,
+  gosec and govulncheck) as no-ff merge `d6399ac`; `container.yml` was then dispatched **build-only**
+  on the branch to prove the new dashboard ref builds inside the image before any tag existed
+  (success); the tag `alpha-0.2.2a5` was pushed on `d6399ac` and its publish build succeeded.
+
+  Before the swap, the four newest signed plugin bundles were verified three independent ways:
+  each artifact's SHA-256 equals its manifest's declared `bundle.digest_sha256`; all four equal the
+  digests frozen at 12:10Z (`ac7e1d66`, `9cc70651`, `89e4d484`, `decba2ac`); and a throwaway
+  container running the **old** image against the staged bundles and the production trust file
+  reported `plugin loader: 4 loaded, 0 rejected`. That last check is the one that matters: it used
+  the server's own verification code rather than a re-implementation of it. (The dashboard's
+  `/api/plugins/verify` preflight could not be used — its 4 MiB JSON limit is smaller than any of
+  these bundles base64-encoded, which is worth recording as a real limit of that endpoint.)
+
+  Deployment: service stopped for a consistent copy (the bolt hot store makes a hot copy
+  untrustworthy), 94 MB backup of state + plugins + compose + env taken and its archives verified
+  readable *before* anything was overwritten, bundles swapped, image tag moved, `docker compose
+  pull` + `up -d`. Result: `alpha-0.2.2a5` / commit `d6399ac` / dashboard_ref `04c4046`, healthy,
+  `plugin loader: 4 loaded, 0 rejected`, and every node record intact. The previous image remains
+  in the local image store, so rollback needs no network.
+
+  One thing the deploy did NOT close: the browser evidence matrices. The environment now exists,
+  but the controller's Chrome profile has no authenticated session, and manufacturing one by
+  entering credentials is not something an agent should do. Those rows stay NOT VERIFIED.
+
+  Not done, deliberately: no stable `v0.3.0` promotion, no plugin re-signing, no node-agent change.
+
 - 2026-08-04T12:58Z: the operator started the first frozen Linux package and authenticated the
   browser through the loopback tunnel, but the live Plugins page authoritatively showed zero
   registered plugins. Read-only source inspection then proved the package launcher omitted four

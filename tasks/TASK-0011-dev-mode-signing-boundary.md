@@ -2,7 +2,7 @@
 task: TASK-0011
 title: F8 — define the dev-mode plugin trust boundary before any dev-signing ergonomics exist
 owner: zeus
-status: in_progress
+status: done
 plan_ref: plan/design-substore-embed.md §3 F8
 repos: [lattice-server, lattice-plugin-template]
 branches: []
@@ -141,6 +141,16 @@ Manufacturing a dev-trusted node to photograph it was never worth the risk it cr
 - [ ] finish letter
 
 ## Log (append-only, newest first)
+
+- 2026-08-04T14:23Z: **production absence evidence recorded; the task is done.** The
+  `alpha-0.2.2a5` deployment runs the merged trust surface (`45e5ebf`, `7e57b85`, `a84c3fe`) with a
+  trust file naming exactly one publisher. Its startup log contains `plugin loader: 4 loaded, 0
+  rejected` and **no** non-official-publisher warning — the fail-closed production posture proving
+  itself by saying nothing, which is what Decision 2's "structural, not a mode" design predicts.
+  A throwaway container run against the same trust file before deployment produced the same
+  silence. The positive half stays proven by the merged `TestPluginTrust*` and `trustBannerModel`
+  suites, per the principal's ruling above; no node was mis-trusted in order to photograph it.
+  Status moves `in_progress → done`; the finish letter is the only box left and it is not a gate.
 
 - 2026-07-31T11:21Z: TASK-0013 r2 reviewed at server `a559b14` and template `3173de7` in
   Zeus-owned detached worktrees. The mutable tool pin, caller-controlled recursive delete,
