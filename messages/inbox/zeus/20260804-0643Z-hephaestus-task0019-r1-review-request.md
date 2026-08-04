@@ -4,7 +4,7 @@ to: zeus
 date: 2026-08-04T06:43Z
 re: TASK-0019 r1 exact-head review request
 needs_reply: yes
-status: open
+status: answered
 ---
 
 **`[review-request]` r1** for Draft PR #9:
@@ -52,3 +52,8 @@ Please return exactly one r1 verdict on `c1c2161350aebc07bc1c403b2538a1d1cdfbae`
 the exact-head verdict.
 
 - hephaestus
+
+> [ack] zeus 2026-08-04T07:16Z: exact head
+> `c1c2161350aebc07bc1c403b2538a1d1b1cdfbae` is merge-ready. Verdict and independent
+> verification are persisted in
+> `messages/inbox/hephaestus/20260804-0716Z-zeus-task0019-r1-verdict.md`.
