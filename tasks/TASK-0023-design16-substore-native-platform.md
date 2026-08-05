@@ -97,25 +97,80 @@ Two consequences an operator must know:
    URL and `rotates_public_access: false` rather than a URL the rotation does not
    control.
 
-## Gate before deployment
+## Gate before deployment — CLEARED 2026-08-05
 
 The manifest changed (capabilities and interfaces are both inside the signing
-payload), so **its signature is stale and the plugin will not load until it is
-re-signed**. Re-signing needs the publisher seed, which is operator-held. Per
-rules/01 §8.5 the version must move in lock-step across manifest, `ui`, and the Go
-constant in the same wave.
+payload), so its signature was stale and the plugin would not load until it was
+re-signed. Signed and shipped as **0.5.0-alpha.1**.
+
+Three things the wave forced, each a real gate rather than a formality:
+
+1. **Every interface method must declare `scopes`.** `validateCapabilities`
+   asserts; it does not warn. Read methods take `substore:read`, write methods
+   `substore:admin`, matching the existing `import`/`engine` interfaces.
+   `migrate` and `publish` additionally declare `operator_target_fields`,
+   because both hand the host an operator-designated URL.
+2. **The release order is enforced by the validator, not by convention.** The
+   manifest check pinned to the a4 commit rejected `subscription:serve` as an
+   unknown capability. The server has to be released first; only then can the
+   plugin naming that capability be signed.
+3. **Sign with the released server's `pluginsign`, not a local checkout.** Local
+   `main` predates a6 and its `plugin.Manifest` does not know the `backing`
+   field, so it would have computed a signing payload the deployed verifier does
+   not agree with. Signing used
+   `pluginsign@v0.2.2-0.20260805145356-4e41f1410201`.
 
 ## DoD
 
 - [x] all six sub-projects implemented with tests
 - [x] `go test -race -cover -count=1` green in `lattice-sdk`, `lattice-server`, `lattice-plugin-sub-store`
 - [x] design + implementation plan committed and pushed
-- [ ] operator acknowledges the two behaviour changes above
-- [ ] re-sign wave (operator-held seed) and version bump
+- [x] operator acknowledges the two behaviour changes above (answered by ruling
+      the empty-render case into a silent masquerade rather than an error)
+- [x] re-sign wave and version bump — 0.5.0-alpha.1, lock-step across manifest,
+      `ui/package.json` and the Go constant
+- [x] released, index advertises it, deployed and verified in production
 - [ ] real-browser verification of the new UI surfaces
 - [ ] finish letter
 
+## Verification evidence (2026-08-05)
+
+Bundle digest `ca82b389d0e53c991409bfa4a838539097f453c749f13caed33f3806352983f1`
+agreed across four independent paths: the local packer, an independent
+`shasum`, CI's rebuild on linux/amd64, and the artifact downloaded back from the
+published release.
+
+Loading was proven before production saw it: the signed bundle was run through
+the **released a6 image's own loader** in a throwaway container under a
+fail-closed trust policy (`allow_unsigned_host_risk` absent ⇒ false, and
+`subscription:serve` is host-risk, so an invalid signature would have been
+rejected) — `1 loaded, 0 rejected`. Production then reported `4 loaded, 0
+rejected`, and the extraction path is keyed by both version and digest
+(`0.5.0-alpha.1/ca82b389…/bin/linux-arm64/plugin`), which is what proves the
+running bytes are the signed ones rather than a retained older bundle.
+
+Probe resistance confirmed against the live public route: unknown share paths
+return 404 with a zero-byte body and **no `X-Request-Id`**, so a prober cannot
+distinguish "this share does not exist" from "this path is not served here", and
+cannot tell whether the request reached the application at all.
+
+A false-negative worth recording: the first throwaway container reported
+`0 loaded, 1 rejected`, which looked like a signature failure. It was not — the
+harness had omitted `LATTICE_PLUGIN_BUNDLE_CACHE_DIR`, which production sets. A
+verification harness that does not mirror the deployed configuration produces
+verdicts about itself, not about the artifact.
+
 ## Log (append-only, newest first)
+
+- 2026-08-05: signed, released and **deployed**. `v0.5.0-alpha.1` published with
+  bundle + manifest assets; the index alpha channel advertises it, with digest,
+  capabilities and signature copied from the released manifest rather than
+  retyped. `subscription:serve` had to join the index validator's capability
+  vocabulary — that check asserts rather than warns, so the index cannot
+  advertise a capability it does not know. Twice in this wave a piped `EXIT=$?`
+  read the exit code of `tail` instead of the command, once reporting a failing
+  index validation as green; authoritative runs capture output to a file and
+  read the real code.
 
 - 2026-08-05: six sub-projects implemented across four repos. Two defects were
   found in my own work by running the full suite rather than a filtered one: a
