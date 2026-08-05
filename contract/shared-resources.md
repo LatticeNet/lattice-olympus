@@ -28,7 +28,8 @@ Tag **push** itself is a release op (zeus's hands, rules/03). Known at setup: tr
 | alpha-0.2.2a1 | strict backing + secret storage + execute protocol (pre-Olympus, deployed) | zeus | merged | — |
 | alpha-0.2.2a3 | lattice-server image tag (integration 755aaff: TASK-0008/0022/0023 + reconciliation) | zeus (operator-delegated 2026-07-27) | merged | TASK-0010 |
 | alpha-0.2.2a4 | lattice-server image tag (integration c9c67107: dashboard.ref -> reconciled tip, closes pin-graph G2) | zeus (operator-delegated 2026-07-27) | merged (deployed 2026-07-27) | TASK-0010 |
-| alpha-0.2.2a5 | lattice-server image tag (integration 1e61030 + dashboard.ref -> 04c4046: NetGuard reality chain, dev-plugin loop, plugin-trust surface, trust banner) | zeus (principal-delegated 2026-08-04) | claimed | TASK-0010 |
+| alpha-0.2.2a5 | lattice-server image tag (integration 1e61030 + dashboard.ref -> 04c4046: NetGuard reality chain, dev-plugin loop, plugin-trust surface, trust banner) | zeus (principal-delegated 2026-08-04) | merged (deployed 2026-08-04) | TASK-0010 |
+| alpha-0.2.2a6 | lattice-server image tag (integration 4e41f14: subscription shares, public distribution, snapshot fallback, probe resistance, subscription:serve capability) | principal | claimed | TASK-0023 |
 | | | | | |
 
 ## RBAC scopes & host capabilities (lattice-server rbac + plugin manifests)
@@ -40,6 +41,7 @@ or reused across semantics (the wireguard scope-name confusion is the cautionary
 | Name | Meaning | Owner | State | TASK |
 |---|---|---|---|---|
 | v0.1.0-alpha.1 | lattice-plugin-bridge first publish tag | zeus (operator-delegated) | claimed | TASK-0004 |
+| `subscription:serve` (capability) | A plugin may produce the BODY of a subscription the core serves on an unauthenticated public URL. Grants no route, no port, no listener, no response header and no access to the share token. Host-risk, system-only, NOT exempt for non-system plugins | principal | in_progress | TASK-0023 |
 
 ## Plugin ids · service/method names · manifest versions
 
@@ -77,4 +79,6 @@ in memory. Claim the collection name here first.
 | Collection | Content | Owner | State | TASK |
 |---|---|---|---|---|
 | GuardRealitySnapshots | Latest normalized low-trust `GuardNodeReality` per node plus server `received_at`; plaintext by design because raw payloads, tokens, stderr, key material, and secrets are forbidden from this collection | hephaestus | in_progress | TASK-0017 |
+| SubscriptionShares | One publicly reachable subscription URL: slug, token, source, format, lifecycle. `Token` IS wired through `encryptedState`/`decryptState` — it is a bearer credential for an unauthenticated URL, the same class as `ProxyUser.SubToken` beside it. `Slug` stays plaintext deliberately: it already appears in reverse-proxy access logs, so sealing it would imply a secrecy it does not have. Excluded from the JSON state when the bolt hot store is enabled | principal | in_progress | TASK-0023 |
+| SubscriptionSnapshots | Last content a plugin successfully fetched for one subscription, keyed `(plugin_id, subscription_id)`. **Plaintext by design**: it is public subscription content the provider already served over the network to anyone holding the URL, so a cipher pass per refresh would buy nothing. The provider URL itself never enters this collection — only the response body and its traffic header. Excluded from the JSON state when the bolt hot store is enabled, because these are provider payloads rewritten on every refresh | principal | in_progress | TASK-0023 |
 | | | | | |
