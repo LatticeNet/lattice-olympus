@@ -130,6 +130,7 @@ Three things the wave forced, each a real gate rather than a formality:
 - [x] re-sign wave and version bump — 0.5.0-alpha.1, lock-step across manifest,
       `ui/package.json` and the Go constant
 - [x] released, index advertises it, deployed and verified in production
+- [x] a user interface exists at all (added after the fact — see below)
 - [ ] real-browser verification of the new UI surfaces
 - [ ] finish letter
 
@@ -161,6 +162,32 @@ verification harness that does not mirror the deployed configuration produces
 verdicts about itself, not about the artifact.
 
 ## Log (append-only, newest first)
+
+- 2026-08-06: **the feature had no user interface, and no way to create
+  anything.** The operator opened the plugin page and still saw only Import,
+  Pipelines and Convert. Two separate gaps, both mine:
+
+  1. Eleven subscription methods shipped signed and deployed with **no caller**.
+     The design decomposed the work into six *backend* sub-projects and never
+     scoped a UI, so the feature was complete by its own definition and unusable
+     by the operator's. My report of "six sub-projects implemented" described
+     the method surface and did not say this.
+  2. The interface had **no create path**. `list` existed; `get`, `save` and
+     `delete` did not. `saveSubscription`/`deleteSubscription` were reachable
+     only from `migrateFromSubStore` and `importBackup`, so a subscription could
+     enter the store by migration or backup restore and by nothing else.
+
+  Closed by adding the three methods (with `origin` preserved server-side so a
+  caller cannot forge migration provenance), a Subscriptions tab and a Settings
+  tab in the plugin, and a subscription-shares view in the **dashboard** —
+  shares are core-owned and the plugin frame runs with `connect-src 'none'`, so
+  it cannot reach `/api/subscription-shares` and should not be able to.
+  Released as sub-store `0.6.0-alpha.1` and server image `alpha-0.2.2a7`
+  (same server tree as a6; only `dashboard.ref` moves).
+
+  Worth keeping: a backend can pass every test it has, be signed, be deployed,
+  and still deliver nothing. "Implemented" needs to mean reachable by the person
+  who asked for it.
 
 - 2026-08-05: signed, released and **deployed**. `v0.5.0-alpha.1` published with
   bundle + manifest assets; the index alpha channel advertises it, with digest,

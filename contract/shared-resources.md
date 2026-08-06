@@ -29,6 +29,7 @@ Tag **push** itself is a release op (zeus's hands, rules/03). Known at setup: tr
 | alpha-0.2.2a3 | lattice-server image tag (integration 755aaff: TASK-0008/0022/0023 + reconciliation) | zeus (operator-delegated 2026-07-27) | merged | TASK-0010 |
 | alpha-0.2.2a4 | lattice-server image tag (integration c9c67107: dashboard.ref -> reconciled tip, closes pin-graph G2) | zeus (operator-delegated 2026-07-27) | merged (deployed 2026-07-27) | TASK-0010 |
 | alpha-0.2.2a5 | lattice-server image tag (integration 1e61030 + dashboard.ref -> 04c4046: NetGuard reality chain, dev-plugin loop, plugin-trust surface, trust banner) | zeus (principal-delegated 2026-08-04) | merged (deployed 2026-08-04) | TASK-0010 |
+| alpha-0.2.2a7 | lattice-server image tag (same server tree as a6; dashboard.ref -> 846f487, adding the subscription shares management view) | principal | merged (deployed 2026-08-06) | TASK-0023 |
 | alpha-0.2.2a6 | lattice-server image tag (integration 4e41f14: subscription shares, public distribution, snapshot fallback, probe resistance, subscription:serve capability) | principal | merged (deployed 2026-08-05) | TASK-0023 |
 | | | | | |
 
@@ -50,8 +51,8 @@ Plugin ids are global (`latticenet.<name>`); service+method tuples are wire cont
 
 | Resource | Value | Owner | State | TASK |
 |---|---|---|---|---|
-| `latticenet.sub-store` manifest version | 0.5.0-alpha.1 (signed; bundle digest ca82b389) | principal | merged (deployed 2026-08-05) | TASK-0023 |
-| `latticenet.sub-store/subscription` service | 11 methods: fetch, render, operators, preview, list, migrate, export, import, get_settings, save_settings, publish | principal | merged | TASK-0023 |
+| `latticenet.sub-store` manifest version | 0.6.0-alpha.1 (signed; bundle digest 44652f96) | principal | merged (deployed 2026-08-06) | TASK-0023 |
+| `latticenet.sub-store/subscription` service | 14 methods: fetch, render, operators, preview, list, get, save, delete, migrate, export, import, get_settings, save_settings, publish. `get`/`save`/`delete` were added 2026-08-06 — without them nothing could create a subscription | principal | merged | TASK-0023 |
 | | | | | |
 
 ## Ports (dev servers, plugin sidecars, node inbounds)
