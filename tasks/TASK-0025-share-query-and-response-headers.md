@@ -72,7 +72,15 @@ server in front of it.
 
 ## Headers
 
-Simpler, but not unconditional. The plugin returns what the document asked for;
+Three things depend on this, not one:
+
+- a script file's own `content-type` and `profile-update-interval`;
+- **`Content-Disposition` for a file marked "save rather than show"** — the
+  record has carried a `download` flag since files existed, the plugin now
+  returns the header, and nothing applies it;
+- anything a response transformer sets on a subscription's chain.
+
+Simpler than the query half, but not unconditional. The plugin returns what the document asked for;
 the server decides what it is willing to send. `Cache-Control`, `Content-Length`
 and anything security-relevant stay the server's, and `Subscription-Userinfo`
 must keep coming from the snapshot rather than from a document that could
