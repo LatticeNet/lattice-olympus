@@ -58,12 +58,21 @@ both are worth ruling out:
 Reading 2 is the reason this is a task rather than a note. The deployed fleet is
 arm64; only the *OS* differs from where it reproduces.
 
+## Progress
+
+**2026-08-07 — the escape hatch exists.** `substoreEngineRawErrors` is an
+unexported package var that makes `redactSubStoreJSError` and
+`redactSubStoreEnginePanic` return their original text. Only a test helper
+assigns it, and a guard test fails if any shipped file ever does, so redaction
+cannot quietly become default-off. It paid for itself on its first run,
+pinpointing a `produce`/`yaml` shape mismatch in the files work that the hash
+had reduced to eight opaque bytes.
+
+The panic itself has not reproduced since; the remaining bullets stand.
+
 ## First things to try
 
-- Capture the actual panic before it is hashed. `redactSubStoreEnginePanic`
-  exists so a panic string never reaches a caller, which is right in production
-  and unhelpful here — a test-only escape hatch that logs the raw value would
-  end the guessing immediately.
+- ~~Capture the actual panic before it is hashed.~~ Done — see Progress.
 - Run the same tests on `linux/arm64` in a container to separate "arm64" from
   "darwin".
 - Run without `-race` on darwin to see whether instrumentation is required to
@@ -73,7 +82,7 @@ arm64; only the *OS* differs from where it reproduces.
 
 ## DoD
 
-- [ ] the raw panic is known rather than hashed
+- [x] the raw panic is known rather than hashed
 - [ ] reproduced or excluded on linux/arm64
 - [ ] either fixed, or documented as a darwin-only test-harness limitation with
       the local suite's status made explicit so it is not a silent gate
